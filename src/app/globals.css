@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #121214;
+  --foreground: #fafafa;
+  --forge-bg: #121214;
+  --forge-bg-elevated: #18181b;
+  --forge-surface: #1a1a1e;
+  --forge-surface-alt: #1e1e22;
+  --forge-border: #27272a;
+  --forge-border-hover: #3f3f46;
+  --forge-primary: #8B5CF6;
+  --forge-primary-rgb: 139, 92, 246;
+  --forge-primary-hover: #A78BFA;
+  --forge-primary-pressed: #6D28D9;
+  --forge-text: #fafafa;
+  --forge-text-muted: #a1a1aa;
+  --forge-text-subtle: #71717a;
+  --forge-accent: rgba(139, 92, 246, 0.12);
+  --forge-accent-foreground: #8B5CF6;
+  --forge-ring: #8B5CF6;
+  --forge-radius-sm: 8px;
+  --forge-radius-md: 10px;
+  --forge-radius-lg: 12px;
+  --forge-radius-xl: 16px;
+  --forge-glow-primary: 0 0 30px rgba(139, 92, 246, 0.3);
+  --forge-glow-primary-sm: 0 0 20px rgba(139, 92, 246, 0.25);
+  --forge-focus-ring: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
+  --forge-gradient-hero: radial-gradient(
+    ellipse 80% 50% at 50% 0%,
+    rgba(139, 92, 246, 0.15) 0%,
+    rgba(109, 40, 217, 0.08) 40%,
+    transparent 70%
+  );
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-forge-primary: var(--forge-primary);
+  --color-forge-primary-hover: var(--forge-primary-hover);
+  --color-forge-border: var(--forge-border);
+  --color-forge-text-muted: var(--forge-text-muted);
+  --color-forge-text-subtle: var(--forge-text-subtle);
+  --color-forge-surface: var(--forge-surface);
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-sans);
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
