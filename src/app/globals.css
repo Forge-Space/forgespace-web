@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../";
 
 :root {
   --background: #121214;
@@ -40,9 +41,17 @@
   --color-forge-primary: var(--forge-primary);
   --color-forge-primary-hover: var(--forge-primary-hover);
   --color-forge-border: var(--forge-border);
+  --color-forge-border-hover: var(--forge-border-hover);
+  --color-forge-text: var(--forge-text);
   --color-forge-text-muted: var(--forge-text-muted);
   --color-forge-text-subtle: var(--forge-text-subtle);
   --color-forge-surface: var(--forge-surface);
+  --color-forge-surface-alt: var(--forge-surface-alt);
+  --color-forge-bg: var(--forge-bg);
+  --color-forge-bg-elevated: var(--forge-bg-elevated);
+  --color-forge-accent: var(--forge-accent);
+  --color-forge-accent-foreground: var(--forge-accent-foreground);
+  --color-forge-ring: var(--forge-ring);
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-sans);
   --font-mono: var(--font-mono), ui-monospace, monospace;
