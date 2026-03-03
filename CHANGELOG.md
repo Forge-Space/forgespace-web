@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.0] - 2025-03-02
+
 ### Added
+
+- **Docker optimization** — BuildKit cache mounts for npm (`--mount=type=cache`), pinned `node:22.22.0-alpine`, `deploy.resources` limits/reservations, `healthcheck`, `logging` rotation, `ulimits`, expanded `.dockerignore`. Separate `docker-compose.prod.yml` for production. Matches siza/mcp-gateway patterns.
+
+- **3D hero particles** — `HeroParticlesBackground` component using React Three Fiber and Three.js for particle background on landing page. Respects `prefers-reduced-motion`. Centralized `EASE_SIZA` in `@/lib/constants`.
 
 - **Stitch pages** — Implemented 11 marketing pages from Stitch project (Forge Space Web): Features, Ecosystem, Roadmap, Integrations, Command Center, Onboarding, Enterprise, Protocol, Governance, Patterns, How It Works
 - **Shared components** — `PageSection`, `EcosystemCard` for consistent layout and card styling
@@ -22,8 +28,9 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **Docker optimizations** — BuildKit cache mounts for npm and Next.js build cache; improved .dockerignore (tests, coverage, turbo, logs); `shm_size: 256mb` for dev service; deploy.resources, ulimits, logging limits (matches mcp-gateway/siza patterns).
 - **Brand alignment** — Replaced hardcoded colors with `--forge-*` CSS variables
-- **global-error** — Uses `@/styles/design-tokens` instead of hardcoded colors
+- **global-error** — Brand-aligned UI with Sora/DM Sans fonts, Google Fonts link, error message in dev, `forgeTokens` from design-tokens. Removed duplicate `tokens.ts` (use `design-tokens.ts` only).
 
 ### Fixed
 
@@ -35,3 +42,6 @@ All notable changes to this project will be documented in this file.
 - Landing page with hero, ecosystem cards, and CTA
 - `useReducedMotion()` support for accessibility
 - Custom `global-error.tsx` and `not-found.tsx`
+
+[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Forge-Space/forgespace-web/releases/tag/v0.1.0
