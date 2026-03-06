@@ -11,16 +11,34 @@ export function Nav() {
       </Link>
       <div className="flex items-center gap-6">
         <Link
-          href="#"
+          href="/features"
+          className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
+        >
+          Features
+        </Link>
+        <Link
+          href="/ecosystem"
+          className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
+        >
+          Ecosystem
+        </Link>
+        <Link
+          href="/how-it-works"
+          className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
+        >
+          How It Works
+        </Link>
+        <Link
+          href="/protocol"
           className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
         >
           Docs
         </Link>
         <Link
-          href="#"
+          href="/enterprise"
           className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
         >
-          Pricing
+          Enterprise
         </Link>
         <Link
           href="https://siza.forgespace.co"

@@ -12,6 +12,18 @@ Marketing site for [Forge Space](https://forgespace.co) — the open-source deve
 
 ## Development
 
+**Docker (recommended, matches other Forge Space projects):**
+
+```bash
+npm install
+npm run dev:docker
+# Or: ./scripts/dev.sh up
+```
+
+App runs at http://localhost:3000 with hot reload.
+
+**Terminal (alternative):**
+
 ```bash
 npm install
 npm run dev
@@ -24,6 +36,19 @@ NODE_ENV=production npm run build
 ```
 
 Note: Use `NODE_ENV=production` for builds to avoid Next.js workspace inference warnings.
+
+## Docker
+
+**Development (hot reload):**
+- `./scripts/dev.sh up` or `npm run dev:docker` — foreground
+- `./scripts/dev.sh up-d` — detached
+- `./scripts/dev.sh down` — stop
+- `./scripts/dev.sh logs` — follow logs
+
+**Production:**
+```bash
+docker compose -f docker-compose.prod.yml up -d --build
+```
 
 ## Project Structure
 

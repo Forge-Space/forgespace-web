@@ -1,18 +1,27 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, Github, Layers } from 'lucide-react';
+import { EASE_SIZA } from '@/lib/constants';
 
-const EASE_SIZA = [0.16, 1, 0.3, 1] as const;
+const HeroParticlesBackground = dynamic(
+  () =>
+    import('@/components/shared/HeroParticlesBackground').then(
+      (m) => m.HeroParticlesBackground
+    ),
+  { ssr: false }
+);
 
 export default function Home() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
+      <HeroParticlesBackground />
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-[1]"
         style={{ background: 'var(--forge-gradient-hero)' }}
         aria-hidden
       />

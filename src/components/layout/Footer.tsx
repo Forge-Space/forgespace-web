@@ -25,10 +25,22 @@ export function Footer() {
             Siza
           </Link>
           <Link
-            href="#"
+            href="/protocol"
             className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
           >
             Docs
+          </Link>
+          <Link
+            href="/ecosystem"
+            className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
+          >
+            Ecosystem
+          </Link>
+          <Link
+            href="/governance"
+            className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
+          >
+            Governance
           </Link>
         </div>
         <p className="text-xs text-forge-text-subtle">
