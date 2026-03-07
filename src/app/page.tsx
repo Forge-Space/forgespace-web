@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowRight, Github, Layers } from 'lucide-react';
+import { ArrowRight, Github, Shield, Cpu, BookOpen } from 'lucide-react';
 import { EASE_SIZA } from '@/lib/constants';
 
 const HeroParticlesBackground = dynamic(
@@ -39,15 +39,20 @@ export default function Home() {
               Open Source
             </span>
             <span className="text-sm font-mono text-forge-primary tracking-wider uppercase">
-              Developer Workspace
+              Internal Developer Platform
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Forge Space
+            Generate code with AI.
+            <br />
+            <span className="text-forge-primary">Ship it with confidence.</span>
           </h1>
-          <p className="text-lg text-forge-text-muted max-w-2xl mx-auto mb-10">
-            Open-source ecosystem for AI-powered development. Siza, MCP tools, and shared
-            patterns — one vision.
+          <p className="text-lg text-forge-text-muted max-w-2xl mx-auto mb-4">
+            Platform-grade governance without a platform team. Scorecards, policy packs,
+            and audit trails — from prompt to production in minutes.
+          </p>
+          <p className="text-sm text-forge-text-muted/70 max-w-xl mx-auto mb-10">
+            Free &amp; open source. No enterprise contract required.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.div
@@ -85,17 +90,32 @@ export default function Home() {
           className="mt-24"
         >
           <h2 className="text-sm font-mono text-forge-primary tracking-wider uppercase mb-6 text-center">
-            Ecosystem
+            How It Works
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { name: 'Siza', desc: 'AI workspace for code generation', href: 'https://siza.forgespace.co' },
-              { name: 'siza-mcp', desc: 'MCP server for UI generation', href: 'https://github.com/Forge-Space/ui-mcp' },
-              { name: 'mcp-gateway', desc: 'AI routing hub', href: 'https://github.com/Forge-Space/mcp-gateway' },
-            ].map((repo, i) => (
+              {
+                icon: Cpu,
+                name: 'Generate',
+                desc: 'Describe what you need. Siza generates production-ready code with live preview.',
+                href: 'https://siza.forgespace.co',
+              },
+              {
+                icon: Shield,
+                name: 'Score',
+                desc: 'Every output gets an A-F scorecard — security, quality, accessibility, compliance.',
+                href: 'https://github.com/Forge-Space/core',
+              },
+              {
+                icon: BookOpen,
+                name: 'Ship',
+                desc: 'Policy checks run in CI. Audit trails track everything from prompt to merge.',
+                href: 'https://github.com/Forge-Space/mcp-gateway',
+              },
+            ].map((item, i) => (
               <motion.a
-                key={repo.name}
-                href={repo.href}
+                key={item.name}
+                href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
@@ -109,9 +129,9 @@ export default function Home() {
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
                 className="block rounded-xl border border-forge-border bg-forge-surface/50 p-6 transition-all duration-200 hover:border-forge-primary/50 hover:shadow-[var(--forge-glow-primary-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
               >
-                <Layers className="w-5 h-5 text-forge-primary mb-3" />
-                <h3 className="font-semibold text-foreground mb-1">{repo.name}</h3>
-                <p className="text-sm text-forge-text-muted">{repo.desc}</p>
+                <item.icon className="w-5 h-5 text-forge-primary mb-3" />
+                <h3 className="font-semibold text-foreground mb-1">{item.name}</h3>
+                <p className="text-sm text-forge-text-muted">{item.desc}</p>
               </motion.a>
             ))}
           </div>

@@ -11,12 +11,7 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap"
-        />
-      </head>
+      <head />
       <body
         style={{
           fontFamily: '"DM Sans", system-ui, sans-serif',
