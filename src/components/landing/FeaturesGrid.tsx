@@ -59,8 +59,13 @@ const FEATURES: Feature[] = [
 
 export function FeaturesGrid() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-20 md:py-28 relative">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "var(--forge-gradient-section)" }}
+        aria-hidden
+      />
+      <div className="relative max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +97,7 @@ export function FeaturesGrid() {
                 ease: EASE_SIZA,
                 delay: i * 0.06,
               }}
-              className="group rounded-xl border border-forge-border bg-forge-surface/40 p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)]"
+              className="group rounded-xl border border-forge-border bg-forge-surface p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)]"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary mb-4 transition-colors group-hover:bg-forge-primary/20">
                 <feature.icon className="w-5 h-5" />

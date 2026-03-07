@@ -12,7 +12,7 @@ export function CTASection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(139, 92, 246, 0.08) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(139, 92, 246, 0.12) 0%, transparent 70%)",
         }}
         aria-hidden
       />
