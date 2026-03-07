@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **Import cycle detection** — `madge --circular` via `npm run check:cycles`
+- **Quality Gates CI job** — knip dead code detection + circular dependency check
+- **knip config** — `knip.json` with known false positive suppressions
+
+### Removed
+
+- Unused dependencies: `@react-three/drei`, `clsx`, `tailwind-merge`, `@forgespace/brand-guide`
+
 ## [0.2.1] - 2026-03-07
 
 ### Added
