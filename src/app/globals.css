@@ -5,11 +5,11 @@
   --background: #121214;
   --foreground: #fafafa;
   --forge-bg: #121214;
-  --forge-bg-elevated: #18181b;
-  --forge-surface: #1a1a1e;
-  --forge-surface-alt: #1e1e22;
-  --forge-border: #27272a;
-  --forge-border-hover: #3f3f46;
+  --forge-bg-elevated: #1c1c20;
+  --forge-surface: #222226;
+  --forge-surface-alt: #28282e;
+  --forge-border: #333338;
+  --forge-border-hover: #4a4a52;
   --forge-primary: #8B5CF6;
   --forge-primary-rgb: 139, 92, 246;
   --forge-primary-hover: #A78BFA;
@@ -24,13 +24,18 @@
   --forge-radius-md: 10px;
   --forge-radius-lg: 12px;
   --forge-radius-xl: 16px;
-  --forge-glow-primary: 0 0 30px rgba(139, 92, 246, 0.3);
-  --forge-glow-primary-sm: 0 0 20px rgba(139, 92, 246, 0.25);
-  --forge-focus-ring: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
+  --forge-glow-primary: 0 0 30px rgba(139, 92, 246, 0.35);
+  --forge-glow-primary-sm: 0 0 20px rgba(139, 92, 246, 0.3);
+  --forge-focus-ring: 0 0 0 3px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.15);
   --forge-gradient-hero: radial-gradient(
     ellipse 80% 50% at 50% 0%,
-    rgba(139, 92, 246, 0.15) 0%,
-    rgba(109, 40, 217, 0.08) 40%,
+    rgba(139, 92, 246, 0.18) 0%,
+    rgba(109, 40, 217, 0.1) 40%,
+    transparent 70%
+  );
+  --forge-gradient-section: radial-gradient(
+    ellipse 60% 40% at 50% 0%,
+    rgba(139, 92, 246, 0.06) 0%,
     transparent 70%
   );
 }

@@ -38,7 +38,7 @@ const STEPS: Step[] = [
 
 export function HowItWorks() {
   return (
-    <section className="py-20 md:py-28 bg-forge-bg-elevated">
+    <section className="py-20 md:py-28 bg-forge-bg-elevated border-t border-forge-border">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -69,7 +69,7 @@ export function HowItWorks() {
               }}
               className="relative"
             >
-              <div className="rounded-xl border border-forge-border bg-background p-6 h-full">
+              <div className="rounded-xl border border-forge-border bg-forge-surface p-6 h-full">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary font-mono text-sm font-semibold">
                     {step.number}

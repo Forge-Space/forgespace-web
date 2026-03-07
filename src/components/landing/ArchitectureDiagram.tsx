@@ -7,32 +7,32 @@ const LAYERS = [
   {
     name: "Siza",
     description: "AI workspace — generate, preview, ship",
-    color: "border-[#A78BFA]/50 bg-[#A78BFA]/5",
+    color: "border-[#A78BFA]/60 bg-[#A78BFA]/10",
     dot: "bg-[#A78BFA]",
   },
   {
     name: "siza-mcp + branding-mcp",
     description: "30+ composable MCP tools for UI & brand generation",
-    color: "border-forge-primary/50 bg-forge-primary/5",
+    color: "border-forge-primary/60 bg-forge-primary/10",
     dot: "bg-forge-primary",
   },
   {
     name: "mcp-gateway",
     description: "AI-powered routing, auth, rate limits, audit trails",
-    color: "border-forge-primary/40 bg-forge-primary/5",
+    color: "border-forge-primary/50 bg-forge-primary/8",
     dot: "bg-forge-primary",
   },
   {
     name: "forge-patterns",
     description: "Shared standards, scorecards, policy packs, CLI tools",
-    color: "border-[#6D28D9]/50 bg-[#6D28D9]/5",
+    color: "border-[#6D28D9]/60 bg-[#6D28D9]/10",
     dot: "bg-[#6D28D9]",
   },
 ];
 
 export function ArchitectureDiagram() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 border-t border-forge-border">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
