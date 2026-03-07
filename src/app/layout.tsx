@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
 import { DM_Sans, Sora, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -24,9 +23,39 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://forgespace.co"),
-  title: "Forge Space — Developer Workspace",
+  title: {
+    default: "Forge Space — Generate code with AI. Ship it with confidence.",
+    template: "%s | Forge Space",
+  },
   description:
-    "Open-source ecosystem for AI-powered development. Siza, MCP tools, and shared patterns.",
+    "Open-source Internal Developer Platform. AI code generation with scorecards, policy packs, and audit trails. Free for individuals.",
+  keywords: [
+    "internal developer platform",
+    "IDP",
+    "AI code generation",
+    "governance",
+    "scorecard",
+    "MCP",
+    "open source",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Forge Space",
+    title: "Forge Space — Generate code with AI. Ship it with confidence.",
+    description:
+      "Platform-grade governance without a platform team. Scorecards, policy packs, and audit trails from prompt to production.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Forge Space — IDP for the rest of us",
+    description:
+      "AI code generation with built-in governance. Free & open source.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

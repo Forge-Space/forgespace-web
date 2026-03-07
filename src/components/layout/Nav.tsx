@@ -29,10 +29,18 @@ export function Nav() {
           How It Works
         </Link>
         <Link
-          href="/protocol"
+          href="https://docs.forgespace.co"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
         >
           Docs
+        </Link>
+        <Link
+          href="/pricing"
+          className="text-sm text-forge-text-muted transition-colors hover:text-forge-primary"
+        >
+          Pricing
         </Link>
         <Link
           href="/enterprise"
