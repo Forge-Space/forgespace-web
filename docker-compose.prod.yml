@@ -1,0 +1,44 @@
+# forgespace-web — Production
+# Run: docker compose -f docker-compose.prod.yml up -d
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    image: forgespace-web:prod
+    container_name: forgespace-web-prod
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NEXT_TELEMETRY_DISABLED=1
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+    memswap_limit: 768M
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 2048
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    init: true

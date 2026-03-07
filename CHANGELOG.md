@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-03-07
+
+### Added
+
+- **IDP marketing pages** — 11 pages: Features, Ecosystem, Roadmap, Integrations, Command Center, Onboarding, Enterprise, Protocol, Governance, Patterns, How It Works
+- **Docker production config** — Dockerfile (BuildKit, node:22-alpine, healthcheck), docker-compose.yml + docker-compose.prod.yml
+- **Shared components** — `PageSection`, `EcosystemCard`, `HeroParticlesBackground`
+- **Design system** — `design-tokens.ts`, `constants.ts`, style guide docs
+- **Dev tooling** — `scripts/dev.sh`, `.npmrc`, Stitch design prompts
+
 ## [0.1.0] - 2025-03-02
 
 ### Added
@@ -43,5 +53,6 @@ All notable changes to this project will be documented in this file.
 - `useReducedMotion()` support for accessibility
 - Custom `global-error.tsx` and `not-found.tsx`
 
-[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Forge-Space/forgespace-web/releases/tag/v0.1.0
