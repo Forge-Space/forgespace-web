@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Website
+metadata:
+  name: forgespace-web
+  description: Forge Space marketing site — IDP landing pages, pricing, features
+  tags:
+    - nextjs
+    - react
+    - marketing
+    - threejs
+spec:
+  owner: forge-space
+  system: siza
+  lifecycle: production
