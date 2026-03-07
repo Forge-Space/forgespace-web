@@ -1,75 +1,71 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
-import { Check, ArrowRight } from 'lucide-react';
-import { EASE_SIZA } from '@/lib/constants';
+import Link from "next/link";
+import { motion } from "motion/react";
+import { Check, ArrowRight } from "lucide-react";
+import { EASE_SIZA } from "@/lib/constants";
 
 const tiers = [
   {
-    name: 'Free',
-    price: '$0',
-    period: 'forever',
-    description: 'For individual developers exploring AI-assisted development.',
+    name: "Free",
+    price: "$0",
+    period: "forever",
+    description: "For individual developers exploring AI-assisted development.",
     features: [
-      '10 generations / month',
-      '2 projects',
-      'Scorecard on every generation',
-      'Policy checks in CI',
-      'Community support',
+      "10 generations / month",
+      "2 projects",
+      "Scorecard on every generation",
+      "Policy checks in CI",
+      "Community support",
     ],
-    cta: 'Get Started',
-    href: 'https://siza.forgespace.co/signup',
+    cta: "Get Started",
+    href: "https://siza.forgespace.co/signup",
     highlighted: false,
   },
   {
-    name: 'Pro',
-    price: '$19',
-    period: '/month',
-    description: 'For power users who generate daily and need full governance.',
+    name: "Pro",
+    price: "$19",
+    period: "/month",
+    description: "For power users who generate daily and need full governance.",
     features: [
-      '500 generations / month',
-      'Unlimited projects',
-      'Priority AI models',
-      'BYOK (bring your own key)',
-      'Audit log access',
-      'Email support',
+      "500 generations / month",
+      "Unlimited projects",
+      "Priority AI models",
+      "BYOK (bring your own key)",
+      "Audit log access",
+      "Email support",
     ],
-    cta: 'Start Free Trial',
-    href: 'https://siza.forgespace.co/signup?plan=pro',
+    cta: "Start Free Trial",
+    href: "https://siza.forgespace.co/signup?plan=pro",
     highlighted: true,
   },
   {
-    name: 'Team',
-    price: '$49',
-    period: '/month',
-    description: 'For teams that need shared governance and collaboration.',
+    name: "Team",
+    price: "$49",
+    period: "/month",
+    description: "For teams that need shared governance and collaboration.",
     features: [
-      'Everything in Pro',
-      'Team management',
-      'Org-level policies',
-      'Shared templates',
-      'Scorecard trends dashboard',
-      'Priority support',
+      "Everything in Pro",
+      "Team management",
+      "Org-level policies",
+      "Shared templates",
+      "Scorecard trends dashboard",
+      "Priority support",
     ],
-    cta: 'Contact Us',
-    href: 'mailto:hello@forgespace.co',
+    cta: "Contact Us",
+    href: "mailto:hello@forgespace.co",
     highlighted: false,
   },
 ];
 
 export default function PricingPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <main className="relative max-w-5xl mx-auto px-6 py-24">
         <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={
-            prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: EASE_SIZA }
-          }
+          transition={{ duration: 0.6, ease: EASE_SIZA }}
           className="text-center mb-16"
         >
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
@@ -84,17 +80,17 @@ export default function PricingPage() {
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={
-                prefersReducedMotion
-                  ? { duration: 0 }
-                  : { duration: 0.4, ease: EASE_SIZA, delay: 0.1 + i * 0.08 }
-              }
+              transition={{
+                duration: 0.4,
+                ease: EASE_SIZA,
+                delay: 0.1 + i * 0.08,
+              }}
               className={`relative rounded-xl border p-8 flex flex-col ${
                 tier.highlighted
-                  ? 'border-forge-primary bg-forge-primary/5 shadow-[var(--forge-glow-primary-sm)]'
-                  : 'border-forge-border bg-forge-surface/50'
+                  ? "border-forge-primary bg-forge-primary/5 shadow-[var(--forge-glow-primary-sm)]"
+                  : "border-forge-border bg-forge-surface/50"
               }`}
             >
               {tier.highlighted && (
@@ -105,9 +101,13 @@ export default function PricingPage() {
               <h2 className="text-xl font-semibold mb-2">{tier.name}</h2>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-3xl font-bold">{tier.price}</span>
-                <span className="text-sm text-forge-text-muted">{tier.period}</span>
+                <span className="text-sm text-forge-text-muted">
+                  {tier.period}
+                </span>
               </div>
-              <p className="text-sm text-forge-text-muted mb-6">{tier.description}</p>
+              <p className="text-sm text-forge-text-muted mb-6">
+                {tier.description}
+              </p>
               <ul className="space-y-3 mb-8 flex-1">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2 text-sm">
@@ -120,8 +120,8 @@ export default function PricingPage() {
                 href={tier.href}
                 className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
                   tier.highlighted
-                    ? 'bg-forge-primary hover:bg-forge-primary-hover text-white'
-                    : 'border border-forge-border hover:bg-forge-surface text-foreground/90'
+                    ? "bg-forge-primary hover:bg-forge-primary-hover text-white"
+                    : "border border-forge-border hover:bg-forge-surface text-foreground/90"
                 }`}
               >
                 {tier.cta}
@@ -132,16 +132,21 @@ export default function PricingPage() {
         </div>
 
         <motion.p
-          initial={prefersReducedMotion ? false : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={
-            prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: EASE_SIZA, delay: 0.5 }
-          }
+          transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.5 }}
           className="text-center text-sm text-forge-text-muted mt-12"
         >
           All plans include scorecard CI, policy checks, and open-source access.
           <br />
-          Need enterprise features? <a href="mailto:hello@forgespace.co" className="text-forge-primary hover:underline">Contact us</a>.
+          Need enterprise features?{" "}
+          <a
+            href="mailto:hello@forgespace.co"
+            className="text-forge-primary hover:underline"
+          >
+            Contact us
+          </a>
+          .
         </motion.p>
       </main>
     </div>

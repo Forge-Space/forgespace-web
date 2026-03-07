@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { FileText, Vote, GitBranch } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const GOVERNANCE_ITEMS = [
   {
@@ -26,8 +26,6 @@ const GOVERNANCE_ITEMS = [
 ];
 
 export default function GovernancePage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -45,7 +43,7 @@ export default function GovernancePage() {
             {GOVERNANCE_ITEMS.map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.4,
@@ -64,7 +62,7 @@ export default function GovernancePage() {
           </div>
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.4 }}
           >

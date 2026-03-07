@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { Layers, Box, GitMerge, FileCode } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const PATTERNS = [
   {
@@ -31,8 +31,6 @@ const PATTERNS = [
 ];
 
 export default function PatternsPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -50,7 +48,7 @@ export default function PatternsPage() {
             {PATTERNS.map((pattern, i) => (
               <motion.div
                 key={pattern.title}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.4,
@@ -69,7 +67,7 @@ export default function PatternsPage() {
           </div>
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.5 }}
           >

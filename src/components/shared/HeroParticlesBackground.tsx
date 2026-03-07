@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import { useMemo, useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useReducedMotion } from 'motion/react';
-import * as THREE from 'three';
-import { forgeTokens } from '@/styles/design-tokens';
+import { useMemo, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+import { forgeTokens } from "@/styles/design-tokens";
 
 const PARTICLE_COUNT = 800;
 const REDUCED_PARTICLE_COUNT = 50;
@@ -64,9 +63,11 @@ function Scene({ count, animate }: { count: number; animate: boolean }) {
 }
 
 export function HeroParticlesBackground() {
-  const prefersReducedMotion = useReducedMotion();
-  const count = prefersReducedMotion ? REDUCED_PARTICLE_COUNT : PARTICLE_COUNT;
-  const animate = !prefersReducedMotion;
+  const [reduced] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const count = reduced ? REDUCED_PARTICLE_COUNT : PARTICLE_COUNT;
+  const animate = !reduced;
 
   return (
     <div

@@ -1,37 +1,33 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { motion, useReducedMotion } from 'motion/react';
-import { ArrowRight, Github, Shield, Cpu, BookOpen } from 'lucide-react';
-import { EASE_SIZA } from '@/lib/constants';
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { motion } from "motion/react";
+import { ArrowRight, Github, Shield, Cpu, BookOpen } from "lucide-react";
+import { EASE_SIZA } from "@/lib/constants";
 
 const HeroParticlesBackground = dynamic(
   () =>
-    import('@/components/shared/HeroParticlesBackground').then(
-      (m) => m.HeroParticlesBackground
+    import("@/components/shared/HeroParticlesBackground").then(
+      (m) => m.HeroParticlesBackground,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function Home() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <HeroParticlesBackground />
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
-        style={{ background: 'var(--forge-gradient-hero)' }}
+        style={{ background: "var(--forge-gradient-hero)" }}
         aria-hidden
       />
       <main className="relative max-w-4xl mx-auto px-6 py-24">
         <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={
-            prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: EASE_SIZA }
-          }
+          transition={{ duration: 0.6, ease: EASE_SIZA }}
           className="text-center"
         >
           <div className="flex flex-wrap justify-center gap-2 mb-4">
@@ -48,17 +44,15 @@ export default function Home() {
             <span className="text-forge-primary">Ship it with confidence.</span>
           </h1>
           <p className="text-lg text-forge-text-muted max-w-2xl mx-auto mb-4">
-            Platform-grade governance without a platform team. Scorecards, policy packs,
-            and audit trails — from prompt to production in minutes.
+            Platform-grade governance without a platform team. Scorecards,
+            policy packs, and audit trails — from prompt to production in
+            minutes.
           </p>
           <p className="text-sm text-forge-text-muted/70 max-w-xl mx-auto mb-10">
             Free &amp; open source. No enterprise contract required.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.div
-              whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-            >
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="https://siza.forgespace.co"
                 className="inline-flex items-center gap-2 bg-forge-primary hover:bg-forge-primary-hover text-white rounded-lg px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
@@ -71,8 +65,8 @@ export default function Home() {
               href="https://github.com/Forge-Space"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 border border-forge-border rounded-lg px-6 py-3 text-sm font-medium text-foreground/90 hover:bg-forge-surface transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
             >
               <Github className="w-4 h-4" />
@@ -82,11 +76,9 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={
-            prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: EASE_SIZA, delay: 0.2 }
-          }
+          transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.2 }}
           className="mt-24"
         >
           <h2 className="text-sm font-mono text-forge-primary tracking-wider uppercase mb-6 text-center">
@@ -96,21 +88,21 @@ export default function Home() {
             {[
               {
                 icon: Cpu,
-                name: 'Generate',
-                desc: 'Describe what you need. Siza generates production-ready code with live preview.',
-                href: 'https://siza.forgespace.co',
+                name: "Generate",
+                desc: "Describe what you need. Siza generates production-ready code with live preview.",
+                href: "https://siza.forgespace.co",
               },
               {
                 icon: Shield,
-                name: 'Score',
-                desc: 'Every output gets an A-F scorecard — security, quality, accessibility, compliance.',
-                href: 'https://github.com/Forge-Space/core',
+                name: "Score",
+                desc: "Every output gets an A-F scorecard — security, quality, accessibility, compliance.",
+                href: "https://github.com/Forge-Space/core",
               },
               {
                 icon: BookOpen,
-                name: 'Ship',
-                desc: 'Policy checks run in CI. Audit trails track everything from prompt to merge.',
-                href: 'https://github.com/Forge-Space/mcp-gateway',
+                name: "Ship",
+                desc: "Policy checks run in CI. Audit trails track everything from prompt to merge.",
+                href: "https://github.com/Forge-Space/mcp-gateway",
               },
             ].map((item, i) => (
               <motion.a
@@ -118,19 +110,21 @@ export default function Home() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={
-                  prefersReducedMotion
-                    ? { duration: 0 }
-                    : { duration: 0.4, ease: EASE_SIZA, delay: 0.3 + i * 0.08 }
-                }
-                whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-                whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+                transition={{
+                  duration: 0.4,
+                  ease: EASE_SIZA,
+                  delay: 0.3 + i * 0.08,
+                }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
                 className="block rounded-xl border border-forge-border bg-forge-surface/50 p-6 transition-all duration-200 hover:border-forge-primary/50 hover:shadow-[var(--forge-glow-primary-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
               >
                 <item.icon className="w-5 h-5 text-forge-primary mb-3" />
-                <h3 className="font-semibold text-foreground mb-1">{item.name}</h3>
+                <h3 className="font-semibold text-foreground mb-1">
+                  {item.name}
+                </h3>
                 <p className="text-sm text-forge-text-muted">{item.desc}</p>
               </motion.a>
             ))}

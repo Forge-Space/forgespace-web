@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { FileCode, Book, Server, Wrench } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const DOC_LINKS = [
   {
@@ -35,8 +35,6 @@ const DOC_LINKS = [
 ];
 
 export default function ProtocolPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -57,7 +55,7 @@ export default function ProtocolPage() {
                 href={doc.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.4,
@@ -76,7 +74,7 @@ export default function ProtocolPage() {
           </div>
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.5 }}
             className="mt-12"

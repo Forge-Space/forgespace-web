@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { Terminal, Book, FolderGit2 } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const QUICK_ACTIONS = [
   { cmd: "/deploy", label: "Deploy to production" },
@@ -16,8 +16,6 @@ const QUICK_ACTIONS = [
 const RECENT_REPOS = ["siza", "mcp-gateway", "forge-patterns"];
 
 export default function CommandCenterPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -33,7 +31,7 @@ export default function CommandCenterPage() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASE_SIZA }}
               className="rounded-xl border border-forge-border bg-forge-surface/50 p-6"
@@ -58,7 +56,7 @@ export default function CommandCenterPage() {
             </motion.div>
 
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.1 }}
               className="rounded-xl border border-forge-border bg-forge-surface/50 p-6"
@@ -85,7 +83,7 @@ export default function CommandCenterPage() {
           </div>
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.2 }}
             className="mt-8"
