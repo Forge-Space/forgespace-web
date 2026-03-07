@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { Plug } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 import { EcosystemCard } from "@/components/shared/EcosystemCard";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const INTEGRATIONS = [
   { name: "GitHub", desc: "Repos, issues, PRs" },
@@ -20,8 +20,6 @@ const INTEGRATIONS = [
 ];
 
 export default function IntegrationsPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -39,7 +37,7 @@ export default function IntegrationsPage() {
             {INTEGRATIONS.map((int, i) => (
               <motion.div
                 key={int.name}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.4,

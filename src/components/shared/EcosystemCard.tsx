@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { type LucideIcon } from "lucide-react";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 interface EcosystemCardProps {
   icon: LucideIcon;
@@ -21,8 +21,6 @@ export function EcosystemCard({
   href,
   external = false,
 }: EcosystemCardProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   const content = (
     <>
       <Icon className="w-5 h-5 text-forge-primary mb-3" />
@@ -37,8 +35,8 @@ export function EcosystemCard({
   if (href) {
     return (
       <motion.div
-        whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-        whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+        whileHover={{ y: -2 }}
+        whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2, ease: EASE_SIZA }}
       >
         {external ? (
@@ -61,8 +59,8 @@ export function EcosystemCard({
 
   return (
     <motion.div
-      whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-      whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2, ease: EASE_SIZA }}
       className={cardClasses}
     >

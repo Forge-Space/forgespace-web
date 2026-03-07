@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, ArrowDown, Box } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const FLOW = [
   "forge-patterns",
@@ -15,8 +15,6 @@ const FLOW = [
 ];
 
 export default function HowItWorksPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -34,7 +32,7 @@ export default function HowItWorksPage() {
             {FLOW.map((node, i) => (
               <motion.div
                 key={node}
-                initial={prefersReducedMotion ? false : { opacity: 0, x: -16 }}
+                initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
                   duration: 0.4,
@@ -55,20 +53,22 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="flex flex-wrap gap-2 justify-center mt-8">
-            {["BYOK — Bring your own key", "MCP-Native — 21+ tools", "Self-Hostable — MIT licensed"].map(
-              (pill) => (
-                <span
-                  key={pill}
-                  className="inline-flex rounded-full border border-forge-primary/40 bg-forge-primary/10 px-3 py-1 text-xs font-medium text-forge-primary"
-                >
-                  {pill}
-                </span>
-              )
-            )}
+            {[
+              "BYOK — Bring your own key",
+              "MCP-Native — 21+ tools",
+              "Self-Hostable — MIT licensed",
+            ].map((pill) => (
+              <span
+                key={pill}
+                className="inline-flex rounded-full border border-forge-primary/40 bg-forge-primary/10 px-3 py-1 text-xs font-medium text-forge-primary"
+              >
+                {pill}
+              </span>
+            ))}
           </div>
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.6 }}
             className="mt-12 flex flex-wrap gap-4 justify-center"

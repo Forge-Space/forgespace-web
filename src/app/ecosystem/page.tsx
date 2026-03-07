@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { Layers } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 import { EcosystemCard } from "@/components/shared/EcosystemCard";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const REPOS = [
   {
@@ -47,8 +47,6 @@ const REPOS = [
 ];
 
 export default function EcosystemPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -66,7 +64,7 @@ export default function EcosystemPage() {
             {REPOS.map((repo, i) => (
               <motion.div
                 key={repo.name}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.4,

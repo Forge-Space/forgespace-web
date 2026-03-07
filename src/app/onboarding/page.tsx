@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, Link2, RefreshCw, Rocket } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const STEPS = [
   {
@@ -26,8 +26,6 @@ const STEPS = [
 ];
 
 export default function OnboardingPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -45,7 +43,7 @@ export default function OnboardingPage() {
             {STEPS.map((step, i) => (
               <motion.div
                 key={step.title}
-                initial={prefersReducedMotion ? false : { opacity: 0, x: -16 }}
+                initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
                   duration: 0.4,
@@ -68,7 +66,7 @@ export default function OnboardingPage() {
           </div>
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.5 }}
             className="mt-12"

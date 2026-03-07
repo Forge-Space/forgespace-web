@@ -1,18 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import {
-  Sparkles,
-  Plug,
-  Shield,
-  Gift,
-  Server,
-  Cpu,
-} from "lucide-react";
+import { motion } from "motion/react";
+import { Sparkles, Plug, Shield, Gift, Server, Cpu } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 import { EcosystemCard } from "@/components/shared/EcosystemCard";
 
-import { EASE_SIZA } from '@/lib/constants';
+import { EASE_SIZA } from "@/lib/constants";
 
 const FEATURES = [
   {
@@ -42,8 +35,7 @@ const FEATURES = [
   {
     icon: Server,
     title: "Self-Hostable",
-    description:
-      "Run locally with Docker, MIT licensed. No vendor lock-in.",
+    description: "Run locally with Docker, MIT licensed. No vendor lock-in.",
   },
   {
     icon: Cpu,
@@ -54,8 +46,6 @@ const FEATURES = [
 ];
 
 export default function FeaturesPage() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative">
       <div
@@ -73,7 +63,7 @@ export default function FeaturesPage() {
             {FEATURES.map((feature, i) => (
               <motion.div
                 key={feature.title}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.4,
