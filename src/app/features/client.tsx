@@ -1,86 +1,159 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Sparkles, Plug, Shield, Gift, Server, Cpu } from "lucide-react";
-import { PageSection } from "@/components/layout/PageSection";
-import { EcosystemCard } from "@/components/shared/EcosystemCard";
-
+import {
+  Sparkles,
+  Shield,
+  Plug,
+  Lock,
+  BarChart3,
+  GitBranch,
+} from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import { Section } from "@/components/ui/Section";
+import { type LucideIcon } from "lucide-react";
 
-const FEATURES = [
+interface FeatureDetail {
+  icon: LucideIcon;
+  label: string;
+  title: string;
+  description: string;
+  bullets: string[];
+}
+
+const FEATURES: FeatureDetail[] = [
   {
     icon: Sparkles,
-    title: "AI-Powered Generation",
+    label: "Generation",
+    title: "AI that writes production code, not prototypes",
     description:
-      "Natural language or screenshot to production UI. Build interfaces in minutes, not hours.",
-  },
-  {
-    icon: Plug,
-    title: "MCP-Native",
-    description:
-      "21 UI tools, 9 branding tools, composable via Model Context Protocol.",
+      "Describe what you need — a dashboard, a checkout flow, an API route. Siza generates components with proper architecture: TypeScript types, error boundaries, loading states, and accessibility baked in.",
+    bullets: [
+      "React, Next.js, Vue, and plain HTML support",
+      "Atomic Design structure — atoms, molecules, organisms",
+      "Live preview with hot-reload before you commit",
+      "Multi-LLM: Gemini, Claude, GPT, or your own Ollama",
+    ],
   },
   {
     icon: Shield,
-    title: "Privacy-First BYOK",
+    label: "Governance",
+    title: "Every generation scored A-F automatically",
     description:
-      "Bring your own key, client-side AES-256 encryption. Your data stays yours.",
+      "The post-generation scorecard evaluates security, accessibility, code quality, type safety, and responsive design. No manual review needed — governance is built into the generation loop.",
+    bullets: [
+      "5 quality gates: security (3x weight), a11y, lint, types, responsive",
+      "A-F letter grade on every output",
+      "Policy packs for org-level rules",
+      "CI integration — scorecards run in your pipeline",
+    ],
   },
   {
-    icon: Gift,
-    title: "Generous Free Tier",
+    icon: Plug,
+    label: "MCP-Native",
+    title: "30+ composable tools, zero lock-in",
     description:
-      "Cloudflare + Supabase + Gemini at $0/month. Start building today.",
+      "Built on Model Context Protocol from the ground up. Every capability — UI generation, branding, scaffolding — is an MCP tool you can use independently, extend, or replace.",
+    bullets: [
+      "21 UI generation tools + 9 branding tools",
+      "mcp-gateway routes and authenticates requests",
+      "Bring your own MCP tools or swap providers",
+      "Self-hostable with Docker, MIT licensed",
+    ],
   },
   {
-    icon: Server,
-    title: "Self-Hostable",
-    description: "Run locally with Docker, MIT licensed. No vendor lock-in.",
+    icon: Lock,
+    label: "Security",
+    title: "Your keys never touch our servers",
+    description:
+      "BYOK (Bring Your Own Key) with client-side AES-256 encryption. API keys are encrypted in your browser before storage. We literally cannot read them.",
+    bullets: [
+      "Client-side AES-256 encryption for all API keys",
+      "Supabase Row-Level Security on every table",
+      "Audit trails from prompt to merge",
+      "SOC 2-ready architecture",
+    ],
   },
   {
-    icon: Cpu,
-    title: "Multi-LLM",
+    icon: BarChart3,
+    label: "Observability",
+    title: "Full visibility from prompt to production",
     description:
-      "Swap Gemini, Claude, GPT without code changes. Use the best model for each task.",
+      "Track every generation, score trend over time, and audit who generated what. The service catalog gives you a dependency graph across your entire organization.",
+    bullets: [
+      "Generation count and trend analytics",
+      "Scorecard history per project",
+      "Service catalog with dependency graph",
+      "catalog-info.yaml import from Backstage",
+    ],
+  },
+  {
+    icon: GitBranch,
+    label: "Golden Paths",
+    title: "Scaffold projects the right way, every time",
+    description:
+      "Golden Path templates encode your organization's best practices into one-click project scaffolds. New services start with the right structure, CI, and governance from day one.",
+    bullets: [
+      "5 official templates: Next.js, API, Library, MCP Tool, Monorepo",
+      "Custom templates with your own conventions",
+      "Auto-configures CI, linting, testing, and security scanning",
+      "forge-init CLI for terminal-based scaffolding",
+    ],
   },
 ];
 
 export default function FeaturesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans relative">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "var(--forge-gradient-hero)" }}
-        aria-hidden
-      />
-      <main className="relative">
-        <PageSection
-          label="FEATURES"
-          title="Built for developers who ship"
-          subtitle="Everything you need to go from idea to production."
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FEATURES.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.4,
-                  ease: EASE_SIZA,
-                  delay: 0.1 + i * 0.06,
-                }}
-              >
-                <EcosystemCard
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </PageSection>
-      </main>
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <Section
+        variant="gradient"
+        label="Features"
+        title="Everything you need to ship with confidence"
+        subtitle="From AI generation to governance scorecards — a complete developer platform in one ecosystem."
+      >
+        <div className="space-y-6">
+          {FEATURES.map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                ease: EASE_SIZA,
+                delay: i * 0.05,
+              }}
+              className="rounded-xl border border-forge-border bg-forge-surface/40 p-6 md:p-8 transition-all duration-200 hover:border-forge-primary/30"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary">
+                  <feature.icon className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-mono text-forge-primary tracking-[0.15em] uppercase">
+                  {feature.label}
+                </span>
+              </div>
+              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-forge-text-muted leading-relaxed mb-4">
+                {feature.description}
+              </p>
+              <ul className="space-y-2">
+                {feature.bullets.map((bullet) => (
+                  <li
+                    key={bullet}
+                    className="flex items-start gap-2 text-sm text-forge-text-muted"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-forge-primary/60 shrink-0" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
     </div>
   );
 }

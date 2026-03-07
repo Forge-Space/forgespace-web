@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-03-07
+
+### Added
+
+- **Multi-section landing page** — 6 composable sections: Hero, SocialProof, FeaturesGrid, HowItWorks, ArchitectureDiagram, CTASection
+- **Responsive mobile navigation** — hamburger menu with slide-out panel, focus management, Escape to close
+- **Multi-column footer** — 4-column layout (Product, Developers, Company) with social links and brand description
+- **Reusable UI components** — Button (3 variants, 3 sizes), Badge (3 variants), Section (3 variants)
+- **FAQ section on pricing** — 6 frequently asked questions with accordion pattern, trust badges
+- **Architecture diagram** — visual 4-layer ecosystem flow on landing page
+- **Brand monogram in nav** — inline SVG anvil logo from brand-guide
+- **Favicon and icon** — from brand-guide assets
+- **Mobile menu button** — accessible hamburger with aria-label
+
+### Changed
+
+- **Features page** — expanded from 6 generic cards to 6 detailed feature sections with bullet points and descriptions
+- **Ecosystem page** — grouped repos by layer (Generation Engine, Governance, Design), added npm package badges and highlights
+- **Roadmap** — updated from outdated Q4 2023/Q1 2024 timeline to current Phase 1 (Complete) / Phase 2 (Active) / Phase 3 (Planned)
+- **Landing page** — server component composition with client boundaries on individual sections (improved hydration)
+- **Typography** — leveraged full brand type scale (gradient headlines, mono labels, display stats)
+- **Animations** — switched from mount animations to scroll-triggered `whileInView` with `viewport={{ once: true }}`
+- **SEO metadata** — server/client page split pattern with `seo.ts` centralized metadata
+
+### Removed
+
+- 7 shallow pages: /command-center, /onboarding, /protocol, /governance, /patterns, /integrations, /how-it-works
+- Unused dependencies: `@react-three/drei`, `clsx`, `tailwind-merge`, `@forgespace/brand-guide`
+
 ## [Unreleased]
 
 ### Added
@@ -9,10 +38,6 @@ All notable changes to this project will be documented in this file.
 - **Import cycle detection** — `madge --circular` via `npm run check:cycles`
 - **Quality Gates CI job** — knip dead code detection + circular dependency check
 - **knip config** — `knip.json` with known false positive suppressions
-
-### Removed
-
-- Unused dependencies: `@react-three/drei`, `clsx`, `tailwind-merge`, `@forgespace/brand-guide`
 
 ## [0.2.1] - 2026-03-07
 

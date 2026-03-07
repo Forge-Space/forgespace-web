@@ -1,99 +1,177 @@
 "use client";
 
 import { motion } from "motion/react";
-import Link from "next/link";
-import { ArrowRight, Map } from "lucide-react";
-import { PageSection } from "@/components/layout/PageSection";
-
+import { ArrowRight, CheckCircle2, Circle, Clock } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
 
-const MILESTONES = [
+type PhaseStatus = "complete" | "active" | "planned";
+
+interface Phase {
+  status: PhaseStatus;
+  title: string;
+  description: string;
+  items: string[];
+}
+
+const PHASES: Phase[] = [
   {
-    quarter: "Q4 2023",
-    items: ["MCP Gateway", "Siza MVP", "Core patterns"],
+    status: "complete",
+    title: "Phase 1 — Foundation",
+    description: "Core platform with AI generation, governance, and IDP primitives.",
+    items: [
+      "AI code generation with live preview",
+      "Post-generation A-F scorecard (5 quality gates)",
+      "Golden Path templates (5 official scaffolds)",
+      "Software catalog with dependency graph",
+      "BYOK encryption + multi-LLM support",
+      "MCP Gateway with JWT auth and rate limiting",
+      "forge-init CLI and 5 scorecard collectors",
+      "Brand system with 9 MCP tools",
+    ],
   },
   {
-    quarter: "Q1 2024",
-    items: ["Branding MCP", "siza-mcp expansion", "Self-hosting"],
+    status: "active",
+    title: "Phase 2 — User Acquisition",
+    description:
+      "Documentation, community, and developer experience improvements.",
+    items: [
+      "IDP messaging and pricing page",
+      "Documentation guides (scorecard, policy packs, BYOK)",
+      "Good-first-issues across 7 repos",
+      "Governance files (LICENSE, CONTRIBUTING, catalog-info.yaml)",
+      "Website redesign and content depth",
+      "Community Discord server",
+      "Launch post and developer outreach",
+    ],
   },
   {
-    quarter: "Q2 2024",
-    items: ["Collaborative multi-agent workspaces", "Enterprise features"],
+    status: "planned",
+    title: "Phase 3 — Scale",
+    description:
+      "Multi-agent workflows, enterprise features, and ecosystem growth.",
+    items: [
+      "Collaborative multi-agent workspaces",
+      "Gateway-webapp auth unification",
+      "Enterprise SSO and data residency",
+      "Scorecard trends and org analytics",
+      "Marketplace for community MCP tools",
+      "VS Code and Cursor extensions",
+    ],
   },
 ];
 
+const statusConfig: Record<
+  PhaseStatus,
+  { icon: typeof CheckCircle2; color: string; bg: string; label: string }
+> = {
+  complete: {
+    icon: CheckCircle2,
+    color: "text-green-400",
+    bg: "bg-green-400/10 border-green-400/30",
+    label: "Complete",
+  },
+  active: {
+    icon: Clock,
+    color: "text-forge-primary",
+    bg: "bg-forge-primary/10 border-forge-primary/30",
+    label: "In Progress",
+  },
+  planned: {
+    icon: Circle,
+    color: "text-forge-text-subtle",
+    bg: "bg-forge-surface border-forge-border",
+    label: "Planned",
+  },
+};
+
 export default function RoadmapPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans relative">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "var(--forge-gradient-hero)" }}
-        aria-hidden
-      />
-      <main className="relative">
-        <PageSection
-          label="ROADMAP"
-          title="The path to v3.0"
-          subtitle="From MCP Gateway to collaborative workspaces."
-        >
-          <div className="space-y-8">
-            {MILESTONES.map((m, i) => (
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <Section
+        variant="gradient"
+        label="Roadmap"
+        title="Where we're headed"
+        subtitle="A transparent view of what's shipped, what's in progress, and what's next."
+      >
+        <div className="space-y-6 max-w-3xl">
+          {PHASES.map((phase, i) => {
+            const config = statusConfig[phase.status];
+            const Icon = config.icon;
+
+            return (
               <motion.div
-                key={m.quarter}
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
+                key={phase.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{
-                  duration: 0.4,
+                  duration: 0.5,
                   ease: EASE_SIZA,
-                  delay: 0.15 + i * 0.1,
+                  delay: i * 0.1,
                 }}
-                className="rounded-xl border border-forge-border bg-forge-surface/50 p-6"
+                className={`rounded-xl border p-6 md:p-8 ${config.bg}`}
               >
-                <h3 className="font-display font-semibold text-forge-primary mb-3 flex items-center gap-2">
-                  <Map className="w-4 h-4" />
-                  {m.quarter}
-                </h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <Icon className={`w-5 h-5 ${config.color}`} />
+                  <h3 className="font-display font-semibold text-foreground text-lg">
+                    {phase.title}
+                  </h3>
+                  <span
+                    className={`text-xs font-mono ${config.color} ml-auto`}
+                  >
+                    {config.label}
+                  </span>
+                </div>
+                <p className="text-sm text-forge-text-muted mb-4 leading-relaxed">
+                  {phase.description}
+                </p>
                 <ul className="space-y-2">
-                  {m.items.map((item) => (
+                  {phase.items.map((item) => (
                     <li
                       key={item}
-                      className="text-forge-text-muted flex items-center gap-2"
+                      className="flex items-start gap-2 text-sm text-forge-text-muted"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-forge-primary/60" />
+                      <span
+                        className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${
+                          phase.status === "complete"
+                            ? "bg-green-400/60"
+                            : phase.status === "active"
+                              ? "bg-forge-primary/60"
+                              : "bg-forge-text-subtle/40"
+                        }`}
+                      />
                       {item}
                     </li>
                   ))}
                 </ul>
               </motion.div>
-            ))}
-          </div>
+            );
+          })}
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.5 }}
-            className="mt-12 flex flex-wrap gap-4"
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.4 }}
+          className="mt-12 flex flex-wrap gap-4"
+        >
+          <Button href="https://siza.forgespace.co" external size="lg">
+            Try Siza
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+          <Button
+            href="https://github.com/Forge-Space"
+            external
+            variant="outline"
+            size="lg"
           >
-            <Link
-              href="https://siza.forgespace.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-forge-primary hover:bg-forge-primary-hover text-white rounded-lg px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
-            >
-              Try Siza
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="https://github.com/Forge-Space"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-forge-border rounded-lg px-6 py-3 text-sm font-medium text-foreground/90 hover:bg-forge-surface transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
-            >
-              View on GitHub
-            </Link>
-          </motion.div>
-        </PageSection>
-      </main>
+            View on GitHub
+          </Button>
+        </motion.div>
+      </Section>
     </div>
   );
 }
