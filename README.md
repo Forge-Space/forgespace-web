@@ -52,25 +52,28 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 ## Project Structure
 
-- `src/app/` — App Router pages and layouts
-- `src/app/page.tsx` — Landing page with hero, ecosystem cards, Motion animations
-- `src/app/features/` — Features grid (AI generation, MCP, BYOK, etc.)
-- `src/app/ecosystem/` — Six repos (Siza, siza-mcp, mcp-gateway, etc.)
-- `src/app/roadmap/` — Product roadmap (Q4 2023–Q2 2024)
-- `src/app/integrations/` — Integrations directory (GitHub, Cloudflare, Supabase, etc.)
-- `src/app/command-center/` — Quick actions, recent repos
-- `src/app/onboarding/` — Connect Forge to Siza
+### Pages (5 routes)
+
+- `src/app/page.tsx` — Multi-section landing (Hero, Features, HowItWorks, SocialProof, Architecture, CTA)
+- `src/app/features/` — Detailed feature sections with bullet points
+- `src/app/pricing/` — 3-tier pricing with FAQ accordion and trust badges
+- `src/app/ecosystem/` — Repos grouped by layer (Generation, Governance, Brand) with npm badges
+- `src/app/roadmap/` — Phase 1 (Complete) / Phase 2 (Active) / Phase 3 (Planned)
 - `src/app/enterprise/` — Enterprise support portal
-- `src/app/protocol/` — Protocol standards & docs
-- `src/app/governance/` — Ecosystem governance & RFCs
-- `src/app/patterns/` — Universal patterns
-- `src/app/how-it-works/` — Architecture flow
-- `src/app/layout.tsx` — Root layout with Nav, Footer, fonts (Sora, DM Sans, IBM Plex Mono)
-- `src/components/layout/` — Nav and Footer components
-- `src/components/shared/` — EcosystemCard, PageSection
-- `src/styles/design-tokens.ts` — Raw token values for non-CSS contexts
-- `docs/STYLE_GUIDE.md` — Design tokens, component names, Stitch project reference
-- `docs/STITCH_PROMPTS.md` — Stitch prompts for Workspace, Ecosystem, Features, Pricing, Docs screens (includes brand-guide + forge-space-design-system definitions)
+
+### Components
+
+- `src/components/landing/` — HeroSection, FeaturesGrid, HowItWorks, SocialProof, ArchitectureDiagram, CTASection
+- `src/components/layout/` — Nav (responsive with mobile menu), Footer (multi-column)
+- `src/components/ui/` — Button, Badge, Section (reusable primitives)
+- `src/components/shared/` — EcosystemCard, HeroParticlesBackground, PageSection
+
+### Design System
+
+- `src/app/globals.css` — CSS custom properties (Forge brand tokens + Tailwind 4 theme)
+- `src/styles/design-tokens.ts` — TypeScript token constants for non-CSS contexts
+- Fonts: Sora (display), DM Sans (body), IBM Plex Mono (code)
+- `docs/STYLE_GUIDE.md` — Design tokens reference
 
 ## Troubleshooting
 
