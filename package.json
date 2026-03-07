@@ -10,7 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@forgespace/brand-guide": "^0.3.1",
+    "@forgespace/brand-guide": "^0.6.0",
     "@react-three/drei": "^9.117.0",
     "@react-three/fiber": "^8.17.0",
     "clsx": "^2.1.1",
@@ -32,5 +32,8 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
