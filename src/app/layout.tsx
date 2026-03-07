@@ -54,6 +54,13 @@ export const metadata: Metadata = {
       "AI code generation with built-in governance. Free & open source.",
     images: ["/og.png"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   robots: {
     index: true,
     follow: true,
