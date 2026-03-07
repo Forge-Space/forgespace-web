@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-03-07
+
+### Added
+
+- **CI workflows** — `ci.yml` (lint, type-check, build, security audit) + `secret-scan.yml` (TruffleHog + GitLeaks)
+- **R3F v8 + React 19 type fix** — `src/types/react-three-fiber.d.ts` extends ThreeElements into `React.JSX.IntrinsicElements`
+
+### Fixed
+
+- TruffleHog secret scan: use `github.event.before` as base on push events to avoid BASE=HEAD error
+
 ## [0.2.0] - 2026-03-07
 
 ### Added
