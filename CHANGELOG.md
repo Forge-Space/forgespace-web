@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **Landing component tests** — 22 new tests for Button, Badge, SocialProof, FeaturesGrid, HowItWorks, ArchitectureDiagram, CTASection (48 total)
 - **Multi-section landing page** — 6 composable sections: Hero, SocialProof, FeaturesGrid, HowItWorks, ArchitectureDiagram, CTASection
 - **Responsive mobile navigation** — hamburger menu with slide-out panel, focus management, Escape to close
 - **Multi-column footer** — 4-column layout (Product, Developers, Company) with social links and brand description
@@ -18,6 +19,9 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **Dark theme contrast** — raised surface/border tokens for visible card hierarchy (`#1a1a1e → #222226`, `#27272a → #333338`)
+- **Section separators** — added border-t dividers and gradient overlays between landing sections
+- **Architecture layers** — doubled color opacity from 5% to 10% for visibility
 - **Features page** — expanded from 6 generic cards to 6 detailed feature sections with bullet points and descriptions
 - **Ecosystem page** — grouped repos by layer (Generation Engine, Governance, Design), added npm package badges and highlights
 - **Roadmap** — updated from outdated Q4 2023/Q1 2024 timeline to current Phase 1 (Complete) / Phase 2 (Active) / Phase 3 (Planned)
