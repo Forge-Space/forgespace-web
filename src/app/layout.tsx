@@ -45,12 +45,14 @@ export const metadata: Metadata = {
     title: "Forge Space — Generate code with AI. Ship it with confidence.",
     description:
       "Platform-grade governance without a platform team. Scorecards, policy packs, and audit trails from prompt to production.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Forge Space" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Forge Space — IDP for the rest of us",
     description:
       "AI code generation with built-in governance. Free & open source.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
