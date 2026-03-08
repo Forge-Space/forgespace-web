@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   LayoutGrid,
   Compass,
+  ArrowRightLeft,
 } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { Section } from "@/components/ui/Section";
@@ -127,6 +128,19 @@ const FEATURES: FeatureDetail[] = [
       "Filter by framework: React, Next.js, Vue, HTML",
       "Copy code or reuse the original prompt",
       "Curated by the community — feature your best work",
+    ],
+  },
+  {
+    icon: ArrowRightLeft,
+    label: "Migration",
+    title: "Escape legacy code with a governed roadmap",
+    description:
+      "The migration toolkit assesses your project's health across 5 categories, identifies strangler boundaries for safe decomposition, and generates a phased roadmap with quality gates at every milestone.",
+    bullets: [
+      "5-category health assessment: deps, architecture, security, quality, readiness",
+      "Strangler boundary detection for module decomposition",
+      "TypeScript migration plan with prioritized file list",
+      "Phased roadmap with quality gates: stabilize → modernize → harden",
     ],
   },
   {

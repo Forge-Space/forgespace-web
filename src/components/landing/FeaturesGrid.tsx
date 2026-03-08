@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   LayoutGrid,
   Compass,
+  ArrowRightLeft,
 } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { type LucideIcon } from "lucide-react";
@@ -69,6 +70,12 @@ const FEATURES: Feature[] = [
     title: "Generation Gallery",
     description:
       "Browse featured AI-generated components with quality scores. Copy code, reuse prompts, or use them as starting points for your own projects.",
+  },
+  {
+    icon: ArrowRightLeft,
+    title: "Legacy Migration",
+    description:
+      "Assess project health, detect strangler boundaries, and generate phased migration roadmaps with quality gates at every milestone.",
   },
   {
     icon: Compass,
