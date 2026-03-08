@@ -17,6 +17,10 @@ const pages: Record<string, PageSEO> = {
       "policy packs",
       "golden paths",
       "MCP tools",
+      "CI quality gates",
+      "GitHub Action",
+      "component gallery",
+      "onboarding tour",
     ],
   },
   pricing: {

@@ -8,6 +8,9 @@ import {
   Gift,
   Server,
   Cpu,
+  ShieldCheck,
+  LayoutGrid,
+  Compass,
 } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { type LucideIcon } from "lucide-react";
@@ -54,6 +57,24 @@ const FEATURES: Feature[] = [
     title: "Multi-LLM Support",
     description:
       "Swap between Gemini, Claude, GPT, and Ollama without code changes. Use the best model for each task — or bring your own.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "CI Quality Gates",
+    description:
+      "Drop forge-ai-action into any GitHub workflow. Automatic quality scoring, PR comments with grade cards, and gate enforcement — zero config.",
+  },
+  {
+    icon: LayoutGrid,
+    title: "Generation Gallery",
+    description:
+      "Browse featured AI-generated components with quality scores. Copy code, reuse prompts, or use them as starting points for your own projects.",
+  },
+  {
+    icon: Compass,
+    title: "Guided Onboarding",
+    description:
+      "Interactive tour walks new users through every feature — generate, projects, templates, catalog, golden paths, and settings.",
   },
 ];
 
