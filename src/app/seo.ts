@@ -21,6 +21,8 @@ const pages: Record<string, PageSEO> = {
       "GitHub Action",
       "component gallery",
       "onboarding tour",
+      "legacy migration",
+      "migration assessment",
     ],
   },
   pricing: {
