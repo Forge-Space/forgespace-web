@@ -8,6 +8,9 @@ import {
   Lock,
   BarChart3,
   GitBranch,
+  ShieldCheck,
+  LayoutGrid,
+  Compass,
 } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { Section } from "@/components/ui/Section";
@@ -98,6 +101,45 @@ const FEATURES: FeatureDetail[] = [
       "Custom templates with your own conventions",
       "Auto-configures CI, linting, testing, and security scanning",
       "forge-init CLI for terminal-based scaffolding",
+    ],
+  },
+  {
+    icon: ShieldCheck,
+    label: "CI Quality Gates",
+    title: "Quality enforcement in every pull request",
+    description:
+      "Forge AI Action is a GitHub Marketplace extension that runs forge-ai-init governance checks as part of your CI pipeline. Every PR gets an automatic quality score, grade card comment, and inline annotations.",
+    bullets: [
+      "One-line setup: Forge-Space/forge-ai-action@v1",
+      "PR comments with score, grade, delta, and findings table",
+      "Inline annotations on files with issues",
+      "Configurable threshold — block merges below your standard",
+    ],
+  },
+  {
+    icon: LayoutGrid,
+    label: "Gallery",
+    title: "Browse and reuse AI-generated components",
+    description:
+      "The public generation gallery showcases featured components with quality scores, framework badges, and one-click code copying. Use any generation as a starting point or learn from high-scoring examples.",
+    bullets: [
+      "Quality grade badges (A-F) on every component",
+      "Filter by framework: React, Next.js, Vue, HTML",
+      "Copy code or reuse the original prompt",
+      "Curated by the community — feature your best work",
+    ],
+  },
+  {
+    icon: Compass,
+    label: "Onboarding",
+    title: "Interactive tour for zero-friction adoption",
+    description:
+      "New users get a guided walkthrough of every major feature on their first visit. The tour highlights sidebar navigation items with a spotlight overlay — no docs required to get started.",
+    bullets: [
+      "6-step tour: generate, projects, templates, catalog, golden paths, settings",
+      "Auto-triggers for new users, dismissible anytime",
+      "Re-triggerable from settings for team demos",
+      "Zero dependencies — custom portal-based overlay",
     ],
   },
 ];
