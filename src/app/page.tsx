@@ -4,15 +4,21 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { ArchitectureDiagram } from "@/components/landing/ArchitectureDiagram";
 import { CTASection } from "@/components/landing/CTASection";
+import { getEcosystemSnapshot } from "@/lib/ecosystem-data";
 
-export default function Home() {
+export default async function Home() {
+  const snapshot = await getEcosystemSnapshot();
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <HeroSection />
-      <SocialProof />
-      <FeaturesGrid />
+      <SocialProof snapshot={snapshot} />
+      <FeaturesGrid repoCount={snapshot.repoCount} />
       <HowItWorks />
-      <ArchitectureDiagram />
+      <ArchitectureDiagram
+        repoCount={snapshot.repoCount}
+        releasedRepoCount={snapshot.releasedRepoCount}
+      />
       <CTASection />
     </div>
   );

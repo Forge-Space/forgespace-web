@@ -2,20 +2,25 @@
 
 import { motion } from "motion/react";
 import { EASE_SIZA } from "@/lib/constants";
+import { type EcosystemSnapshot } from "@/lib/ecosystem-data";
 
-const STATS = [
-  { value: "9", label: "Open Source Repos" },
-  { value: "30+", label: "MCP Tools" },
-  { value: "$0", label: "To Get Started" },
-  { value: "MIT", label: "Licensed" },
-];
+interface SocialProofProps {
+  snapshot: EcosystemSnapshot;
+}
 
-export function SocialProof() {
+export function SocialProof({ snapshot }: SocialProofProps) {
+  const stats = [
+    { value: String(snapshot.repoCount), label: "Product Repos" },
+    { value: String(snapshot.releasedRepoCount), label: "Repos With Releases" },
+    { value: String(snapshot.stats.updatedLast30d), label: "Updated in 30 Days" },
+    { value: "MIT", label: "Open Source License" },
+  ];
+
   return (
-    <section className="py-16 border-y border-forge-border bg-forge-bg-elevated">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {STATS.map((stat, i) => (
+    <section className="border-y border-forge-border bg-forge-bg-elevated py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 12 }}
@@ -24,11 +29,11 @@ export function SocialProof() {
               transition={{
                 duration: 0.4,
                 ease: EASE_SIZA,
-                delay: i * 0.08,
+                delay: index * 0.08,
               }}
               className="text-center"
             >
-              <p className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-1">
+              <p className="mb-1 font-display text-3xl font-bold text-foreground sm:text-4xl">
                 {stat.value}
               </p>
               <p className="text-sm text-forge-text-muted">{stat.label}</p>

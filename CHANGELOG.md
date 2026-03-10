@@ -42,6 +42,21 @@ All notable changes to this project will be documented in this file.
 - **Import cycle detection** — `madge --circular` via `npm run check:cycles`
 - **Quality Gates CI job** — knip dead code detection + circular dependency check
 - **knip config** — `knip.json` with known false positive suppressions
+- **Live ecosystem sync module** — Server-only GitHub metadata fetch with
+  11-repo allowlist, release enrichment, resilient fallback snapshot, and
+  6-hour revalidation
+- **Ecosystem sync tests** — Coverage for success mapping, release fallback, and
+  org-fetch fallback scenarios
+
+### Changed
+
+- **Marketing data model** — Landing, features, architecture, ecosystem, and
+  roadmap pages now consume the shared ecosystem snapshot instead of static repo
+  counts and stale claims
+- **Ecosystem cards** — Added release tag and last-updated chips with improved
+  keyboard focus states
+- **Env contract** — Added optional `FORGE_SPACE_GITHUB_TOKEN` (preferred) with
+  `GITHUB_TOKEN` fallback for authenticated GitHub API calls
 
 ## [0.2.1] - 2026-03-07
 

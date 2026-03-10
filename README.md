@@ -37,6 +37,23 @@ NODE_ENV=production npm run build
 
 Note: Use `NODE_ENV=production` for builds to avoid Next.js workspace inference warnings.
 
+## Live Ecosystem Sync
+
+Marketing pages consume a server-only GitHub metadata sync for the Forge Space
+ecosystem (`repo count`, `latest release tag`, `recent activity`).
+
+- Sync source: GitHub REST API (`Forge-Space` org)
+- Cache strategy: `revalidate: 21600` (6 hours)
+- Resilience: static fallback snapshot if GitHub is unavailable/rate-limited
+
+Optional authentication (for higher GitHub API limits):
+
+```bash
+FORGE_SPACE_GITHUB_TOKEN=ghp_...
+# fallback if the variable above is not set:
+GITHUB_TOKEN=ghp_...
+```
+
 ## Docker
 
 **Development (hot reload):**
