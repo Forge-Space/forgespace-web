@@ -1,8 +1,10 @@
 import { getPageMetadata } from "@/app/seo";
 import FeaturesPage from "./client";
+import { getEcosystemSnapshot } from "@/lib/ecosystem-data";
 
 export const metadata = getPageMetadata("features");
 
-export default function Page() {
-  return <FeaturesPage />;
+export default async function Page() {
+  const snapshot = await getEcosystemSnapshot();
+  return <FeaturesPage repoCount={snapshot.repoCount} />;
 }

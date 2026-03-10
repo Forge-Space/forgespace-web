@@ -22,78 +22,82 @@ interface Feature {
   description: string;
 }
 
+interface FeaturesGridProps {
+  repoCount: number;
+}
+
 const FEATURES: Feature[] = [
   {
     icon: Sparkles,
     title: "AI-Powered Generation",
     description:
-      "Natural language to production UI. Describe a dashboard, form, or landing page — get React components with proper architecture, types, and tests.",
+      "Natural language to production UI. Describe a dashboard, form, or landing page and get structured, typed, reviewable code.",
   },
   {
     icon: Plug,
     title: "MCP-Native Architecture",
     description:
-      "30+ composable tools via Model Context Protocol. UI generation, branding, scaffolding — swap or extend any tool without code changes.",
+      "Generation, governance, branding, and migration capabilities are composed through MCP so each layer stays replaceable.",
   },
   {
     icon: Shield,
     title: "Privacy-First BYOK",
     description:
-      "Bring your own API key with client-side AES-256 encryption. Your credentials never touch our servers. SOC 2-ready by design.",
+      "Bring your own API key with client-side AES-256 encryption. Your credentials never touch our servers.",
   },
   {
     icon: Gift,
     title: "Zero-Cost Start",
     description:
-      "Runs on Cloudflare Workers + Supabase + Gemini free tiers. No credit card, no trial expiration. Start generating today at $0/month.",
+      "Start free with open-source defaults and scale into managed workflows only when your team needs them.",
   },
   {
     icon: Server,
     title: "Self-Hostable",
     description:
-      "Run the entire stack locally with Docker. MIT licensed, no vendor lock-in. Full control over your data and infrastructure.",
+      "Run the stack locally with Docker under MIT licensing and keep full control over infrastructure and data.",
   },
   {
     icon: Cpu,
-    title: "Multi-LLM Support",
+    title: "Multi-Model Workflows",
     description:
-      "Swap between Gemini, Claude, GPT, and Ollama without code changes. Use the best model for each task — or bring your own.",
+      "Switch between Gemini, Claude, GPT, and local models without rewriting your generation flow.",
   },
   {
     icon: ShieldCheck,
     title: "CI Quality Gates",
     description:
-      "Drop forge-ai-action into any GitHub workflow. Automatic quality scoring, PR comments with grade cards, and gate enforcement — zero config.",
+      "Integrate forge-ai-action in GitHub workflows for automatic scoring, PR annotations, and threshold enforcement.",
   },
   {
     icon: LayoutGrid,
     title: "Generation Gallery",
     description:
-      "Browse featured AI-generated components with quality scores. Copy code, reuse prompts, or use them as starting points for your own projects.",
+      "Browse high-quality examples, copy code, and reuse prompts to accelerate onboarding and internal standards.",
   },
   {
     icon: ArrowRightLeft,
     title: "Legacy Migration",
     description:
-      "Assess project health, detect strangler boundaries, and generate phased migration roadmaps with quality gates at every milestone.",
+      "Assess legacy systems, identify safe boundaries, and generate phased modernization plans with measurable gates.",
   },
   {
     icon: Compass,
     title: "Guided Onboarding",
     description:
-      "Interactive tour walks new users through every feature — generate, projects, templates, catalog, golden paths, and settings.",
+      "Built-in tours and curated defaults help new teams adopt the platform without separate setup playbooks.",
   },
 ];
 
-export function FeaturesGrid() {
+export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
   return (
-    <section className="py-20 md:py-28 relative">
+    <section className="relative py-20 md:py-28">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: "var(--forge-gradient-section)" }}
         aria-hidden
       />
-      <div className="relative max-w-5xl mx-auto px-6">
+      <div className="relative mx-auto max-w-5xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -101,20 +105,20 @@ export function FeaturesGrid() {
           transition={{ duration: 0.5, ease: EASE_SIZA }}
           className="mb-14 max-w-2xl"
         >
-          <p className="text-xs font-mono text-forge-primary tracking-[0.2em] uppercase mb-3">
+          <p className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
             Features
           </p>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-foreground mb-4">
+          <h2 className="mb-4 text-3xl font-display font-bold tracking-tight text-foreground sm:text-4xl">
             Built for developers who ship
           </h2>
-          <p className="text-lg text-forge-text-muted leading-relaxed">
-            Everything you need to go from idea to production — with governance
-            built in from day one.
+          <p className="text-lg leading-relaxed text-forge-text-muted">
+            A full delivery stack across {repoCount} actively maintained repositories, with
+            governance built into the generation loop.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FEATURES.map((feature, i) => (
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((feature, index) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 16 }}
@@ -123,17 +127,17 @@ export function FeaturesGrid() {
               transition={{
                 duration: 0.4,
                 ease: EASE_SIZA,
-                delay: i * 0.06,
+                delay: index * 0.06,
               }}
               className="group rounded-xl border border-forge-border bg-forge-surface p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)]"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary mb-4 transition-colors group-hover:bg-forge-primary/20">
-                <feature.icon className="w-5 h-5" />
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary transition-colors group-hover:bg-forge-primary/20">
+                <feature.icon className="h-5 w-5" />
               </div>
-              <h3 className="font-display font-semibold text-foreground mb-2">
+              <h3 className="mb-2 font-display font-semibold text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-sm text-forge-text-muted leading-relaxed">
+              <p className="text-sm leading-relaxed text-forge-text-muted">
                 {feature.description}
               </p>
             </motion.div>

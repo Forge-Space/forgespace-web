@@ -1,130 +1,81 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Layers, ExternalLink } from "lucide-react";
+import { Layers, ExternalLink, CalendarClock, Tag } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import {
+  type EcosystemSnapshot,
+  type EcosystemRepo,
+  type RepoGroup,
+} from "@/lib/ecosystem-data";
 import { Section } from "@/components/ui/Section";
 
-interface Repo {
-  name: string;
-  npm?: string;
-  description: string;
-  highlights: string[];
-  href: string;
+interface EcosystemPageProps {
+  snapshot: EcosystemSnapshot;
 }
 
-const REPO_GROUPS: { title: string; repos: Repo[] }[] = [
-  {
-    title: "Generation Engine",
-    repos: [
-      {
-        name: "siza",
-        description:
-          "AI workspace — generate production-ready code with live preview, scorecards, and audit trails.",
-        highlights: [
-          "Next.js 16 + React 19 + Supabase",
-          "Post-gen A-F scorecard",
-          "Golden Path templates",
-          "Software catalog",
-        ],
-        href: "https://siza.forgespace.co",
-      },
-      {
-        name: "siza-gen",
-        npm: "@forgespace/siza-gen",
-        description:
-          "AI generation engine with 502-snippet component registry and context assembler.",
-        highlights: [
-          "6 composable context sections",
-          "Lite bundle (43 KB) for edge",
-          "458 tests across 23 suites",
-        ],
-        href: "https://github.com/Forge-Space/siza-gen",
-      },
-      {
-        name: "ui-mcp",
-        npm: "@forgespace/ui-mcp",
-        description:
-          "21 MCP tools for UI generation, forms, pages, and full-app scaffolding.",
-        highlights: [
-          "Component, form, page, and app generation",
-          "Zod validation on all inputs",
-          "437 tests across 35 suites",
-        ],
-        href: "https://github.com/Forge-Space/ui-mcp",
-      },
-    ],
-  },
-  {
-    title: "Governance & Routing",
-    repos: [
-      {
-        name: "forge-patterns",
-        npm: "@forgespace/core",
-        description:
-          "Shared standards library — scorecards, policy packs, CLI tools, and governance.",
-        highlights: [
-          "5 scorecard collectors",
-          "forge-init CLI for scaffolding",
-          "396 tests across 19 suites",
-        ],
-        href: "https://github.com/Forge-Space/core",
-      },
-      {
-        name: "mcp-gateway",
-        description:
-          "Central hub for MCP aggregation, routing, authentication, and rate limiting.",
-        highlights: [
-          "JSON-RPC with Supabase JWT auth",
-          "AI-powered tool routing",
-          "OpenAPI documentation",
-        ],
-        href: "https://github.com/Forge-Space/mcp-gateway",
-      },
-    ],
-  },
-  {
-    title: "Design & Brand",
-    repos: [
-      {
-        name: "branding-mcp",
-        npm: "@forgespace/branding-mcp",
-        description:
-          "9 MCP tools for AI-powered brand identity generation.",
-        highlights: [
-          "WCAG-validated color palettes",
-          "Multi-format token export",
-          "198 tests",
-        ],
-        href: "https://github.com/Forge-Space/branding-mcp",
-      },
-      {
-        name: "brand-guide",
-        npm: "@forgespace/brand-guide",
-        description:
-          "Design system source of truth — tokens, logos, typography.",
-        highlights: [
-          "7 logo variants (SVG, PNG, WEBP)",
-          "Sub-brand tokens",
-          "brand.forgespace.co",
-        ],
-        href: "https://brand.forgespace.co",
-      },
-    ],
-  },
+const GROUP_ORDER: RepoGroup[] = [
+  "Generation Engine",
+  "Governance & Quality",
+  "Design & Brand",
 ];
 
-export default function EcosystemPage() {
+function formatDate(iso: string | null): string {
+  if (!iso) return "No release";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  }).format(new Date(iso));
+}
+
+function buildGroups(repos: EcosystemRepo[]): Array<{ title: RepoGroup; repos: EcosystemRepo[] }> {
+  return GROUP_ORDER.map((title) => ({
+    title,
+    repos: repos.filter((repo) => repo.group === title),
+  })).filter((group) => group.repos.length > 0);
+}
+
+export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
+  const groups = buildGroups(snapshot.repos);
+
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background font-sans text-foreground">
       <Section
         variant="gradient"
         label="Ecosystem"
-        title="Nine repos. One vision."
-        subtitle="Every layer is open source. Use them together as a platform, or independently as libraries."
+        title={`${snapshot.repoCount} repos. One platform.`}
+        subtitle="Live GitHub metadata synced every 6 hours with resilient fallback snapshots."
       >
+        <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="rounded-lg border border-forge-border bg-forge-surface/40 p-4">
+            <p className="text-xs font-mono uppercase tracking-[0.15em] text-forge-text-subtle">
+              Product Repos
+            </p>
+            <p className="mt-2 text-2xl font-display font-bold text-foreground">
+              {snapshot.repoCount}
+            </p>
+          </div>
+          <div className="rounded-lg border border-forge-border bg-forge-surface/40 p-4">
+            <p className="text-xs font-mono uppercase tracking-[0.15em] text-forge-text-subtle">
+              Tagged Releases
+            </p>
+            <p className="mt-2 text-2xl font-display font-bold text-foreground">
+              {snapshot.releasedRepoCount}
+            </p>
+          </div>
+          <div className="rounded-lg border border-forge-border bg-forge-surface/40 p-4">
+            <p className="text-xs font-mono uppercase tracking-[0.15em] text-forge-text-subtle">
+              Last Synced
+            </p>
+            <p className="mt-2 text-sm font-medium text-forge-text-muted">
+              {formatDate(snapshot.lastSyncedAt)}
+            </p>
+          </div>
+        </div>
+
         <div className="space-y-12">
-          {REPO_GROUPS.map((group, gi) => (
+          {groups.map((group, groupIndex) => (
             <motion.div
               key={group.title}
               initial={{ opacity: 0, y: 16 }}
@@ -133,44 +84,57 @@ export default function EcosystemPage() {
               transition={{
                 duration: 0.5,
                 ease: EASE_SIZA,
-                delay: gi * 0.1,
+                delay: groupIndex * 0.1,
               }}
             >
-              <h3 className="text-xs font-mono text-forge-text-subtle tracking-[0.15em] uppercase mb-4">
+              <h3 className="mb-4 text-xs font-mono uppercase tracking-[0.15em] text-forge-text-subtle">
                 {group.title}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {group.repos.map((repo) => (
                   <a
                     key={repo.name}
-                    href={repo.href}
+                    href={repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group rounded-xl border border-forge-border bg-forge-surface/40 p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)]"
+                    className="group rounded-xl border border-forge-border bg-forge-surface/40 p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
                   >
-                    <div className="flex items-center gap-2 mb-2">
-                      <Layers className="w-4 h-4 text-forge-primary" />
+                    <div className="mb-2 flex items-center gap-2">
+                      <Layers className="h-4 w-4 text-forge-primary" />
                       <h4 className="font-mono text-sm font-semibold text-foreground">
                         {repo.name}
                       </h4>
                       {repo.npm && (
-                        <span className="text-[10px] font-mono text-forge-text-subtle bg-forge-surface rounded px-1.5 py-0.5">
+                        <span className="rounded bg-forge-surface px-1.5 py-0.5 text-[10px] font-mono text-forge-text-subtle">
                           {repo.npm}
                         </span>
                       )}
-                      <ExternalLink className="w-3 h-3 text-forge-text-subtle ml-auto opacity-0 transition-opacity group-hover:opacity-100" />
+                      <ExternalLink className="ml-auto h-3 w-3 text-forge-text-subtle opacity-0 transition-opacity group-hover:opacity-100" />
                     </div>
-                    <p className="text-sm text-forge-text-muted mb-3 leading-relaxed">
+
+                    <p className="mb-3 text-sm leading-relaxed text-forge-text-muted">
                       {repo.description}
                     </p>
+
+                    <div className="mb-3 flex flex-wrap gap-2 text-[10px] font-mono text-forge-text-subtle">
+                      <span className="inline-flex items-center gap-1 rounded bg-forge-surface px-2 py-1">
+                        <Tag className="h-3 w-3" />
+                        {repo.latestReleaseTag ?? "No tagged release"}
+                      </span>
+                      <span className="inline-flex items-center gap-1 rounded bg-forge-surface px-2 py-1">
+                        <CalendarClock className="h-3 w-3" />
+                        Updated {formatDate(repo.updatedAt)}
+                      </span>
+                    </div>
+
                     <ul className="space-y-1">
-                      {repo.highlights.map((h) => (
+                      {repo.highlights.map((highlight) => (
                         <li
-                          key={h}
+                          key={highlight}
                           className="flex items-start gap-2 text-xs text-forge-text-subtle"
                         >
-                          <span className="mt-1 h-1 w-1 rounded-full bg-forge-primary/50 shrink-0" />
-                          {h}
+                          <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-forge-primary/50" />
+                          {highlight}
                         </li>
                       ))}
                     </ul>

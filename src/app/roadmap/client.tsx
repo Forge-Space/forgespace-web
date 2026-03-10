@@ -15,52 +15,55 @@ interface Phase {
   items: string[];
 }
 
-const PHASES: Phase[] = [
-  {
-    status: "complete",
-    title: "Phase 1 — Foundation",
-    description: "Core platform with AI generation, governance, and IDP primitives.",
-    items: [
-      "AI code generation with live preview",
-      "Post-generation A-F scorecard (5 quality gates)",
-      "Golden Path templates (5 official scaffolds)",
-      "Software catalog with dependency graph",
-      "BYOK encryption + multi-LLM support",
-      "MCP Gateway with JWT auth and rate limiting",
-      "forge-init CLI and 5 scorecard collectors",
-      "Brand system with 9 MCP tools",
-    ],
-  },
-  {
-    status: "active",
-    title: "Phase 2 — User Acquisition",
-    description:
-      "Documentation, community, and developer experience improvements.",
-    items: [
-      "IDP messaging and pricing page",
-      "Documentation guides (scorecard, policy packs, BYOK)",
-      "Good-first-issues across 7 repos",
-      "Governance files (LICENSE, CONTRIBUTING, catalog-info.yaml)",
-      "Website redesign and content depth",
-      "Community Discord server",
-      "Launch post and developer outreach",
-    ],
-  },
-  {
-    status: "planned",
-    title: "Phase 3 — Scale",
-    description:
-      "Multi-agent workflows, enterprise features, and ecosystem growth.",
-    items: [
-      "Collaborative multi-agent workspaces",
-      "Gateway-webapp auth unification",
-      "Enterprise SSO and data residency",
-      "Scorecard trends and org analytics",
-      "Marketplace for community MCP tools",
-      "VS Code and Cursor extensions",
-    ],
-  },
-];
+interface RoadmapPageProps {
+  repoCount: number;
+}
+
+function buildPhases(repoCount: number): Phase[] {
+  return [
+    {
+      status: "complete",
+      title: "Phase 1 — Foundation",
+      description:
+        "Core platform capabilities shipped and operating in production workflows.",
+      items: [
+        "AI code generation with live preview",
+        "Post-generation quality scorecards",
+        "Golden Path scaffolding workflows",
+        "Software catalog with dependency graph",
+        "BYOK encryption and model routing",
+        "Migration assessment and planning toolchain",
+        `${repoCount} product repositories aligned on governance standards`,
+      ],
+    },
+    {
+      status: "active",
+      title: "Phase 2 — Adoption",
+      description:
+        "Improve discoverability, onboarding, and decision-ready platform visibility.",
+      items: [
+        "Live ecosystem metadata sync on marketing surfaces",
+        "Expanded docs for governance and migration workflows",
+        "Community-ready examples and templates",
+        "Contributor onboarding improvements across repos",
+        "Website narrative and UX refinement",
+      ],
+    },
+    {
+      status: "planned",
+      title: "Phase 3 — Scale",
+      description:
+        "Extend collaboration, enterprise controls, and ecosystem extensibility.",
+      items: [
+        "Collaborative multi-agent workspaces",
+        "Cross-product auth and policy unification",
+        "Enterprise SSO and compliance controls",
+        "Organization-level quality and trend analytics",
+        "Extension and plugin ecosystem growth",
+      ],
+    },
+  ];
+}
 
 const statusConfig: Record<
   PhaseStatus,
@@ -86,17 +89,19 @@ const statusConfig: Record<
   },
 };
 
-export default function RoadmapPage() {
+export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
+  const phases = buildPhases(repoCount);
+
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background font-sans text-foreground">
       <Section
         variant="gradient"
         label="Roadmap"
         title="Where we're headed"
-        subtitle="A transparent view of what's shipped, what's in progress, and what's next."
+        subtitle="A transparent view of what is shipped, what is in progress, and what is next."
       >
-        <div className="space-y-6 max-w-3xl">
-          {PHASES.map((phase, i) => {
+        <div className="max-w-3xl space-y-6">
+          {phases.map((phase, index) => {
             const config = statusConfig[phase.status];
             const Icon = config.icon;
 
@@ -109,22 +114,20 @@ export default function RoadmapPage() {
                 transition={{
                   duration: 0.5,
                   ease: EASE_SIZA,
-                  delay: i * 0.1,
+                  delay: index * 0.1,
                 }}
                 className={`rounded-xl border p-6 md:p-8 ${config.bg}`}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <Icon className={`w-5 h-5 ${config.color}`} />
-                  <h3 className="font-display font-semibold text-foreground text-lg">
+                <div className="mb-3 flex items-center gap-3">
+                  <Icon className={`h-5 w-5 ${config.color}`} />
+                  <h3 className="font-display text-lg font-semibold text-foreground">
                     {phase.title}
                   </h3>
-                  <span
-                    className={`text-xs font-mono ${config.color} ml-auto`}
-                  >
+                  <span className={`ml-auto text-xs font-mono ${config.color}`}>
                     {config.label}
                   </span>
                 </div>
-                <p className="text-sm text-forge-text-muted mb-4 leading-relaxed">
+                <p className="mb-4 text-sm leading-relaxed text-forge-text-muted">
                   {phase.description}
                 </p>
                 <ul className="space-y-2">
@@ -134,7 +137,7 @@ export default function RoadmapPage() {
                       className="flex items-start gap-2 text-sm text-forge-text-muted"
                     >
                       <span
-                        className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${
+                        className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
                           phase.status === "complete"
                             ? "bg-green-400/60"
                             : phase.status === "active"
@@ -160,7 +163,7 @@ export default function RoadmapPage() {
         >
           <Button href="https://siza.forgespace.co" external size="lg">
             Try Siza
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <Button
             href="https://github.com/Forge-Space"

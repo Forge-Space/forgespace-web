@@ -5,6 +5,18 @@ import { FeaturesGrid } from "@/components/landing/FeaturesGrid";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { ArchitectureDiagram } from "@/components/landing/ArchitectureDiagram";
 import { CTASection } from "@/components/landing/CTASection";
+import { type EcosystemSnapshot } from "@/lib/ecosystem-data";
+
+const snapshot: EcosystemSnapshot = {
+  repoCount: 11,
+  releasedRepoCount: 9,
+  lastSyncedAt: "2026-03-10T00:00:00.000Z",
+  stats: {
+    updatedLast30d: 10,
+    updatedLast7d: 8,
+  },
+  repos: [],
+};
 
 vi.mock("motion/react", () => ({
   motion: {
@@ -42,36 +54,36 @@ vi.mock("next/link", () => ({
 
 describe("SocialProof", () => {
   it("renders all 4 stats", () => {
-    render(<SocialProof />);
+    render(<SocialProof snapshot={snapshot} />);
+    expect(screen.getByText("11")).toBeInTheDocument();
     expect(screen.getByText("9")).toBeInTheDocument();
-    expect(screen.getByText("30+")).toBeInTheDocument();
-    expect(screen.getByText("$0")).toBeInTheDocument();
+    expect(screen.getByText("10")).toBeInTheDocument();
     expect(screen.getByText("MIT")).toBeInTheDocument();
   });
 
-  it("renders stat labels", () => {
-    render(<SocialProof />);
-    expect(screen.getByText("Open Source Repos")).toBeInTheDocument();
-    expect(screen.getByText("MCP Tools")).toBeInTheDocument();
+  it("renders updated stat labels", () => {
+    render(<SocialProof snapshot={snapshot} />);
+    expect(screen.getByText("Product Repos")).toBeInTheDocument();
+    expect(screen.getByText("Repos With Releases")).toBeInTheDocument();
   });
 });
 
 describe("FeaturesGrid", () => {
   it("renders section heading", () => {
-    render(<FeaturesGrid />);
+    render(<FeaturesGrid repoCount={snapshot.repoCount} />);
     expect(
       screen.getByText("Built for developers who ship"),
     ).toBeInTheDocument();
   });
 
-  it("renders all 6 feature cards", () => {
-    render(<FeaturesGrid />);
+  it("renders feature cards", () => {
+    render(<FeaturesGrid repoCount={snapshot.repoCount} />);
     expect(screen.getByText("AI-Powered Generation")).toBeInTheDocument();
     expect(screen.getByText("MCP-Native Architecture")).toBeInTheDocument();
     expect(screen.getByText("Privacy-First BYOK")).toBeInTheDocument();
     expect(screen.getByText("Zero-Cost Start")).toBeInTheDocument();
     expect(screen.getByText("Self-Hostable")).toBeInTheDocument();
-    expect(screen.getByText("Multi-LLM Support")).toBeInTheDocument();
+    expect(screen.getByText("Multi-Model Workflows")).toBeInTheDocument();
   });
 });
 
@@ -100,20 +112,28 @@ describe("HowItWorks", () => {
 
 describe("ArchitectureDiagram", () => {
   it("renders section heading", () => {
-    render(<ArchitectureDiagram />);
+    render(
+      <ArchitectureDiagram
+        repoCount={snapshot.repoCount}
+        releasedRepoCount={snapshot.releasedRepoCount}
+      />,
+    );
     expect(
-      screen.getByText("Four layers. One ecosystem."),
+      screen.getByText("Four layers. 11 product repos."),
     ).toBeInTheDocument();
   });
 
   it("renders all 4 layers", () => {
-    render(<ArchitectureDiagram />);
+    render(
+      <ArchitectureDiagram
+        repoCount={snapshot.repoCount}
+        releasedRepoCount={snapshot.releasedRepoCount}
+      />,
+    );
     expect(screen.getByText("Siza")).toBeInTheDocument();
-    expect(
-      screen.getByText("siza-mcp + branding-mcp"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("ui-mcp + branding-mcp")).toBeInTheDocument();
     expect(screen.getByText("mcp-gateway")).toBeInTheDocument();
-    expect(screen.getByText("forge-patterns")).toBeInTheDocument();
+    expect(screen.getByText("core")).toBeInTheDocument();
   });
 });
 
