@@ -7,7 +7,7 @@ Marketing site for [Forge Space](https://forgespace.co) — the open-source deve
 - Next.js 15 (App Router)
 - React 19
 - Tailwind CSS 4
-- Motion (motion.dev) for animations
+- Motion (motion.dev) for interactive routes
 - Lucide React icons
 
 ## Development
@@ -83,7 +83,14 @@ docker compose -f docker-compose.prod.yml up -d --build
 - `src/components/landing/` — HeroSection, FeaturesGrid, HowItWorks, SocialProof, ArchitectureDiagram, CTASection
 - `src/components/layout/` — Nav (responsive with mobile menu), Footer (multi-column)
 - `src/components/ui/` — Button, Badge, Section (reusable primitives)
-- `src/components/shared/` — EcosystemCard, HeroParticlesBackground, PageSection
+- `src/components/shared/` — EcosystemCard, PageSection
+
+## Lighthouse Notes
+
+- Home route now ships a semantic `<main>` landmark for accessibility.
+- Home hero visuals are CSS-based (Three.js particles removed from critical path).
+- Contrast-sensitive tokens (`--forge-primary`, `--forge-primary-hover`, `--forge-text-subtle`)
+  were adjusted to satisfy desktop Lighthouse contrast checks.
 
 ### Design System
 
