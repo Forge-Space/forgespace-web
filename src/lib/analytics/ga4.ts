@@ -43,7 +43,7 @@ function withAttributionParams(
   };
 }
 
-export function trackGa4Event(
+function trackGa4Event(
   eventName: string,
   params?: Record<string, unknown>,
 ): void {

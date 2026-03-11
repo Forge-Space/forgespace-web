@@ -86,7 +86,7 @@ const pages: Record<string, PageSEO> = {
   },
 };
 
-export type PageMetadataSlug = keyof typeof pages;
+type PageMetadataSlug = keyof typeof pages;
 
 function toAbsoluteUrl(path: string): string {
   return path === "/" ? SITE_URL : `${SITE_URL}${path}`;

@@ -1,6 +1,6 @@
 const SITE_URL = "https://forgespace.co";
 
-export const organizationJsonLd = {
+const organizationJsonLd = {
   "@type": "Organization",
   name: "Forge Space",
   url: SITE_URL,
@@ -10,7 +10,7 @@ export const organizationJsonLd = {
   ],
 };
 
-export const websiteJsonLd = {
+const websiteJsonLd = {
   "@type": "WebSite",
   name: "Forge Space",
   url: SITE_URL,

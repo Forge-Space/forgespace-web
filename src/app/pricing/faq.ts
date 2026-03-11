@@ -1,4 +1,4 @@
-export interface PricingFaqItem {
+interface PricingFaqItem {
   q: string;
   a: string;
 }
