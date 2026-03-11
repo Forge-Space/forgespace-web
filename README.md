@@ -116,6 +116,8 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 - Home route now ships a semantic `<main>` landmark for accessibility.
 - Home hero visuals are CSS-based (Three.js particles removed from critical path).
+- Navigation menu now uses a server-rendered `<details>` disclosure on mobile
+  to avoid shipping a dedicated nav client runtime.
 - Contrast-sensitive tokens (`--forge-primary`, `--forge-primary-hover`, `--forge-text-subtle`)
   were adjusted to satisfy desktop Lighthouse contrast checks.
 
