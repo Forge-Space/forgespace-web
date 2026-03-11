@@ -5,12 +5,20 @@ import { SocialProof } from "@/components/landing/SocialProof";
 import { ArchitectureDiagram } from "@/components/landing/ArchitectureDiagram";
 import { CTASection } from "@/components/landing/CTASection";
 import { getEcosystemSnapshot } from "@/lib/ecosystem-data";
+import { getPageMetadata } from "@/app/seo";
+import { softwareApplicationJsonLd } from "@/app/structured-data";
+
+export const metadata = getPageMetadata("home");
 
 export default async function Home() {
   const snapshot = await getEcosystemSnapshot();
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
+      />
       <HeroSection />
       <SocialProof snapshot={snapshot} />
       <FeaturesGrid repoCount={snapshot.repoCount} />

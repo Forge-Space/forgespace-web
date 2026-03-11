@@ -6,5 +6,10 @@ export const metadata = getPageMetadata("features");
 
 export default async function Page() {
   const snapshot = await getEcosystemSnapshot();
-  return <FeaturesPage repoCount={snapshot.repoCount} />;
+  return (
+    <>
+      <h1 className="sr-only">Forge Space Features</h1>
+      <FeaturesPage repoCount={snapshot.repoCount} />
+    </>
+  );
 }

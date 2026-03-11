@@ -47,6 +47,10 @@ All notable changes to this project will be documented in this file.
   6-hour revalidation
 - **Ecosystem sync tests** — Coverage for success mapping, release fallback, and
   org-fetch fallback scenarios
+- **SEO contract tests** — Metadata, sitemap/robots, and JSON-LD coverage for
+  route-level SEO guarantees
+- **Structured data modules** — Global `Organization` + `WebSite`, homepage
+  `SoftwareApplication`, and pricing `FAQPage` schema payloads
 
 ### Changed
 
@@ -57,6 +61,14 @@ All notable changes to this project will be documented in this file.
   keyboard focus states
 - **Env contract** — Added optional `FORGE_SPACE_GITHUB_TOKEN` (preferred) with
   `GITHUB_TOKEN` fallback for authenticated GitHub API calls
+- **Route metadata model** — Canonical URL, Open Graph URL, and Twitter fields
+  now ship per marketing route
+- **Sitemap stability** — `lastModified` timestamps are deterministic to prevent
+  request-time churn
+- **Server HTML headings** — `/features`, `/ecosystem`, and `/roadmap` now emit
+  crawlable server-rendered `<h1>` tags
+- **Ecosystem SEO copy** — Replaced stale “9 repositories” description with the
+  current 11-repo scope and live release context
 
 ## [0.2.1] - 2026-03-07
 

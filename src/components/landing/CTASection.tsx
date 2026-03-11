@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 
 export function CTASection() {
@@ -32,7 +33,15 @@ export function CTASection() {
             Free forever for individual developers.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button href="https://siza.forgespace.co" external size="lg">
+            <Button
+              href="https://siza.forgespace.co"
+              external
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.SIZA}
+              ctaTarget="siza"
+              ctaLocation="landing_cta_primary"
+              passAttribution
+            >
               Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Button>
@@ -41,6 +50,9 @@ export function CTASection() {
               external
               variant="outline"
               size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+              ctaTarget="github"
+              ctaLocation="landing_cta_secondary"
             >
               Explore on GitHub
             </Button>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 
 const NAV_LINKS = [
@@ -74,6 +75,9 @@ export function Nav() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+                  data-fs-cta-target="github"
+                  data-fs-cta-location={`nav_${link.label.toLowerCase()}`}
                   className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
                 >
                   {link.label}
@@ -95,11 +99,23 @@ export function Nav() {
               href="https://siza.forgespace.co"
               target="_blank"
               rel="noopener noreferrer"
+              data-fs-cta-event={FORGE_CTA_EVENTS.SIZA}
+              data-fs-cta-target="siza"
+              data-fs-cta-location="nav_signin_desktop"
+              data-fs-pass-attribution="true"
               className="text-sm text-forge-text-muted transition-colors hover:text-foreground"
             >
               Sign in
             </a>
-            <Button href="https://siza.forgespace.co" external size="sm">
+            <Button
+              href="https://siza.forgespace.co"
+              external
+              size="sm"
+              ctaEvent={FORGE_CTA_EVENTS.SIZA}
+              ctaTarget="siza"
+              ctaLocation="nav_get_started_desktop"
+              passAttribution
+            >
               Get Started
             </Button>
           </div>
@@ -146,6 +162,9 @@ export function Nav() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMobile}
+                    data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+                    data-fs-cta-target="github"
+                    data-fs-cta-location={`nav_mobile_${link.label.toLowerCase()}`}
                     className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
                   >
                     {link.label}
@@ -169,11 +188,22 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobile}
+                data-fs-cta-event={FORGE_CTA_EVENTS.SIZA}
+                data-fs-cta-target="siza"
+                data-fs-cta-location="nav_signin_mobile"
+                data-fs-pass-attribution="true"
                 className="rounded-md px-3 py-2.5 text-sm text-center text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
               >
                 Sign in
               </a>
-              <Button href="https://siza.forgespace.co" external>
+              <Button
+                href="https://siza.forgespace.co"
+                external
+                ctaEvent={FORGE_CTA_EVENTS.SIZA}
+                ctaTarget="siza"
+                ctaLocation="nav_get_started_mobile"
+                passAttribution
+              >
                 Get Started
               </Button>
             </div>

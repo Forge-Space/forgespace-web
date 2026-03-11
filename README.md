@@ -54,6 +54,28 @@ FORGE_SPACE_GITHUB_TOKEN=ghp_...
 GITHUB_TOKEN=ghp_...
 ```
 
+## SEO and Indexability
+
+Forge Space exposes only canonical marketing routes for indexing:
+
+- `/`
+- `/features`
+- `/pricing`
+- `/ecosystem`
+- `/roadmap`
+- `/enterprise`
+
+Technical SEO behavior:
+
+- Per-route metadata contract with canonical URL, Open Graph URL, and Twitter fields
+- Deterministic `sitemap.xml` timestamps to avoid crawl churn
+- `robots.txt` publishes sitemap and blocks `/_next/` assets
+- Structured data split:
+  - Global `Organization` + `WebSite` graph
+  - Homepage `SoftwareApplication`
+  - Pricing `FAQPage` schema
+- Server-rendered `<h1>` coverage for feature, ecosystem, and roadmap routes
+
 ## Docker
 
 **Development (hot reload):**
@@ -69,7 +91,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 ## Project Structure
 
-### Pages (5 routes)
+### Pages (6 routes)
 
 - `src/app/page.tsx` — Multi-section landing (Hero, Features, HowItWorks, SocialProof, Architecture, CTA)
 - `src/app/features/` — Detailed feature sections with bullet points
