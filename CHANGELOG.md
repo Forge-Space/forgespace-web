@@ -66,6 +66,10 @@ All notable changes to this project will be documented in this file.
 - **Landing performance budget** — Home sections are now server-rendered without
   Motion wrappers, and the hero switched from Three.js particles to CSS visuals
   to reduce shipped client JavaScript on `/`
+- **Navigation runtime trim** — Mobile navigation now uses semantic
+  `<details>/<summary>` rendering instead of a client-side state machine,
+  removing homepage nav hydration JavaScript while preserving responsive menu
+  behavior
 
 ## [0.2.1] - 2026-03-07
 
