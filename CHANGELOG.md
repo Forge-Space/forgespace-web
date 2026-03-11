@@ -39,6 +39,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **Production smoke workflow** — Daily + post-deploy Playwright checks for
+  `forgespace.co` and `siza.forgespace.co` with key-anchor assertions and
+  failure screenshot artifacts
 - **Import cycle detection** — `madge --circular` via `npm run check:cycles`
 - **Quality Gates CI job** — knip dead code detection + circular dependency check
 - **knip config** — `knip.json` with known false positive suppressions
