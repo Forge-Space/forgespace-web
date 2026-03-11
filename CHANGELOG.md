@@ -57,6 +57,12 @@ All notable changes to this project will be documented in this file.
   keyboard focus states
 - **Env contract** — Added optional `FORGE_SPACE_GITHUB_TOKEN` (preferred) with
   `GITHUB_TOKEN` fallback for authenticated GitHub API calls
+- **Landing accessibility** — Home route now uses a semantic `main` landmark and
+  higher-contrast subtle/primary color tokens to resolve Lighthouse
+  `landmark-one-main` and `color-contrast` failures
+- **Landing performance budget** — Home sections are now server-rendered without
+  Motion wrappers, and the hero switched from Three.js particles to CSS visuals
+  to reduce shipped client JavaScript on `/`
 
 ## [0.2.1] - 2026-03-07
 

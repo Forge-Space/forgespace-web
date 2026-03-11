@@ -17,7 +17,7 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-forge-primary hover:bg-forge-primary-hover text-white shadow-[var(--forge-glow-primary-sm)] hover:shadow-[var(--forge-glow-primary)]",
+    "bg-forge-primary hover:bg-[#6d28d9] text-white shadow-[var(--forge-glow-primary-sm)] hover:shadow-[var(--forge-glow-primary)]",
   outline:
     "border border-forge-border text-foreground/90 hover:bg-forge-surface hover:border-forge-border-hover",
   ghost:

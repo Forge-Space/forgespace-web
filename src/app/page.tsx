@@ -10,7 +10,7 @@ export default async function Home() {
   const snapshot = await getEcosystemSnapshot();
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <main className="min-h-screen bg-background text-foreground font-sans">
       <HeroSection />
       <SocialProof snapshot={snapshot} />
       <FeaturesGrid repoCount={snapshot.repoCount} />
@@ -20,6 +20,6 @@ export default async function Home() {
         releasedRepoCount={snapshot.releasedRepoCount}
       />
       <CTASection />
-    </div>
+    </main>
   );
 }

@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-import { EASE_SIZA } from "@/lib/constants";
 import { type EcosystemSnapshot } from "@/lib/ecosystem-data";
 
 interface SocialProofProps {
@@ -20,24 +16,13 @@ export function SocialProof({ snapshot }: SocialProofProps) {
     <section className="border-y border-forge-border bg-forge-bg-elevated py-16">
       <div className="mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.4,
-                ease: EASE_SIZA,
-                delay: index * 0.08,
-              }}
-              className="text-center"
-            >
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center">
               <p className="mb-1 font-display text-3xl font-bold text-foreground sm:text-4xl">
                 {stat.value}
               </p>
               <p className="text-sm text-forge-text-muted">{stat.label}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

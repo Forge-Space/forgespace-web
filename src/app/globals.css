@@ -10,13 +10,13 @@
   --forge-surface-alt: #28282e;
   --forge-border: #333338;
   --forge-border-hover: #4a4a52;
-  --forge-primary: #8B5CF6;
+  --forge-primary: #7c3aed;
   --forge-primary-rgb: 139, 92, 246;
-  --forge-primary-hover: #A78BFA;
+  --forge-primary-hover: #a78bfa;
   --forge-primary-pressed: #6D28D9;
   --forge-text: #fafafa;
   --forge-text-muted: #a1a1aa;
-  --forge-text-subtle: #71717a;
+  --forge-text-subtle: #a1a1aa;
   --forge-accent: rgba(139, 92, 246, 0.12);
   --forge-accent-foreground: #8B5CF6;
   --forge-ring: #8B5CF6;
