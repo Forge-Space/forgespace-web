@@ -25,6 +25,7 @@ TARGETS: tuple[Target, ...] = (
         anchors=(
             "Generate code with AI",
             "Ship it with confidence",
+            "Internal Developer Platform",
             "Try Siza Free",
         ),
     ),
@@ -32,8 +33,9 @@ TARGETS: tuple[Target, ...] = (
         name="siza-home",
         url="https://siza.forgespace.co",
         anchors=(
-            "Generate",
+            "Generate production-grade",
             "UI code with AI",
+            "Now in Public Beta",
             "Start Generating Free",
         ),
     ),
