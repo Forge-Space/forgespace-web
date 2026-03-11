@@ -73,7 +73,8 @@ function handleCtaClick(event: MouseEvent): void {
 export default function AnalyticsProvider({ children }: PropsWithChildren) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const query = searchParams.toString();
+  const currentPathname = pathname ?? "/";
+  const query = searchParams?.toString() ?? "";
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -116,10 +117,10 @@ export default function AnalyticsProvider({ children }: PropsWithChildren) {
 
     trackGa4Pageview(
       GA4_TRACKING_ID,
-      getCurrentPagePath(pathname, query),
+      getCurrentPagePath(currentPathname, query),
       window.location.href,
     );
-  }, [pathname, query]);
+  }, [currentPathname, query]);
 
   useEffect(() => {
     document.addEventListener("click", handleCtaClick);

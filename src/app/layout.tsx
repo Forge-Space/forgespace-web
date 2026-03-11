@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { DM_Sans, Sora, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
@@ -89,11 +90,13 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${sora.variable} ${ibmPlexMono.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
-        <AnalyticsProvider>
-          <Nav />
-          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
-          <Footer />
-        </AnalyticsProvider>
+        <Suspense fallback={null}>
+          <AnalyticsProvider>
+            <Nav />
+            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+            <Footer />
+          </AnalyticsProvider>
+        </Suspense>
       </body>
     </html>
   );
