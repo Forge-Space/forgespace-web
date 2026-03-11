@@ -96,6 +96,7 @@ function FooterColumn({
             ) : (
               <Link
                 href={link.href}
+                prefetch={false}
                 className="text-sm text-forge-text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
@@ -116,6 +117,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link
               href="/"
+              prefetch={false}
               className="font-display text-base font-bold text-foreground"
             >
               Forge Space
