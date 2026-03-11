@@ -39,9 +39,6 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- **Production smoke workflow** — Daily + post-deploy Playwright checks for
-  `forgespace.co` and `siza.forgespace.co` with key-anchor assertions and
-  failure screenshot artifacts
 - **Import cycle detection** — `madge --circular` via `npm run check:cycles`
 - **Quality Gates CI job** — knip dead code detection + circular dependency check
 - **knip config** — `knip.json` with known false positive suppressions
@@ -50,6 +47,10 @@ All notable changes to this project will be documented in this file.
   6-hour revalidation
 - **Ecosystem sync tests** — Coverage for success mapping, release fallback, and
   org-fetch fallback scenarios
+- **SEO contract tests** — Metadata, sitemap/robots, and JSON-LD coverage for
+  route-level SEO guarantees
+- **Structured data modules** — Global `Organization` + `WebSite`, homepage
+  `SoftwareApplication`, and pricing `FAQPage` schema payloads
 
 ### Changed
 
@@ -60,16 +61,14 @@ All notable changes to this project will be documented in this file.
   keyboard focus states
 - **Env contract** — Added optional `FORGE_SPACE_GITHUB_TOKEN` (preferred) with
   `GITHUB_TOKEN` fallback for authenticated GitHub API calls
-- **Landing accessibility** — Home route now uses a semantic `main` landmark and
-  higher-contrast subtle/primary color tokens to resolve Lighthouse
-  `landmark-one-main` and `color-contrast` failures
-- **Landing performance budget** — Home sections are now server-rendered without
-  Motion wrappers, and the hero switched from Three.js particles to CSS visuals
-  to reduce shipped client JavaScript on `/`
-- **Navigation runtime trim** — Mobile navigation now uses semantic
-  `<details>/<summary>` rendering instead of a client-side state machine,
-  removing homepage nav hydration JavaScript while preserving responsive menu
-  behavior
+- **Route metadata model** — Canonical URL, Open Graph URL, and Twitter fields
+  now ship per marketing route
+- **Sitemap stability** — `lastModified` timestamps are deterministic to prevent
+  request-time churn
+- **Server HTML headings** — `/features`, `/ecosystem`, and `/roadmap` now emit
+  crawlable server-rendered `<h1>` tags
+- **Ecosystem SEO copy** — Replaced stale “9 repositories” description with the
+  current 11-repo scope and live release context
 
 ## [0.2.1] - 2026-03-07
 

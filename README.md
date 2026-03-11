@@ -7,7 +7,7 @@ Marketing site for [Forge Space](https://forgespace.co) — the open-source deve
 - Next.js 15 (App Router)
 - React 19
 - Tailwind CSS 4
-- Motion (motion.dev) for interactive routes
+- Motion (motion.dev) for animations
 - Lucide React icons
 
 ## Development
@@ -37,33 +37,6 @@ NODE_ENV=production npm run build
 
 Note: Use `NODE_ENV=production` for builds to avoid Next.js workspace inference warnings.
 
-## Production Smoke Checks
-
-Recurring production checks validate:
-
-- `https://forgespace.co`
-- `https://siza.forgespace.co`
-
-Validation coverage:
-
-- Root route returns HTTP `200`
-- Key messaging anchors are visible
-- Full-page screenshots are captured on failure
-
-Workflow:
-
-- `.github/workflows/production-smoke.yml`
-- Triggers on daily schedule (`12:00 UTC`), manual dispatch, and successful
-  `Deploy to Vercel` completion on `main`
-
-Local run:
-
-```bash
-python3 -m pip install playwright==1.54.0
-python3 -m playwright install chromium
-python3 scripts/smoke/production_smoke.py --output-dir artifacts/smoke
-```
-
 ## Live Ecosystem Sync
 
 Marketing pages consume a server-only GitHub metadata sync for the Forge Space
@@ -81,6 +54,28 @@ FORGE_SPACE_GITHUB_TOKEN=ghp_...
 GITHUB_TOKEN=ghp_...
 ```
 
+## SEO and Indexability
+
+Forge Space exposes only canonical marketing routes for indexing:
+
+- `/`
+- `/features`
+- `/pricing`
+- `/ecosystem`
+- `/roadmap`
+- `/enterprise`
+
+Technical SEO behavior:
+
+- Per-route metadata contract with canonical URL, Open Graph URL, and Twitter fields
+- Deterministic `sitemap.xml` timestamps to avoid crawl churn
+- `robots.txt` publishes sitemap and blocks `/_next/` assets
+- Structured data split:
+  - Global `Organization` + `WebSite` graph
+  - Homepage `SoftwareApplication`
+  - Pricing `FAQPage` schema
+- Server-rendered `<h1>` coverage for feature, ecosystem, and roadmap routes
+
 ## Docker
 
 **Development (hot reload):**
@@ -96,7 +91,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 ## Project Structure
 
-### Pages (5 routes)
+### Pages (6 routes)
 
 - `src/app/page.tsx` — Multi-section landing (Hero, Features, HowItWorks, SocialProof, Architecture, CTA)
 - `src/app/features/` — Detailed feature sections with bullet points
@@ -110,16 +105,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 - `src/components/landing/` — HeroSection, FeaturesGrid, HowItWorks, SocialProof, ArchitectureDiagram, CTASection
 - `src/components/layout/` — Nav (responsive with mobile menu), Footer (multi-column)
 - `src/components/ui/` — Button, Badge, Section (reusable primitives)
-- `src/components/shared/` — EcosystemCard, PageSection
-
-## Lighthouse Notes
-
-- Home route now ships a semantic `<main>` landmark for accessibility.
-- Home hero visuals are CSS-based (Three.js particles removed from critical path).
-- Navigation menu now uses a server-rendered `<details>` disclosure on mobile
-  to avoid shipping a dedicated nav client runtime.
-- Contrast-sensitive tokens (`--forge-primary`, `--forge-primary-hover`, `--forge-text-subtle`)
-  were adjusted to satisfy desktop Lighthouse contrast checks.
+- `src/components/shared/` — EcosystemCard, HeroParticlesBackground, PageSection
 
 ### Design System
 

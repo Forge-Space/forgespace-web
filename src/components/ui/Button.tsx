@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
+import type { ForgeCtaEvent } from "@/lib/analytics/ga4";
 
 type ButtonVariant = "primary" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -13,6 +14,10 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit";
   onClick?: () => void;
+  ctaEvent?: ForgeCtaEvent;
+  ctaTarget?: string;
+  ctaLocation?: string;
+  passAttribution?: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -42,6 +47,10 @@ export function Button({
   className = "",
   type = "button",
   onClick,
+  ctaEvent,
+  ctaTarget,
+  ctaLocation,
+  passAttribution = false,
 }: ButtonProps) {
   const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
@@ -52,6 +61,11 @@ export function Button({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={onClick}
+          data-fs-cta-event={ctaEvent}
+          data-fs-cta-target={ctaTarget}
+          data-fs-cta-location={ctaLocation}
+          data-fs-pass-attribution={passAttribution ? "true" : undefined}
           className={classes}
         >
           {children}
@@ -59,7 +73,15 @@ export function Button({
       );
     }
     return (
-      <Link href={href} className={classes}>
+      <Link
+        href={href}
+        onClick={onClick}
+        data-fs-cta-event={ctaEvent}
+        data-fs-cta-target={ctaTarget}
+        data-fs-cta-location={ctaLocation}
+        data-fs-pass-attribution={passAttribution ? "true" : undefined}
+        className={classes}
+      >
         {children}
       </Link>
     );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Github } from "lucide-react";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 const FOOTER_LINKS = {
   Product: [
@@ -61,6 +62,33 @@ function FooterColumn({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-fs-cta-event={
+                  link.href.includes("siza.forgespace.co")
+                    ? FORGE_CTA_EVENTS.SIZA
+                    : link.href.includes("github.com/Forge-Space")
+                      ? FORGE_CTA_EVENTS.GITHUB
+                      : link.href.startsWith("mailto:")
+                        ? FORGE_CTA_EVENTS.CONTACT_SALES
+                        : undefined
+                }
+                data-fs-cta-target={
+                  link.href.includes("siza.forgespace.co")
+                    ? "siza"
+                    : link.href.includes("github.com/Forge-Space")
+                      ? "github"
+                      : link.href.startsWith("mailto:")
+                        ? "contact_sales"
+                        : undefined
+                }
+                data-fs-cta-location={`footer_${title.toLowerCase()}_${link.label
+                  .toLowerCase()
+                  .replace(/\s+/g, "_")}`}
+                data-fs-pass-attribution={
+                  link.href.includes("siza.forgespace.co") ||
+                  link.href.startsWith("mailto:")
+                    ? "true"
+                    : undefined
+                }
                 className="text-sm text-forge-text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
@@ -103,6 +131,9 @@ export function Footer() {
                 href="https://github.com/Forge-Space"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+                data-fs-cta-target="github"
+                data-fs-cta-location="footer_social_github"
                 className="text-forge-text-subtle transition-colors hover:text-foreground"
                 aria-label="Forge Space on GitHub"
               >

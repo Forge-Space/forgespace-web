@@ -6,5 +6,10 @@ export const metadata = getPageMetadata("roadmap");
 
 export default async function Page() {
   const snapshot = await getEcosystemSnapshot();
-  return <RoadmapPage repoCount={snapshot.repoCount} />;
+  return (
+    <>
+      <h1 className="sr-only">Forge Space Roadmap</h1>
+      <RoadmapPage repoCount={snapshot.repoCount} />
+    </>
+  );
 }

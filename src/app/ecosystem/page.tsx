@@ -6,5 +6,10 @@ export const metadata = getPageMetadata("ecosystem");
 
 export default async function Page() {
   const snapshot = await getEcosystemSnapshot();
-  return <EcosystemPage snapshot={snapshot} />;
+  return (
+    <>
+      <h1 className="sr-only">Forge Space Ecosystem</h1>
+      <EcosystemPage snapshot={snapshot} />
+    </>
+  );
 }

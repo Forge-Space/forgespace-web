@@ -4,8 +4,10 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Check, ArrowRight, ChevronDown } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import { FORGE_CTA_EVENTS, type ForgeCtaEvent } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { FAQ_ITEMS } from "./faq";
 
 const tiers = [
   {
@@ -62,33 +64,6 @@ const tiers = [
   },
 ];
 
-const FAQ_ITEMS = [
-  {
-    q: "What counts as a generation?",
-    a: "Each time you generate a component, page, form, or scaffold through Siza, it counts as one generation. Editing or refining an existing generation does not count.",
-  },
-  {
-    q: "Can I self-host Forge Space?",
-    a: "Yes. The entire stack is MIT licensed and runs with Docker. Self-hosted deployments have unlimited generations — the limits above apply to the hosted platform only.",
-  },
-  {
-    q: "What AI models are supported?",
-    a: "Gemini (default on free tier), Claude, GPT-4o, and local models via Ollama. Pro and Team plans get access to priority models with faster response times.",
-  },
-  {
-    q: "Is my API key secure?",
-    a: "API keys are encrypted with AES-256 in your browser before being stored. We use client-side encryption — your keys never exist in plaintext on our servers.",
-  },
-  {
-    q: "Can I bring my own API key on the free plan?",
-    a: "BYOK is available on Pro and Team plans. The free tier uses Gemini with shared capacity.",
-  },
-  {
-    q: "What happens if I exceed my generation limit?",
-    a: "You'll be prompted to upgrade or wait until the next billing cycle. No overage charges — we don't surprise you with bills.",
-  },
-];
-
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
 
@@ -114,6 +89,14 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function PricingPage() {
+  const getTierCtaEvent = (href: string): ForgeCtaEvent =>
+    href.startsWith("mailto:")
+      ? FORGE_CTA_EVENTS.CONTACT_SALES
+      : FORGE_CTA_EVENTS.SIZA;
+
+  const getTierCtaTarget = (href: string): string =>
+    href.startsWith("mailto:") ? "contact_sales" : "siza";
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <main className="relative max-w-5xl mx-auto px-6 py-24">
@@ -182,6 +165,10 @@ export default function PricingPage() {
                 href={tier.href}
                 external
                 variant={tier.highlighted ? "primary" : "outline"}
+                ctaEvent={getTierCtaEvent(tier.href)}
+                ctaTarget={getTierCtaTarget(tier.href)}
+                ctaLocation={`pricing_tier_${tier.name.toLowerCase()}`}
+                passAttribution
               >
                 {tier.cta}
                 <ArrowRight className="w-4 h-4" />
@@ -223,6 +210,10 @@ export default function PricingPage() {
           Need enterprise features?{" "}
           <a
             href="mailto:hello@forgespace.co"
+            data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
+            data-fs-cta-target="contact_sales"
+            data-fs-cta-location="pricing_footer_contact"
+            data-fs-pass-attribution="true"
             className="text-forge-primary hover:underline"
           >
             Contact us

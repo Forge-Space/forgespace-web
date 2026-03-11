@@ -1,4 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useCallback, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 
 const NAV_LINKS = [
@@ -31,79 +36,123 @@ function ForgeMonogram({ className = "" }: { className?: string }) {
 }
 
 export function Nav() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMobile();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen, closeMobile]);
+
   return (
-    <nav className="sticky top-0 z-50 border-b border-forge-border bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link
-          href="/"
-          prefetch={false}
-          className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
-        >
-          <ForgeMonogram />
-          <span className="font-display text-base font-bold tracking-tight text-foreground">
-            Forge Space
-          </span>
-        </Link>
-
-        <div className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) =>
-            link.external ? (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                prefetch={false}
-                className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
-              >
-                {link.label}
-              </Link>
-            ),
-          )}
-        </div>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="https://siza.forgespace.co"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-forge-text-muted transition-colors hover:text-foreground"
+    <>
+      <nav className="sticky top-0 z-50 border-b border-forge-border bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
           >
-            Sign in
-          </a>
-          <Button href="https://siza.forgespace.co" external size="sm">
-            Get Started
-          </Button>
-        </div>
+            <ForgeMonogram />
+            <span className="font-display text-base font-bold tracking-tight text-foreground">
+              Forge Space
+            </span>
+          </Link>
 
-        <details className="relative md:hidden">
-          <summary
-            className="list-none rounded-md p-2 text-forge-text-muted transition-colors hover:text-foreground [&::-webkit-details-marker]:hidden"
+          <div className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map((link) =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+                  data-fs-cta-target="github"
+                  data-fs-cta-location={`nav_${link.label.toLowerCase()}`}
+                  className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <a
+              href="https://siza.forgespace.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-fs-cta-event={FORGE_CTA_EVENTS.SIZA}
+              data-fs-cta-target="siza"
+              data-fs-cta-location="nav_signin_desktop"
+              data-fs-pass-attribution="true"
+              className="text-sm text-forge-text-muted transition-colors hover:text-foreground"
+            >
+              Sign in
+            </a>
+            <Button
+              href="https://siza.forgespace.co"
+              external
+              size="sm"
+              ctaEvent={FORGE_CTA_EVENTS.SIZA}
+              ctaTarget="siza"
+              ctaLocation="nav_get_started_desktop"
+              passAttribution
+            >
+              Get Started
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            className="rounded-md p-2 text-forge-text-muted transition-colors hover:text-foreground md:hidden"
             aria-label="Open menu"
           >
-            <svg
-              aria-hidden
-              viewBox="0 0 20 20"
-              fill="none"
-              className="h-5 w-5"
-            >
-              <path
-                d="M3 5h14M3 10h14M3 15h14"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
-          </summary>
-          <div className="absolute right-0 top-full mt-3 w-72 rounded-lg border border-forge-border bg-background p-4 shadow-lg">
+            <Menu className="h-5 w-5" />
+          </button>
+        </div>
+      </nav>
+
+      {mobileOpen && (
+        <div className="fixed inset-0 z-[100] md:hidden">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={closeMobile}
+            aria-hidden
+          />
+          <div className="absolute right-0 top-0 h-full w-72 bg-background border-l border-forge-border p-6 flex flex-col">
+            <div className="flex items-center justify-between mb-8">
+              <span className="font-display text-base font-bold text-foreground">
+                Forge Space
+              </span>
+              <button
+                type="button"
+                onClick={closeMobile}
+                className="rounded-md p-2 text-forge-text-muted hover:text-foreground"
+                aria-label="Close menu"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
             <div className="flex flex-col gap-1">
               {NAV_LINKS.map((link) =>
                 link.external ? (
@@ -112,6 +161,10 @@ export function Nav() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={closeMobile}
+                    data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+                    data-fs-cta-target="github"
+                    data-fs-cta-location={`nav_mobile_${link.label.toLowerCase()}`}
                     className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
                   >
                     {link.label}
@@ -120,7 +173,7 @@ export function Nav() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    prefetch={false}
+                    onClick={closeMobile}
                     className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
                   >
                     {link.label}
@@ -128,22 +181,35 @@ export function Nav() {
                 ),
               )}
             </div>
-            <div className="mt-3 flex flex-col gap-2 border-t border-forge-border pt-3">
+
+            <div className="mt-auto flex flex-col gap-3">
               <a
                 href="https://siza.forgespace.co"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md px-3 py-2.5 text-center text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                onClick={closeMobile}
+                data-fs-cta-event={FORGE_CTA_EVENTS.SIZA}
+                data-fs-cta-target="siza"
+                data-fs-cta-location="nav_signin_mobile"
+                data-fs-pass-attribution="true"
+                className="rounded-md px-3 py-2.5 text-sm text-center text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
               >
                 Sign in
               </a>
-              <Button href="https://siza.forgespace.co" external>
+              <Button
+                href="https://siza.forgespace.co"
+                external
+                ctaEvent={FORGE_CTA_EVENTS.SIZA}
+                ctaTarget="siza"
+                ctaLocation="nav_get_started_mobile"
+                passAttribution
+              >
                 Get Started
               </Button>
             </div>
           </div>
-        </details>
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   );
 }

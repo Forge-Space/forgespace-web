@@ -1,43 +1,43 @@
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://forgespace.co";
-  const now = new Date();
+const BASE_URL = "https://forgespace.co";
+const LAST_MODIFIED = new Date("2026-03-11T00:00:00.000Z");
 
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: baseUrl,
-      lastModified: now,
+      url: BASE_URL,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/features`,
-      lastModified: now,
+      url: `${BASE_URL}/features`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/pricing`,
-      lastModified: now,
+      url: `${BASE_URL}/pricing`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/ecosystem`,
-      lastModified: now,
+      url: `${BASE_URL}/ecosystem`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/roadmap`,
-      lastModified: now,
+      url: `${BASE_URL}/roadmap`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/enterprise`,
-      lastModified: now,
+      url: `${BASE_URL}/enterprise`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.7,
     },

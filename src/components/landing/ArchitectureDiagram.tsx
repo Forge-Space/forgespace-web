@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "motion/react";
+import { EASE_SIZA } from "@/lib/constants";
+
 interface ArchitectureDiagramProps {
   repoCount: number;
   releasedRepoCount: number;
@@ -37,8 +42,14 @@ export function ArchitectureDiagram({
   return (
     <section className="border-t border-forge-border py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <div className="mb-14 max-w-2xl">
-          <p className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-forge-primary-hover">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: EASE_SIZA }}
+          className="mb-14 max-w-2xl"
+        >
+          <p className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
             Architecture
           </p>
           <h2 className="mb-4 text-3xl font-display font-bold tracking-tight text-foreground sm:text-4xl">
@@ -48,11 +59,22 @@ export function ArchitectureDiagram({
             Each layer is independently versioned and open source. {releasedRepoCount} repositories
             currently publish tagged releases.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mx-auto max-w-2xl space-y-3">
           {LAYERS.map((layer, index) => (
-            <div key={layer.name} className="relative">
+            <motion.div
+              key={layer.name}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                ease: EASE_SIZA,
+                delay: index * 0.1,
+              }}
+              className="relative"
+            >
               <div
                 className={`rounded-xl border p-5 ${layer.color} transition-all duration-200 hover:shadow-[var(--forge-glow-primary-sm)]`}
               >
@@ -72,7 +94,7 @@ export function ArchitectureDiagram({
               {index < LAYERS.length - 1 && (
                 <div className="ml-[22px] h-3 w-px bg-gradient-to-b from-forge-primary/30 to-transparent" />
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

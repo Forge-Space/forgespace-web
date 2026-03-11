@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { DM_Sans, Sora, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
+import { globalStructuredData } from "@/app/structured-data";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -45,6 +48,7 @@ export const metadata: Metadata = {
     title: "Forge Space — Generate code with AI. Ship it with confidence.",
     description:
       "Platform-grade governance without a platform team. Scorecards, policy packs, and audit trails from prompt to production.",
+    url: "https://forgespace.co",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Forge Space" }],
   },
   twitter: {
@@ -65,26 +69,8 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Forge Space",
-  applicationCategory: "DeveloperApplication",
-  operatingSystem: "Cross-platform",
-  description:
-    "Open-source Internal Developer Platform. AI code generation with scorecards, policy packs, and audit trails.",
-  url: "https://forgespace.co",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  author: {
-    "@type": "Organization",
-    name: "Forge Space",
-    url: "https://forgespace.co",
+  alternates: {
+    canonical: "https://forgespace.co",
   },
 };
 
@@ -98,15 +84,19 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalStructuredData) }}
         />
       </head>
       <body
         className={`${dmSans.variable} ${sora.variable} ${ibmPlexMono.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
-        <Nav />
-        <div className="flex min-h-0 flex-1 flex-col">{children}</div>
-        <Footer />
+        <Suspense fallback={null}>
+          <AnalyticsProvider>
+            <Nav />
+            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+            <Footer />
+          </AnalyticsProvider>
+        </Suspense>
       </body>
     </html>
   );

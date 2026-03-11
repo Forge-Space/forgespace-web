@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, Headphones, Shield, Zap } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
-
 import { EASE_SIZA } from "@/lib/constants";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 const ENTERPRISE_FEATURES = [
   {
@@ -68,6 +68,10 @@ export default function EnterprisePage() {
           >
             <Link
               href="mailto:enterprise@forgespace.co"
+              data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
+              data-fs-cta-target="contact_sales"
+              data-fs-cta-location="enterprise_contact_sales"
+              data-fs-pass-attribution="true"
               className="inline-flex items-center gap-2 bg-forge-primary hover:bg-forge-primary-hover text-white rounded-lg px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
             >
               Contact Sales

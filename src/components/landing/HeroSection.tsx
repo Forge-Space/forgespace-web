@@ -1,4 +1,5 @@
 import { ArrowRight, Github } from "lucide-react";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
@@ -51,7 +52,15 @@ export function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button href="https://siza.forgespace.co" external size="lg">
+          <Button
+            href="https://siza.forgespace.co"
+            external
+            size="lg"
+            ctaEvent={FORGE_CTA_EVENTS.SIZA}
+            ctaTarget="siza"
+            ctaLocation="hero_primary"
+            passAttribution
+          >
             Try Siza Free
             <ArrowRight className="w-4 h-4" />
           </Button>
@@ -60,6 +69,9 @@ export function HeroSection() {
             external
             variant="outline"
             size="lg"
+            ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+            ctaTarget="github"
+            ctaLocation="hero_secondary"
           >
             <Github className="w-4 h-4" />
             View on GitHub

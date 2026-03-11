@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import {
   Sparkles,
   Plug,
@@ -10,6 +13,7 @@ import {
   Compass,
   ArrowRightLeft,
 } from "lucide-react";
+import { EASE_SIZA } from "@/lib/constants";
 import { type LucideIcon } from "lucide-react";
 
 interface Feature {
@@ -94,8 +98,14 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
         aria-hidden
       />
       <div className="relative mx-auto max-w-5xl px-6">
-        <div className="mb-14 max-w-2xl">
-          <p className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-forge-primary-hover">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: EASE_SIZA }}
+          className="mb-14 max-w-2xl"
+        >
+          <p className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
             Features
           </p>
           <h2 className="mb-4 text-3xl font-display font-bold tracking-tight text-foreground sm:text-4xl">
@@ -105,15 +115,23 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
             A full delivery stack across {repoCount} actively maintained repositories, with
             governance built into the generation loop.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((feature) => (
-            <div
+          {FEATURES.map((feature, index) => (
+            <motion.div
               key={feature.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                ease: EASE_SIZA,
+                delay: index * 0.06,
+              }}
               className="group rounded-xl border border-forge-border bg-forge-surface p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)]"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-forge-primary/20 text-forge-primary-hover transition-colors group-hover:bg-forge-primary/30">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary transition-colors group-hover:bg-forge-primary/20">
                 <feature.icon className="h-5 w-5" />
               </div>
               <h3 className="mb-2 font-display font-semibold text-foreground">
@@ -122,7 +140,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               <p className="text-sm leading-relaxed text-forge-text-muted">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
