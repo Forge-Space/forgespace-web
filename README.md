@@ -37,6 +37,33 @@ NODE_ENV=production npm run build
 
 Note: Use `NODE_ENV=production` for builds to avoid Next.js workspace inference warnings.
 
+## Production Smoke Checks
+
+Recurring production checks validate:
+
+- `https://forgespace.co`
+- `https://siza.forgespace.co`
+
+Validation coverage:
+
+- Root route returns HTTP `200`
+- Key messaging anchors are visible
+- Full-page screenshots are captured on failure
+
+Workflow:
+
+- `.github/workflows/production-smoke.yml`
+- Triggers on daily schedule (`12:00 UTC`), manual dispatch, and successful
+  `Deploy to Vercel` completion on `main`
+
+Local run:
+
+```bash
+python3 -m pip install playwright==1.54.0
+python3 -m playwright install chromium
+python3 scripts/smoke/production_smoke.py --output-dir artifacts/smoke
+```
+
 ## Live Ecosystem Sync
 
 Marketing pages consume a server-only GitHub metadata sync for the Forge Space
