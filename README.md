@@ -37,6 +37,22 @@ NODE_ENV=production npm run build
 
 Note: Use `NODE_ENV=production` for builds to avoid Next.js workspace inference warnings.
 
+## Production Smoke Checks
+
+`Production Smoke Checks` validates live production pages with a stable selector
+contract (not marketing copy text), and fails closed on regressions.
+
+- Workflow: `.github/workflows/production-smoke.yml`
+- Script: `scripts/smoke/production_smoke.py`
+- Trigger modes: `schedule`, `workflow_dispatch`, and successful `Deploy to Vercel` (`main`)
+- Failure artifacts: `artifacts/smoke/report.json`, `artifacts/smoke/report.md`, screenshot on failure
+
+Run locally:
+
+```bash
+python scripts/smoke/production_smoke.py --output-dir artifacts/smoke
+```
+
 ## Live Ecosystem Sync
 
 Marketing pages consume a server-only GitHub metadata sync for the Forge Space

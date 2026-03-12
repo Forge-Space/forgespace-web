@@ -15,29 +15,33 @@ from playwright.sync_api import Error, TimeoutError, sync_playwright
 class Target:
     name: str
     url: str
-    anchors: tuple[str, ...]
+    selectors: tuple[str, ...] = ()
+    anchors: tuple[str, ...] = ()
 
 
 TARGETS: tuple[Target, ...] = (
     Target(
         name="forgespace-home",
         url="https://forgespace.co",
-        anchors=(
-            "Generate code with AI",
-            "Ship it with confidence",
-            "Internal Developer Platform",
-            "Try Siza Free",
+        selectors=(
+            "body",
+            "h1",
+            "[data-fs-cta-location='hero_primary']",
+            "[data-fs-cta-location='hero_secondary']",
+            "[data-fs-cta-location='landing_cta_primary']",
+            "[data-fs-cta-location='nav_get_started_desktop']",
         ),
+        anchors=(),
     ),
     Target(
         name="siza-home",
         url="https://siza.forgespace.co",
-        anchors=(
-            "Generate production-grade",
-            "UI code with AI",
-            "Now in Public Beta",
-            "Start Generating Free",
+        selectors=(
+            "body",
+            "h1",
+            "a[href*='signin'], a[href*='signup']",
         ),
+        anchors=(),
     ),
 )
 
@@ -55,6 +59,12 @@ def check_target(page, target: Target, output_dir: Path) -> dict[str, object]:
             failures.append(f"Expected HTTP 200, got {status_code}")
 
         page.wait_for_load_state("networkidle", timeout=15000)
+
+        for selector in target.selectors:
+            try:
+                page.locator(selector).first.wait_for(state="visible", timeout=10000)
+            except TimeoutError:
+                failures.append(f"Missing selector: {selector}")
 
         for anchor in target.anchors:
             try:
