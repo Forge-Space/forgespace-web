@@ -109,6 +109,9 @@ All notable changes to this project will be documented in this file.
   paths for GitHub, Contact, and Siza while preserving attribution contracts
 - **Free-channel loop** — Added message-spine alignment step across ads,
   landing copy, and community posts
+- **Production smoke contract hardening** — Replaced brittle homepage copy
+  anchors with stable selector checks (CTA data attributes + structural selectors)
+  in `scripts/smoke/production_smoke.py`, preserving fail-closed workflow behavior
 - **Marketing data model** — Landing, features, architecture, ecosystem, and
   roadmap pages now consume the shared ecosystem snapshot instead of static repo
   counts and stale claims
