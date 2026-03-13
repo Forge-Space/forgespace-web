@@ -39,6 +39,37 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **GA4 analytics provider** — Route-aware pageview tracking with configurable
+  `NEXT_PUBLIC_GA_TRACKING_ID`
+- **First-touch attribution module** — Stores and reuses UTM/click-id context
+  (`utm_*`, `gclid`, `gbraid`, `wbraid`, `landing_path`, `first_seen_at`)
+- **Forge CTA event contract** — Added `fs_cta_siza_click`,
+  `fs_cta_github_click`, and `fs_cta_contact_sales_click`
+- **Google Ads launch assets (Forge Space)** — Campaign pack at
+  `marketing/google-ads/forgespace_br_pten_relevance_v2/` including config,
+  keywords, negatives, RSA copy, and ops runbook
+- **Campaign v2.2 hardening** — EN-only execution in Brazil, `smb_pt` paused,
+  6-10 active high-intent EN keywords, stricter noise-pruning negatives,
+  and `$10` equivalent hard-cap guardrails (`R$50` total / `R$5` day)
+  enforced in prepublish
+- **Visibility micro-pilot v3.2** — Campaign contract pivoted to ecosystem
+  visibility with split intent ad groups (`smb_en`/`oss_en`), intent-specific
+  landing routes (`/enterprise`, `/ecosystem`), and contributor-focused
+  optimization
+- **Ads asset coverage pack** — Added campaign assets contract with sitelinks,
+  callouts, structured snippets, image/logo/business information
+- **GA4/Ads measurement contract** — Added setup guide for Primary/Secondary
+  conversions, custom dimensions (`cta_target`, `cta_location`), and
+  ValueTrack final URL suffix
+- **Checkpoint scorecard template** — Added structured `$3/$6/$8` run log for
+  relevance, CTR, CTA rate, negatives, and pause decisions
+- **Ads prepublish script** — `npm run ads:google:prepublish` validates GA4 env
+  + lint + CTA/attribution tests before publish
+- **Ads checkpoint runner** — Added `npm run ads:google:checkpoint` to capture
+  live campaign/conversion/search-term artifacts and write the v3.2 scorecard
+  row for checkpoint cadence operations
+- **Attribution unit tests** — New coverage for first-touch persistence and
+  outbound URL/mailto attribution forwarding
 - **Import cycle detection** — `madge --circular` via `npm run check:cycles`
 - **Quality Gates CI job** — knip dead code detection + circular dependency check
 - **knip config** — `knip.json` with known false positive suppressions
@@ -54,6 +85,30 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **CTA instrumentation surfaces** — Hero, landing CTA, nav, footer, pricing,
+  enterprise, and roadmap outbound CTAs now emit GA4 events with location and
+  target metadata
+- **Outbound attribution forwarding** — Siza/contact-sales links now receive
+  stored first-touch attribution context on click
+- **Ops runbook** — Updated day-ops to include Presence-only geo option,
+  auto-tagging checks, ValueTrack suffix setup, and early-stop policy by `R$6`
+- **Measurement optimization primary** — Set `fs_cta_github_click` as campaign
+  primary conversion, with `fs_cta_contact_sales_click` and
+  `fs_cta_siza_click` as secondary signals
+- **Prepublish guardrails** — Enforced v3.2 ad-group mix checks (`smb_en=6`,
+  `oss_en=4` enabled variants) and primary conversion validation in
+  `ads:google:prepublish`
+- **Prepublish env loading** — `ads:google:prepublish` now auto-loads
+  `NEXT_PUBLIC_GA_TRACKING_ID` from `.env.local`, sanitizes malformed newline
+  suffixes, and validates the `G-...` format before running checks
+- **Checkpoint evidence capture** — `ads:google:checkpoint` now saves visual
+  PNG snapshots (`campaign`, `settings`, `conversions`, `keywords`,
+  `search-terms`) alongside text extracts and preserves previously filled
+  `R$3/R$6/R$8` rows when updating `checkpoint-scorecard-live.csv`
+- **Landing CTA strategy** — Hero and lower CTA now expose explicit visibility
+  paths for GitHub, Contact, and Siza while preserving attribution contracts
+- **Free-channel loop** — Added message-spine alignment step across ads,
+  landing copy, and community posts
 - **Marketing data model** — Landing, features, architecture, ecosystem, and
   roadmap pages now consume the shared ecosystem snapshot instead of static repo
   counts and stale claims

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
@@ -26,35 +26,49 @@ export function CTASection() {
           transition={{ duration: 0.5, ease: EASE_SIZA }}
         >
           <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-foreground mb-4">
-            Ready to ship with confidence?
+            Get visibility where it matters
           </h2>
           <p className="text-lg text-forge-text-muted mb-8 leading-relaxed">
-            Start generating production-ready code with built-in governance.
-            Free forever for individual developers.
+            Explore the ecosystem, share it with your network, and see if Forge
+            Space fits your team before investing in heavyweight platform
+            engineering.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              href="https://siza.forgespace.co"
-              external
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.SIZA}
-              ctaTarget="siza"
-              ctaLocation="landing_cta_primary"
-              passAttribution
-            >
-              Get Started Free
-              <ArrowRight className="w-4 h-4" />
-            </Button>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center">
             <Button
               href="https://github.com/Forge-Space"
               external
-              variant="outline"
               size="lg"
               ctaEvent={FORGE_CTA_EVENTS.GITHUB}
               ctaTarget="github"
-              ctaLocation="landing_cta_secondary"
+              ctaLocation="landing_cta_primary"
             >
               Explore on GitHub
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button
+              href="mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team"
+              external
+              variant="outline"
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
+              ctaTarget="contact_sales"
+              ctaLocation="landing_cta_secondary"
+              passAttribution
+            >
+              <Mail className="w-4 h-4" />
+              Contact Forge Space
+            </Button>
+            <Button
+              href="https://siza.forgespace.co"
+              external
+              variant="ghost"
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.SIZA}
+              ctaTarget="siza"
+              ctaLocation="landing_cta_tertiary"
+              passAttribution
+            >
+              Try Siza Demo
             </Button>
           </div>
         </motion.div>

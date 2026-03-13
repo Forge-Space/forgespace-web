@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, type PropsWithChildren } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   appendAttributionToHttpUrl,
   appendAttributionToMailto,
@@ -71,10 +71,7 @@ function handleCtaClick(event: MouseEvent): void {
 }
 
 export default function AnalyticsProvider({ children }: PropsWithChildren) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const currentPathname = pathname ?? "/";
-  const query = searchParams?.toString() ?? "";
+  const pathname = usePathname() ?? "/";
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -82,7 +79,7 @@ export default function AnalyticsProvider({ children }: PropsWithChildren) {
     }
 
     captureFirstTouchAttribution(new URL(window.location.href));
-  }, [pathname, query]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!GA4_TRACKING_ID || typeof window === "undefined") {
@@ -115,12 +112,14 @@ export default function AnalyticsProvider({ children }: PropsWithChildren) {
       return;
     }
 
+    const query = window.location.search;
+
     trackGa4Pageview(
       GA4_TRACKING_ID,
-      getCurrentPagePath(currentPathname, query),
+      getCurrentPagePath(pathname, query.startsWith("?") ? query.slice(1) : query),
       window.location.href,
     );
-  }, [currentPathname, query]);
+  }, [pathname]);
 
   useEffect(() => {
     document.addEventListener("click", handleCtaClick);

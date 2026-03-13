@@ -1,0 +1,66 @@
+{
+  "campaign_name": "forgespace_br_en_visibility_v3",
+  "ad_group_name": "smb_en",
+  "status": "enabled",
+  "sitelinks": [
+    {
+      "link_text": "Explore Ecosystem",
+      "description_line_1": "Browse Forge Space repos",
+      "description_line_2": "Find contributor entry points",
+      "final_url": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_ecosystem"
+    },
+    {
+      "link_text": "Enterprise Fit",
+      "description_line_1": "Built for lean SMB teams",
+      "description_line_2": "Avoid heavy platform overhead",
+      "final_url": "https://forgespace.co/enterprise?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_enterprise"
+    },
+    {
+      "link_text": "Roadmap",
+      "description_line_1": "See what shipped recently",
+      "description_line_2": "Track what comes next",
+      "final_url": "https://forgespace.co/roadmap?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_roadmap"
+    },
+    {
+      "link_text": "GitHub Organization",
+      "description_line_1": "Open source repos",
+      "description_line_2": "Contribute with the team",
+      "final_url": "https://github.com/Forge-Space?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_github"
+    }
+  ],
+  "callouts": [
+    "Open Source",
+    "Backstage Alternative",
+    "No Platform Team Required",
+    "MCP-Native",
+    "Self-Hosted Ready",
+    "Built for SMB Teams"
+  ],
+  "structured_snippets": [
+    {
+      "header": "Features",
+      "values": [
+        "AI Code Generation",
+        "Quality Scorecards",
+        "Policy Checks",
+        "Audit Trails"
+      ]
+    },
+    {
+      "header": "Use Cases",
+      "values": [
+        "SMB Engineering",
+        "Platform Engineering",
+        "Open Source Collaboration",
+        "Governed Delivery"
+      ]
+    }
+  ],
+  "business_information": {
+    "business_name": "Forge Space",
+    "logo_image_url": "https://forgespace.co/icon.png",
+    "marketing_image_urls": [
+      "https://forgespace.co/og.png"
+    ]
+  }
+}

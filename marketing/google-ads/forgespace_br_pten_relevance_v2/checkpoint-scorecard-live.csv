@@ -1,0 +1,4 @@
+checkpoint_brl,date,spend_brl,impressions,clicks,ctr_percent,avg_cpc_brl,primary_cta_count,primary_cta_rate_percent,irrelevant_query_share_percent,new_negative_keywords,keywords_paused,decision
+3,2026-03-13,0.00,0,0,0.00,0.00,0.00,0.00,0.00,,,monitor_until_next_checkpoint
+6,,,,,,,,,,,,
+8,,,,,,,,,,,,

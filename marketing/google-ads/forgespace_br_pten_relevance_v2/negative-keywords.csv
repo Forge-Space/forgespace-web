@@ -1,0 +1,43 @@
+scope,negative_keyword,match_type,theme
+campaign,job,broad,employment
+campaign,jobs,broad,employment
+campaign,salary,broad,employment
+campaign,internship,broad,employment
+campaign,vaga,broad,employment
+campaign,vagas,broad,employment
+campaign,salario,broad,employment
+campaign,estagio,broad,employment
+campaign,curso,broad,education
+campaign,cursos,broad,education
+campaign,tutorial,broad,education
+campaign,bootcamp,broad,education
+campaign,certification,broad,education
+campaign,certificado,broad,education
+campaign,free,broad,freebie
+campaign,gratuito,broad,freebie
+campaign,gratis,broad,freebie
+campaign,download,broad,download
+campaign,baixar,broad,download
+campaign,apk,broad,download
+campaign,template free,phrase,freebie
+campaign,logo,broad,design-noise
+campaign,canva,broad,design-noise
+campaign,ppt,broad,design-noise
+campaign,slides,broad,design-noise
+campaign,pdf,broad,download
+campaign,cheat sheet,phrase,education
+campaign,what is,phrase,low-intent-research
+campaign,meaning,broad,low-intent-research
+campaign,definition,broad,low-intent-research
+campaign,examples,broad,low-intent-research
+campaign,chatbot prompt,phrase,prompt-noise
+campaign,prompt engineering course,phrase,prompt-noise
+campaign,minecraft,broad,irrelevant
+campaign,crack,broad,irrelevant
+campaign,hack,broad,irrelevant
+campaign,concert,broad,entertainment-noise
+campaign,ticket,broad,entertainment-noise
+campaign,tickets,broad,entertainment-noise
+campaign,lyrics,broad,entertainment-noise
+campaign,theater,broad,entertainment-noise
+campaign,backstage pass,phrase,entertainment-noise

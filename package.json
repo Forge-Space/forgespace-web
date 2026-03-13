@@ -11,6 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "ads:google:prepublish": "bash scripts/google-ads-prepublish.sh",
+    "ads:google:checkpoint": "node scripts/google-ads-checkpoint.mjs",
     "check:cycles": "madge --circular --extensions ts,tsx src/",
     "knip": "knip",
     "prepare": "husky"
@@ -18,7 +20,7 @@
   "dependencies": {
     "@react-three/fiber": "^9.5.0",
     "lucide-react": "^0.577.0",
-    "motion": "^12.35.2",
+    "motion": "^12.35.0",
     "next": "^15.5.12",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

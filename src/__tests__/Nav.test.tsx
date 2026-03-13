@@ -51,6 +51,8 @@ describe("Nav", () => {
     const signIn = signInLinks[0].closest("a");
     expect(signIn).toHaveAttribute("target", "_blank");
     expect(signIn).toHaveAttribute("rel", "noopener noreferrer");
+    expect(signIn).toHaveAttribute("data-fs-cta-event", "fs_cta_siza_click");
+    expect(signIn).toHaveAttribute("data-fs-pass-attribution", "true");
   });
 
   it("brand links to home", () => {

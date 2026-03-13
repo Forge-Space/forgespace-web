@@ -11,11 +11,16 @@ vi.mock("next/link", () => ({
     children: React.ReactNode;
     href: string;
     [key: string]: unknown;
-  }) => (
-    <a href={href} {...props}>
-      {children}
-    </a>
-  ),
+  }) => {
+    const anchorProps = { ...props } as Record<string, unknown>;
+    delete anchorProps.prefetch;
+
+    return (
+      <a href={href} {...anchorProps}>
+        {children}
+      </a>
+    );
+  },
 }));
 
 describe("Footer", () => {
@@ -44,6 +49,7 @@ describe("Footer", () => {
       "href",
       "https://github.com/Forge-Space",
     );
+    expect(github).toHaveAttribute("data-fs-cta-event", "fs_cta_github_click");
   });
 
   it("internal links point to correct routes", () => {
@@ -63,5 +69,15 @@ describe("Footer", () => {
     expect(
       screen.getByText(/Open-source Internal Developer Platform/),
     ).toBeInTheDocument();
+  });
+
+  it("marks outbound contact links for analytics", () => {
+    render(<Footer />);
+    const contact = screen.getByText("Contact").closest("a");
+    expect(contact).toHaveAttribute(
+      "data-fs-cta-event",
+      "fs_cta_contact_sales_click",
+    );
+    expect(contact).toHaveAttribute("data-fs-pass-attribution", "true");
   });
 });
