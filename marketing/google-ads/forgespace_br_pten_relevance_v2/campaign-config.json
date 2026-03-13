@@ -1,0 +1,86 @@
+{
+  "campaign_name": "forgespace_br_en_visibility_v3",
+  "campaign_type": "Search",
+  "goal": "Visibility and ecosystem discovery",
+  "objective": "Project visibility for SMB builders and contributors",
+  "network_settings": {
+    "google_search": true,
+    "search_partners": false,
+    "display_expansion": false
+  },
+  "location_targeting": ["Brazil"],
+  "language_targeting": ["English"],
+  "location_options": {
+    "target": "Presence",
+    "exclude": "Presence"
+  },
+  "budget": {
+    "currency": "BRL",
+    "amount_per_day_brl": 5,
+    "total_hard_stop_brl": 50,
+    "usd_equivalent_context": {
+      "amount_per_day_usd": 1,
+      "total_hard_stop_usd": 10
+    }
+  },
+  "bidding": {
+    "strategy": "Maximize Clicks",
+    "max_cpc_brl": 0.8
+  },
+  "ad_schedule": "all_day",
+  "audience_mix_percent": {
+    "smb_en": 60,
+    "oss_en": 40
+  },
+  "ad_groups": [
+    {
+      "name": "smb_en",
+      "status": "enabled",
+      "language": "en",
+      "active_keyword_count_target": "6"
+    },
+    {
+      "name": "oss_en",
+      "status": "enabled",
+      "language": "en",
+      "active_keyword_count_target": "4"
+    },
+    {
+      "name": "smb_pt",
+      "status": "paused",
+      "language": "pt-BR",
+      "pause_reason": "forgespace.co is EN-only in this cycle"
+    }
+  ],
+  "measurement": {
+    "source": "GA4 import",
+    "primary_event": "fs_cta_github_click",
+    "secondary_events": [
+      "fs_cta_contact_sales_click",
+      "fs_cta_siza_click"
+    ],
+    "google_ads_goal_status": "Primary for fs_cta_github_click only",
+    "ga4_custom_dimensions_required": ["cta_target", "cta_location"],
+    "auto_tagging_required": true
+  },
+  "tracking": {
+    "utm_campaign": "forgespace_br_en_visibility_v3",
+    "ad_group_final_urls": {
+      "smb_en": "https://forgespace.co/enterprise?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "oss_en": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3"
+    },
+    "final_url_suffix": "utm_term={keyword}&utm_content={creative}&campaignid={campaignid}&adgroupid={adgroupid}&matchtype={matchtype}&device={device}"
+  },
+  "checkpoints_brl": [3, 6, 8],
+  "stop_rules": {
+    "ctr_below_percent_by_6_brl": 1.5,
+    "no_primary_cta_by_8_brl": true,
+    "repeated_irrelevant_terms_after_two_pruning_passes": true,
+    "stop_early_if_poor_intent_quality_by_6_brl": true
+  },
+  "continue_rules": {
+    "ctr_gte_percent_on_any_ad_group": 3,
+    "primary_cta_conversions_gte": 1,
+    "primary_cta_event": "fs_cta_github_click"
+  }
+}

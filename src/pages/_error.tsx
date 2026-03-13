@@ -1,6 +1,6 @@
 import type { NextPageContext } from "next";
 
-function Error(_props: { statusCode?: number }) {
+function Error() {
   return null;
 }
 

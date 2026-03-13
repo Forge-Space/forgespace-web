@@ -11,7 +11,7 @@ export interface FirstTouchAttribution {
   first_seen_at: string;
 }
 
-const FIRST_TOUCH_ATTRIBUTION_STORAGE_KEY =
+export const FIRST_TOUCH_ATTRIBUTION_STORAGE_KEY =
   "forgespace_first_touch_v1";
 
 function normalizeParam(value: string | null): string | null {

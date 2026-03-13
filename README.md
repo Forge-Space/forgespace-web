@@ -92,6 +92,71 @@ Technical SEO behavior:
   - Pricing `FAQPage` schema
 - Server-rendered `<h1>` coverage for feature, ecosystem, and roadmap routes
 
+## Analytics and Paid Traffic
+
+Forge Space web supports GA4 event tracking for paid traffic optimization and
+first-touch attribution persistence.
+
+Set the GA4 measurement ID before running paid launch checks:
+
+```bash
+export NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX
+```
+
+`ads:google:prepublish` also auto-loads `NEXT_PUBLIC_GA_TRACKING_ID` from
+`.env.local` when the variable is not exported in the shell.
+
+Tracked CTA events:
+
+- `fs_cta_github_click` (primary optimization event)
+- `fs_cta_contact_sales_click` (secondary)
+- `fs_cta_siza_click` (secondary)
+
+First-touch attribution contract stored in browser localStorage:
+
+- `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`
+- `gclid`, `gbraid`, `wbraid`
+- `landing_path`, `first_seen_at`
+
+Google Ads campaign assets for the low-cost BR test are in:
+
+- `marketing/google-ads/forgespace_br_pten_relevance_v2/`
+- v3.2 defaults:
+  - `$10` total-equivalent cap (`R$50` hard stop, `R$5/day`)
+  - EN-only active ad groups (`smb_en`, `oss_en`) with a 60/40 keyword mix
+  - intent split landing: `/enterprise` for `smb_en`, `/ecosystem` for `oss_en`
+  - primary conversion set to `fs_cta_github_click`
+  - `smb_pt` paused until a PT landing exists
+  - Search-only with strict negative pruning cadence (`R$3`, `R$6`, `R$8`)
+
+Prepublish command:
+
+```bash
+npm run ads:google:prepublish
+```
+
+Checkpoint command (requires a logged-in Google Ads Chrome session with CDP on `9222`):
+
+```bash
+npm run ads:google:checkpoint
+```
+
+Checkpoint output:
+
+- `marketing/google-ads/forgespace_br_pten_relevance_v2/artifacts/<YYYY-MM-DD>-checkpoint/`
+  with `campaign|settings|conversions|keywords|search-terms` as `.txt` + `.png`
+- `marketing/google-ads/forgespace_br_pten_relevance_v2/checkpoint-scorecard-live.csv`
+  updated in place (`R$3`, `R$6`, `R$8` rows preserved across runs)
+
+Important campaign files:
+
+- `campaign-config.json` — targeting/budget/measurement contract
+- `keywords.csv` — active + paused keyword inventory
+- `negative-keywords.csv` — launch + pruning negative set
+- `rsa.json` — baseline/challenger RSA variants
+- `assets.json` — sitelinks/callouts/snippets/image/logo/business name
+- `ga4-ads-setup.md` — GA4 + Ads conversion and custom-dimension contract
+
 ## Docker
 
 **Development (hot reload):**

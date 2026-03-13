@@ -12,7 +12,10 @@ vi.mock('next/link', () => ({
 vi.mock('motion/react', () => ({
   motion: {
     div: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => {
-      const { whileHover, whileTap, transition, ...rest } = props as Record<string, unknown>;
+      const rest = { ...(props as Record<string, unknown>) };
+      delete rest.whileHover;
+      delete rest.whileTap;
+      delete rest.transition;
       return <div {...rest}>{children}</div>;
     },
   },

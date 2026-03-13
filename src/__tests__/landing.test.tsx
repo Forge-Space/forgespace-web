@@ -28,11 +28,23 @@ vi.mock("motion/react", () => ({
       children?: React.ReactNode;
       className?: string;
       [key: string]: unknown;
-    }) => (
-      <div className={className} {...rest}>
-        {children}
-      </div>
-    ),
+    }) => {
+      const sanitizedProps = { ...rest };
+      delete sanitizedProps.initial;
+      delete sanitizedProps.animate;
+      delete sanitizedProps.exit;
+      delete sanitizedProps.transition;
+      delete sanitizedProps.whileHover;
+      delete sanitizedProps.whileTap;
+      delete sanitizedProps.whileInView;
+      delete sanitizedProps.viewport;
+
+      return (
+        <div className={className} {...sanitizedProps}>
+          {children}
+        </div>
+      );
+    },
   },
 }));
 
@@ -141,27 +153,41 @@ describe("CTASection", () => {
   it("renders CTA heading", () => {
     render(<CTASection />);
     expect(
-      screen.getByText("Ready to ship with confidence?"),
+      screen.getByText("Get visibility where it matters"),
     ).toBeInTheDocument();
   });
 
   it("renders action buttons", () => {
     render(<CTASection />);
-    expect(screen.getByText("Get Started Free")).toBeInTheDocument();
     expect(screen.getByText("Explore on GitHub")).toBeInTheDocument();
+    expect(screen.getByText("Contact Forge Space")).toBeInTheDocument();
+    expect(screen.getByText("Try Siza Demo")).toBeInTheDocument();
   });
 
   it("links to correct destinations", () => {
     render(<CTASection />);
-    const getStarted = screen.getByText("Get Started Free").closest("a");
-    expect(getStarted).toHaveAttribute(
-      "href",
-      "https://siza.forgespace.co",
-    );
     const github = screen.getByText("Explore on GitHub").closest("a");
     expect(github).toHaveAttribute(
       "href",
       "https://github.com/Forge-Space",
     );
+    expect(github).toHaveAttribute(
+      "data-fs-cta-event",
+      "fs_cta_github_click",
+    );
+    const contact = screen.getByText("Contact Forge Space").closest("a");
+    expect(contact).toHaveAttribute(
+      "href",
+      "mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team",
+    );
+    expect(contact).toHaveAttribute(
+      "data-fs-cta-event",
+      "fs_cta_contact_sales_click",
+    );
+    expect(contact).toHaveAttribute("data-fs-pass-attribution", "true");
+    const siza = screen.getByText("Try Siza Demo").closest("a");
+    expect(siza).toHaveAttribute("href", "https://siza.forgespace.co");
+    expect(siza).toHaveAttribute("data-fs-cta-event", "fs_cta_siza_click");
+    expect(siza).toHaveAttribute("data-fs-pass-attribution", "true");
   });
 });

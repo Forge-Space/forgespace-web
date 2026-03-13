@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2, Circle, Clock } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 
@@ -161,7 +162,15 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
           transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.4 }}
           className="mt-12 flex flex-wrap gap-4"
         >
-          <Button href="https://siza.forgespace.co" external size="lg">
+          <Button
+            href="https://siza.forgespace.co"
+            external
+            size="lg"
+            ctaEvent={FORGE_CTA_EVENTS.SIZA}
+            ctaTarget="siza"
+            ctaLocation="roadmap_primary"
+            passAttribution
+          >
             Try Siza
             <ArrowRight className="h-4 w-4" />
           </Button>
@@ -170,6 +179,9 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
             external
             variant="outline"
             size="lg"
+            ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+            ctaTarget="github"
+            ctaLocation="roadmap_secondary"
           >
             View on GitHub
           </Button>

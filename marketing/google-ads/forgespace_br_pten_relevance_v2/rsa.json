@@ -1,0 +1,100 @@
+{
+  "campaign_name": "forgespace_br_en_visibility_v3",
+  "ad_groups": [
+    {
+      "ad_group_name": "smb_en",
+      "status": "enabled",
+      "final_url": "https://forgespace.co/enterprise?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "ads": [
+        {
+          "variant": "baseline",
+          "headlines": [
+            "Open-Source IDP for SMB Teams",
+            "Backstage Alternative for Startups",
+            "Ship Faster Without Platform Team",
+            "Platform Engineering for Lean Teams",
+            "AI Workflows With Governance",
+            "No Enterprise Contract Needed",
+            "Practical Guardrails for Shipping",
+            "Start with Forge Space"
+          ],
+          "descriptions": [
+            "Forge Space gives small teams practical governance and visibility for AI-assisted delivery.",
+            "Use open-source workflows, policy checks, and scorecards without building a platform department.",
+            "Validate fit quickly and route your team to GitHub, Siza, or direct contact when needed.",
+            "Built for teams that need speed and control without enterprise overhead."
+          ]
+        },
+        {
+          "variant": "challenger",
+          "headlines": [
+            "SMB Platform Engineering, Simplified",
+            "Governed AI Delivery for Startups",
+            "Internal Developer Platform, Lean",
+            "Open Source and Self-Hosted Ready",
+            "From Prompt to Auditable Output",
+            "Visibility Without Platform Bloat",
+            "Standards for Growing Dev Teams",
+            "Explore Forge Space"
+          ],
+          "descriptions": [
+            "Move from idea to governed delivery with policy packs, scorecards, and audit trails.",
+            "Forge Space helps SMB engineering teams add control without adding heavy platform overhead.",
+            "Open-source foundation, practical workflows, and clear paths for contributors and buyers.",
+            "See how your team can ship AI-enabled products with better consistency."
+          ]
+        }
+      ]
+    },
+    {
+      "ad_group_name": "oss_en",
+      "status": "enabled",
+      "final_url": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "ads": [
+        {
+          "variant": "baseline",
+          "headlines": [
+            "Open-Source Developer Platform",
+            "Contribute to Forge Space",
+            "MCP-Native Tools for Builders",
+            "Internal Dev Platform, Open",
+            "Governance for AI Codegen",
+            "Join the Forge Space Ecosystem",
+            "Build With Real Shipping Workflows",
+            "Explore Repos and Roadmap"
+          ],
+          "descriptions": [
+            "Discover Forge Space repos and contribute to open-source platform engineering tooling.",
+            "From generation to governance, the ecosystem is built for practical developer workflows.",
+            "Find the roadmap, active modules, and contribution paths in one place.",
+            "Help shape open-source infrastructure for teams shipping AI-assisted software."
+          ]
+        },
+        {
+          "variant": "challenger",
+          "headlines": [
+            "Forge Space OSS Ecosystem",
+            "Open Source IDP for Real Teams",
+            "Contributors Welcome",
+            "From AI Prompt to Governed Ship",
+            "MCP Tools for Dev Workflows",
+            "Explore Active Repositories",
+            "Public Roadmap, Practical Stack",
+            "Join the Maintainer Journey"
+          ],
+          "descriptions": [
+            "See the Forge Space ecosystem and contribute where developer impact is immediate.",
+            "Open-source platform engineering stack focused on real governance and velocity tradeoffs.",
+            "Browse repositories, understand architecture, and join collaboration through GitHub.",
+            "Built for developers and product-minded teams who want visible, practical progress."
+          ]
+        }
+      ]
+    },
+    {
+      "ad_group_name": "smb_pt",
+      "status": "paused",
+      "notes": "Hold until Portuguese landing page exists"
+    }
+  ]
+}
