@@ -40,6 +40,24 @@ function parseBrNumber(raw) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function isNumericToken(raw) {
+  if (!raw) return false;
+  let hasDigit = false;
+
+  for (const char of raw) {
+    if (char >= "0" && char <= "9") {
+      hasDigit = true;
+      continue;
+    }
+    if (char === "." || char === ",") {
+      continue;
+    }
+    return false;
+  }
+
+  return hasDigit;
+}
+
 function formatCsvNumber(raw, digits = 2) {
   return raw.toFixed(digits);
 }
@@ -98,11 +116,33 @@ function extractConversions(conversionText) {
 
     const window = tokens.slice(idx, idx + 10);
     const status = window.find((token) => /Principal|Secund|Primary|Secondary/i.test(token)) || "unknown";
-    const numericToken = window.find((token) => /^\d+[.,]?\d*$/.test(token)) || "0";
+    const numericToken = window.find((token) => isNumericToken(token)) || "0";
     result[eventName] = { status, value: parseBrNumber(numericToken) };
   }
 
   return result;
+}
+
+function extractDelimitedTerms(text) {
+  const terms = [];
+  const length = text.length;
+
+  for (let i = 0; i < length; i += 1) {
+    const opener = text[i];
+    if (opener !== "\"" && opener !== "[") continue;
+
+    const closer = opener === "\"" ? "\"" : "]";
+    const end = text.indexOf(closer, i + 1);
+    if (end < 0) continue;
+
+    const value = text.slice(i + 1, end).trim();
+    if (value) {
+      terms.push(value);
+    }
+    i = end;
+  }
+
+  return terms;
 }
 
 function readNegativeKeywords() {
@@ -121,11 +161,7 @@ function extractSearchTerms(keywordText) {
     return [];
   }
 
-  const matches = [...keywordText.matchAll(/"([^"]+)"|\[([^\]]+)\]/g)]
-    .map((match) => (match[1] || match[2] || "").trim())
-    .filter(Boolean);
-
-  return [...new Set(matches)];
+  return [...new Set(extractDelimitedTerms(keywordText))];
 }
 
 function classifySearchTerms(searchTerms, negativeKeywords) {
