@@ -164,7 +164,10 @@ const FEATURES: FeatureDetail[] = [
 
 export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
+    <main
+      id="main-content"
+      className="min-h-screen bg-background font-sans text-foreground"
+    >
       <Section
         variant="gradient"
         label="Features"
@@ -214,6 +217,6 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
           ))}
         </div>
       </Section>
-    </div>
+    </main>
   );
 }

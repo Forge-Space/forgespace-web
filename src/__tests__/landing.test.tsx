@@ -11,6 +11,7 @@ const snapshot: EcosystemSnapshot = {
   repoCount: 11,
   releasedRepoCount: 9,
   lastSyncedAt: "2026-03-10T00:00:00.000Z",
+  lastSyncedAtLabel: "Mar 10, 2026",
   stats: {
     updatedLast30d: 10,
     updatedLast7d: 8,

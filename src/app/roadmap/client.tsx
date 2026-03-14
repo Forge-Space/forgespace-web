@@ -94,7 +94,10 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
   const phases = buildPhases(repoCount);
 
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
+    <main
+      id="main-content"
+      className="min-h-screen bg-background font-sans text-foreground"
+    >
       <Section
         variant="gradient"
         label="Roadmap"
@@ -187,6 +190,6 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
           </Button>
         </motion.div>
       </Section>
-    </div>
+    </main>
   );
 }

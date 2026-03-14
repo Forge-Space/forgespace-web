@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { Component, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { forgeTokens } from "@/styles/design-tokens";
@@ -62,26 +62,95 @@ function Scene({ count, animate }: { count: number; animate: boolean }) {
   );
 }
 
-export function HeroParticlesBackground() {
-  const [reduced] = useState(
-    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-  const count = reduced ? REDUCED_PARTICLE_COUNT : PARTICLE_COUNT;
-  const animate = !reduced;
-
+function HeroParticlesFallback() {
   return (
     <div
-      className="pointer-events-none absolute inset-0 z-0"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden
-      style={{ opacity: 0.6 }}
+      data-testid="hero-particles-fallback"
     >
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        dpr={[1, 2]}
-        gl={{ alpha: true, antialias: false }}
-      >
-        <Scene count={count} animate={animate} />
-      </Canvas>
+      <div
+        className="absolute inset-0 opacity-70"
+        style={{ background: "var(--forge-gradient-hero)" }}
+      />
+      <div className="absolute left-[-10%] top-[15%] h-72 w-72 rounded-full bg-forge-primary/20 blur-[120px]" />
+      <div className="absolute bottom-[10%] right-[-5%] h-80 w-80 rounded-full bg-forge-primary/10 blur-[140px]" />
+      <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_20px_20px,var(--forge-border)_1px,transparent_1px)] [background-size:40px_40px]" />
     </div>
+  );
+}
+
+function supportsWebGL() {
+  const canvas = document.createElement("canvas");
+  return Boolean(
+    canvas.getContext("webgl") ||
+      canvas.getContext("experimental-webgl") ||
+      canvas.getContext("webgl2"),
+  );
+}
+
+class HeroParticlesErrorBoundary extends Component<
+  { children: ReactNode; fallback: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (this.state.failed) {
+      return this.props.fallback;
+    }
+
+    return this.props.children;
+  }
+}
+
+export function HeroParticlesBackground() {
+  const [reduced, setReduced] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [canRenderCanvas, setCanRenderCanvas] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => {
+      setReduced(mediaQuery.matches);
+      setCanRenderCanvas(!mediaQuery.matches && supportsWebGL());
+      setReady(true);
+    };
+
+    sync();
+    mediaQuery.addEventListener("change", sync);
+    return () => mediaQuery.removeEventListener("change", sync);
+  }, []);
+
+  const count = reduced ? REDUCED_PARTICLE_COUNT : PARTICLE_COUNT;
+  const animate = !reduced;
+  const fallback = <HeroParticlesFallback />;
+
+  if (!ready || !canRenderCanvas) {
+    return fallback;
+  }
+
+  return (
+    <HeroParticlesErrorBoundary fallback={fallback}>
+      {fallback}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        aria-hidden
+        style={{ opacity: 0.6 }}
+      >
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 75 }}
+          dpr={[1, 2]}
+          gl={{ alpha: true, antialias: false }}
+          data-testid="hero-particles-canvas"
+        >
+          <Scene count={count} animate={animate} />
+        </Canvas>
+      </div>
+    </HeroParticlesErrorBoundary>
   );
 }

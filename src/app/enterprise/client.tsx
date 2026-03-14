@@ -33,7 +33,7 @@ export default function EnterprisePage() {
         style={{ background: "var(--forge-gradient-hero)" }}
         aria-hidden
       />
-      <main className="relative">
+      <main id="main-content" className="relative">
         <PageSection
           label="ENTERPRISE"
           title="Enterprise Support Portal"
