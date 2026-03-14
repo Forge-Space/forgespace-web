@@ -62,9 +62,13 @@ describe("ecosystem-data", () => {
     const core = snapshot.repos.find((repo) => repo.name === "core");
     expect(core?.latestReleaseTag).toBe("v1.10.2");
     expect(core?.latestReleaseDate).toBe("2026-03-10T19:30:00Z");
+    expect(core?.updatedAtLabel).toBe("Mar 10, 2026");
+    expect(core?.latestReleaseDateLabel).toBe("Mar 10, 2026");
+    expect(snapshot.lastSyncedAtLabel).toMatch(/^[A-Z][a-z]{2} \d{2}, \d{4}$/);
 
     const desktop = snapshot.repos.find((repo) => repo.name === "siza-desktop");
     expect(desktop?.latestReleaseTag).toBeNull();
+    expect(desktop?.latestReleaseDateLabel).toBe("No release");
   });
 
   it("falls back to cached release metadata when release API fails", async () => {
@@ -117,5 +121,6 @@ describe("ecosystem-data", () => {
     expect(fallback.releasedRepoCount).toBeGreaterThan(0);
     expect(fallback.repos.every((repo) => Boolean(repo.url))).toBe(true);
     expect(fallback.repos.every((repo) => Boolean(repo.updatedAt))).toBe(true);
+    expect(fallback.repos.every((repo) => Boolean(repo.updatedAtLabel))).toBe(true);
   });
 });

@@ -41,8 +41,10 @@ export interface EcosystemRepo {
   url: string;
   description: string;
   updatedAt: string;
+  updatedAtLabel: string;
   latestReleaseTag: string | null;
   latestReleaseDate: string | null;
+  latestReleaseDateLabel: string;
   group: RepoGroup;
   highlights: string[];
   npm?: string;
@@ -52,6 +54,7 @@ export interface EcosystemSnapshot {
   repoCount: number;
   releasedRepoCount: number;
   lastSyncedAt: string;
+  lastSyncedAtLabel: string;
   repos: EcosystemRepo[];
   stats: {
     updatedLast30d: number;
@@ -120,11 +123,22 @@ function countUpdatedSince(repos: EcosystemRepo[], days: number): number {
   return repos.filter((repo) => now - new Date(repo.updatedAt).getTime() <= rangeMs).length;
 }
 
+function formatDisplayDate(iso: string | null): string {
+  if (!iso) return "No release";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(iso));
+}
+
 function buildSnapshot(repos: EcosystemRepo[], lastSyncedAt: string): EcosystemSnapshot {
   return {
     repoCount: repos.length,
     releasedRepoCount: repos.filter((repo) => repo.latestReleaseTag).length,
     lastSyncedAt,
+    lastSyncedAtLabel: formatDisplayDate(lastSyncedAt),
     repos,
     stats: {
       updatedLast30d: countUpdatedSince(repos, 30),
@@ -140,8 +154,10 @@ function buildFallbackRepo(name: ProductRepoName): EcosystemRepo {
     url: `https://github.com/${GITHUB_ORG}/${name}`,
     description: metadata.description,
     updatedAt: metadata.fallbackUpdatedAt,
+    updatedAtLabel: formatDisplayDate(metadata.fallbackUpdatedAt),
     latestReleaseTag: metadata.fallbackReleaseTag ?? null,
     latestReleaseDate: metadata.fallbackReleaseDate ?? null,
+    latestReleaseDateLabel: formatDisplayDate(metadata.fallbackReleaseDate ?? null),
     group: metadata.group,
     highlights: metadata.highlights,
     npm: metadata.npm,
@@ -236,8 +252,10 @@ export async function getEcosystemSnapshot(): Promise<EcosystemSnapshot> {
           url: apiRepo.html_url,
           description: apiRepo.description ?? metadata.description,
           updatedAt: apiRepo.updated_at,
+          updatedAtLabel: formatDisplayDate(apiRepo.updated_at),
           latestReleaseTag: release.tag,
           latestReleaseDate: release.publishedAt,
+          latestReleaseDateLabel: formatDisplayDate(release.publishedAt),
           group: metadata.group,
           highlights: metadata.highlights,
           npm: metadata.npm,

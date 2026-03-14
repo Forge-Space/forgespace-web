@@ -39,6 +39,16 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **Hero fallback guard** — Home route now keeps a branded static background
+  when WebGL is unavailable instead of failing the page
+- **Public route skip navigation** — Added skip-to-content support with a
+  single top-level `main` landmark across public marketing routes
+- **Deterministic ecosystem labels** — Ecosystem snapshot now includes
+  preformatted server-side date labels for last sync, update dates, and release
+  dates
+- **Hero background regression coverage** — Added unit coverage for canvas
+  gating and static fallback rendering
+
 - **GA4 analytics provider** — Route-aware pageview tracking with configurable
   `NEXT_PUBLIC_GA_TRACKING_ID`
 - **First-touch attribution module** — Stores and reuses UTM/click-id context

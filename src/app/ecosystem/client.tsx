@@ -20,15 +20,6 @@ const GROUP_ORDER: RepoGroup[] = [
   "Design & Brand",
 ];
 
-function formatDate(iso: string | null): string {
-  if (!iso) return "No release";
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-  }).format(new Date(iso));
-}
-
 function buildGroups(repos: EcosystemRepo[]): Array<{ title: RepoGroup; repos: EcosystemRepo[] }> {
   return GROUP_ORDER.map((title) => ({
     title,
@@ -40,7 +31,10 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
   const groups = buildGroups(snapshot.repos);
 
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
+    <main
+      id="main-content"
+      className="min-h-screen bg-background font-sans text-foreground"
+    >
       <Section
         variant="gradient"
         label="Ecosystem"
@@ -69,7 +63,7 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
               Last Synced
             </p>
             <p className="mt-2 text-sm font-medium text-forge-text-muted">
-              {formatDate(snapshot.lastSyncedAt)}
+              {snapshot.lastSyncedAtLabel}
             </p>
           </div>
         </div>
@@ -123,7 +117,7 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
                       </span>
                       <span className="inline-flex items-center gap-1 rounded bg-forge-surface px-2 py-1">
                         <CalendarClock className="h-3 w-3" />
-                        Updated {formatDate(repo.updatedAt)}
+                        Updated {repo.updatedAtLabel}
                       </span>
                     </div>
 
@@ -145,6 +139,6 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
           ))}
         </div>
       </Section>
-    </div>
+    </main>
   );
 }

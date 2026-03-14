@@ -61,6 +61,8 @@ ecosystem (`repo count`, `latest release tag`, `recent activity`).
 - Sync source: GitHub REST API (`Forge-Space` org)
 - Cache strategy: `revalidate: 21600` (6 hours)
 - Resilience: static fallback snapshot if GitHub is unavailable/rate-limited
+- Stable display labels are prepared on the server to avoid hydration drift on
+  public route date chips
 
 Optional authentication (for higher GitHub API limits):
 
@@ -86,6 +88,7 @@ Technical SEO behavior:
 - Per-route metadata contract with canonical URL, Open Graph URL, and Twitter fields
 - Deterministic `sitemap.xml` timestamps to avoid crawl churn
 - `robots.txt` publishes sitemap and blocks `/_next/` assets
+- Skip-to-content navigation with a single `main` landmark on public routes
 - Structured data split:
   - Global `Organization` + `WebSite` graph
   - Homepage `SoftwareApplication`
@@ -186,7 +189,8 @@ docker compose -f docker-compose.prod.yml up -d --build
 - `src/components/landing/` — HeroSection, FeaturesGrid, HowItWorks, SocialProof, ArchitectureDiagram, CTASection
 - `src/components/layout/` — Nav (responsive with mobile menu), Footer (multi-column)
 - `src/components/ui/` — Button, Badge, Section (reusable primitives)
-- `src/components/shared/` — EcosystemCard, HeroParticlesBackground, PageSection
+- `src/components/shared/` — HeroParticlesBackground now degrades to a static
+  branded fallback when WebGL is unavailable
 
 ### Design System
 

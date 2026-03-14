@@ -14,7 +14,10 @@ export default async function Home() {
   const snapshot = await getEcosystemSnapshot();
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <main
+      id="main-content"
+      className="min-h-screen bg-background font-sans text-foreground"
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
@@ -28,6 +31,6 @@ export default async function Home() {
         releasedRepoCount={snapshot.releasedRepoCount}
       />
       <CTASection />
-    </div>
+    </main>
   );
 }
