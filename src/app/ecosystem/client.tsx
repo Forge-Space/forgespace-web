@@ -8,6 +8,7 @@ import {
   type EcosystemRepo,
   type RepoGroup,
 } from "@/lib/ecosystem-data";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Section } from "@/components/ui/Section";
 
 interface EcosystemPageProps {
@@ -91,6 +92,17 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
                     href={repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-fs-cta-event={
+                      repo.url.includes("github.com")
+                        ? FORGE_CTA_EVENTS.GITHUB
+                        : undefined
+                    }
+                    data-fs-cta-target={
+                      repo.url.includes("github.com") ? "github" : undefined
+                    }
+                    data-fs-cta-location={`ecosystem_repo_${repo.name
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "_")}`}
                     className="group rounded-xl border border-forge-border bg-forge-surface/40 p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
                   >
                     <div className="mb-2 flex items-center gap-2">

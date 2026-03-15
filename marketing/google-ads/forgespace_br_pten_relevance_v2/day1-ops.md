@@ -1,4 +1,4 @@
-# Forge Space Visibility Micro-Pilot Ops (v3.2)
+# Forge Space Visibility Micro-Pilot Ops (v3.3)
 
 ## Pre-publish
 
@@ -28,22 +28,22 @@
    - Language: English only
    - Location option: Presence (people in your targeted location)
 5. Budget and bid:
-   - Daily budget: `R$5`
-   - Bidding: Maximize Clicks with CPC cap `R$0.80`
+   - Daily budget: `R$10`
+   - Bidding: Maximize Clicks with CPC cap `R$2.50`
 6. Ad groups:
    - Enable: `smb_en`
    - Enable: `oss_en`
    - Pause: `smb_pt` (until PT landing exists)
 7. Import keywords from `keywords.csv`:
-   - Keep `smb_en` active variants at 6
-   - Keep `oss_en` active variants at 4
+   - Keep `smb_en` active variants at 8
+   - Keep `oss_en` active variants at 6
 8. Import negatives from `negative-keywords.csv`.
 9. Create ads and assets:
    - Add baseline + challenger RSA variants from `rsa.json`
    - Add sitelinks, callouts, structured snippets, image/logo/business assets from `assets.json`
 10. Landing split:
-   - `smb_en` -> `/enterprise`
-   - `oss_en` -> `/ecosystem`
+    - `smb_en` -> `/enterprise`
+    - `oss_en` -> `/ecosystem`
 
 ## Measurement setup
 
@@ -56,11 +56,11 @@
 
 ## Spend control and cadence
 
-1. Create automated rule: pause campaign at cumulative spend `R$50`.
-2. If cumulative spend is below `R$3`, run monitoring-only checks every 12-24h:
+1. Create automated rule: pause campaign at cumulative spend `R$100`.
+2. If cumulative spend is below `R$10`, run monitoring-only checks every 12-24h:
    - `npm run ads:google:checkpoint`
    - Keep campaign structure unchanged unless there is a policy/safety issue.
-3. At cumulative spend `R$3`, `R$6`, `R$8` (and daily after `R$8` until stop):
+3. At cumulative spend `R$10`, `R$30`, `R$60` (and daily after `R$60` until stop):
    - Run `npm run ads:google:prepublish` before campaign edits.
    - Run `npm run ads:google:checkpoint` to capture artifacts and current metrics.
 4. At each checkpoint:
@@ -75,6 +75,6 @@
   - CTR `>= 3%` on at least one active ad group, and
   - At least one `fs_cta_github_click`
 - Pause early if:
-  - CTR `< 1.5%` by `R$6`, or
-  - poor intent quality by `R$8`, or
+  - CTR `< 1.5%` by `R$30`, or
+  - poor intent quality by `R$60`, or
   - repeated irrelevant terms after two pruning passes

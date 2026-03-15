@@ -124,13 +124,13 @@ First-touch attribution contract stored in browser localStorage:
 Google Ads campaign assets for the low-cost BR test are in:
 
 - `marketing/google-ads/forgespace_br_pten_relevance_v2/`
-- v3.2 defaults:
-  - `$10` total-equivalent cap (`R$50` hard stop, `R$5/day`)
+- v3.3 defaults:
+  - `$20` total-equivalent cap (`R$100` hard stop, `R$10/day`)
   - EN-only active ad groups (`smb_en`, `oss_en`) with a 60/40 keyword mix
   - intent split landing: `/enterprise` for `smb_en`, `/ecosystem` for `oss_en`
   - primary conversion set to `fs_cta_github_click`
   - `smb_pt` paused until a PT landing exists
-  - Search-only with strict negative pruning cadence (`R$3`, `R$6`, `R$8`)
+  - Search-only with strict negative pruning cadence (`R$10`, `R$30`, `R$60`)
 
 Prepublish command:
 
@@ -149,7 +149,7 @@ Checkpoint output:
 - `marketing/google-ads/forgespace_br_pten_relevance_v2/artifacts/<YYYY-MM-DD>-checkpoint/`
   with `campaign|settings|conversions|keywords|search-terms` as `.txt` + `.png`
 - `marketing/google-ads/forgespace_br_pten_relevance_v2/checkpoint-scorecard-live.csv`
-  updated in place (`R$3`, `R$6`, `R$8` rows preserved across runs)
+  updated in place (`R$10`, `R$30`, `R$60` rows preserved across runs)
 
 Important campaign files:
 

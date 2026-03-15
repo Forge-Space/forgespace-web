@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Link from "next/link";
-import { ArrowRight, Headphones, Shield, Zap } from "lucide-react";
+import { ArrowRight, Github, Headphones, Shield, Zap } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
@@ -65,14 +65,28 @@ export default function EnterprisePage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-3"
           >
+            <a
+              href="https://github.com/Forge-Space"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+              data-fs-cta-target="github"
+              data-fs-cta-location="enterprise_github_primary"
+              className="inline-flex items-center gap-2 bg-forge-primary hover:bg-[#6d28d9] text-white rounded-lg px-6 py-3 text-sm font-medium transition-colors shadow-[var(--forge-glow-primary-sm)] hover:shadow-[var(--forge-glow-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
+            >
+              <Github className="w-4 h-4" />
+              Explore on GitHub
+              <ArrowRight className="w-4 h-4" />
+            </a>
             <Link
               href="mailto:enterprise@forgespace.co"
               data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
               data-fs-cta-target="contact_sales"
               data-fs-cta-location="enterprise_contact_sales"
               data-fs-pass-attribution="true"
-              className="inline-flex items-center gap-2 bg-forge-primary hover:bg-forge-primary-hover text-white rounded-lg px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
+              className="inline-flex items-center gap-2 border border-forge-border text-foreground/90 hover:bg-forge-surface hover:border-forge-border-hover rounded-lg px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--forge-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--forge-bg)]"
             >
               Contact Sales
               <ArrowRight className="w-4 h-4" />

@@ -181,24 +181,24 @@ function classifySearchTerms(searchTerms, negativeKeywords) {
 }
 
 function determineCheckpoint(spend) {
-  if (spend < 3) return 3;
-  if (spend < 6) return 3;
-  if (spend < 8) return 6;
-  return 8;
+  if (spend < 10) return 10;
+  if (spend < 30) return 10;
+  if (spend < 60) return 30;
+  return 60;
 }
 
 function determineDecision(metrics, primaryCount, irrelevantShare) {
-  if (metrics.spend_brl >= 6 && metrics.ctr_percent < 1.5) {
+  if (metrics.spend_brl >= 30 && metrics.ctr_percent < 1.5) {
     return "pause_early_ctr_below_1_5";
   }
-  if (metrics.spend_brl >= 8 && primaryCount >= 1) {
+  if (metrics.spend_brl >= 60 && primaryCount >= 1) {
     return "continue_primary_conversion_hit";
   }
-  if (metrics.spend_brl >= 8 && metrics.ctr_percent >= 3 && irrelevantShare <= 30) {
+  if (metrics.spend_brl >= 60 && metrics.ctr_percent >= 3 && irrelevantShare <= 30) {
     return "continue_high_intent_signal";
   }
-  if (metrics.spend_brl >= 8) {
-    return "pause_no_intent_signal_by_r8";
+  if (metrics.spend_brl >= 60) {
+    return "pause_no_intent_signal_by_r60";
   }
   return "monitor_until_next_checkpoint";
 }
@@ -244,7 +244,7 @@ function writeScorecard(metrics, checkpoint, primaryCount, irrelevantShare, deci
     decision,
   ];
 
-  const rows = [3, 6, 8].map((cp) => {
+  const rows = [10, 30, 60].map((cp) => {
     const row = existing[cp];
     if (!row) return `${cp},,,,,,,,,,,,`;
     if (row.length >= 13) return row.slice(0, 13).join(",");

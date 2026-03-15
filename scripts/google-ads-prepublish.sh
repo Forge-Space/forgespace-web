@@ -72,12 +72,12 @@ const fs = require("fs");
 const configPath = "marketing/google-ads/forgespace_br_pten_relevance_v2/campaign-config.json";
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
-if (config.budget?.total_hard_stop_brl !== 50) {
-  throw new Error("Budget hard stop must be R$50");
+if (config.budget?.total_hard_stop_brl !== 100) {
+  throw new Error("Budget hard stop must be R$100");
 }
 
-if (config.budget?.amount_per_day_brl !== 5) {
-  throw new Error("Daily budget must be R$5");
+if (config.budget?.amount_per_day_brl !== 10) {
+  throw new Error("Daily budget must be R$10");
 }
 
 if (JSON.stringify(config.language_targeting) !== JSON.stringify(["English"])) {
@@ -105,17 +105,17 @@ console.log("[OK] Campaign config guardrails validated");
 smb_en_keywords=$(awk -F, 'NR>1 && $2=="smb_en" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
 oss_en_keywords=$(awk -F, 'NR>1 && $2=="oss_en" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
 
-if [ "$smb_en_keywords" -ne 6 ]; then
-	echo "[ERROR] smb_en must have exactly 6 enabled keyword variants."
+if [ "$smb_en_keywords" -ne 8 ]; then
+	echo "[ERROR] smb_en must have exactly 8 enabled keyword variants."
 	exit 1
 fi
 
-if [ "$oss_en_keywords" -ne 4 ]; then
-	echo "[ERROR] oss_en must have exactly 4 enabled keyword variants."
+if [ "$oss_en_keywords" -ne 6 ]; then
+	echo "[ERROR] oss_en must have exactly 6 enabled keyword variants."
 	exit 1
 fi
 
-echo "[OK] Keyword mix guardrails validated (smb_en=6, oss_en=4)"
+echo "[OK] Keyword mix guardrails validated (smb_en=8, oss_en=6)"
 
 if ! grep -q "AW-959867732" src/components/analytics/AnalyticsProvider.tsx; then
 	echo "[ERROR] Google Ads tag AW-959867732 missing from AnalyticsProvider.tsx"

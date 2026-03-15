@@ -1,47 +1,72 @@
 {
   "campaign_name": "forgespace_br_en_visibility_v3",
+  "version_notes": "v3.3 — Quality Score rewrite. Headlines front-load exact keyword matches. URLs point to real working pages. smb_en routes to homepage (richest content + tracked CTAs). All headlines ≤30 chars, descriptions ≤90 chars.",
   "ad_groups": [
     {
       "ad_group_name": "smb_en",
       "status": "enabled",
-      "final_url": "https://forgespace.co/enterprise?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "final_url": "https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "display_url_path_1": "open-source",
+      "display_url_path_2": "IDP",
       "ads": [
         {
           "variant": "baseline",
           "headlines": [
-            "Open-Source IDP for SMB Teams",
-            "Backstage Alternative for Startups",
-            "Ship Faster Without Platform Team",
-            "Platform Engineering for Lean Teams",
-            "AI Workflows With Governance",
-            "No Enterprise Contract Needed",
-            "Practical Guardrails for Shipping",
-            "Start with Forge Space"
+            "Internal Developer Platform",
+            "Backstage Alternative — Free",
+            "Platform Engineering Tools",
+            "IDP for Startups & SMBs",
+            "Open Source IDP — No Lock-In",
+            "Ship Faster, Govern Smarter",
+            "No Platform Team? No Problem",
+            "AI Governance Built In",
+            "Scorecards & Policy Packs",
+            "Open Source & Self-Hosted",
+            "Free for Individuals",
+            "Start on GitHub Today",
+            "MIT Licensed Platform",
+            "Explore Forge Space",
+            "Forge Space — Try Free"
           ],
+          "headline_pins": {
+            "1": ["Internal Developer Platform", "Backstage Alternative — Free", "Platform Engineering Tools", "IDP for Startups & SMBs"],
+            "3": ["Start on GitHub Today", "Explore Forge Space", "Forge Space — Try Free"]
+          },
           "descriptions": [
-            "Forge Space gives small teams practical governance and visibility for AI-assisted delivery.",
-            "Use open-source workflows, policy checks, and scorecards without building a platform department.",
-            "Validate fit quickly and route your team to GitHub, Siza, or direct contact when needed.",
-            "Built for teams that need speed and control without enterprise overhead."
+            "Open-source IDP with AI governance, scorecards, and audit trails. Free to start on GitHub.",
+            "Backstage alternative for small teams. No platform department needed. Start free today.",
+            "Platform engineering tools with practical governance. Self-hosted, open source, MIT licensed.",
+            "Ship AI-assisted products with quality gates and visibility. No enterprise contract needed."
           ]
         },
         {
           "variant": "challenger",
           "headlines": [
-            "SMB Platform Engineering, Simplified",
-            "Governed AI Delivery for Startups",
-            "Internal Developer Platform, Lean",
-            "Open Source and Self-Hosted Ready",
+            "Internal Developer Platform",
+            "Backstage Alternative for Teams",
+            "Platform Engineering, Simplified",
+            "IDP Without Enterprise Overhead",
+            "Governed AI Delivery — Free",
             "From Prompt to Auditable Output",
-            "Visibility Without Platform Bloat",
-            "Standards for Growing Dev Teams",
-            "Explore Forge Space"
+            "No Platform Team Required",
+            "Quality Scorecards Built In",
+            "Policy Packs & Audit Trails",
+            "Self-Hosted or Cloud — Free",
+            "Open Source IDP on GitHub",
+            "Try It Free on GitHub",
+            "MIT Licensed — No Lock-In",
+            "Ship Code With Confidence",
+            "Start with Forge Space"
           ],
+          "headline_pins": {
+            "1": ["Internal Developer Platform", "Backstage Alternative for Teams", "Platform Engineering, Simplified", "IDP Without Enterprise Overhead"],
+            "3": ["Try It Free on GitHub", "Start with Forge Space", "Ship Code With Confidence"]
+          },
           "descriptions": [
+            "Forge Space gives small teams practical governance and visibility for AI-assisted delivery.",
             "Move from idea to governed delivery with policy packs, scorecards, and audit trails.",
-            "Forge Space helps SMB engineering teams add control without adding heavy platform overhead.",
-            "Open-source foundation, practical workflows, and clear paths for contributors and buyers.",
-            "See how your team can ship AI-enabled products with better consistency."
+            "Open source, self-hosted, MIT licensed. Clear paths for contributors and buyers alike.",
+            "See how your team can ship AI-enabled products with confidence. Explore repos on GitHub."
           ]
         }
       ]
@@ -50,43 +75,67 @@
       "ad_group_name": "oss_en",
       "status": "enabled",
       "final_url": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "display_url_path_1": "ecosystem",
+      "display_url_path_2": "open-source",
       "ads": [
         {
           "variant": "baseline",
           "headlines": [
-            "Open-Source Developer Platform",
+            "Open Source Developer Platform",
+            "Open Source IDP on GitHub",
+            "Developer Platform — GitHub",
             "Contribute to Forge Space",
-            "MCP-Native Tools for Builders",
-            "Internal Dev Platform, Open",
-            "Governance for AI Codegen",
-            "Join the Forge Space Ecosystem",
-            "Build With Real Shipping Workflows",
-            "Explore Repos and Roadmap"
+            "MIT Licensed Dev Platform",
+            "Browse Repos & Roadmap",
+            "MCP-Native Platform Tools",
+            "Open Source IDP — Free",
+            "Join the Forge Ecosystem",
+            "AI Governance, Open Source",
+            "Platform Engineering OSS",
+            "Explore Active Repositories",
+            "Contributors Welcome",
+            "Scorecards & Audit Trails",
+            "From Prompt to Production"
           ],
+          "headline_pins": {
+            "1": ["Open Source Developer Platform", "Open Source IDP on GitHub", "Developer Platform — GitHub"],
+            "3": ["Browse Repos & Roadmap", "Explore Active Repositories", "Contribute to Forge Space"]
+          },
           "descriptions": [
-            "Discover Forge Space repos and contribute to open-source platform engineering tooling.",
-            "From generation to governance, the ecosystem is built for practical developer workflows.",
-            "Find the roadmap, active modules, and contribution paths in one place.",
+            "Open-source developer platform with AI governance. Browse repos and contribute on GitHub.",
+            "From generation to governance — built for practical developer workflows. MIT licensed.",
+            "Find the roadmap, active modules, and contribution paths in one place. Free and open.",
             "Help shape open-source infrastructure for teams shipping AI-assisted software."
           ]
         },
         {
           "variant": "challenger",
           "headlines": [
-            "Forge Space OSS Ecosystem",
-            "Open Source IDP for Real Teams",
-            "Contributors Welcome",
-            "From AI Prompt to Governed Ship",
+            "Open Source Developer Platform",
+            "Open Source IDP — MIT License",
+            "Developer Platform on GitHub",
+            "Contributors Welcome — Free",
             "MCP Tools for Dev Workflows",
-            "Explore Active Repositories",
-            "Public Roadmap, Practical Stack",
-            "Join the Maintainer Journey"
+            "Browse Repos and Contribute",
+            "AI Governance Open Source",
+            "Join the Maintainer Journey",
+            "Public Roadmap & Active Repos",
+            "Platform Engineering, Open",
+            "Quality Gates Built In",
+            "Explore Forge Space OSS",
+            "Free IDP for Real Teams",
+            "Audit Trails Included",
+            "Ship With Confidence — Free"
           ],
+          "headline_pins": {
+            "1": ["Open Source Developer Platform", "Open Source IDP — MIT License", "Developer Platform on GitHub"],
+            "3": ["Browse Repos and Contribute", "Explore Forge Space OSS", "Ship With Confidence — Free"]
+          },
           "descriptions": [
             "See the Forge Space ecosystem and contribute where developer impact is immediate.",
-            "Open-source platform engineering stack focused on real governance and velocity tradeoffs.",
+            "Open-source platform engineering stack with real governance and velocity tradeoffs.",
             "Browse repositories, understand architecture, and join collaboration through GitHub.",
-            "Built for developers and product-minded teams who want visible, practical progress."
+            "Built for developers who want visible, practical progress. Free and open source."
           ]
         }
       ]

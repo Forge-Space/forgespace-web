@@ -1,61 +1,65 @@
 {
   "campaign_name": "forgespace_br_en_visibility_v3",
-  "ad_group_name": "smb_en",
-  "status": "enabled",
-  "sitelinks": [
-    {
-      "link_text": "Explore Ecosystem",
-      "description_line_1": "Browse Forge Space repos",
-      "description_line_2": "Find contributor entry points",
-      "final_url": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_ecosystem"
-    },
-    {
-      "link_text": "Enterprise Fit",
-      "description_line_1": "Built for lean SMB teams",
-      "description_line_2": "Avoid heavy platform overhead",
-      "final_url": "https://forgespace.co/enterprise?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_enterprise"
-    },
-    {
-      "link_text": "Roadmap",
-      "description_line_1": "See what shipped recently",
-      "description_line_2": "Track what comes next",
-      "final_url": "https://forgespace.co/roadmap?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_roadmap"
-    },
-    {
-      "link_text": "GitHub Organization",
-      "description_line_1": "Open source repos",
-      "description_line_2": "Contribute with the team",
-      "final_url": "https://github.com/Forge-Space?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_github"
-    }
-  ],
-  "callouts": [
-    "Open Source",
-    "Backstage Alternative",
-    "No Platform Team Required",
-    "MCP-Native",
-    "Self-Hosted Ready",
-    "Built for SMB Teams"
-  ],
-  "structured_snippets": [
-    {
-      "header": "Features",
-      "values": [
-        "AI Code Generation",
-        "Quality Scorecards",
-        "Policy Checks",
-        "Audit Trails"
-      ]
-    },
-    {
-      "header": "Use Cases",
-      "values": [
-        "SMB Engineering",
-        "Platform Engineering",
-        "Open Source Collaboration",
-        "Governed Delivery"
-      ]
-    }
-  ],
+  "version_notes": "v3.3 — Aligned with quality-first RSA rewrite. All URLs verified against live routes.",
+  "ad_extensions": {
+    "scope": "campaign",
+    "sitelinks": [
+      {
+        "link_text": "See All Features",
+        "description_line_1": "10 platform capabilities",
+        "description_line_2": "AI governance to golden paths",
+        "final_url": "https://forgespace.co/features?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_features"
+      },
+      {
+        "link_text": "Explore Ecosystem",
+        "description_line_1": "Browse active repositories",
+        "description_line_2": "Live GitHub metadata",
+        "final_url": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_ecosystem"
+      },
+      {
+        "link_text": "View Pricing",
+        "description_line_1": "Free for individuals",
+        "description_line_2": "Team and enterprise plans",
+        "final_url": "https://forgespace.co/pricing?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_pricing"
+      },
+      {
+        "link_text": "Public Roadmap",
+        "description_line_1": "See what shipped recently",
+        "description_line_2": "Track what comes next",
+        "final_url": "https://forgespace.co/roadmap?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_roadmap"
+      }
+    ],
+    "callouts": [
+      "Open Source",
+      "MIT Licensed",
+      "Backstage Alternative",
+      "No Platform Team Required",
+      "Self-Hosted Ready",
+      "Free for Individuals",
+      "AI Governance Built In",
+      "Scorecards & Audit Trails"
+    ],
+    "structured_snippets": [
+      {
+        "header": "Types",
+        "values": [
+          "Internal Developer Platform",
+          "Platform Engineering Tools",
+          "AI Governance Platform",
+          "Developer Portal"
+        ]
+      },
+      {
+        "header": "Features",
+        "values": [
+          "Quality Scorecards",
+          "Policy Packs",
+          "Audit Trails",
+          "Golden Path Templates"
+        ]
+      }
+    ]
+  },
   "business_information": {
     "business_name": "Forge Space",
     "logo_image_url": "https://forgespace.co/icon.png",
