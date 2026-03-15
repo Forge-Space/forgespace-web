@@ -39,6 +39,16 @@ metadata:
 
 ## Workflow
 
+### Phase 0: Automated Checks First
+
+Always run the full prepublish suite before manual analysis:
+
+```bash
+NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX npm run ads:google:prepublish
+```
+
+This validates: config guardrails, keyword mix, **keyword coverage** (every enabled keyword verbatim in at least one headline per ad), GA tag, negative conflicts, lint, 47 tracking tests, RSA char limits, URL routes, and keywords format. Fix any failure before continuing.
+
 ### Phase 1: Delivery Health
 
 1. Read `checkpoint-scorecard-live.csv` and compare impressions/clicks/spend against expected checkpoint.
@@ -61,6 +71,11 @@ metadata:
 5. Read `negative-keywords.csv` and verify:
    - Negatives aren't accidentally blocking target keywords.
    - Coverage for known irrelevant themes.
+
+6. **Keyword coverage** (automated in prepublish, but verify manually if needed):
+   - For each ad group, every enabled keyword must appear verbatim in at least one headline of every ad variant.
+   - Use `rsa.json` `keywords[]` field per ad group as the source of truth.
+   - Missing coverage = lower Ad Relevance = lower Quality Score = higher CPC.
 
 ### Phase 3: Conversion Wiring
 
@@ -118,7 +133,8 @@ Run these scripts as part of the diagnostic workflow:
 
 | Command | When to use |
 |---------|-------------|
-| `npm run ads:google:prepublish` | Before any campaign edits — validates config guardrails |
+| `npm run ads:google:prepublish` | **Always first** — validates all guardrails including keyword coverage |
+| `npm run ads:google:generate-upload` | Regenerate editor-upload.csv after any rsa.json change |
 | `DRY_RUN=1 npm run ads:google:publish-rsa` | Validate RSA char limits and URL routes |
 | `DRY_RUN=1 npm run ads:google:publish-keywords` | Validate keywords and generate import formats |
 | `npm run ads:google:checkpoint` | At each spend checkpoint to capture metrics |
@@ -137,6 +153,7 @@ Run these scripts as part of the diagnostic workflow:
 - If no GA4 tracking ID is configured, stop and report missing analytics setup.
 - Do not recommend budget increases without acknowledging the micro-pilot constraint.
 - If AI Max is enabled, flag immediately — it causes uncontrolled ad copy and URL drift.
+- If keyword coverage check fails, fix `rsa.json` before any other action — then re-run `generate-upload`.
 
 ## Load These Resources
 
