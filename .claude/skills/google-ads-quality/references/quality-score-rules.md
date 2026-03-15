@@ -84,6 +84,35 @@ Recommended distribution:
 - Should cover different aspects of the product
 - Features, Pricing, Ecosystem, Roadmap are strong choices
 
+## AI Max Warning
+
+**Always check whether AI Max is enabled before auditing ad quality.**
+
+If AI Max is ON with "Personalização do texto" (text personalization) or "Expansão de URL final" (URL expansion):
+- Google will IGNORE your rsa.json headlines and generate its own
+- Google will REDIRECT to any page it chooses, including non-existent routes
+- Your Quality Score data is unreliable because the ads being shown aren't yours
+- Root cause: discovered in forgespace_br_en_visibility_v3 campaign (March 2026)
+
+**Fix**: Campaign Settings > AI Max > toggle OFF > confirm "Desativar"
+
+## How to Create RSA Headlines in Google Ads
+
+1. Go to Campaign > Ad Group > Ads > Create RSA
+2. Enter Final URL and display URL paths
+3. Add all 15 headlines one by one in the headlines field
+4. Add all 4 descriptions
+5. Pin keyword-match headlines to position 1:
+   - Click the pin icon next to a headline
+   - Select "Position 1 only"
+6. Pin CTA headlines to position 3:
+   - Click the pin icon
+   - Select "Position 3 only"
+7. Watch the "Ad strength" indicator — aim for "Excellent"
+8. Save and monitor quality rating (aim for "Bom")
+
+**Tip**: The preview panel shows combinations Google might display. Check that every combination reads naturally.
+
 ## Quality Score Optimization Checklist
 
 - [ ] Every keyword has at least 1 exact-match headline
