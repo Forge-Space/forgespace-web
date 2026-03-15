@@ -51,9 +51,9 @@ marketing/startup-programs/
 
 - 834 registered users, 9 with projects
 - 9 open-source repos, MIT licensed
-- 2,994+ tests across ecosystem
+- 3,200+ tests across ecosystem
 - $0/month infrastructure cost (CF Workers + Supabase free tiers)
-- mcp-gateway v1.13.0, forge-ai-init v0.26.0, siza v0.47.1
+- mcp-gateway v1.16.0, forge-ai-init v0.28.0, siza v0.47.1
 
 ## Workflow: Check Status
 
@@ -95,7 +95,7 @@ cat marketing/startup-programs/nlnet/application.md
 **VCs / Accelerators** (YC, OSS Capital, Heavybit):
 > "73% of devs use AI code tools, <20% have governance. Forge Space is the open-source
 > IDP that adds quality scoring, policy enforcement, and audit trails to AI-assisted
-> development. MCP-native architecture. 834 users, $0 CAC."
+> development. MCP-native architecture. 834 users, 3,200+ tests, $0 CAC."
 
 ## Contact Info
 
