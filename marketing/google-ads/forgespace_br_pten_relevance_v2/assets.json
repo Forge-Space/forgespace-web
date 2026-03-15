@@ -1,6 +1,6 @@
 {
   "campaign_name": "forgespace_br_en_visibility_v3",
-  "version_notes": "v3.3 — Aligned with quality-first RSA rewrite. All URLs verified against live routes.",
+  "version_notes": "v3.5 — Added startups sitelink. Aligned with startups_en ad group launch.",
   "ad_extensions": {
     "scope": "campaign",
     "sitelinks": [
@@ -27,6 +27,12 @@
         "description_line_1": "See what shipped recently",
         "description_line_2": "Track what comes next",
         "final_url": "https://forgespace.co/roadmap?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_roadmap"
+      },
+      {
+        "link_text": "For Startups",
+        "description_line_1": "Free for teams under 15 devs",
+        "description_line_2": "No platform engineer needed",
+        "final_url": "https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3&utm_content=sitelink_startups"
       }
     ],
     "callouts": [

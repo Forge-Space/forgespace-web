@@ -15,6 +15,7 @@ import {
   FlaskConical,
   Scale,
   Zap,
+  Github,
 } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui/Button";
@@ -124,8 +125,20 @@ export default function StartupsPage() {
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button
-              href="/enterprise"
+              href="https://github.com/Forge-Space"
+              external
               variant="outline"
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+              ctaTarget="github"
+              ctaLocation="startups_hero_github"
+            >
+              <Github className="w-4 h-4" />
+              View on GitHub
+            </Button>
+            <Button
+              href="/enterprise"
+              variant="ghost"
               size="lg"
               ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
               ctaTarget="contact_sales"
@@ -375,8 +388,20 @@ export default function StartupsPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
                 <Button
-                  href="/enterprise"
+                  href="https://github.com/Forge-Space"
+                  external
                   variant="outline"
+                  size="lg"
+                  ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+                  ctaTarget="github"
+                  ctaLocation="startups_footer_github"
+                >
+                  <Github className="w-4 h-4" />
+                  View on GitHub
+                </Button>
+                <Button
+                  href="/enterprise"
+                  variant="ghost"
                   size="lg"
                   ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
                   ctaTarget="contact_sales"

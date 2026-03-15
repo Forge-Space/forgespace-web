@@ -91,6 +91,9 @@ if (adGroups.get("smb_en") !== "enabled") {
 if (adGroups.get("oss_en") !== "enabled") {
   throw new Error("oss_en ad group must be enabled");
 }
+if (adGroups.get("startups_en") !== "enabled") {
+  throw new Error("startups_en ad group must be enabled");
+}
 if (adGroups.get("smb_pt") !== "paused") {
   throw new Error("smb_pt ad group must be paused");
 }
@@ -104,9 +107,10 @@ console.log("[OK] Campaign config guardrails validated");
 
 smb_en_keywords=$(awk -F, 'NR>1 && $2=="smb_en" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
 oss_en_keywords=$(awk -F, 'NR>1 && $2=="oss_en" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
+startups_en_keywords=$(awk -F, 'NR>1 && $2=="startups_en" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
 
-if [ "$smb_en_keywords" -ne 8 ]; then
-	echo "[ERROR] smb_en must have exactly 8 enabled keyword variants."
+if [ "$smb_en_keywords" -ne 6 ]; then
+	echo "[ERROR] smb_en must have exactly 6 enabled keyword variants (IDP for startups moved to startups_en)."
 	exit 1
 fi
 
@@ -115,7 +119,12 @@ if [ "$oss_en_keywords" -ne 6 ]; then
 	exit 1
 fi
 
-echo "[OK] Keyword mix guardrails validated (smb_en=8, oss_en=6)"
+if [ "$startups_en_keywords" -ne 6 ]; then
+	echo "[ERROR] startups_en must have exactly 6 enabled keyword variants."
+	exit 1
+fi
+
+echo "[OK] Keyword mix guardrails validated (smb_en=6, oss_en=6, startups_en=6)"
 
 node -e '
 const fs = require("fs");
@@ -208,7 +217,8 @@ npm run test -- \
 	src/__tests__/Nav.test.tsx \
 	src/__tests__/Footer.test.tsx \
 	src/__tests__/ecosystem-cta-tracking.test.tsx \
-	src/__tests__/enterprise-cta-tracking.test.tsx
+	src/__tests__/enterprise-cta-tracking.test.tsx \
+	src/__tests__/startups-cta-tracking.test.tsx
 
 echo "[INFO] Validating RSA char limits and URL routes"
 DRY_RUN=1 node scripts/google-ads-publish-rsa.mjs
