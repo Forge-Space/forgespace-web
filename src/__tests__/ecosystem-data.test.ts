@@ -98,8 +98,8 @@ describe("ecosystem-data", () => {
     const snapshot = await getEcosystemSnapshot();
     const core = snapshot.repos.find((repo) => repo.name === "core");
 
-    expect(core?.latestReleaseTag).toBe("v1.10.1");
-    expect(core?.latestReleaseDate).toBe("2026-03-08T16:24:14Z");
+    expect(core?.latestReleaseTag).toBe("v1.12.2");
+    expect(core?.latestReleaseDate).toBe("2026-03-15T00:00:00Z");
   });
 
   it("returns fallback snapshot when org repo fetch fails", async () => {
