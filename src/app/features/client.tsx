@@ -14,6 +14,8 @@ import {
   ArrowRightLeft,
 } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
+import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
+import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { type LucideIcon } from "lucide-react";
 
@@ -216,6 +218,37 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.2 }}
+          className="mt-12 flex flex-wrap gap-4"
+        >
+          <Button
+            href="https://github.com/Forge-Space"
+            external
+            size="lg"
+            ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+            ctaTarget="github"
+            ctaLocation="features_github_primary"
+          >
+            Explore on GitHub
+          </Button>
+          <Button
+            href="https://siza.forgespace.co"
+            external
+            variant="outline"
+            size="lg"
+            ctaEvent={FORGE_CTA_EVENTS.SIZA}
+            ctaTarget="siza"
+            ctaLocation="features_siza_secondary"
+            passAttribution
+          >
+            Try Siza Free
+          </Button>
+        </motion.div>
       </Section>
     </main>
   );
