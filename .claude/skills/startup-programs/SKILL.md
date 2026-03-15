@@ -29,6 +29,7 @@ marketing/startup-programs/
   supabase/        — Supabase Startup Program (email: startups@supabase.com)
   nvidia/          — NVIDIA Inception (rolling, free enrollment)
   google-cloud/    — Google for Startups Cloud ($350K AI-first track)
+  yc/              — Y Combinator Summer 2026 (deadline May 4, 2026)
 ```
 
 ## Program Status (updated 2026-03-15)
@@ -44,7 +45,7 @@ marketing/startup-programs/
 | NVIDIA Inception | draft_ready | VC network | Rolling | MEDIUM |
 | Google Cloud Startup | draft_ready | $350K GCP | Rolling | MEDIUM |
 | GitHub Sponsors | infra_done | Community | Rolling | DONE-prereq |
-| YC Summer 2026 | not_started | $500K | May 4, 2026 | PREPARE |
+| YC Summer 2026 | draft_ready | $500K | May 4, 2026 | PREPARE |
 
 ## Key Pitch Stats (always use these)
 
