@@ -76,7 +76,7 @@ vi.mock("@/components/landing/CTASection", () => ({
         Explore on GitHub
       </a>
       <a
-        href="mailto:hello@forgespace.co?subject=Forge%20Space%20para%20meu%20time"
+        href="mailto:support@forgespace.co?subject=Forge%20Space%20para%20meu%20time"
         data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
         data-fs-cta-target="contact_sales"
         data-fs-cta-location="landing_cta_secondary"
@@ -170,7 +170,7 @@ describe("PtPage — CTA tracking contract", () => {
       );
     expect(salesLink).toHaveAttribute(
       "href",
-      "mailto:hello@forgespace.co?subject=Forge%20Space%20para%20meu%20time",
+      "mailto:support@forgespace.co?subject=Forge%20Space%20para%20meu%20time",
     );
   });
 

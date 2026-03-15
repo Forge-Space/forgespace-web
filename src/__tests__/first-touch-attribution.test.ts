@@ -82,7 +82,7 @@ describe("first-touch-attribution", () => {
       ),
     );
 
-    const mailto = appendAttributionToMailto("mailto:hello@forgespace.co", payload);
+    const mailto = appendAttributionToMailto("mailto:support@forgespace.co", payload);
 
     const parsed = new URL(mailto);
     const body = parsed.searchParams.get("body") ?? "";

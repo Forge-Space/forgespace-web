@@ -77,7 +77,7 @@ export default function PtPage() {
                 <ArrowRight className="w-4 h-4" />
               </Button>
               <Button
-                href="mailto:hello@forgespace.co?subject=Forge%20Space%20para%20meu%20time"
+                href="mailto:support@forgespace.co?subject=Forge%20Space%20para%20meu%20time"
                 external
                 variant="outline"
                 size="lg"

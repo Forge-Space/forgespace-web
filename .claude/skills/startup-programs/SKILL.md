@@ -26,7 +26,7 @@ marketing/startup-programs/
   vercel/          — Vercel for Startups (rolling)
   microsoft/       — Microsoft Founders Hub (rolling)
   aws/             — AWS Activate Founders (rolling, self-serve)
-  supabase/        — Supabase Startup Program (email: startups@supabase.com)
+  supabase/        — Supabase Startup Program (send email to: startups@supabase.com)
   nvidia/          — NVIDIA Inception (rolling, free enrollment)
   google-cloud/    — Google for Startups Cloud ($350K AI-first track)
   yc/              — Y Combinator Summer 2026 (deadline May 4, 2026)
@@ -58,11 +58,8 @@ marketing/startup-programs/
 ## Workflow: Check Status
 
 ```bash
-# See what's in the application registry
-ls marketing/startup-programs/
-
-# Check NLnet deadline countdown
-python3 -c "from datetime import date; d=date(2026,4,1); print(f'{(d-date.today()).days} days until NLnet deadline')"
+# Full status dashboard (color-coded deadlines, draft coverage, submission state)
+npm run startups:status
 
 # Review current application draft
 cat marketing/startup-programs/nlnet/application.md
@@ -99,6 +96,28 @@ cat marketing/startup-programs/nlnet/application.md
 > "73% of devs use AI code tools, <20% have governance. Forge Space is the open-source
 > IDP that adds quality scoring, policy enforcement, and audit trails to AI-assisted
 > development. MCP-native architecture. 834 users, $0 CAC."
+
+## Contact Info
+
+- Forge Space contact email: **support@forgespace.co**
+- Supabase program email: startups@supabase.com (external, send application there)
+
+## Submission Tracker
+
+All submission state lives in `marketing/startup-programs/submissions.json`.
+After submitting a program, update the relevant entry:
+
+```json
+{
+  "program_id": "nlnet",
+  "status": "submitted",
+  "submitted_at": "2026-03-XX",
+  "reference_id": "<confirmation number>",
+  "response": null
+}
+```
+
+Run `npm run startups:status` to see current state with color-coded deadlines.
 
 ## Memory Hooks
 

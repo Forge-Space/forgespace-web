@@ -46,7 +46,7 @@ export function CTASection() {
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button
-              href="mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team"
+              href="mailto:support@forgespace.co?subject=Forge%20Space%20for%20my%20team"
               external
               variant="outline"
               size="lg"

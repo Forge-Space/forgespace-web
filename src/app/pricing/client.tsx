@@ -59,7 +59,7 @@ const tiers = [
       "Priority support",
     ],
     cta: "Contact Us",
-    href: "mailto:hello@forgespace.co",
+    href: "mailto:support@forgespace.co",
     highlighted: false,
   },
 ];
@@ -209,7 +209,7 @@ export default function PricingPage() {
         >
           Need enterprise features?{" "}
           <a
-            href="mailto:hello@forgespace.co"
+            href="mailto:support@forgespace.co"
             data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
             data-fs-cta-target="contact_sales"
             data-fs-cta-location="pricing_footer_contact"

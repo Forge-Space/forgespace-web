@@ -102,7 +102,7 @@ describe("EnterprisePage — CTA tracking contract", () => {
   it("Contact Sales CTA links to the enterprise email", () => {
     render(<EnterprisePage />);
     const link = screen.getByText("Contact Sales").closest("a");
-    expect(link).toHaveAttribute("href", "mailto:enterprise@forgespace.co");
+    expect(link).toHaveAttribute("href", "mailto:support@forgespace.co");
   });
 
   it("GitHub CTA appears before Contact Sales in the DOM", () => {
