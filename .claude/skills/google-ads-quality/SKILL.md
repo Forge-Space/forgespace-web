@@ -89,14 +89,25 @@ metadata:
 - **URL verification**: all URLs point to real, working routes.
 - **Fix recommendations**: specific headline/description changes to improve quality.
 
+## Ad Group Reference (v3.5)
+
+| Ad group | Keywords | Landing | h1 | GitHub CTA |
+|----------|----------|---------|-----|-----------|
+| `smb_en` | internal developer platform, backstage alternative, platform engineering tools | `/` | "Open-source IDP for teams without a platform department" | ✅ hero + footer |
+| `oss_en` | open source developer platform, open source IDP, developer platform github | `/ecosystem` | sr-only "Forge Space Ecosystem" | ✅ repo links |
+| `startups_en` | IDP for startups, dev platform for startups, platform engineering startups | `/startups` | "Ship Faster Without a Platform Team" | ✅ hero + footer |
+
+All 3 landing pages have verified GitHub CTAs (primary conversion). Tests in `src/__tests__/`.
+
 ## Automation
 
 Run validation before publishing any ad changes:
 
 ```bash
+NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX npm run ads:google:prepublish  # full guardrails (56 tests)
+npm run ads:google:generate-upload                                       # regenerate editor-upload.csv
 DRY_RUN=1 npm run ads:google:publish-rsa       # validates char limits, URL routes, pin config
 DRY_RUN=1 npm run ads:google:publish-keywords  # validates match types, formats
-npm run ads:google:prepublish                   # full guardrails check
 ```
 
 ## Failure / Stop Conditions
