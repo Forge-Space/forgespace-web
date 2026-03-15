@@ -84,6 +84,20 @@ const pages: Record<string, PageSEO> = {
     canonicalPath: "/roadmap",
     keywords: ["product roadmap", "upcoming features", "IDP roadmap"],
   },
+  startups: {
+    title: "For Startups",
+    description:
+      "Enterprise governance at startup speed. Free for teams under 15 devs. AI code generation with scorecards, policy packs, and zero-config security — no platform team required.",
+    canonicalPath: "/startups",
+    keywords: [
+      "startup developer tools",
+      "startup governance",
+      "free IDP for startups",
+      "accelerator program",
+      "AI code governance",
+      "startup platform engineering",
+    ],
+  },
 };
 
 type PageMetadataSlug = keyof typeof pages;
