@@ -47,6 +47,7 @@ Happy to share more details about our architecture or provide access to our GitH
 Thanks,
 Lucas Santana
 Founder, Forge Space
+support@forgespace.co
 https://forgespace.co
 https://github.com/Forge-Space
 

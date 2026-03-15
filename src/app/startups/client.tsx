@@ -289,7 +289,7 @@ export default function StartupsPage() {
               </div>
 
               <Button
-                href="mailto:partnerships@forgespace.co"
+                href="mailto:support@forgespace.co"
                 external
                 variant="primary"
                 ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}

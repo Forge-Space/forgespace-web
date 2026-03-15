@@ -179,7 +179,7 @@ describe("CTASection", () => {
     const contact = screen.getByText("Contact Forge Space").closest("a");
     expect(contact).toHaveAttribute(
       "href",
-      "mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team",
+      "mailto:support@forgespace.co?subject=Forge%20Space%20for%20my%20team",
     );
     expect(contact).toHaveAttribute(
       "data-fs-cta-event",

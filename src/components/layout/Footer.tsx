@@ -36,7 +36,7 @@ const FOOTER_LINKS = {
     { label: "Enterprise", href: "/enterprise" },
     {
       label: "Contact",
-      href: "mailto:hello@forgespace.co",
+      href: "mailto:support@forgespace.co",
       external: true,
     },
   ],

@@ -24,8 +24,9 @@
 
 **Founder 1:** Lucas Santana
 **Role:** CEO / Solo Founder
+**Email:** support@forgespace.co
 **LinkedIn:** (add)
-**GitHub:** (add)
+**GitHub:** https://github.com/luksantana
 **Time commitment:** Full-time
 
 ---

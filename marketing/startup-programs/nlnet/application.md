@@ -133,6 +133,7 @@ led platform engineering at enterprise software companies. Building Forge Space 
 infrastructure for the AI development era.
 
 Location: Brazil (Florianópolis, SC)
+Email: support@forgespace.co
 GitHub: https://github.com/Forge-Space
 Website: https://forgespace.co
 

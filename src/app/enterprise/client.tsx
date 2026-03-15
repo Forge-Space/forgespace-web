@@ -81,7 +81,7 @@ export default function EnterprisePage() {
               <ArrowRight className="w-4 h-4" />
             </a>
             <Link
-              href="mailto:enterprise@forgespace.co"
+              href="mailto:support@forgespace.co"
               data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
               data-fs-cta-target="contact_sales"
               data-fs-cta-location="enterprise_contact_sales"
