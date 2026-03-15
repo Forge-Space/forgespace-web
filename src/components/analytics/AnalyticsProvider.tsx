@@ -15,6 +15,7 @@ import {
 } from "@/lib/analytics/ga4";
 
 const GA4_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+const GADS_TRACKING_ID = "AW-959867732";
 
 function getCurrentPagePath(pathname: string, query: string): string {
   return query ? `${pathname}?${query}` : pathname;
@@ -97,6 +98,7 @@ export default function AnalyticsProvider({ children }: PropsWithChildren) {
       window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', '${GA4_TRACKING_ID}', { send_page_view: false });
+      gtag('config', '${GADS_TRACKING_ID}');
     `;
 
     document.head.append(scriptTag, inlineScriptTag);

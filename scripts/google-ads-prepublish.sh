@@ -7,32 +7,32 @@ cd "$ROOT_DIR"
 CAMPAIGN_DIR="marketing/google-ads/forgespace_br_pten_relevance_v2"
 
 load_ga_tracking_id_from_env_file() {
-  local env_file="$ROOT_DIR/.env.local"
+	local env_file="$ROOT_DIR/.env.local"
 
-  if [ -n "${NEXT_PUBLIC_GA_TRACKING_ID:-}" ] || [ ! -f "$env_file" ]; then
-    return
-  fi
+	if [ -n "${NEXT_PUBLIC_GA_TRACKING_ID:-}" ] || [ ! -f "$env_file" ]; then
+		return
+	fi
 
-  local raw_line=""
-  raw_line="$(grep -E '^NEXT_PUBLIC_GA_TRACKING_ID=' "$env_file" | tail -n 1 || true)"
-  if [ -z "$raw_line" ]; then
-    return
-  fi
+	local raw_line=""
+	raw_line="$(grep -E '^NEXT_PUBLIC_GA_TRACKING_ID=' "$env_file" | tail -n 1 || true)"
+	if [ -z "$raw_line" ]; then
+		return
+	fi
 
-  NEXT_PUBLIC_GA_TRACKING_ID="${raw_line#NEXT_PUBLIC_GA_TRACKING_ID=}"
+	NEXT_PUBLIC_GA_TRACKING_ID="${raw_line#NEXT_PUBLIC_GA_TRACKING_ID=}"
 }
 
 sanitize_ga_tracking_id() {
-  local value="$1"
+	local value="$1"
 
-  value="${value%\"}"
-  value="${value#\"}"
-  value="${value%\'}"
-  value="${value#\'}"
-  value="${value//\\n/}"
-  value="$(printf '%s' "$value" | tr -d '\r\n')"
-  value="$(printf '%s' "$value" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
-  printf '%s' "$value"
+	value="${value%\"}"
+	value="${value#\"}"
+	value="${value%\'}"
+	value="${value#\'}"
+	value="${value//\\n/}"
+	value="$(printf '%s' "$value" | tr -d '\r\n')"
+	value="$(printf '%s' "$value" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+	printf '%s' "$value"
 }
 
 load_ga_tracking_id_from_env_file
@@ -40,31 +40,31 @@ NEXT_PUBLIC_GA_TRACKING_ID="$(sanitize_ga_tracking_id "${NEXT_PUBLIC_GA_TRACKING
 export NEXT_PUBLIC_GA_TRACKING_ID
 
 if [ -z "$NEXT_PUBLIC_GA_TRACKING_ID" ]; then
-  echo "[ERROR] NEXT_PUBLIC_GA_TRACKING_ID is not set."
-  echo "[HINT] Add NEXT_PUBLIC_GA_TRACKING_ID to .env.local or export it in your shell."
-  exit 1
+	echo "[ERROR] NEXT_PUBLIC_GA_TRACKING_ID is not set."
+	echo "[HINT] Add NEXT_PUBLIC_GA_TRACKING_ID to .env.local or export it in your shell."
+	exit 1
 fi
 
 if ! [[ "$NEXT_PUBLIC_GA_TRACKING_ID" =~ ^G-[A-Z0-9]+$ ]]; then
-  echo "[ERROR] NEXT_PUBLIC_GA_TRACKING_ID is invalid."
-  echo "[HINT] Expected format: G-XXXXXXXXXX (loaded from env or .env.local)."
-  exit 1
+	echo "[ERROR] NEXT_PUBLIC_GA_TRACKING_ID is invalid."
+	echo "[HINT] Expected format: G-XXXXXXXXXX (loaded from env or .env.local)."
+	exit 1
 fi
 
 required_files=(
-  "$CAMPAIGN_DIR/campaign-config.json"
-  "$CAMPAIGN_DIR/keywords.csv"
-  "$CAMPAIGN_DIR/negative-keywords.csv"
-  "$CAMPAIGN_DIR/rsa.json"
-  "$CAMPAIGN_DIR/assets.json"
-  "$CAMPAIGN_DIR/ga4-ads-setup.md"
+	"$CAMPAIGN_DIR/campaign-config.json"
+	"$CAMPAIGN_DIR/keywords.csv"
+	"$CAMPAIGN_DIR/negative-keywords.csv"
+	"$CAMPAIGN_DIR/rsa.json"
+	"$CAMPAIGN_DIR/assets.json"
+	"$CAMPAIGN_DIR/ga4-ads-setup.md"
 )
 
 for file in "${required_files[@]}"; do
-  if [ ! -f "$file" ]; then
-    echo "[ERROR] Missing required campaign file: $file"
-    exit 1
-  fi
+	if [ ! -f "$file" ]; then
+		echo "[ERROR] Missing required campaign file: $file"
+		exit 1
+	fi
 done
 
 node -e '
@@ -127,16 +127,22 @@ smb_en_keywords=$(awk -F, 'NR>1 && $2=="smb_en" && $6=="enabled" {c++} END {prin
 oss_en_keywords=$(awk -F, 'NR>1 && $2=="oss_en" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
 
 if [ "$smb_en_keywords" -ne 6 ]; then
-  echo "[ERROR] smb_en must have exactly 6 enabled keyword variants."
-  exit 1
+	echo "[ERROR] smb_en must have exactly 6 enabled keyword variants."
+	exit 1
 fi
 
 if [ "$oss_en_keywords" -ne 4 ]; then
-  echo "[ERROR] oss_en must have exactly 4 enabled keyword variants."
-  exit 1
+	echo "[ERROR] oss_en must have exactly 4 enabled keyword variants."
+	exit 1
 fi
 
 echo "[OK] Keyword mix guardrails validated (smb_en=6, oss_en=4)"
+
+if ! grep -q "AW-959867732" src/components/analytics/AnalyticsProvider.tsx; then
+	echo "[ERROR] Google Ads tag AW-959867732 missing from AnalyticsProvider.tsx"
+	exit 1
+fi
+echo "[OK] Google Ads tag AW-959867732 present in AnalyticsProvider"
 
 echo "[INFO] Running lint"
 npm run lint
