@@ -59,9 +59,10 @@
     },
     {
       "name": "smb_pt",
-      "status": "paused",
+      "status": "enabled",
       "language": "pt-BR",
-      "pause_reason": "forgespace.co is EN-only in this cycle"
+      "active_keyword_count_target": "6",
+      "landing_page": "https://forgespace.co/pt"
     }
   ],
   "measurement": {
@@ -80,7 +81,8 @@
     "ad_group_final_urls": {
       "smb_en": "https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
       "oss_en": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
-      "startups_en": "https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3"
+      "startups_en": "https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "smb_pt": "https://forgespace.co/pt?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3"
     },
     "final_url_suffix": "utm_term={keyword}&utm_content={creative}&campaignid={campaignid}&adgroupid={adgroupid}&matchtype={matchtype}&device={device}"
   },

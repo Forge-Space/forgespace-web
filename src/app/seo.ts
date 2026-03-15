@@ -98,6 +98,25 @@ const pages: Record<string, PageSEO> = {
       "startup platform engineering",
     ],
   },
+  pt: {
+    title: "Forge Space — IDP open-source para times sem equipe de plataforma",
+    description:
+      "Plataforma de desenvolvimento open-source com geração de código por IA, scorecards de governança e trilhas de auditoria. Gratuito para indivíduos.",
+    canonicalPath: "/pt",
+    absoluteTitle: true,
+    keywords: [
+      "plataforma de desenvolvimento interno",
+      "IDP open source",
+      "geração de código com IA",
+      "governança de software",
+      "MCP",
+      "ferramentas para desenvolvedores",
+      "Backstage alternativa",
+    ],
+    twitterTitle: "Forge Space — IDP para times sem plataforma",
+    twitterDescription:
+      "Geração de código com IA e governança integrada. Gratuito e open source.",
+  },
 };
 
 type PageMetadataSlug = keyof typeof pages;

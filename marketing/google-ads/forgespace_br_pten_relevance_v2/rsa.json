@@ -214,8 +214,91 @@
     },
     {
       "ad_group_name": "smb_pt",
-      "status": "paused",
-      "notes": "Hold until Portuguese landing page exists"
+      "status": "enabled",
+      "keywords": ["plataforma de desenvolvimento", "alternativa ao backstage", "ferramentas de engenharia de plataforma"],
+      "final_url": "https://forgespace.co/pt?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "display_url_path_1": "open-source",
+      "display_url_path_2": "IDP",
+      "ads": [
+        {
+          "variant": "baseline",
+          "headlines": [
+            "Plataforma de Dev Open Source",
+            "Alternativa ao Backstage",
+            "Ferramentas de Plataforma",
+            "IDP para Startups e PMEs",
+            "Entregue Mais, Governe Melhor",
+            "Sem Equipe de Plataforma",
+            "IA com Governança Integrada",
+            "Scorecards e Trilhas de Auditoria",
+            "Open Source e Self-Hosted",
+            "Gratuito para Indivíduos",
+            "Licença MIT — Sem Lock-In",
+            "Comece no GitHub Hoje",
+            "Explore o Forge Space",
+            "Forge Space — Teste Grátis",
+            "Open Source, Licença MIT"
+          ],
+          "headline_pins": {
+            "1": [
+              "Plataforma de Dev Open Source",
+              "Alternativa ao Backstage",
+              "Ferramentas de Plataforma",
+              "IDP para Startups e PMEs"
+            ],
+            "3": [
+              "Comece no GitHub Hoje",
+              "Explore o Forge Space",
+              "Forge Space — Teste Grátis"
+            ]
+          },
+          "descriptions": [
+            "IDP open-source com governança por IA, scorecards e trilhas de auditoria. Comece grátis no GitHub.",
+            "Alternativa ao Backstage para times pequenos. Sem equipe de plataforma. Comece grátis hoje.",
+            "Ferramentas de plataforma com governança prática. Self-hosted, open source, MIT.",
+            "Entregue produtos com IA e qualidade integrada. Sem contrato necessário."
+          ]
+        },
+        {
+          "variant": "challenger",
+          "headlines": [
+            "Plataforma de Dev Open Source",
+            "Alternativa ao Backstage — Times",
+            "Ferramentas de Plataforma",
+            "IDP para Startups — Sem Overhead",
+            "Entrega com IA Governada",
+            "Sem Equipe de Plataforma",
+            "Scorecards de Qualidade",
+            "Políticas e Trilhas de Auditoria",
+            "Self-Hosted ou Cloud — Grátis",
+            "IDP Open Source no GitHub",
+            "Teste Grátis no GitHub",
+            "MIT — Sem Lock-In",
+            "Entregue Código com Confiança",
+            "Comece com Forge Space",
+            "Prompt para Saída Auditável"
+          ],
+          "headline_pins": {
+            "1": [
+              "Plataforma de Dev Open Source",
+              "Alternativa ao Backstage — Times",
+              "Ferramentas de Plataforma",
+              "IDP para Startups — Sem Overhead"
+            ],
+            "3": [
+              "Teste Grátis no GitHub",
+              "Comece com Forge Space",
+              "Entregue Código com Confiança"
+            ]
+          },
+          "descriptions": [
+            "Forge Space dá a times pequenos governança prática e visibilidade para entrega com IA.",
+            "Do conceito à entrega governada com políticas, scorecards e trilhas de auditoria.",
+            "Open source, self-hosted, licença MIT. Caminhos claros para contribuidores e compradores.",
+            "Veja como seu time pode entregar produtos com IA e confiança. Explore os repos no GitHub."
+          ]
+        }
+      ]
     }
   ]
 }

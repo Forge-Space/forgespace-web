@@ -54,6 +54,7 @@ describe("Sitemap and robots", () => {
       "https://forgespace.co/roadmap",
       "https://forgespace.co/enterprise",
       "https://forgespace.co/startups",
+      "https://forgespace.co/pt",
     ]);
 
     for (const entry of entries) {
