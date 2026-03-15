@@ -1,6 +1,6 @@
 {
   "campaign_name": "forgespace_br_en_visibility_v3",
-  "version_notes": "v3.4 — Full keyword coverage per ad group. Each ad covers all keywords for its group only. No cross-group keyword contamination. 'developer platform github' added to oss_en. smb_en challenger fixed to cover all 4 smb keywords. All headlines ≤30 chars, descriptions ≤90 chars.",
+  "version_notes": "v3.5 — smb_pt ad group enabled 2026-03-15. /pt landing page is live. PT keywords activated in keywords.csv (6 keywords: exact+phrase for 3 PT terms). Full keyword coverage per ad group. All headlines ≤30 chars, descriptions ≤90 chars.",
   "ad_groups": [
     {
       "ad_group_name": "smb_en",
@@ -215,7 +215,7 @@
     {
       "ad_group_name": "smb_pt",
       "status": "enabled",
-      "keywords": ["plataforma de desenvolvimento", "alternativa ao backstage", "ferramentas de engenharia de plataforma"],
+      "keywords": ["plataforma de desenvolvimento", "alternativa ao backstage", "ferramentas de plataforma"],
       "final_url": "https://forgespace.co/pt?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
       "display_url_path_1": "open-source",
       "display_url_path_2": "IDP",
@@ -223,14 +223,14 @@
         {
           "variant": "baseline",
           "headlines": [
-            "Plataforma de Dev Open Source",
+            "Plataforma de Desenvolvimento",
             "Alternativa ao Backstage",
             "Ferramentas de Plataforma",
             "IDP para Startups e PMEs",
             "Entregue Mais, Governe Melhor",
             "Sem Equipe de Plataforma",
             "IA com Governança Integrada",
-            "Scorecards e Trilhas de Auditoria",
+            "Scorecards e Auditoria",
             "Open Source e Self-Hosted",
             "Gratuito para Indivíduos",
             "Licença MIT — Sem Lock-In",
@@ -241,7 +241,7 @@
           ],
           "headline_pins": {
             "1": [
-              "Plataforma de Dev Open Source",
+              "Plataforma de Desenvolvimento",
               "Alternativa ao Backstage",
               "Ferramentas de Plataforma",
               "IDP para Startups e PMEs"
@@ -253,8 +253,8 @@
             ]
           },
           "descriptions": [
-            "IDP open-source com governança por IA, scorecards e trilhas de auditoria. Comece grátis no GitHub.",
-            "Alternativa ao Backstage para times pequenos. Sem equipe de plataforma. Comece grátis hoje.",
+            "IDP open-source com governança por IA, scorecards e auditoria. Comece grátis no GitHub.",
+            "Alternativa ao Backstage para times pequenos. Sem equipe de plataforma. Grátis hoje.",
             "Ferramentas de plataforma com governança prática. Self-hosted, open source, MIT.",
             "Entregue produtos com IA e qualidade integrada. Sem contrato necessário."
           ]
@@ -262,14 +262,14 @@
         {
           "variant": "challenger",
           "headlines": [
-            "Plataforma de Dev Open Source",
-            "Alternativa ao Backstage — Times",
+            "Plataforma de Desenvolvimento",
+            "Alternativa ao Backstage",
             "Ferramentas de Plataforma",
-            "IDP para Startups — Sem Overhead",
+            "IDP para Startups — Sem Custo",
             "Entrega com IA Governada",
             "Sem Equipe de Plataforma",
             "Scorecards de Qualidade",
-            "Políticas e Trilhas de Auditoria",
+            "Políticas e Auditoria",
             "Self-Hosted ou Cloud — Grátis",
             "IDP Open Source no GitHub",
             "Teste Grátis no GitHub",
@@ -280,8 +280,8 @@
           ],
           "headline_pins": {
             "1": [
-              "Plataforma de Dev Open Source",
-              "Alternativa ao Backstage — Times",
+              "Plataforma de Desenvolvimento",
+              "Alternativa ao Backstage",
               "Ferramentas de Plataforma",
               "IDP para Startups — Sem Overhead"
             ],

@@ -59,7 +59,7 @@ function validateDescriptions(descriptions) {
 function validateUrl(url) {
   try {
     const u = new URL(url);
-    const validPaths = ["/", "/features", "/pricing", "/ecosystem", "/roadmap", "/enterprise", "/startups"];
+    const validPaths = ["/", "/features", "/pricing", "/ecosystem", "/roadmap", "/enterprise", "/startups", "/pt"];
     if (u.hostname === "forgespace.co" && !validPaths.includes(u.pathname)) {
       return [`URL path ${u.pathname} is not a known route. Valid: ${validPaths.join(", ")}`];
     }

@@ -94,8 +94,8 @@ if (adGroups.get("oss_en") !== "enabled") {
 if (adGroups.get("startups_en") !== "enabled") {
   throw new Error("startups_en ad group must be enabled");
 }
-if (adGroups.get("smb_pt") !== "paused") {
-  throw new Error("smb_pt ad group must be paused");
+if (!["paused", "enabled"].includes(adGroups.get("smb_pt"))) {
+  throw new Error("smb_pt ad group must be paused or enabled");
 }
 
 if (config.measurement?.primary_event !== "fs_cta_github_click") {

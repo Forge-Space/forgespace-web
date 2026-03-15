@@ -19,5 +19,9 @@ forgespace_br_en_visibility_v3,startups_en,"dev platform for startups",exact,2.5
 forgespace_br_en_visibility_v3,startups_en,"dev platform for startups",phrase,2.50,enabled,startup-specific platform discovery
 forgespace_br_en_visibility_v3,startups_en,"platform engineering startups",exact,2.50,enabled,startup PE intent
 forgespace_br_en_visibility_v3,startups_en,"platform engineering startups",phrase,2.50,enabled,startup PE discovery
-forgespace_br_en_visibility_v3,smb_pt,"plataforma de desenvolvimento interno",exact,2.50,paused,paused until PT landing exists
-forgespace_br_en_visibility_v3,smb_pt,"geracao de codigo com ia para empresas",phrase,2.50,paused,paused until PT landing exists
+forgespace_br_en_visibility_v3,smb_pt,"plataforma de desenvolvimento",exact,2.50,enabled,PT landing /pt is live — enabled 2026-03-15
+forgespace_br_en_visibility_v3,smb_pt,"plataforma de desenvolvimento",phrase,2.50,enabled,PT landing /pt is live — enabled 2026-03-15
+forgespace_br_en_visibility_v3,smb_pt,"alternativa ao backstage",exact,2.50,enabled,PT comparison-intent — evaluators
+forgespace_br_en_visibility_v3,smb_pt,"alternativa ao backstage",phrase,2.50,enabled,PT comparison-intent — discovery
+forgespace_br_en_visibility_v3,smb_pt,"ferramentas de plataforma",exact,2.50,enabled,PT broader category — practitioners
+forgespace_br_en_visibility_v3,smb_pt,"ferramentas de plataforma",phrase,2.50,enabled,PT broader category — discovery
