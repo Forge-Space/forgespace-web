@@ -18,16 +18,8 @@ vi.mock("motion/react", () => ({
     {
       get:
         (_t, tag: string) =>
-        ({
-          children,
-          initial: _i,
-          animate: _a,
-          whileInView: _w,
-          viewport: _vp,
-          transition: _tr,
-          exit: _ex,
-          ...rest
-        }: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ({ children, initial, animate, whileInView, viewport, transition, exit, ...rest }: {
           children?: React.ReactNode;
           initial?: unknown;
           animate?: unknown;
