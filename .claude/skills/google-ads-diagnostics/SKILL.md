@@ -109,8 +109,19 @@ When a Google Ads screenshot or checkpoint artifact is available:
 
 14. Read scorecard and apply stop/continue rules from `campaign-config.json`:
     - CTR below threshold? → flag pause recommendation.
-    - No primary CTA by R$8? → flag stop recommendation.
+    - No primary CTA by R$60? → flag stop recommendation.
     - Irrelevant query share rising? → flag negative keyword action needed.
+
+## Automation Scripts
+
+Run these scripts as part of the diagnostic workflow:
+
+| Command | When to use |
+|---------|-------------|
+| `npm run ads:google:prepublish` | Before any campaign edits — validates config guardrails |
+| `DRY_RUN=1 npm run ads:google:publish-rsa` | Validate RSA char limits and URL routes |
+| `DRY_RUN=1 npm run ads:google:publish-keywords` | Validate keywords and generate import formats |
+| `npm run ads:google:checkpoint` | At each spend checkpoint to capture metrics |
 
 ## Outputs / Evidence
 
@@ -118,12 +129,14 @@ When a Google Ads screenshot or checkpoint artifact is available:
 - **Specific file:line references** for every technical issue found.
 - **Actionable fix list**: what to change in campaign config, keywords, or source code.
 - **Scorecard decision recommendation**: continue, pause, or restructure.
+- **Automation output**: prepublish check results, RSA validation, keyword validation.
 
 ## Failure / Stop Conditions
 
 - If `campaign-config.json` doesn't exist, stop and report missing campaign setup.
 - If no GA4 tracking ID is configured, stop and report missing analytics setup.
 - Do not recommend budget increases without acknowledging the micro-pilot constraint.
+- If AI Max is enabled, flag immediately — it causes uncontrolled ad copy and URL drift.
 
 ## Load These Resources
 
