@@ -25,7 +25,10 @@ marketing/startup-programs/
   cloudflare/      — Cloudflare for Startups (rolling)
   vercel/          — Vercel for Startups (rolling)
   microsoft/       — Microsoft Founders Hub (rolling)
-  aws/             — AWS Activate Founders (rolling)
+  aws/             — AWS Activate Founders (rolling, self-serve)
+  supabase/        — Supabase Startup Program (email: startups@supabase.com)
+  nvidia/          — NVIDIA Inception (rolling, free enrollment)
+  google-cloud/    — Google for Startups Cloud ($350K AI-first track)
 ```
 
 ## Program Status (updated 2026-03-15)
@@ -33,13 +36,15 @@ marketing/startup-programs/
 | Program | Status | Value | Deadline | Priority |
 |---------|--------|-------|----------|----------|
 | NLnet NGI0 Commons | draft_ready | EUR 30K | Apr 1, 2026 | URGENT |
-| Cloudflare for Startups | not_started | $5K–$250K | Rolling | HIGH |
-| Vercel for Startups | not_started | Pro/Enterprise | Rolling | HIGH |
-| Microsoft Founders Hub | not_started | $150K Azure | Rolling | HIGH |
-| AWS Activate | not_started | $1K–$25K | Rolling | MEDIUM |
-| Google Cloud Startup | not_started | $350K GCP | Rolling | MEDIUM |
+| Cloudflare for Startups | draft_ready | $5K–$250K | Rolling | HIGH |
+| Vercel for Startups | draft_ready | Pro/Enterprise | Rolling | HIGH |
+| Microsoft Founders Hub | draft_ready | $150K Azure | Rolling | HIGH |
+| AWS Activate | draft_ready | $1K–$25K | Rolling | HIGH |
+| Supabase Startup | draft_ready | $10K–$50K | Rolling | HIGH |
+| NVIDIA Inception | draft_ready | VC network | Rolling | MEDIUM |
+| Google Cloud Startup | draft_ready | $350K GCP | Rolling | MEDIUM |
 | GitHub Sponsors | infra_done | Community | Rolling | DONE-prereq |
-| NVIDIA Inception | not_started | VC network | Rolling | LOW |
+| YC Summer 2026 | not_started | $500K | May 4, 2026 | PREPARE |
 
 ## Key Pitch Stats (always use these)
 
