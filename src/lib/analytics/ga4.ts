@@ -4,10 +4,13 @@ import { getStoredFirstTouchAttribution } from "@/lib/analytics/first-touch-attr
 export const FORGE_CTA_EVENTS = {
   SIZA: "fs_cta_siza_click",
   GITHUB: "fs_cta_github_click",
+  DOCS: "fs_cta_docs_click",
+  COMMUNITY: "fs_cta_community_click",
   CONTACT_SALES: "fs_cta_contact_sales_click",
 } as const;
 
-export type ForgeCtaEvent = (typeof FORGE_CTA_EVENTS)[keyof typeof FORGE_CTA_EVENTS];
+export type ForgeCtaEvent =
+  (typeof FORGE_CTA_EVENTS)[keyof typeof FORGE_CTA_EVENTS];
 
 declare global {
   interface Window {

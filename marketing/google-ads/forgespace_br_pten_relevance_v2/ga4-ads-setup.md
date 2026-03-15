@@ -2,10 +2,15 @@
 
 ## Conversion contract
 
+- Goal scope: campaign-specific visibility goals only
 - Primary conversion (Google Ads optimization): `fs_cta_github_click`
 - Secondary conversions (reporting only):
   - `fs_cta_contact_sales_click`
   - `fs_cta_siza_click`
+- Excluded from this campaign's bidding goal set:
+  - `Inscrição`
+- Customer acquisition / lifecycle goals:
+  - disabled for the visibility micro-pilot until audience prerequisites exist
 
 ## GA4 custom dimensions
 
@@ -33,3 +38,5 @@ These dimensions are required for checkpoint relevance diagnostics.
    - attribution payload (`utm_*`, click ids, `landing_path`, `first_seen_at`)
    - `cta_target`, `cta_location`
 4. Confirm imported Ads conversion `fs_cta_github_click` is receiving and marked Primary.
+5. Confirm `fs_cta_contact_sales_click` and `fs_cta_siza_click` remain Secondary.
+6. Confirm `Inscrição` is not used for this campaign's bidding optimization.

@@ -1,0 +1,107 @@
+name: Distribution Weekly
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  distribution-weekly:
+    name: Refresh distribution ops issue
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - name: Run distribution checks
+        id: distribution_check
+        continue-on-error: true
+        run: npm run distribution:check
+      - run: node scripts/distribution-weekly-report.mjs --output-dir artifacts/distribution-weekly
+
+      - name: Read weekly report
+        id: report
+        run: |
+          {
+            echo "body<<EOF"
+            cat artifacts/distribution-weekly/report.md
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create or update issue
+        uses: actions/github-script@v8
+        env:
+          REPORT_BODY: ${{ steps.report.outputs.body }}
+          DISTRIBUTION_OUTCOME: ${{ steps.distribution_check.outcome }}
+        with:
+          script: |
+            const labels = [
+              { name: 'distribution-ops', color: '0e8a16', description: 'Recurring distribution operations status' },
+              { name: 'automated', color: '5319e7', description: 'Updated by automation' },
+            ];
+            for (const label of labels) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                });
+              } catch (error) {
+                if (error.status !== 404) {
+                  throw error;
+                }
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ...label,
+                });
+              }
+            }
+
+            const title = 'Distribution Ops Weekly';
+            const body = `${process.env.REPORT_BODY}\n\n- Workflow outcome: \`${process.env.DISTRIBUTION_OUTCOME}\`\n\n---\n\n_Updated automatically by \`${context.workflow}\`._`;
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const existing = issues.data.find((issue) => !issue.pull_request && issue.title === title);
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                title,
+                body,
+                labels: labels.map((label) => label.name),
+              });
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: labels.map((label) => label.name),
+            });
+
+      - name: Upload distribution artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution-ops-${{ github.run_id }}
+          path: |
+            artifacts/distribution-check
+            artifacts/distribution-weekly
+          if-no-files-found: error

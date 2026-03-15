@@ -59,7 +59,10 @@
       "fs_cta_contact_sales_click",
       "fs_cta_siza_click"
     ],
-    "google_ads_goal_status": "Primary for fs_cta_github_click only",
+    "google_ads_goal_scope": "campaign_specific_visibility",
+    "google_ads_goal_status": "Primary for fs_cta_github_click only; secondary for fs_cta_contact_sales_click and fs_cta_siza_click",
+    "excluded_primary_actions": ["Inscrição"],
+    "customer_lifecycle_goal": "disabled",
     "ga4_custom_dimensions_required": ["cta_target", "cta_location"],
     "auto_tagging_required": true
   },

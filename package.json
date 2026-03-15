@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "distribution:check": "node scripts/distribution-check.mjs",
     "ads:google:prepublish": "bash scripts/google-ads-prepublish.sh",
     "ads:google:checkpoint": "node scripts/google-ads-checkpoint.mjs",
     "check:cycles": "madge --circular --extensions ts,tsx src/",

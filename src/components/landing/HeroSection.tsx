@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
-import { ArrowRight, Github, Mail } from "lucide-react";
+import { ArrowRight, BookOpen, Github } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Badge } from "@/components/ui/Badge";
@@ -51,8 +51,8 @@ export function HeroSection() {
             platform overhead.
           </p>
           <p className="text-sm text-forge-text-subtle max-w-xl mx-auto mb-10">
-            Open source first. Start with GitHub, test Siza, or talk to us
-            about SMB fit.
+            Open source first. Start with GitHub, docs, or the Siza beta signup
+            flow.
           </p>
 
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center">
@@ -69,20 +69,19 @@ export function HeroSection() {
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button
-              href="mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team"
+              href="https://docs.forgespace.co/docs"
               external
               variant="outline"
               size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
-              ctaTarget="contact_sales"
+              ctaEvent={FORGE_CTA_EVENTS.DOCS}
+              ctaTarget="docs"
               ctaLocation="hero_secondary"
-              passAttribution
             >
-              <Mail className="w-4 h-4" />
-              Talk to Forge Space
+              <BookOpen className="w-4 h-4" />
+              Read the Docs
             </Button>
             <Button
-              href="https://siza.forgespace.co"
+              href="https://siza.forgespace.co/signup"
               external
               variant="ghost"
               size="lg"
@@ -91,7 +90,7 @@ export function HeroSection() {
               ctaLocation="hero_tertiary"
               passAttribution
             >
-              Try Siza Demo
+              Start Siza Beta
             </Button>
           </div>
         </motion.div>

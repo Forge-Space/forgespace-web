@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **Google Ads visibility ops skill hook** — Linked the free-channel loop to the
+  new local `google-ads-visibility-ops` skill for campaign audits and checkpoint
+  decisions
 - **Landing component tests** — 22 new tests for Button, Badge, SocialProof, FeaturesGrid, HowItWorks, ArchitectureDiagram, CTASection (48 total)
 - **Multi-section landing page** — 6 composable sections: Hero, SocialProof, FeaturesGrid, HowItWorks, ArchitectureDiagram, CTASection
 - **Responsive mobile navigation** — hamburger menu with slide-out panel, focus management, Escape to close
@@ -39,12 +42,19 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **Distribution ops automation** — Added `npm run distribution:check` plus a
+  weekly workflow that updates one issue with package links, MCP Registry
+  visibility, owned-capture route health, and a drafted weekly post
+- **Clean Chrome Ads automation flow** — Documented a clean `9223` Chrome CDP
+  profile for live Google Ads cleanup and checkpoint capture without reusing the
+  dirty daily browser
 - **GA4 analytics provider** — Route-aware pageview tracking with configurable
   `NEXT_PUBLIC_GA_TRACKING_ID`
 - **First-touch attribution module** — Stores and reuses UTM/click-id context
   (`utm_*`, `gclid`, `gbraid`, `wbraid`, `landing_path`, `first_seen_at`)
 - **Forge CTA event contract** — Added `fs_cta_siza_click`,
-  `fs_cta_github_click`, and `fs_cta_contact_sales_click`
+  `fs_cta_github_click`, `fs_cta_docs_click`,
+  `fs_cta_community_click`, and `fs_cta_contact_sales_click`
 - **Google Ads launch assets (Forge Space)** — Campaign pack at
   `marketing/google-ads/forgespace_br_pten_relevance_v2/` including config,
   keywords, negatives, RSA copy, and ops runbook
@@ -64,7 +74,7 @@ All notable changes to this project will be documented in this file.
 - **Checkpoint scorecard template** — Added structured `$3/$6/$8` run log for
   relevance, CTR, CTA rate, negatives, and pause decisions
 - **Ads prepublish script** — `npm run ads:google:prepublish` validates GA4 env
-  + lint + CTA/attribution tests before publish
+  - lint + CTA/attribution tests before publish
 - **Ads checkpoint runner** — Added `npm run ads:google:checkpoint` to capture
   live campaign/conversion/search-term artifacts and write the v3.2 scorecard
   row for checkpoint cadence operations
@@ -85,6 +95,20 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **Owned capture routing** — Nav, footer, landing CTA, and roadmap now route
+  docs traffic to `docs.forgespace.co`, community traffic to GitHub
+  Discussions, sign-in to `siza.forgespace.co/signin`, and acquisition CTAs to
+  `siza.forgespace.co/signup`
+- **Homepage CTA strategy** — Landing CTA stack now prioritizes docs,
+  discussions, and Siza beta signup over generic app-root or sales-first paths
+- **Free-channel loop contract** — Weekly marketing loop now uses Docs,
+  GitHub Discussions, and Siza beta signup as the canonical owned-capture trio
+- **Visibility goal contract** — Locked the Google Ads pilot to campaign-specific
+  visibility goals, excluded `Inscrição` from bidding optimization, and deferred
+  customer lifecycle optimization until eligible audiences exist
+- **Ads ops runbooks** — Updated GA4/Ads setup and day-ops guidance to enforce
+  Primary/Secondary conversion roles and lifecycle-disable checks during launch
+  and checkpoints
 - **CTA instrumentation surfaces** — Hero, landing CTA, nav, footer, pricing,
   enterprise, and roadmap outbound CTAs now emit GA4 events with location and
   target metadata
@@ -105,6 +129,14 @@ All notable changes to this project will be documented in this file.
   PNG snapshots (`campaign`, `settings`, `conversions`, `keywords`,
   `search-terms`) alongside text extracts and preserves previously filled
   `R$3/R$6/R$8` rows when updating `checkpoint-scorecard-live.csv`
+- **Checkpoint browser targeting** — `ads:google:checkpoint` now accepts
+  `GOOGLE_ADS_CDP_URL`, fails closed on auth/session mismatches, and surfaces
+  ad-blocker interference explicitly instead of silently treating it as missing
+  Ads data
+- **Checkpoint warning reclassification** — Banner-only ad-blocker warnings and
+  generic lifecycle warning copy are now informational when network evidence and
+  underlying lifecycle settings are clean; hard failure remains reserved for
+  auth/session issues and real blocked-request evidence
 - **Landing CTA strategy** — Hero and lower CTA now expose explicit visibility
   paths for GitHub, Contact, and Siza while preserving attribution contracts
 - **Free-channel loop** — Added message-spine alignment step across ads,

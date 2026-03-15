@@ -102,9 +102,7 @@ describe("FeaturesGrid", () => {
 describe("HowItWorks", () => {
   it("renders section heading", () => {
     render(<HowItWorks />);
-    expect(
-      screen.getByText("From prompt to production"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("From prompt to production")).toBeInTheDocument();
   });
 
   it("renders 3 steps with numbers", () => {
@@ -159,34 +157,27 @@ describe("CTASection", () => {
 
   it("renders action buttons", () => {
     render(<CTASection />);
-    expect(screen.getByText("Explore on GitHub")).toBeInTheDocument();
-    expect(screen.getByText("Contact Forge Space")).toBeInTheDocument();
-    expect(screen.getByText("Try Siza Demo")).toBeInTheDocument();
+    expect(screen.getByText("Read the Docs")).toBeInTheDocument();
+    expect(screen.getByText("Join Discussions")).toBeInTheDocument();
+    expect(screen.getByText("Start Siza Beta")).toBeInTheDocument();
   });
 
   it("links to correct destinations", () => {
     render(<CTASection />);
-    const github = screen.getByText("Explore on GitHub").closest("a");
-    expect(github).toHaveAttribute(
+    const docs = screen.getByText("Read the Docs").closest("a");
+    expect(docs).toHaveAttribute("href", "https://docs.forgespace.co/docs");
+    expect(docs).toHaveAttribute("data-fs-cta-event", "fs_cta_docs_click");
+    const discussions = screen.getByText("Join Discussions").closest("a");
+    expect(discussions).toHaveAttribute(
       "href",
-      "https://github.com/Forge-Space",
+      "https://github.com/Forge-Space/siza/discussions",
     );
-    expect(github).toHaveAttribute(
+    expect(discussions).toHaveAttribute(
       "data-fs-cta-event",
-      "fs_cta_github_click",
+      "fs_cta_community_click",
     );
-    const contact = screen.getByText("Contact Forge Space").closest("a");
-    expect(contact).toHaveAttribute(
-      "href",
-      "mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team",
-    );
-    expect(contact).toHaveAttribute(
-      "data-fs-cta-event",
-      "fs_cta_contact_sales_click",
-    );
-    expect(contact).toHaveAttribute("data-fs-pass-attribution", "true");
-    const siza = screen.getByText("Try Siza Demo").closest("a");
-    expect(siza).toHaveAttribute("href", "https://siza.forgespace.co");
+    const siza = screen.getByText("Start Siza Beta").closest("a");
+    expect(siza).toHaveAttribute("href", "https://siza.forgespace.co/signup");
     expect(siza).toHaveAttribute("data-fs-cta-event", "fs_cta_siza_click");
     expect(siza).toHaveAttribute("data-fs-pass-attribution", "true");
   });

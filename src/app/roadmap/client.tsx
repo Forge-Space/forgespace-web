@@ -163,7 +163,7 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
           className="mt-12 flex flex-wrap gap-4"
         >
           <Button
-            href="https://siza.forgespace.co"
+            href="https://siza.forgespace.co/signup"
             external
             size="lg"
             ctaEvent={FORGE_CTA_EVENTS.SIZA}
@@ -171,19 +171,19 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
             ctaLocation="roadmap_primary"
             passAttribution
           >
-            Try Siza
+            Join Siza Beta
             <ArrowRight className="h-4 w-4" />
           </Button>
           <Button
-            href="https://github.com/Forge-Space"
+            href="https://docs.forgespace.co/docs"
             external
             variant="outline"
             size="lg"
-            ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-            ctaTarget="github"
+            ctaEvent={FORGE_CTA_EVENTS.DOCS}
+            ctaTarget="docs"
             ctaLocation="roadmap_secondary"
           >
-            View on GitHub
+            Read the Docs
           </Button>
         </motion.div>
       </Section>

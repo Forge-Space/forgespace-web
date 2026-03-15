@@ -11,8 +11,18 @@ const NAV_LINKS = [
   { label: "Pricing", href: "/pricing" },
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "Roadmap", href: "/roadmap" },
-  { label: "Docs", href: "https://github.com/Forge-Space", external: true },
+  { label: "Docs", href: "https://docs.forgespace.co/docs", external: true },
 ];
+
+function getExternalNavEvent(href: string) {
+  return href.includes("docs.forgespace.co")
+    ? FORGE_CTA_EVENTS.DOCS
+    : FORGE_CTA_EVENTS.GITHUB;
+}
+
+function getExternalNavTarget(href: string) {
+  return href.includes("docs.forgespace.co") ? "docs" : "github";
+}
 
 function ForgeMonogram({ className = "" }: { className?: string }) {
   return (
@@ -75,8 +85,8 @@ export function Nav() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
-                  data-fs-cta-target="github"
+                  data-fs-cta-event={getExternalNavEvent(link.href)}
+                  data-fs-cta-target={getExternalNavTarget(link.href)}
                   data-fs-cta-location={`nav_${link.label.toLowerCase()}`}
                   className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
                 >
@@ -96,7 +106,7 @@ export function Nav() {
 
           <div className="hidden items-center gap-3 md:flex">
             <a
-              href="https://siza.forgespace.co"
+              href="https://siza.forgespace.co/signin"
               target="_blank"
               rel="noopener noreferrer"
               data-fs-cta-event={FORGE_CTA_EVENTS.SIZA}
@@ -108,7 +118,7 @@ export function Nav() {
               Sign in
             </a>
             <Button
-              href="https://siza.forgespace.co"
+              href="https://siza.forgespace.co/signup"
               external
               size="sm"
               ctaEvent={FORGE_CTA_EVENTS.SIZA}
@@ -162,8 +172,8 @@ export function Nav() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMobile}
-                    data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
-                    data-fs-cta-target="github"
+                    data-fs-cta-event={getExternalNavEvent(link.href)}
+                    data-fs-cta-target={getExternalNavTarget(link.href)}
                     data-fs-cta-location={`nav_mobile_${link.label.toLowerCase()}`}
                     className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
                   >
@@ -184,7 +194,7 @@ export function Nav() {
 
             <div className="mt-auto flex flex-col gap-3">
               <a
-                href="https://siza.forgespace.co"
+                href="https://siza.forgespace.co/signin"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobile}
@@ -197,7 +207,7 @@ export function Nav() {
                 Sign in
               </a>
               <Button
-                href="https://siza.forgespace.co"
+                href="https://siza.forgespace.co/signup"
                 external
                 ctaEvent={FORGE_CTA_EVENTS.SIZA}
                 ctaTarget="siza"

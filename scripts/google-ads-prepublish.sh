@@ -99,6 +99,27 @@ if (config.measurement?.primary_event !== "fs_cta_github_click") {
   throw new Error("Primary conversion must be fs_cta_github_click");
 }
 
+const secondaryEvents = JSON.stringify(config.measurement?.secondary_events || []);
+if (secondaryEvents !== JSON.stringify([
+  "fs_cta_contact_sales_click",
+  "fs_cta_siza_click",
+])) {
+  throw new Error("Secondary conversions must stay fs_cta_contact_sales_click and fs_cta_siza_click");
+}
+
+if (config.measurement?.google_ads_goal_scope !== "campaign_specific_visibility") {
+  throw new Error("Google Ads goal scope must stay campaign_specific_visibility");
+}
+
+if (config.measurement?.customer_lifecycle_goal !== "disabled") {
+  throw new Error("Customer lifecycle goal must stay disabled for the visibility pilot");
+}
+
+const excludedPrimaryActions = config.measurement?.excluded_primary_actions || [];
+if (!excludedPrimaryActions.includes("Inscrição")) {
+  throw new Error("Inscrição must remain excluded from bidding optimization");
+}
+
 console.log("[OK] Campaign config guardrails validated");
 '
 
@@ -127,5 +148,9 @@ echo "[OK] Local prepublish checks passed"
 echo "[MANUAL] Google Ads: auto-tagging ON"
 echo "[MANUAL] Google Ads: location option set to Presence"
 echo "[MANUAL] Google Ads: final URL suffix includes ValueTrack params"
+echo "[MANUAL] Google Ads: campaign-specific visibility goals only"
 echo "[MANUAL] Google Ads: fs_cta_github_click imported and set Primary"
+echo "[MANUAL] Google Ads: fs_cta_contact_sales_click and fs_cta_siza_click set Secondary"
+echo "[MANUAL] Google Ads: Inscrição excluded from this campaign's bidding goal set"
+echo "[MANUAL] Google Ads: customer lifecycle / acquisition goals disabled for this campaign"
 echo "[MANUAL] GA4: custom dimensions cta_target and cta_location are active"

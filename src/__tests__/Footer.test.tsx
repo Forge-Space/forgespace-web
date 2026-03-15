@@ -27,6 +27,8 @@ describe("Footer", () => {
   it("renders footer sections", () => {
     render(<Footer />);
     expect(screen.getByText("Siza")).toBeInTheDocument();
+    expect(screen.getByText("Documentation")).toBeInTheDocument();
+    expect(screen.getByText("Discussions")).toBeInTheDocument();
     expect(screen.getByText("Features")).toBeInTheDocument();
     expect(screen.getByText("Ecosystem")).toBeInTheDocument();
     expect(screen.getByText("Enterprise")).toBeInTheDocument();
@@ -45,10 +47,7 @@ describe("Footer", () => {
     const github = screen.getByLabelText("Forge Space on GitHub");
     expect(github).toHaveAttribute("target", "_blank");
     expect(github).toHaveAttribute("rel", "noopener noreferrer");
-    expect(github).toHaveAttribute(
-      "href",
-      "https://github.com/Forge-Space",
-    );
+    expect(github).toHaveAttribute("href", "https://github.com/Forge-Space");
     expect(github).toHaveAttribute("data-fs-cta-event", "fs_cta_github_click");
   });
 
@@ -62,6 +61,28 @@ describe("Footer", () => {
       "href",
       "/pricing",
     );
+  });
+
+  it("tracks docs and community links separately", () => {
+    render(<Footer />);
+
+    const docs = screen.getByText("Documentation").closest("a");
+    const discussions = screen.getByText("Discussions").closest("a");
+    const siza = screen.getByText("Siza").closest("a");
+
+    expect(docs).toHaveAttribute("href", "https://docs.forgespace.co/docs");
+    expect(docs).toHaveAttribute("data-fs-cta-event", "fs_cta_docs_click");
+    expect(docs).toHaveAttribute("data-fs-cta-target", "docs");
+    expect(discussions).toHaveAttribute(
+      "href",
+      "https://github.com/Forge-Space/siza/discussions",
+    );
+    expect(discussions).toHaveAttribute(
+      "data-fs-cta-event",
+      "fs_cta_community_click",
+    );
+    expect(discussions).toHaveAttribute("data-fs-cta-target", "community");
+    expect(siza).toHaveAttribute("href", "https://siza.forgespace.co/signup");
   });
 
   it("renders brand description", () => {

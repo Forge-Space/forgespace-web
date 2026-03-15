@@ -28,7 +28,7 @@ Run once per week, tied to one concrete product proof from the previous 7 days.
    - Next week roadmap bullet
 4. Validate CTA consistency:
    - Hero CTA copy still maps to paid-intent keyword clusters
-   - Footer still routes to Siza, GitHub, and Contact Sales
+   - Footer still routes to Docs, GitHub Discussions, and Siza beta signup
 5. Capture outcomes:
    - CTA events in GA4
    - Top referral source for the week
@@ -40,10 +40,10 @@ Use the same 3-line narrative in ad copy, hero copy, and community posts:
 
 1. Problem: AI codegen is fast but often hard to govern for small teams.
 2. Promise: Forge Space adds practical governance and visibility without heavy platform overhead.
-3. Action: Start at `forgespace.co` and choose Siza, GitHub, or Contact Sales.
+3. Action: Start at `forgespace.co` and choose Docs, GitHub Discussions, or Siza beta signup.
 
 ## Suggested skill-assisted workflow
 
-1. Use `skills.sh/google-ads-strategy` before ad copy refresh.
+1. Use [`google-ads-visibility-ops`](../../../.agents/skills/google-ads-visibility-ops/SKILL.md) before ad copy refresh or checkpoint decisions.
 2. Use `skills.sh/aiwritesanywhere/competitive-ads-intelligence` before changing claims.
 3. Use `skills.sh/chadcodes/free-tool-arsenal` to source no-cost distribution channels.

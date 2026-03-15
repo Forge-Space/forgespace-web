@@ -4,7 +4,11 @@ import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 const FOOTER_LINKS = {
   Product: [
-    { label: "Siza", href: "https://siza.forgespace.co", external: true },
+    {
+      label: "Siza",
+      href: "https://siza.forgespace.co/signup",
+      external: true,
+    },
     { label: "Features", href: "/features" },
     { label: "Pricing", href: "/pricing" },
     { label: "Roadmap", href: "/roadmap" },
@@ -17,7 +21,12 @@ const FOOTER_LINKS = {
     },
     {
       label: "Documentation",
-      href: "https://github.com/Forge-Space/siza#readme",
+      href: "https://docs.forgespace.co/docs",
+      external: true,
+    },
+    {
+      label: "Discussions",
+      href: "https://github.com/Forge-Space/siza/discussions",
       external: true,
     },
     { label: "Ecosystem", href: "/ecosystem" },
@@ -42,6 +51,44 @@ const FOOTER_LINKS = {
   ],
 };
 
+function getFooterEvent(href: string) {
+  if (href.includes("siza.forgespace.co")) {
+    return FORGE_CTA_EVENTS.SIZA;
+  }
+  if (href.includes("docs.forgespace.co")) {
+    return FORGE_CTA_EVENTS.DOCS;
+  }
+  if (href.includes("/discussions")) {
+    return FORGE_CTA_EVENTS.COMMUNITY;
+  }
+  if (href.includes("github.com/Forge-Space")) {
+    return FORGE_CTA_EVENTS.GITHUB;
+  }
+  if (href.startsWith("mailto:")) {
+    return FORGE_CTA_EVENTS.CONTACT_SALES;
+  }
+  return undefined;
+}
+
+function getFooterTarget(href: string) {
+  if (href.includes("siza.forgespace.co")) {
+    return "siza";
+  }
+  if (href.includes("docs.forgespace.co")) {
+    return "docs";
+  }
+  if (href.includes("/discussions")) {
+    return "community";
+  }
+  if (href.includes("github.com/Forge-Space")) {
+    return "github";
+  }
+  if (href.startsWith("mailto:")) {
+    return "contact_sales";
+  }
+  return undefined;
+}
+
 function FooterColumn({
   title,
   links,
@@ -62,24 +109,8 @@ function FooterColumn({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                data-fs-cta-event={
-                  link.href.includes("siza.forgespace.co")
-                    ? FORGE_CTA_EVENTS.SIZA
-                    : link.href.includes("github.com/Forge-Space")
-                      ? FORGE_CTA_EVENTS.GITHUB
-                      : link.href.startsWith("mailto:")
-                        ? FORGE_CTA_EVENTS.CONTACT_SALES
-                        : undefined
-                }
-                data-fs-cta-target={
-                  link.href.includes("siza.forgespace.co")
-                    ? "siza"
-                    : link.href.includes("github.com/Forge-Space")
-                      ? "github"
-                      : link.href.startsWith("mailto:")
-                        ? "contact_sales"
-                        : undefined
-                }
+                data-fs-cta-event={getFooterEvent(link.href)}
+                data-fs-cta-target={getFooterTarget(link.href)}
                 data-fs-cta-location={`footer_${title.toLowerCase()}_${link.label
                   .toLowerCase()
                   .replace(/\s+/g, "_")}`}

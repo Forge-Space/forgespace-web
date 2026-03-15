@@ -53,6 +53,22 @@ Run locally:
 python scripts/smoke/production_smoke.py --output-dir artifacts/smoke
 ```
 
+## Distribution Ops
+
+`distribution:check` is the owned-capture gate for docs, discussions, sign-in,
+and signup traffic.
+
+```bash
+npm run distribution:check
+```
+
+It runs the targeted CTA tests, production build, and live route checks, then
+writes markdown and JSON evidence to `artifacts/distribution-check/`.
+
+`.github/workflows/distribution-weekly.yml` builds on the same evidence every
+Monday to refresh one distribution issue with package links, MCP Registry
+visibility, and a drafted weekly post.
+
 ## Live Ecosystem Sync
 
 Marketing pages consume a server-only GitHub metadata sync for the Forge Space
@@ -111,6 +127,8 @@ Tracked CTA events:
 - `fs_cta_github_click` (primary optimization event)
 - `fs_cta_contact_sales_click` (secondary)
 - `fs_cta_siza_click` (secondary)
+- `fs_cta_docs_click`
+- `fs_cta_community_click`
 
 First-touch attribution contract stored in browser localStorage:
 
@@ -125,7 +143,11 @@ Google Ads campaign assets for the low-cost BR test are in:
   - `$10` total-equivalent cap (`R$50` hard stop, `R$5/day`)
   - EN-only active ad groups (`smb_en`, `oss_en`) with a 60/40 keyword mix
   - intent split landing: `/enterprise` for `smb_en`, `/ecosystem` for `oss_en`
+  - campaign-specific visibility goals only
   - primary conversion set to `fs_cta_github_click`
+  - `fs_cta_contact_sales_click` and `fs_cta_siza_click` kept secondary
+  - `Inscrição` excluded from bidding optimization
+  - customer lifecycle disabled until audience prerequisites exist
   - `smb_pt` paused until a PT landing exists
   - Search-only with strict negative pruning cadence (`R$3`, `R$6`, `R$8`)
 
@@ -135,11 +157,33 @@ Prepublish command:
 npm run ads:google:prepublish
 ```
 
-Checkpoint command (requires a logged-in Google Ads Chrome session with CDP on `9222`):
+Checkpoint command (supports any logged-in Google Ads Chrome session exposed by
+`GOOGLE_ADS_CDP_URL`; use a clean profile on `9223` for account-goal cleanup):
 
 ```bash
+export GOOGLE_ADS_CDP_URL=http://127.0.0.1:9223
 npm run ads:google:checkpoint
 ```
+
+Recommended clean Chrome launch for Ads automation:
+
+```bash
+open -na "Google Chrome" --args \
+  --remote-debugging-port=9223 \
+  --user-data-dir=/tmp/forge-space-google-ads-clean \
+  --disable-extensions \
+  --new-window https://ads.google.com/aw/conversions
+```
+
+The checkpoint fails closed on:
+
+- unauthenticated or non-Ads sessions
+- real ad-blocker / extension interference with blocked-request evidence
+
+Warning-only checkpoint signals:
+
+- Google Ads ad-blocker banner text without blocked-request evidence
+- generic lifecycle warning copy on the conversions summary when the lifecycle editor has no selected audience segments
 
 Checkpoint output:
 
@@ -156,16 +200,19 @@ Important campaign files:
 - `rsa.json` — baseline/challenger RSA variants
 - `assets.json` — sitelinks/callouts/snippets/image/logo/business name
 - `ga4-ads-setup.md` — GA4 + Ads conversion and custom-dimension contract
+  including campaign-specific goal scope and lifecycle-disable policy
 
 ## Docker
 
 **Development (hot reload):**
+
 - `./scripts/dev.sh up` or `npm run dev:docker` — foreground
 - `./scripts/dev.sh up-d` — detached
 - `./scripts/dev.sh down` — stop
 - `./scripts/dev.sh logs` — follow logs
 
 **Production:**
+
 ```bash
 docker compose -f docker-compose.prod.yml up -d --build
 ```

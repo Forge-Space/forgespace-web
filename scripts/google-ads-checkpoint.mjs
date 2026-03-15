@@ -4,6 +4,8 @@ import { chromium } from "playwright";
 
 const CAMPAIGN_ID = process.env.GOOGLE_ADS_CAMPAIGN_ID || "23643368321";
 const CAMPAIGN_NAME = process.env.GOOGLE_ADS_CAMPAIGN_NAME || "forgespace_br_en_visibility_v3";
+const GOOGLE_ADS_CDP_URL = process.env.GOOGLE_ADS_CDP_URL || "http://127.0.0.1:9222";
+const GOOGLE_ADS_OPERATOR_MODE = process.env.GOOGLE_ADS_OPERATOR_MODE || "full_automation";
 const ROOT = process.cwd();
 const CAMPAIGN_DIR = path.join(
   ROOT,
@@ -60,6 +62,10 @@ function isNumericToken(raw) {
 
 function formatCsvNumber(raw, digits = 2) {
   return raw.toFixed(digits);
+}
+
+function containsAny(text, patterns) {
+  return patterns.some((pattern) => pattern.test(text));
 }
 
 function extractCampaignMetrics(campaignText) {
@@ -121,6 +127,45 @@ function extractConversions(conversionText) {
   }
 
   return result;
+}
+
+function extractNamedConversion(conversionText, conversionName) {
+  const tokens = tokenize(conversionText);
+  const idx = tokens.findIndex((token) => token.includes(conversionName));
+  if (idx < 0) {
+    return { status: "missing", value: 0 };
+  }
+
+  const window = tokens.slice(idx, idx + 12);
+  const status =
+    window.find((token) => /Principal|Secund|Primary|Secondary|Inativo|Inactive/i.test(token)) ||
+    "unknown";
+  const numericToken = window.find((token) => isNumericToken(token)) || "0";
+
+  return { status, value: parseBrNumber(numericToken) };
+}
+
+function extractGoalUsage(conversionText, goalName) {
+  const tokens = tokenize(conversionText);
+  const idx = tokens.findIndex((token) => token === goalName);
+  if (idx < 0) {
+    return { status: "missing", campaigns_using_goal: null };
+  }
+
+  const window = tokens.slice(idx, idx + 8);
+  const usage = window.find((token) => /^\d+\s+de\s+\d+\s+campanhas$/i.test(token)) || null;
+  return {
+    status: usage ? "present" : "unknown",
+    campaigns_using_goal: usage,
+  };
+}
+
+function extractLifecycleSignals(conversionText) {
+  return {
+    section_present: /Otimização do ciclo de vida do cliente|Customer lifecycle/i.test(conversionText),
+    warning_present: /aquisição de clientes|clientes inativos|customer acquisition|inactive customers/i
+      .test(conversionText),
+  };
 }
 
 function extractDelimitedTerms(text) {
@@ -203,6 +248,134 @@ function determineDecision(metrics, primaryCount, irrelevantShare) {
   return "monitor_until_next_checkpoint";
 }
 
+function isAdTechUrl(url) {
+  return /doubleclick|googlesyndication|googleadservices|pagead|googletagservices|ga-audiences/i
+    .test(url);
+}
+
+function isActualBlockingFailure(failure) {
+  return /ERR_BLOCKED_BY_CLIENT|blocked by client|ERR_NAME_NOT_RESOLVED|ERR_CONNECTION_REFUSED/i
+    .test(failure.error);
+}
+
+function detectAuthRequirement(url, text) {
+  return containsAny(`${url}\n${text}`, [
+    /accounts\.google\.com/i,
+    /ServiceLogin/i,
+    /signin/i,
+    /Fazer login/i,
+    /Sign in/i,
+    /Escolha uma conta/i,
+    /Choose an account/i,
+    /Verifique se é você/i,
+    /2-Step Verification/i,
+    /Verificação em duas etapas/i,
+  ]);
+}
+
+function assertAdsSurface(pageName, url, text) {
+  if (detectAuthRequirement(url, text)) {
+    throw new Error(
+      `[AUTH_REQUIRED] ${pageName} requires interactive Google login in the configured CDP browser session`,
+    );
+  }
+
+  if (!/ads\.google\.com/i.test(url) && !/Google Ads/i.test(text)) {
+    throw new Error(
+      `[SESSION_INVALID] ${pageName} did not load a Google Ads surface (url=${url || "unknown"})`,
+    );
+  }
+}
+
+function detectAdBlockerSignals(pageInventory, pageSnapshots) {
+  const inventoryText = pageInventory
+    .map((entry) => `${entry.title} ${entry.url}`)
+    .join("\n");
+  const snapshotText = pageSnapshots.map((entry) => entry.text).join("\n");
+  const extensionDetected = containsAny(inventoryText, [
+    /AdBlock/i,
+    /uBlock/i,
+    /chrome-extension:/i,
+    /chrome:\/\/extensions/i,
+  ]);
+  const bannerPresent = containsAny(snapshotText, [
+    /Turn off ad blockers/i,
+    /Google Ads can't work when you're using an ad blocker/i,
+    /Desative os bloqueadores de anúncios/i,
+  ]);
+
+  return {
+    extension_detected: extensionDetected,
+    banner_present: bannerPresent,
+  };
+}
+
+function extractLifecycleSelections(text) {
+  const matches = [...text.matchAll(/(\d+)\s+selecionadas?\s+\(máximo de \d+\)/gi)];
+  const selectedAudienceCount = matches.reduce(
+    (total, match) => total + Number.parseInt(match[1] || "0", 10),
+    0,
+  );
+  return {
+    selected_audience_count: selectedAudienceCount,
+    selected_audience_groups: matches.map((match) => match[0]),
+  };
+}
+
+async function inspectLifecycleEditor(page) {
+  const lifecycleEditButton = page.getByText("Editar meta", { exact: true }).first();
+  if (!(await lifecycleEditButton.count())) {
+    return {
+      available: false,
+      underlying_settings_clean: false,
+      selected_audience_count: null,
+      selected_audience_groups: [],
+      warning_text_present: false,
+    };
+  }
+
+  await lifecycleEditButton.click({ force: true, timeout: 20000 });
+  await page.waitForTimeout(2500);
+  const drawerText = await page.evaluate(() => document.body.innerText);
+  const selections = extractLifecycleSelections(drawerText);
+  const closeIcons = page.getByText("close", { exact: true });
+  const visibleCloseIndexes = [];
+
+  for (let i = 0; i < await closeIcons.count(); i += 1) {
+    if (await closeIcons.nth(i).isVisible().catch(() => false)) {
+      visibleCloseIndexes.push(i);
+    }
+  }
+
+  const closeIndex = visibleCloseIndexes.at(-1);
+  if (closeIndex !== undefined) {
+    await closeIcons.nth(closeIndex).click({ force: true, timeout: 10000 }).catch(() => {});
+    await page.waitForTimeout(1000);
+  }
+
+  return {
+    available: true,
+    underlying_settings_clean: selections.selected_audience_count === 0,
+    selected_audience_count: selections.selected_audience_count,
+    selected_audience_groups: selections.selected_audience_groups,
+    warning_text_present: /aquisição de clientes|clientes inativos|customer acquisition|inactive customers/i
+      .test(drawerText),
+  };
+}
+
+function classifyBlockingSignals(adBlockerSignals, requestFailures) {
+  const relevantFailures = requestFailures.filter((failure) => isAdTechUrl(failure.url));
+  const actualBlockingFailures = relevantFailures.filter(isActualBlockingFailure);
+
+  return {
+    ...adBlockerSignals,
+    relevant_failures: relevantFailures,
+    actual_blocking_failures: actualBlockingFailures,
+    actual_blocking_detected:
+      adBlockerSignals.extension_detected || actualBlockingFailures.length > 0,
+  };
+}
+
 function readExistingScorecard() {
   if (!fs.existsSync(SCORECARD_LIVE)) return {};
 
@@ -256,60 +429,156 @@ function writeScorecard(metrics, checkpoint, primaryCount, irrelevantShare, deci
 
 async function getPageText(page, url) {
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
-  await page.waitForTimeout(8000);
-  return page.evaluate(() => document.body.innerText);
+  const deadline = Date.now() + 25000;
+  while (Date.now() < deadline) {
+    await page.waitForTimeout(1500);
+    const text = await page.evaluate(() => document.body.innerText);
+    const conversionsReady = !/\/aw\/conversions/.test(url) || containsAny(text, [
+      /fs_cta_github_click/i,
+      /\bInscrição\b/i,
+      /Otimização do ciclo de vida do cliente/i,
+    ]);
+    const keywordsReady = !/\/aw\/keywords/.test(url) || containsAny(text, [
+      new RegExp(CAMPAIGN_NAME.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+      /Termos de pesquisa/i,
+      /Nenhum termo de pesquisa/i,
+    ]);
+
+    if (conversionsReady && keywordsReady) {
+      return {
+        text,
+        url: page.url(),
+      };
+    }
+  }
+  const text = await page.evaluate(() => document.body.innerText);
+  return {
+    text,
+    url: page.url(),
+  };
 }
 
 async function capturePage(page, url, artifactDir, name) {
-  const text = await getPageText(page, url);
-  fs.writeFileSync(path.join(artifactDir, `${name}.txt`), text);
+  const snapshot = await getPageText(page, url);
+  fs.writeFileSync(path.join(artifactDir, `${name}.txt`), snapshot.text);
   await page.screenshot({ path: path.join(artifactDir, `${name}.png`), fullPage: true });
-  return text;
+  return snapshot;
+}
+
+async function listPages(context) {
+  const pages = context.pages();
+  return Promise.all(
+    pages.map(async (candidate) => ({
+      url: candidate.url(),
+      title: await candidate.title().catch(() => ""),
+    })),
+  );
+}
+
+async function extractBidSignals(page) {
+  return page.evaluate(() => {
+    const inputSignals = Array.from(document.querySelectorAll("input")).map((element) => ({
+      ariaLabel: element.getAttribute("aria-label") || "",
+      ariaValueText: element.getAttribute("aria-valuetext") || "",
+      value: (element.value || "").trim(),
+      type: element.getAttribute("type") || "",
+    }));
+    const labeledText = Array.from(
+      document.querySelectorAll("input, label, span, div, button"),
+    )
+      .map((element) =>
+        [
+          element.getAttribute("aria-label") || "",
+          element.getAttribute("aria-valuetext") || "",
+          element.textContent || "",
+        ]
+          .join(" ")
+          .trim(),
+      )
+      .filter(Boolean);
+
+    return {
+      inputSignals,
+      labeledText,
+    };
+  });
+}
+
+function hasCpcCap080(settingsText, settingsBidText, bidSignals) {
+  const directInputMatch = bidSignals.inputSignals.some((signal) =>
+    /0[,.]80/.test(signal.value || ""),
+  );
+  if (directInputMatch) return true;
+
+  const labeledMatch = bidSignals.labeledText.some((text) =>
+    /(cpc|lance|bid|clique|maximize clicks|maximizar cliques|limite máximo)/i.test(text) &&
+    /0[,.]80/.test(text),
+  );
+  if (labeledMatch) return true;
+
+  return /(cpc|lance|bid|limite máximo|maximizar cliques)[\s\S]{0,80}0[,.]80/i.test(
+    `${settingsText}\n${settingsBidText}`,
+  );
 }
 
 async function run() {
   const artifactDir = path.join(ARTIFACT_BASE, `${todayDate()}-checkpoint`);
   fs.mkdirSync(artifactDir, { recursive: true });
+  const errorArtifact = path.join(artifactDir, "checkpoint-error.json");
+  if (fs.existsSync(errorArtifact)) {
+    fs.unlinkSync(errorArtifact);
+  }
 
-  const browser = await chromium.connectOverCDP("http://127.0.0.1:9222");
+  const browser = await chromium.connectOverCDP(GOOGLE_ADS_CDP_URL);
   const context = browser.contexts()[0];
   const page = context.pages()[0] || (await context.newPage());
+  const requestFailures = [];
+  page.on("requestfailed", (request) => {
+    requestFailures.push({
+      url: request.url(),
+      error: request.failure()?.errorText || "",
+    });
+  });
+  const pageInventory = await listPages(context);
 
-  const campaignText = await capturePage(
+  const campaignSnapshot = await capturePage(
     page,
     "https://ads.google.com/aw/campaigns",
     artifactDir,
     "campaign",
   );
-  const settingsText = await capturePage(
+  assertAdsSurface("campaign", campaignSnapshot.url, campaignSnapshot.text);
+
+  const settingsSnapshot = await capturePage(
     page,
     `https://ads.google.com/aw/settings/campaign/search?campaignId=${CAMPAIGN_ID}`,
     artifactDir,
     "settings",
   );
+  assertAdsSurface("settings", settingsSnapshot.url, settingsSnapshot.text);
   const bidPanel = page.getByText("Maximizar cliques", { exact: true }).first();
   if (await bidPanel.count()) {
     await bidPanel.click({ force: true, timeout: 20000 });
     await page.waitForTimeout(2000);
   }
   const settingsBidText = await page.evaluate(() => document.body.innerText);
-  const bidMoneyValues = await page.evaluate(() =>
-    Array.from(document.querySelectorAll("input"))
-      .filter((el) => el.getAttribute("type") === "money64")
-      .map((el) => (el.value || "").trim()),
-  );
-  const conversionText = await capturePage(
+  const bidSignals = await extractBidSignals(page);
+  const conversionSnapshot = await capturePage(
     page,
     "https://ads.google.com/aw/conversions",
     artifactDir,
     "conversions",
   );
-  await capturePage(
+  assertAdsSurface("conversions", conversionSnapshot.url, conversionSnapshot.text);
+  const lifecycleEditor = await inspectLifecycleEditor(page);
+
+  const keywordsSnapshot = await capturePage(
     page,
     `https://ads.google.com/aw/keywords?campaignId=${CAMPAIGN_ID}`,
     artifactDir,
     "keywords",
   );
+  assertAdsSurface("keywords", keywordsSnapshot.url, keywordsSnapshot.text);
   const searchTermsToggle = page.getByText("Termos de pesquisa", { exact: true }).first();
   if (await searchTermsToggle.count()) {
     try {
@@ -322,9 +591,28 @@ async function run() {
   const searchTermsText = await page.evaluate(() => document.body.innerText);
   fs.writeFileSync(path.join(artifactDir, "search-terms.txt"), searchTermsText);
   await page.screenshot({ path: path.join(artifactDir, "search-terms.png"), fullPage: true });
+  const blockingSignals = classifyBlockingSignals(
+    detectAdBlockerSignals(pageInventory, [
+      campaignSnapshot,
+      settingsSnapshot,
+      conversionSnapshot,
+      keywordsSnapshot,
+      { text: searchTermsText, url: page.url() },
+    ]),
+    requestFailures,
+  );
 
-  const metrics = extractCampaignMetrics(campaignText);
-  const conversions = extractConversions(conversionText);
+  if (blockingSignals.actual_blocking_detected) {
+    throw new Error(
+      `[AD_BLOCKER_DETECTED] ${JSON.stringify(blockingSignals)}`,
+    );
+  }
+
+  const metrics = extractCampaignMetrics(campaignSnapshot.text);
+  const conversions = extractConversions(conversionSnapshot.text);
+  const signupConversion = extractNamedConversion(conversionSnapshot.text, "Inscrição");
+  const signupGoalUsage = extractGoalUsage(conversionSnapshot.text, "Inscrição");
+  const lifecycleSignals = extractLifecycleSignals(conversionSnapshot.text);
   const searchTerms = metrics.clicks === 0 ? [] : extractSearchTerms(searchTermsText);
   const classification = classifySearchTerms(searchTerms, readNegativeKeywords());
   const primary = conversions.fs_cta_github_click?.value || 0;
@@ -335,9 +623,31 @@ async function run() {
     captured_at: nowIso(),
     campaign_id: CAMPAIGN_ID,
     campaign_name: CAMPAIGN_NAME,
+    cdp_url: GOOGLE_ADS_CDP_URL,
+    operator_mode: GOOGLE_ADS_OPERATOR_MODE,
     checkpoint_brl: checkpoint,
     metrics,
     conversions,
+    visibility_goal_audit: {
+      goal_scope: "campaign_specific_visibility",
+      primary_action: "fs_cta_github_click",
+      secondary_actions: [
+        "fs_cta_contact_sales_click",
+        "fs_cta_siza_click",
+      ],
+      excluded_primary_actions: ["Inscrição"],
+      customer_lifecycle_goal: "disabled",
+      observed: {
+        signup_conversion: signupConversion,
+        signup_goal_usage: signupGoalUsage,
+        lifecycle: lifecycleSignals,
+        lifecycle_editor: lifecycleEditor,
+      },
+    },
+    browser_session: {
+      pages: pageInventory,
+      ad_blocker_signals: blockingSignals,
+    },
     search_terms: {
       total: searchTerms.length,
       terms: searchTerms,
@@ -349,17 +659,26 @@ async function run() {
     },
     decision,
     guardrails: {
-      budget_r5_day: /R\$\s*5,00\/dia/.test(settingsText.replace(/\u00a0/g, " ")),
-      search_only: /Rede de pesquisa do Google/.test(settingsText) &&
-        !/Parceiros de pesquisa/.test(settingsText) &&
-        !/Rede de Display/.test(settingsText),
-      english_language: /Idiomas[\s\S]{0,80}English/.test(settingsText),
-      brazil_location: /Locais[\s\S]{0,80}Brasil/.test(settingsText),
-      cpc_cap_080:
-        /0,80/.test(settingsText) ||
-        /0,80/.test(settingsBidText) ||
-        bidMoneyValues.includes("0,80"),
-      conversion_primary_github: /fs_cta_github_click[\s\S]{0,120}Principal/.test(conversionText),
+      budget_r5_day: /R\$\s*5,00\/dia/.test(settingsSnapshot.text.replace(/\u00a0/g, " ")),
+      search_only: /Rede de pesquisa do Google/.test(settingsSnapshot.text) &&
+        !/Parceiros de pesquisa/.test(settingsSnapshot.text) &&
+        !/Rede de Display/.test(settingsSnapshot.text),
+      english_language: /Idiomas[\s\S]{0,80}English/.test(settingsSnapshot.text),
+      brazil_location: /Locais[\s\S]{0,80}Brasil/.test(settingsSnapshot.text),
+      cpc_cap_080: hasCpcCap080(settingsSnapshot.text, settingsBidText, bidSignals),
+      conversion_primary_github:
+        /fs_cta_github_click[\s\S]{0,120}Principal/.test(conversionSnapshot.text),
+      contact_sales_secondary:
+        /fs_cta_contact_sales_click[\s\S]{0,120}(Secund|Secondary)/.test(conversionSnapshot.text),
+      siza_secondary:
+        /fs_cta_siza_click[\s\S]{0,120}(Secund|Secondary)/.test(conversionSnapshot.text),
+      signup_not_primary:
+        !/Principal|Primary/.test(signupConversion.status) ||
+        /^0\s+de\s+\d+\s+campanhas$/i.test(signupGoalUsage.campaigns_using_goal || ""),
+      no_customer_lifecycle_warning: lifecycleEditor.underlying_settings_clean,
+      lifecycle_warning_text_present: lifecycleSignals.warning_present,
+      ad_blocker_banner_present: blockingSignals.banner_present,
+      actual_blocking_detected: blockingSignals.actual_blocking_detected,
     },
   };
 
@@ -371,6 +690,18 @@ async function run() {
 }
 
 run().catch((error) => {
+  const artifactDir = path.join(ARTIFACT_BASE, `${todayDate()}-checkpoint`);
+  fs.mkdirSync(artifactDir, { recursive: true });
+  const diagnostic = {
+    captured_at: nowIso(),
+    cdp_url: GOOGLE_ADS_CDP_URL,
+    operator_mode: GOOGLE_ADS_OPERATOR_MODE,
+    error: String(error),
+  };
+  fs.writeFileSync(
+    path.join(artifactDir, "checkpoint-error.json"),
+    JSON.stringify(diagnostic, null, 2),
+  );
   console.error(String(error));
   process.exit(1);
 });

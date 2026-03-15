@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, BookOpen, MessageSquare } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
@@ -35,31 +35,31 @@ export function CTASection() {
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center">
             <Button
-              href="https://github.com/Forge-Space"
+              href="https://docs.forgespace.co/docs"
               external
               size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-              ctaTarget="github"
+              ctaEvent={FORGE_CTA_EVENTS.DOCS}
+              ctaTarget="docs"
               ctaLocation="landing_cta_primary"
             >
-              Explore on GitHub
+              <BookOpen className="w-4 h-4" />
+              Read the Docs
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button
-              href="mailto:hello@forgespace.co?subject=Forge%20Space%20for%20my%20team"
+              href="https://github.com/Forge-Space/siza/discussions"
               external
               variant="outline"
               size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
-              ctaTarget="contact_sales"
+              ctaEvent={FORGE_CTA_EVENTS.COMMUNITY}
+              ctaTarget="community"
               ctaLocation="landing_cta_secondary"
-              passAttribution
             >
-              <Mail className="w-4 h-4" />
-              Contact Forge Space
+              <MessageSquare className="w-4 h-4" />
+              Join Discussions
             </Button>
             <Button
-              href="https://siza.forgespace.co"
+              href="https://siza.forgespace.co/signup"
               external
               variant="ghost"
               size="lg"
@@ -68,7 +68,7 @@ export function CTASection() {
               ctaLocation="landing_cta_tertiary"
               passAttribution
             >
-              Try Siza Demo
+              Start Siza Beta
             </Button>
           </div>
         </motion.div>
