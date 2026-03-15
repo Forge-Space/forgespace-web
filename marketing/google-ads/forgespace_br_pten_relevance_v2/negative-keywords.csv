@@ -35,3 +35,20 @@ campaign,tickets,broad,entertainment-noise,
 campaign,lyrics,broad,entertainment-noise,
 campaign,theater,broad,entertainment-noise,
 campaign,backstage pass,phrase,entertainment-noise,
+campaign,pitch deck,phrase,startup-noise,investor/fundraising intent — not our buyer
+campaign,investor,broad,startup-noise,fundraising intent
+campaign,funding,broad,startup-noise,fundraising intent — not platform engineering
+campaign,venture capital,phrase,startup-noise,VC research intent
+campaign,seed round,phrase,startup-noise,fundraising intent
+campaign,series a,phrase,startup-noise,fundraising intent
+campaign,github actions,phrase,dev-tool-noise,CI/CD tool — different product category
+campaign,github copilot,phrase,dev-tool-noise,AI coding assistant — different category
+campaign,copilot,broad,dev-tool-noise,Microsoft Copilot confusion
+campaign,vercel,broad,dev-tool-noise,hosting platform — different category
+campaign,netlify,broad,dev-tool-noise,hosting platform — different category
+campaign,heroku,broad,dev-tool-noise,hosting platform — different category
+campaign,how to,phrase,low-intent-research,informational intent — not buyer
+campaign,what is,phrase,low-intent-research,informational intent — not buyer
+campaign,learn,broad,low-intent-research,educational intent — not buyer
+campaign,free template,phrase,freebie,template seekers — not platform buyers
+campaign,free tool,phrase,freebie,tool seekers — not platform buyers
