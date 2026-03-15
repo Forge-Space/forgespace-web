@@ -36,7 +36,7 @@ metadata:
 marketing/google-ads/forgespace_br_pten_relevance_v2/
   campaign-config.json       — settings, stop/continue rules
   checkpoint-scorecard-live.csv — live metrics at each checkpoint
-  rsa.json                   — ad copy source of truth (v3.4)
+  rsa.json                   — ad copy source of truth (v3.5, 6 ads across 3 groups)
   keywords.csv               — positive keywords
   negative-keywords.csv      — negative keywords
   assets.json                — sitelinks, callouts, snippets
@@ -44,6 +44,16 @@ marketing/google-ads/forgespace_br_pten_relevance_v2/
   ops-playbook.md            — full manual ops reference
   day1-ops.md                — upload instructions
 ```
+
+## Campaign Structure (current)
+
+| Ad group | Keywords | Landing page | Ads | Primary CTA |
+|----------|----------|-------------|-----|-------------|
+| `smb_en` | 6 (IDP, Backstage, Platform Eng) | `/` | baseline + challenger | GitHub ✅ |
+| `oss_en` | 6 (OSS IDP, Dev Platform GitHub) | `/ecosystem` | baseline + challenger | GitHub ✅ |
+| `startups_en` | 6 (IDP for startups, Dev Platform, PE Startups) | `/startups` | baseline + challenger | GitHub ✅ |
+
+Budget: R$10/day · CPC cap: R$2.50 · Hard stop: R$100 · Negatives: 53
 
 ## Checkpoint Workflow (R$10 / R$30 / R$60)
 
@@ -142,12 +152,18 @@ npm run ads:google:generate-upload
 
 | Theme | Examples | Action |
 |-------|---------|--------|
-| Employment | job, salary, internship, vaga | Already blocked |
-| Education | tutorial, bootcamp, certification, curso | Already blocked |
-| Entertainment | concert, ticket, lyrics, backstage pass | Already blocked |
-| Download | apk, crack, download, pdf | Already blocked |
-| Design noise | logo, canva, ppt, slides | Already blocked |
+| Employment | job, salary, internship, vaga | Already blocked (8) |
+| Education | tutorial, bootcamp, certification, curso | Already blocked (7) |
+| Entertainment | concert, ticket, lyrics, backstage pass | Already blocked (6) |
+| Download | apk, crack, download, pdf | Already blocked (3) |
+| Design noise | logo, canva, ppt, slides | Already blocked (4) |
+| Startup noise | pitch deck, investor, funding, VC, seed round | Already blocked (6) |
+| Dev tool noise | github actions, github copilot, vercel, netlify, heroku | Already blocked (6) |
+| Low-intent research | how to, what is, learn | Already blocked (3) |
+| Freebie | free template, free tool, template free | Already blocked (5) |
 | New irrelevant terms | Found in search terms report | Add immediately |
+
+Total: 53 negatives in `negative-keywords.csv`.
 
 ## Commit Convention for Ops Changes
 
