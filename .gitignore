@@ -42,3 +42,7 @@ next-env.d.ts
 
 # google ads checkpoint artifacts
 marketing/google-ads/**/artifacts/
+
+# local session artifacts and editor config
+/artifacts/
+opencode.jsonc
