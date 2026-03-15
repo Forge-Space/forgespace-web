@@ -1,4 +1,4 @@
-# Forge Space Visibility Micro-Pilot Ops (v3.3)
+# Forge Space Visibility Micro-Pilot Ops (v3.5)
 
 ## Uploading changes to Google Ads (recommended path)
 
@@ -18,49 +18,38 @@ sitelinks, callouts, and snippets in Google Ads Editor bulk-upload format.
 
 ---
 
-## Pre-publish
+## Pre-publish checklist
 
-1. Run local prepublish checks:
-   - `npm run ads:google:prepublish`
-2. Validate RSA ads (char limits, URLs):
-   - `DRY_RUN=1 npm run ads:google:publish-rsa`
-3. Validate keywords (format, match types):
-   - `DRY_RUN=1 npm run ads:google:publish-keywords`
-4. Run one UTM-tagged visit and click one outbound CTA:
-   - `https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
-5. In GA4 DebugView, verify events:
-   - `fs_cta_github_click` (primary)
-   - `fs_cta_contact_sales_click` (secondary)
-   - `fs_cta_siza_click` (secondary)
-6. In Google Ads, verify imported GA4 conversion `fs_cta_github_click` is set to Primary.
-7. In GA4, verify custom dimensions exist and are receiving values:
-   - `cta_target`
-   - `cta_location`
+Run before any campaign edits:
 
-## Campaign settings (already applied)
+```bash
+NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX npm run ads:google:prepublish
+```
 
-These settings were applied directly in Google Ads on 2026-03-15:
+This validates: config guardrails, keyword mix (smb_en=6, oss_en=6, startups_en=6),
+keyword coverage, GA tag, negative conflicts, 56 tracking tests, RSA char limits, URL routes.
+
+## Campaign settings (applied 2026-03-15)
 
 1. Campaign name: `forgespace_br_en_visibility_v3`
 2. Goal: Website traffic with visibility optimization
 3. Networks: Google Search only (Search Partners OFF, Display OFF)
 4. Targeting: Brazil, English only, Presence
-5. Budget: `R$10/day`, CPC cap `R$2.50`
-6. AI Max: **OFF** (was causing headline/URL drift)
-7. Ad groups: `smb_en` + `oss_en` enabled, `smb_pt` paused
+5. Budget: `R$10/day`, CPC cap `R$2.50`, hard stop `R$100`
+6. AI Max: **OFF** (causes headline/URL drift — never enable)
+7. Ad groups: `smb_en` + `oss_en` + `startups_en` enabled, `smb_pt` paused
 
-## Keyword update (NEEDS ACTION)
+## Ad group structure
 
-Old keywords were too long-tail (4-6 words, near-zero volume).
-New keywords are 2-3 words with broader search volume.
+| Ad group | Keywords | Landing page | Ads |
+|----------|----------|-------------|-----|
+| `smb_en` | 6 (IDP, Backstage, Platform Eng) | `forgespace.co/` | baseline + challenger |
+| `oss_en` | 6 (OSS IDP, Dev Platform GitHub) | `forgespace.co/ecosystem` | baseline + challenger |
+| `startups_en` | 6 (IDP for startups, Dev Platform, PE Startups) | `forgespace.co/startups` | baseline + challenger |
 
-1. In Google Ads, go to Keywords for each ad group
-2. Pause ALL existing keywords
-3. Run `DRY_RUN=1 npm run ads:google:publish-keywords` to get formatted output
-4. Copy the keywords from the "COPY-PASTE FOR GOOGLE ADS UI" section
-5. In each ad group, click "+" > "Keywords" > paste > set default CPC to R$2.50
+## Keyword reference
 
-**smb_en (8 keywords):**
+**smb_en (6 keywords):**
 ```
 [internal developer platform]
 "internal developer platform"
@@ -68,8 +57,6 @@ New keywords are 2-3 words with broader search volume.
 "backstage alternative"
 [platform engineering tools]
 "platform engineering tools"
-[IDP for startups]
-"IDP for startups"
 ```
 
 **oss_en (6 keywords):**
@@ -82,75 +69,78 @@ New keywords are 2-3 words with broader search volume.
 "developer platform github"
 ```
 
-## RSA ad creation (NEEDS ACTION)
-
-Old ads were paused (wrong URLs pointing to 404 pages, wrong headlines due to AI Max).
-New ads have 15 headlines each with exact keyword matches pinned to position 1.
-
-1. In Google Ads, go to Ads for the campaign
-2. Verify all 4 old ads show "Paused" status
-3. Create new RSA ads — one baseline + one challenger per ad group
-
-**For each ad, copy from `rsa.json`:**
-- Final URL, display path 1, display path 2
-- All 15 headlines (pin keyword headlines to position 1, CTA headlines to position 3)
-- All 4 descriptions
-
-**smb_en landing:** `https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
-**oss_en landing:** `https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
-
-**Automation (if Chrome CDP is available):**
-```bash
-google-chrome --remote-debugging-port=9222
-# Log in to Google Ads, then:
-npm run ads:google:publish-rsa
+**startups_en (6 keywords):**
+```
+[IDP for startups]
+"IDP for startups"
+[dev platform for startups]
+"dev platform for startups"
+[platform engineering startups]
+"platform engineering startups"
 ```
 
-## Ad extension update
+## RSA ads (all created via editor-upload.csv)
 
-Update sitelinks, callouts, and structured snippets from `assets.json`:
-- Sitelinks: Features, Ecosystem, Pricing, Roadmap (all real routes)
-- Callouts: Open Source, MIT Licensed, Backstage Alternative, No Platform Team Required, Self-Hosted Ready, Free for Individuals, AI Governance Built In, Scorecards & Audit Trails
-- Structured snippets: Types (IDP, Platform Engineering Tools, etc.) + Features (Quality Scorecards, Policy Packs, etc.)
+All 6 ads (baseline + challenger per group) are in `rsa.json` v3.5.
+Use `npm run ads:google:generate-upload` to regenerate `editor-upload.csv`.
+
+**Landing URLs:**
+- smb_en: `https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
+- oss_en: `https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
+- startups_en: `https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
+
+## Ad extensions (from assets.json v3.5)
+
+- **Sitelinks (5):** Features, Ecosystem, Pricing, Roadmap, For Startups
+- **Callouts (8):** Open Source, MIT Licensed, Backstage Alternative, No Platform Team Required, Self-Hosted Ready, Free for Individuals, AI Governance Built In, Scorecards & Audit Trails
+- **Structured snippets (2):** Types (IDP, Platform Engineering Tools, AI Governance Platform, Developer Portal) + Features (Quality Scorecards, Policy Packs, Audit Trails, Golden Path Templates)
 
 ## Measurement setup
 
 1. Auto-tagging: ON
-2. Final URL suffix:
-   - `utm_term={keyword}&utm_content={creative}&campaignid={campaignid}&adgroupid={adgroupid}&matchtype={matchtype}&device={device}`
-3. UTM baseline: `utm_campaign=forgespace_br_en_visibility_v3`
-4. Validate using `ga4-ads-setup.md`
+2. Final URL suffix: `utm_term={keyword}&utm_content={creative}&campaignid={campaignid}&adgroupid={adgroupid}&matchtype={matchtype}&device={device}`
+3. Primary conversion: `fs_cta_github_click` (imported from GA4, set to Primary)
+4. Secondary conversions: `fs_cta_contact_sales_click`, `fs_cta_siza_click`
+5. GA4 custom dimensions: `cta_target`, `cta_location`
 
-## Spend control and cadence
+**Verify tracking:**
+```bash
+# Visit each landing page with UTM params and click GitHub CTA
+# Check GA4 DebugView for fs_cta_github_click event
+https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3
+https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3
+https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3
+```
+
+## Spend control and monitoring cadence
 
 1. Create automated rule: pause campaign at cumulative spend `R$100`
-2. If cumulative spend is below `R$10`, run monitoring-only checks every 12-24h:
-   - `npm run ads:google:checkpoint`
-3. At cumulative spend `R$10`, `R$30`, `R$60` (and daily after `R$60` until stop):
-   - Run `npm run ads:google:prepublish` before campaign edits
-   - Run `npm run ads:google:checkpoint` to capture artifacts and current metrics
+2. Below `R$10`: monitoring-only checks every 12-24h → `npm run ads:google:checkpoint`
+3. At `R$10`, `R$30`, `R$60`: full checkpoint → `npm run ads:google:checkpoint`
 4. At each checkpoint:
-   - Review Search Terms relevance
-   - Add negatives immediately
-   - Pause keywords with `2+` clicks and no primary CTA
+   - Review Search Terms report → add irrelevant terms to `negative-keywords.csv`
+   - Pause keywords with 2+ clicks and 0 primary CTA conversions
    - Update `checkpoint-scorecard-live.csv`
+   - Re-run prepublish + generate-upload if any changes made
 
-## Go/No-Go
+## Go/No-Go rules
 
-- Continue if:
-  - CTR `>= 3%` on at least one active ad group, and
-  - At least one `fs_cta_github_click`
-- Pause early if:
-  - CTR `< 1.5%` by `R$30`, or
-  - poor intent quality by `R$60`, or
-  - repeated irrelevant terms after two pruning passes
+**Continue if:**
+- CTR ≥ 3% on at least one active ad group, AND
+- At least one `fs_cta_github_click` conversion
+
+**Pause early if:**
+- CTR < 1.5% by R$30, OR
+- Poor intent quality by R$60, OR
+- Repeated irrelevant terms after two pruning passes
 
 ## Available automation scripts
 
 | Command | Purpose |
 |---------|---------|
-| `npm run ads:google:prepublish` | Pre-publish guardrail checks |
-| `npm run ads:google:checkpoint` | Capture metrics + update scorecard |
-| `npm run ads:google:publish-rsa` | Create RSA ads from rsa.json (needs Chrome CDP) |
-| `npm run ads:google:publish-keywords` | Format keywords for import (works standalone) |
-| `DRY_RUN=1` prefix | Validate without executing any of the above |
+| `npm run ads:google:prepublish` | Full guardrail checks (run before any edit) |
+| `npm run ads:google:generate-upload` | Regenerate editor-upload.csv |
+| `npm run ads:google:checkpoint` | Capture metrics + update scorecard (needs Chrome CDP) |
+| `npm run ads:google:publish-rsa` | Create RSA ads via Chrome CDP (alternative to Editor) |
+| `npm run ads:google:publish-keywords` | Format keywords for manual import |
+| `DRY_RUN=1 <command>` | Validate without executing |
