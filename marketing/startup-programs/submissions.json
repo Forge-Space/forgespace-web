@@ -1,0 +1,77 @@
+{
+  "_comment": "Submission tracker. Update manually after each submission. See scripts/startup-programs-status.sh",
+  "programs": {
+    "nlnet": {
+      "status": "not_submitted",
+      "deadline": "2026-04-01",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "URGENT — 17 days. Submit at https://nlnet.nl/propose/"
+    },
+    "cloudflare": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Self-serve portal. Submit at https://cloudflare.com/forstartups/"
+    },
+    "vercel": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Already on Vercel. Submit at https://vercel.com/startups"
+    },
+    "microsoft": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Self-serve portal. Submit at https://foundershub.startups.microsoft.com/"
+    },
+    "aws": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Founders tier (no VC required). Submit at https://aws.amazon.com/activate/"
+    },
+    "supabase": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Email to startups@supabase.com. Use template in application.md"
+    },
+    "nvidia": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Free enrollment. Submit at https://www.nvidia.com/en-us/startups/"
+    },
+    "google-cloud": {
+      "status": "not_submitted",
+      "deadline": "rolling",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Spark tier. Submit at https://cloud.google.com/startup"
+    },
+    "yc": {
+      "status": "not_submitted",
+      "deadline": "2026-05-04",
+      "submitted_at": null,
+      "reference_id": null,
+      "response": null,
+      "notes": "Full answers in yc/application.md. Requires demo video + founder video."
+    }
+  }
+}
