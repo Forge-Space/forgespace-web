@@ -14,6 +14,7 @@
     "ads:google:prepublish": "bash scripts/google-ads-prepublish.sh",
     "ads:google:checkpoint": "node scripts/google-ads-checkpoint.mjs",
     "ads:google:publish-rsa": "node scripts/google-ads-publish-rsa.mjs",
+    "ads:google:publish-keywords": "node scripts/google-ads-publish-keywords.mjs",
     "check:cycles": "madge --circular --extensions ts,tsx src/",
     "knip": "knip",
     "prepare": "husky"
