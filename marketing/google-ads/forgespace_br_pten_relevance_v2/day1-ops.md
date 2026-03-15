@@ -1,5 +1,23 @@
 # Forge Space Visibility Micro-Pilot Ops (v3.3)
 
+## Uploading changes to Google Ads (recommended path)
+
+```bash
+npm run ads:google:generate-upload
+```
+
+This generates `editor-upload.csv` containing all ads, keywords, negatives,
+sitelinks, callouts, and snippets in Google Ads Editor bulk-upload format.
+
+**Import steps:**
+1. Open Google Ads Editor
+2. File → Import → From CSV → select `editor-upload.csv`
+3. Review in "Proposed changes" panel
+4. Click "Apply" then "Post"
+5. Manually pin headlines after import (see pin list in terminal output)
+
+---
+
 ## Pre-publish
 
 1. Run local prepublish checks:

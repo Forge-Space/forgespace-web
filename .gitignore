@@ -42,3 +42,6 @@ next-env.d.ts
 
 # google ads checkpoint artifacts
 marketing/google-ads/**/artifacts/
+
+# google ads editor bulk upload (generated artifact)
+marketing/google-ads/**/editor-upload.csv

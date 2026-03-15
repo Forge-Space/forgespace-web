@@ -15,6 +15,7 @@
     "ads:google:checkpoint": "node scripts/google-ads-checkpoint.mjs",
     "ads:google:publish-rsa": "node scripts/google-ads-publish-rsa.mjs",
     "ads:google:publish-keywords": "node scripts/google-ads-publish-keywords.mjs",
+    "ads:google:generate-upload": "node scripts/google-ads-generate-upload.mjs",
     "check:cycles": "madge --circular --extensions ts,tsx src/",
     "knip": "knip",
     "prepare": "husky"
