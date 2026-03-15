@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 const NAV_LINKS = [
   { label: "Features", href: "/features" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Startups", href: "/startups" },
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "Roadmap", href: "/roadmap" },
   { label: "Docs", href: "https://github.com/Forge-Space", external: true },
