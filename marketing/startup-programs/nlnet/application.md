@@ -117,10 +117,10 @@ insecure, and unauditable AI integration. Common infrastructure raises the floor
 ## Prior work and current state
 
 - **9 open-source repositories** under Forge-Space GitHub organization, MIT licensed
-- **mcp-gateway v1.13.0** — production release, used in Siza workspace
-- **forge-ai-init v0.26.0** — 119 scanner rules, GitHub Action published
-- **siza-gen v0.11.0** — 533 tests, native Gemini provider, edge-compatible
-- **Total test coverage:** 2,994+ tests across the ecosystem
+- **mcp-gateway v1.14.0** — production release, Phase 3 OTel structured tracing, used in Siza workspace
+- **forge-ai-init v0.28.0** — 119 scanner rules, split into 15 modules, GitHub Action published
+- **siza-gen v0.11.0** — 533 tests, native Gemini provider, ML feedback loop, edge-compatible
+- **Total test coverage:** 3,200+ tests across the ecosystem
 - **Production deployment:** Cloudflare Workers + Supabase + Vercel, $0/month infrastructure cost
 - **Active users:** 834 registered accounts on Siza workspace
 
