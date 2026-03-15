@@ -29,21 +29,33 @@
   },
   "ad_schedule": "all_day",
   "audience_mix_percent": {
-    "smb_en": 60,
-    "oss_en": 40
+    "smb_en": 45,
+    "oss_en": 35,
+    "startups_en": 20
   },
   "ad_groups": [
     {
       "name": "smb_en",
       "status": "enabled",
       "language": "en",
-      "active_keyword_count_target": "8"
+      "active_keyword_count_target": "6",
+      "landing_page": "https://forgespace.co/",
+      "notes": "IDP for startups moved to startups_en for better landing page match"
     },
     {
       "name": "oss_en",
       "status": "enabled",
       "language": "en",
-      "active_keyword_count_target": "6"
+      "active_keyword_count_target": "6",
+      "landing_page": "https://forgespace.co/ecosystem"
+    },
+    {
+      "name": "startups_en",
+      "status": "enabled",
+      "language": "en",
+      "active_keyword_count_target": "6",
+      "landing_page": "https://forgespace.co/startups",
+      "notes": "Dedicated startup intent group — /startups has GitHub CTA for primary conversion"
     },
     {
       "name": "smb_pt",
@@ -67,7 +79,8 @@
     "utm_campaign": "forgespace_br_en_visibility_v3",
     "ad_group_final_urls": {
       "smb_en": "https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
-      "oss_en": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3"
+      "oss_en": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "startups_en": "https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3"
     },
     "final_url_suffix": "utm_term={keyword}&utm_content={creative}&campaignid={campaignid}&adgroupid={adgroupid}&matchtype={matchtype}&device={device}"
   },

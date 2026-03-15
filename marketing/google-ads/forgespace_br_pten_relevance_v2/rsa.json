@@ -5,7 +5,7 @@
     {
       "ad_group_name": "smb_en",
       "status": "enabled",
-      "keywords": ["internal developer platform", "backstage alternative", "platform engineering tools", "IDP for startups"],
+      "keywords": ["internal developer platform", "backstage alternative", "platform engineering tools"],
       "final_url": "https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
       "display_url_path_1": "open-source",
       "display_url_path_2": "IDP",
@@ -138,6 +138,76 @@
             "Open-source platform engineering stack with real governance and velocity tradeoffs.",
             "Browse repositories, understand architecture, and join collaboration through GitHub.",
             "Built for developers who want visible, practical progress. Free and open source."
+          ]
+        }
+      ]
+    },
+    {
+      "ad_group_name": "startups_en",
+      "status": "enabled",
+      "keywords": ["IDP for startups", "dev platform for startups", "platform engineering startups"],
+      "final_url": "https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "display_url_path_1": "startups",
+      "display_url_path_2": "IDP",
+      "ads": [
+        {
+          "variant": "baseline",
+          "headlines": [
+            "IDP for Startups",
+            "Dev Platform for Startups",
+            "Platform Engineering Startups",
+            "Ship Governed Code — Free",
+            "No Platform Team Required",
+            "AI Governance at Startup Speed",
+            "Free for Teams Under 15 Devs",
+            "Scorecards on Every PR",
+            "Policy Packs — Zero Config",
+            "Open Source, MIT Licensed",
+            "Start Free on GitHub",
+            "Backstage Alternative — Free",
+            "Explore Forge Space",
+            "Try Siza — Free Demo",
+            "Forge Space for Startups"
+          ],
+          "headline_pins": {
+            "1": ["IDP for Startups", "Dev Platform for Startups", "Platform Engineering Startups"],
+            "3": ["Start Free on GitHub", "Explore Forge Space", "Forge Space for Startups"]
+          },
+          "descriptions": [
+            "Open-source IDP for startups. Scorecards, audit trails, governance. Free under 15 devs.",
+            "Ship AI-assisted code with quality gates from day one. No platform engineer needed.",
+            "Backstage alternative for seed-stage teams. Self-hosted, MIT licensed, free to start.",
+            "Enterprise governance at startup speed. Start on GitHub today — no credit card required."
+          ]
+        },
+        {
+          "variant": "challenger",
+          "headlines": [
+            "IDP for Startups",
+            "Dev Platform for Startups",
+            "Platform Engineering Startups",
+            "Governed AI Delivery — Free",
+            "No Platform Engineer Needed",
+            "Quality Gates on Every PR",
+            "Free Under 15 Devs",
+            "MIT Licensed — No Lock-In",
+            "Self-Hosted or Cloud — Free",
+            "Open Source IDP on GitHub",
+            "View on GitHub — Free",
+            "Explore Forge Space",
+            "Ship With Confidence",
+            "Forge Space for Startups",
+            "Start Free — No Credit Card"
+          ],
+          "headline_pins": {
+            "1": ["IDP for Startups", "Dev Platform for Startups", "Platform Engineering Startups"],
+            "3": ["View on GitHub — Free", "Explore Forge Space", "Start Free — No Credit Card"]
+          },
+          "descriptions": [
+            "Forge Space gives startups practical governance without a platform team. Free to start.",
+            "From idea to governed delivery — scorecards, policy packs, and audit trails included.",
+            "Open source, self-hosted, MIT licensed. Built for seed-stage teams shipping AI code.",
+            "See how your startup can ship AI-enabled products with confidence. Explore on GitHub."
           ]
         }
       ]
