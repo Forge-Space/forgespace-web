@@ -331,12 +331,26 @@ async function run() {
   const checkpoint = determineCheckpoint(metrics.spend_brl);
   const decision = determineDecision(metrics, primary, classification.irrelevant_share_percent);
 
+  // Per-ad-group CTR signal (parsed from campaign overview text)
+  const adGroupSignals = {};
+  for (const group of ["smb_en", "oss_en", "startups_en"]) {
+    const idx = campaignText.indexOf(group);
+    if (idx >= 0) {
+      const window = campaignText.slice(idx, idx + 200);
+      const ctrMatch = window.match(/(\d+[,.]?\d*)\s*%/);
+      adGroupSignals[group] = { ctr_signal: ctrMatch ? ctrMatch[1] : "unknown" };
+    } else {
+      adGroupSignals[group] = { ctr_signal: "not_found" };
+    }
+  }
+
   const summary = {
     captured_at: nowIso(),
     campaign_id: CAMPAIGN_ID,
     campaign_name: CAMPAIGN_NAME,
     checkpoint_brl: checkpoint,
     metrics,
+    ad_group_signals: adGroupSignals,
     conversions,
     search_terms: {
       total: searchTerms.length,
@@ -349,17 +363,21 @@ async function run() {
     },
     decision,
     guardrails: {
-      budget_r5_day: /R\$\s*5,00\/dia/.test(settingsText.replace(/\u00a0/g, " ")),
+      budget_r10_day: /R\$\s*10,00\/dia/.test(settingsText.replace(/\u00a0/g, " ")),
       search_only: /Rede de pesquisa do Google/.test(settingsText) &&
         !/Parceiros de pesquisa/.test(settingsText) &&
         !/Rede de Display/.test(settingsText),
       english_language: /Idiomas[\s\S]{0,80}English/.test(settingsText),
       brazil_location: /Locais[\s\S]{0,80}Brasil/.test(settingsText),
-      cpc_cap_080:
-        /0,80/.test(settingsText) ||
-        /0,80/.test(settingsBidText) ||
-        bidMoneyValues.includes("0,80"),
+      ai_max_off: !/AI Max/.test(settingsText) && !/Personaliza[çc]/.test(settingsText),
+      cpc_cap_250:
+        /2,50/.test(settingsText) ||
+        /2,50/.test(settingsBidText) ||
+        bidMoneyValues.includes("2,50"),
       conversion_primary_github: /fs_cta_github_click[\s\S]{0,120}Principal/.test(conversionText),
+      ad_groups_enabled: ["smb_en", "oss_en", "startups_en"].every(
+        (g) => new RegExp(g).test(campaignText),
+      ),
     },
   };
 
