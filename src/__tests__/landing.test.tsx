@@ -16,6 +16,10 @@ const snapshot: EcosystemSnapshot = {
     updatedLast30d: 10,
     updatedLast7d: 8,
   },
+  npmDownloads: {
+    total: 7090,
+    packages: { "@forgespace/core": 3228, "@forgespace/siza-gen": 2623 },
+  },
   repos: [],
 };
 
@@ -68,16 +72,25 @@ vi.mock("next/link", () => ({
 describe("SocialProof", () => {
   it("renders all 4 stats", () => {
     render(<SocialProof snapshot={snapshot} />);
+    expect(screen.getByText("7.1k")).toBeInTheDocument();
     expect(screen.getByText("11")).toBeInTheDocument();
     expect(screen.getByText("9")).toBeInTheDocument();
-    expect(screen.getByText("10")).toBeInTheDocument();
     expect(screen.getByText("MIT")).toBeInTheDocument();
   });
 
-  it("renders updated stat labels", () => {
+  it("renders npm download label when downloads exist", () => {
     render(<SocialProof snapshot={snapshot} />);
+    expect(screen.getByText("npm Downloads / Month")).toBeInTheDocument();
+    expect(screen.getByText("Open Source Repos")).toBeInTheDocument();
+  });
+
+  it("falls back to repo count when no downloads", () => {
+    const noDownloads = {
+      ...snapshot,
+      npmDownloads: { total: 0, packages: {} },
+    };
+    render(<SocialProof snapshot={noDownloads} />);
     expect(screen.getByText("Product Repos")).toBeInTheDocument();
-    expect(screen.getByText("Repos With Releases")).toBeInTheDocument();
   });
 });
 
