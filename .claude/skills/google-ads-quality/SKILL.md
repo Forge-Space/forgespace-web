@@ -89,13 +89,25 @@ metadata:
 - **URL verification**: all URLs point to real, working routes.
 - **Fix recommendations**: specific headline/description changes to improve quality.
 
+## Automation
+
+Run validation before publishing any ad changes:
+
+```bash
+DRY_RUN=1 npm run ads:google:publish-rsa       # validates char limits, URL routes, pin config
+DRY_RUN=1 npm run ads:google:publish-keywords  # validates match types, formats
+npm run ads:google:prepublish                   # full guardrails check
+```
+
 ## Failure / Stop Conditions
 
 - If `rsa.json` doesn't exist, stop and report missing ad copy file.
 - If `keywords.csv` is empty, stop and report missing keyword configuration.
+- If AI Max is enabled, flag it immediately — it overwrites all RSA copy and URLs with auto-generated content regardless of rsa.json.
 - Do not fabricate URLs that don't correspond to actual site routes.
 - Never use display URL paths that mislead about the actual landing page content.
+- If any headline exceeds 30 chars or any description exceeds 90 chars, fix before publishing.
 
 ## Load These Resources
 
-- `references/quality-score-rules.md` — Google's Quality Score factors and optimization rules
+- `references/quality-score-rules.md` — Google's Quality Score factors, pin strategy, and character limits
