@@ -8,10 +8,10 @@
       "Quality scorecards and policy engine",
       "Scaffolding and migration assessment CLI"
     ],
-    "fallbackUpdatedAt": "2026-03-10T19:01:18Z",
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
     "npm": "@forgespace/core",
-    "fallbackReleaseTag": "v1.10.1",
-    "fallbackReleaseDate": "2026-03-08T16:24:14Z"
+    "fallbackReleaseTag": "v1.12.2",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "mcp-gateway",
@@ -22,9 +22,9 @@
       "Circuit breaker and provider failover",
       "Security and audit middleware"
     ],
-    "fallbackUpdatedAt": "2026-03-10T18:59:27Z",
-    "fallbackReleaseTag": "v1.9.0",
-    "fallbackReleaseDate": "2026-03-07T19:33:45Z"
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
+    "fallbackReleaseTag": "v1.13.0",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "siza",
@@ -35,9 +35,9 @@
       "Post-generation scorecards",
       "Golden Paths, catalog, and plugins"
     ],
-    "fallbackUpdatedAt": "2026-03-10T16:37:23Z",
-    "fallbackReleaseTag": "v0.41.0",
-    "fallbackReleaseDate": "2026-03-08T05:23:23Z"
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
+    "fallbackReleaseTag": "v0.47.1",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "ui-mcp",
@@ -48,10 +48,10 @@
       "Migration assessment and planning",
       "Brand-aware generation pipeline"
     ],
-    "fallbackUpdatedAt": "2026-03-10T18:04:24Z",
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
     "npm": "@forgespace/ui-mcp",
-    "fallbackReleaseTag": "v0.18.0",
-    "fallbackReleaseDate": "2026-03-08T21:50:24Z"
+    "fallbackReleaseTag": "v0.23.0",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "siza-gen",
@@ -62,10 +62,10 @@
       "Lite runtime for edge workers",
       "Benchmark suite across providers"
     ],
-    "fallbackUpdatedAt": "2026-03-10T17:47:34Z",
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
     "npm": "@forgespace/siza-gen",
-    "fallbackReleaseTag": "v0.10.0",
-    "fallbackReleaseDate": "2026-03-08T22:22:19Z"
+    "fallbackReleaseTag": "v0.11.0",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "forge-ai-init",
@@ -76,9 +76,9 @@
       "Migration + score gate commands",
       "Test-autogen workflow support"
     ],
-    "fallbackUpdatedAt": "2026-03-10T18:47:46Z",
-    "fallbackReleaseTag": "v0.24.0",
-    "fallbackReleaseDate": "2026-03-09T01:47:42Z"
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
+    "fallbackReleaseTag": "v0.26.0",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "forge-ai-action",
@@ -89,9 +89,9 @@
       "Phased test-autogen enforcement",
       "PR-grade comments + annotations"
     ],
-    "fallbackUpdatedAt": "2026-03-10T18:47:56Z",
-    "fallbackReleaseTag": "v1.1.0",
-    "fallbackReleaseDate": "2026-03-08T21:37:21Z"
+    "fallbackUpdatedAt": "2026-03-13T00:00:00Z",
+    "fallbackReleaseTag": "v1.3.0",
+    "fallbackReleaseDate": "2026-03-13T00:00:00Z"
   },
   {
     "name": "branding-mcp",
@@ -102,10 +102,10 @@
       "WCAG validation helpers",
       "Asset and logo generation tools"
     ],
-    "fallbackUpdatedAt": "2026-03-10T15:42:51Z",
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
     "npm": "@forgespace/branding-mcp",
-    "fallbackReleaseTag": "v0.7.0",
-    "fallbackReleaseDate": "2026-03-08T02:08:48Z"
+    "fallbackReleaseTag": "v0.7.1",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "brand-guide",
@@ -116,7 +116,7 @@
       "Siza sub-brand token exports",
       "Modern Horn logo system"
     ],
-    "fallbackUpdatedAt": "2026-03-10T16:03:43Z",
+    "fallbackUpdatedAt": "2026-03-14T00:00:00Z",
     "npm": "@forgespace/brand-guide",
     "fallbackReleaseTag": "v0.6.0",
     "fallbackReleaseDate": "2026-03-06T00:00:00Z"
@@ -130,9 +130,9 @@
       "SEO and structured metadata",
       "Live ecosystem sync"
     ],
-    "fallbackUpdatedAt": "2026-03-10T15:11:55Z",
-    "fallbackReleaseTag": "v0.3.0",
-    "fallbackReleaseDate": "2026-03-07T00:00:00Z"
+    "fallbackUpdatedAt": "2026-03-15T00:00:00Z",
+    "fallbackReleaseTag": "v0.5.0",
+    "fallbackReleaseDate": "2026-03-15T00:00:00Z"
   },
   {
     "name": "siza-desktop",
