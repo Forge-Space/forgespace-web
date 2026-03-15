@@ -110,7 +110,7 @@ function formatMatchType(keyword, matchType) {
   }
 }
 
-async function navigateToKeywords(page, adGroupName) {
+async function navigateToKeywords(page) {
   // Navigate to keywords page for the specific ad group
   await page.goto(
     `https://ads.google.com/aw/keywords?campaignId=${CAMPAIGN_ID}`,
@@ -221,7 +221,7 @@ async function run() {
     const enabled = kws.filter((k) => k.status === "enabled");
     console.log(`\nUpdating keywords for ${group}...`);
 
-    await navigateToKeywords(page, group);
+    await navigateToKeywords(page);
 
     for (const kw of enabled) {
       await addKeyword(page, kw.keyword, kw.match_type, kw.max_cpc_brl, group);

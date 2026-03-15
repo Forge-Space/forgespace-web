@@ -69,7 +69,7 @@ function validateUrl(url) {
   }
 }
 
-async function typeInField(page, selector, text) {
+async function typeInField(page, selector, text) { // eslint-disable-line @typescript-eslint/no-unused-vars
   const field = page.locator(selector).first();
   await field.click();
   await field.fill("");
