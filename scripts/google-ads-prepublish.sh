@@ -123,15 +123,60 @@ if ! grep -q "AW-959867732" src/components/analytics/AnalyticsProvider.tsx; then
 fi
 echo "[OK] Google Ads tag AW-959867732 present in AnalyticsProvider"
 
+node -e '
+const fs = require("fs");
+const negRaw = fs.readFileSync("marketing/google-ads/forgespace_br_pten_relevance_v2/negative-keywords.csv", "utf8");
+const kwRaw = fs.readFileSync("marketing/google-ads/forgespace_br_pten_relevance_v2/keywords.csv", "utf8");
+
+const negLines = negRaw.trim().split("\n").slice(1);
+const negatives = negLines.map(l => {
+  const parts = l.split(",");
+  return { keyword: parts[1]?.toLowerCase().trim(), matchType: parts[2]?.trim() };
+}).filter(n => n.keyword);
+
+const kwLines = kwRaw.trim().split("\n").slice(1);
+const keywords = kwLines
+  .filter(l => l.includes(",enabled,"))
+  .map(l => { const m = l.match(/,"([^"]+)",/); return m ? m[1].toLowerCase() : ""; })
+  .filter(Boolean);
+
+let conflicts = 0;
+for (const neg of negatives) {
+  for (const kw of keywords) {
+    if (neg.matchType === "broad" && kw.includes(neg.keyword)) {
+      console.error("[ERROR] Negative keyword conflict: \"" + neg.keyword + "\" (broad) blocks positive keyword \"" + kw + "\"");
+      conflicts++;
+    }
+  }
+}
+if (conflicts > 0) process.exit(1);
+console.log("[OK] No negative keyword conflicts with positive keywords");
+'
+
 echo "[INFO] Running lint"
 npm run lint
 
-echo "[INFO] Running CTA + attribution test pack"
-npm run test -- src/__tests__/first-touch-attribution.test.ts src/__tests__/landing.test.tsx src/__tests__/Nav.test.tsx src/__tests__/Footer.test.tsx
+echo "[INFO] Running CTA + attribution + conversion tracking test pack"
+npm run test -- \
+	src/__tests__/first-touch-attribution.test.ts \
+	src/__tests__/landing.test.tsx \
+	src/__tests__/Nav.test.tsx \
+	src/__tests__/Footer.test.tsx \
+	src/__tests__/ecosystem-cta-tracking.test.tsx \
+	src/__tests__/enterprise-cta-tracking.test.tsx
+
+echo "[INFO] Validating RSA char limits and URL routes"
+DRY_RUN=1 node scripts/google-ads-publish-rsa.mjs
+
+echo "[INFO] Validating keywords format"
+DRY_RUN=1 node scripts/google-ads-publish-keywords.mjs >/dev/null
 
 echo "[OK] Local prepublish checks passed"
 echo "[MANUAL] Google Ads: auto-tagging ON"
+echo "[MANUAL] Google Ads: AI Max is OFF (prevents headline/URL drift)"
 echo "[MANUAL] Google Ads: location option set to Presence"
 echo "[MANUAL] Google Ads: final URL suffix includes ValueTrack params"
 echo "[MANUAL] Google Ads: fs_cta_github_click imported and set Primary"
 echo "[MANUAL] GA4: custom dimensions cta_target and cta_location are active"
+echo "[MANUAL] New RSA ads created: npm run ads:google:publish-rsa (needs Chrome CDP)"
+echo "[MANUAL] Keywords updated: npm run ads:google:publish-keywords (paste output into Google Ads)"

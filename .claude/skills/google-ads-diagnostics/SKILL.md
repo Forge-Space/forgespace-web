@@ -18,7 +18,7 @@ metadata:
 ## Use When
 
 - A Google Ads campaign shows 0 impressions, 0 clicks, or unexpectedly low delivery.
-- Before a scheduled checkpoint (R$3, R$6, R$8) to pre-validate configuration.
+- Before a scheduled checkpoint (R$10, R$30, R$60) to pre-validate configuration.
 - After pausing/resuming a campaign to verify settings are intact.
 - When conversion events are expected but not appearing in GA4 or Google Ads.
 
