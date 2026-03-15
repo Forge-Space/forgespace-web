@@ -10,6 +10,7 @@ import {
 } from "@/lib/ecosystem-data";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Section } from "@/components/ui/Section";
+import { CTASection } from "@/components/landing/CTASection";
 
 interface EcosystemPageProps {
   snapshot: EcosystemSnapshot;
@@ -151,6 +152,7 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
           ))}
         </div>
       </Section>
+      <CTASection />
     </main>
   );
 }
