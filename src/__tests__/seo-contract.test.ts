@@ -16,6 +16,7 @@ describe("SEO metadata contract", () => {
     { slug: "ecosystem" as const, canonical: "https://forgespace.co/ecosystem" },
     { slug: "roadmap" as const, canonical: "https://forgespace.co/roadmap" },
     { slug: "enterprise" as const, canonical: "https://forgespace.co/enterprise" },
+    { slug: "startups" as const, canonical: "https://forgespace.co/startups" },
   ];
 
   it("provides canonical, open graph URL, and twitter metadata per route", () => {
