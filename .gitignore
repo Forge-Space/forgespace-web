@@ -49,3 +49,4 @@ marketing/google-ads/**/editor-upload.csv
 # local session artifacts and editor config
 /artifacts/
 opencode.jsonc
+.env*.local
