@@ -1,10 +1,11 @@
 {
   "campaign_name": "forgespace_br_en_visibility_v3",
-  "version_notes": "v3.3 — Quality Score rewrite. Headlines front-load exact keyword matches. URLs point to real working pages. smb_en routes to homepage (richest content + tracked CTAs). All headlines ≤30 chars, descriptions ≤90 chars.",
+  "version_notes": "v3.4 — Full keyword coverage per ad group. Each ad covers all keywords for its group only. No cross-group keyword contamination. 'developer platform github' added to oss_en. smb_en challenger fixed to cover all 4 smb keywords. All headlines ≤30 chars, descriptions ≤90 chars.",
   "ad_groups": [
     {
       "ad_group_name": "smb_en",
       "status": "enabled",
+      "keywords": ["internal developer platform", "backstage alternative", "platform engineering tools", "IDP for startups"],
       "final_url": "https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
       "display_url_path_1": "open-source",
       "display_url_path_2": "IDP",
@@ -16,17 +17,17 @@
             "Backstage Alternative — Free",
             "Platform Engineering Tools",
             "IDP for Startups & SMBs",
-            "Open Source IDP — No Lock-In",
             "Ship Faster, Govern Smarter",
             "No Platform Team? No Problem",
             "AI Governance Built In",
             "Scorecards & Policy Packs",
             "Open Source & Self-Hosted",
             "Free for Individuals",
+            "MIT Licensed — No Lock-In",
             "Start on GitHub Today",
-            "MIT Licensed Platform",
             "Explore Forge Space",
-            "Forge Space — Try Free"
+            "Forge Space — Try Free",
+            "Open Source, MIT Licensed"
           ],
           "headline_pins": {
             "1": ["Internal Developer Platform", "Backstage Alternative — Free", "Platform Engineering Tools", "IDP for Startups & SMBs"],
@@ -44,10 +45,9 @@
           "headlines": [
             "Internal Developer Platform",
             "Backstage Alternative — Teams",
-            "Platform Engineering Made Easy",
-            "IDP Without the Overhead",
+            "Platform Engineering Tools",
+            "IDP for Startups — No Overhead",
             "Governed AI Delivery — Free",
-            "Prompt to Auditable Output",
             "No Platform Team Required",
             "Quality Scorecards Built In",
             "Policy Packs & Audit Trails",
@@ -56,10 +56,11 @@
             "Try It Free on GitHub",
             "MIT Licensed — No Lock-In",
             "Ship Code With Confidence",
-            "Start with Forge Space"
+            "Start with Forge Space",
+            "Prompt to Auditable Output"
           ],
           "headline_pins": {
-            "1": ["Internal Developer Platform", "Backstage Alternative — Teams", "Platform Engineering Made Easy", "IDP Without the Overhead"],
+            "1": ["Internal Developer Platform", "Backstage Alternative — Teams", "Platform Engineering Tools", "IDP for Startups — No Overhead"],
             "3": ["Try It Free on GitHub", "Start with Forge Space", "Ship Code With Confidence"]
           },
           "descriptions": [
@@ -74,6 +75,7 @@
     {
       "ad_group_name": "oss_en",
       "status": "enabled",
+      "keywords": ["open source developer platform", "open source IDP", "developer platform github"],
       "final_url": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
       "display_url_path_1": "ecosystem",
       "display_url_path_2": "open-source",
@@ -83,8 +85,7 @@
           "headlines": [
             "Open Source Developer Platform",
             "Open Source IDP on GitHub",
-            "Developer Platform — GitHub",
-            "Contribute to Forge Space",
+            "Developer Platform GitHub",
             "MIT Licensed Dev Platform",
             "Browse Repos & Roadmap",
             "MCP-Native Platform Tools",
@@ -95,11 +96,12 @@
             "Explore Active Repositories",
             "Contributors Welcome",
             "Scorecards & Audit Trails",
-            "From Prompt to Production"
+            "Browse Repos & Contribute",
+            "Explore Forge Space OSS"
           ],
           "headline_pins": {
-            "1": ["Open Source Developer Platform", "Open Source IDP on GitHub", "Developer Platform — GitHub"],
-            "3": ["Browse Repos & Roadmap", "Explore Active Repositories", "Contribute to Forge Space"]
+            "1": ["Open Source Developer Platform", "Open Source IDP on GitHub", "Developer Platform GitHub"],
+            "3": ["Browse Repos & Contribute", "Explore Active Repositories", "Explore Forge Space OSS"]
           },
           "descriptions": [
             "Open-source developer platform with AI governance. Browse repos and contribute on GitHub.",
@@ -113,7 +115,7 @@
           "headlines": [
             "Open Source Developer Platform",
             "Open Source IDP — MIT License",
-            "Developer Platform on GitHub",
+            "Developer Platform GitHub",
             "Contributors Welcome — Free",
             "MCP Tools for Dev Workflows",
             "Browse Repos and Contribute",
@@ -122,13 +124,13 @@
             "Public Roadmap & Active Repos",
             "Platform Engineering, Open",
             "Quality Gates Built In",
-            "Explore Forge Space OSS",
             "Free IDP for Real Teams",
             "Audit Trails Included",
-            "Ship With Confidence — Free"
+            "Ship With Confidence — Free",
+            "Explore Forge Space OSS"
           ],
           "headline_pins": {
-            "1": ["Open Source Developer Platform", "Open Source IDP — MIT License", "Developer Platform on GitHub"],
+            "1": ["Open Source Developer Platform", "Open Source IDP — MIT License", "Developer Platform GitHub"],
             "3": ["Browse Repos and Contribute", "Explore Forge Space OSS", "Ship With Confidence — Free"]
           },
           "descriptions": [
