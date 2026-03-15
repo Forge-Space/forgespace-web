@@ -45,3 +45,6 @@ marketing/google-ads/**/artifacts/
 
 # google ads editor bulk upload (generated artifact)
 marketing/google-ads/**/editor-upload.csv
+# local session artifacts and editor config
+/artifacts/
+opencode.jsonc
