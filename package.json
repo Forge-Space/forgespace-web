@@ -13,6 +13,7 @@
     "test:coverage": "vitest run --coverage",
     "ads:google:prepublish": "bash scripts/google-ads-prepublish.sh",
     "ads:google:checkpoint": "node scripts/google-ads-checkpoint.mjs",
+    "ads:google:publish-rsa": "node scripts/google-ads-publish-rsa.mjs",
     "check:cycles": "madge --circular --extensions ts,tsx src/",
     "knip": "knip",
     "prepare": "husky"

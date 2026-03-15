@@ -16,16 +16,16 @@
   },
   "budget": {
     "currency": "BRL",
-    "amount_per_day_brl": 5,
-    "total_hard_stop_brl": 50,
+    "amount_per_day_brl": 10,
+    "total_hard_stop_brl": 100,
     "usd_equivalent_context": {
-      "amount_per_day_usd": 1,
-      "total_hard_stop_usd": 10
+      "amount_per_day_usd": 2,
+      "total_hard_stop_usd": 20
     }
   },
   "bidding": {
     "strategy": "Maximize Clicks",
-    "max_cpc_brl": 0.8
+    "max_cpc_brl": 2.5
   },
   "ad_schedule": "all_day",
   "audience_mix_percent": {
@@ -37,13 +37,13 @@
       "name": "smb_en",
       "status": "enabled",
       "language": "en",
-      "active_keyword_count_target": "6"
+      "active_keyword_count_target": "8"
     },
     {
       "name": "oss_en",
       "status": "enabled",
       "language": "en",
-      "active_keyword_count_target": "4"
+      "active_keyword_count_target": "6"
     },
     {
       "name": "smb_pt",
@@ -66,17 +66,17 @@
   "tracking": {
     "utm_campaign": "forgespace_br_en_visibility_v3",
     "ad_group_final_urls": {
-      "smb_en": "https://forgespace.co/enterprise?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
+      "smb_en": "https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3",
       "oss_en": "https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3"
     },
     "final_url_suffix": "utm_term={keyword}&utm_content={creative}&campaignid={campaignid}&adgroupid={adgroupid}&matchtype={matchtype}&device={device}"
   },
-  "checkpoints_brl": [3, 6, 8],
+  "checkpoints_brl": [10, 30, 60],
   "stop_rules": {
-    "ctr_below_percent_by_6_brl": 1.5,
-    "no_primary_cta_by_8_brl": true,
+    "ctr_below_percent_by_30_brl": 1.5,
+    "no_primary_cta_by_60_brl": true,
     "repeated_irrelevant_terms_after_two_pruning_passes": true,
-    "stop_early_if_poor_intent_quality_by_6_brl": true
+    "stop_early_if_poor_intent_quality_by_30_brl": true
   },
   "continue_rules": {
     "ctr_gte_percent_on_any_ad_group": 3,

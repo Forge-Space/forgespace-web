@@ -1,13 +1,17 @@
 campaign_name,ad_group_name,keyword,match_type,max_cpc_brl,status,notes
-forgespace_br_en_visibility_v3,smb_en,"internal developer platform for small teams",exact,0.80,enabled,smb no-platform-team intent
-forgespace_br_en_visibility_v3,smb_en,"internal developer platform for small teams",phrase,0.80,enabled,smb no-platform-team intent
-forgespace_br_en_visibility_v3,smb_en,"backstage alternative for startups",exact,0.80,enabled,alternative positioning intent
-forgespace_br_en_visibility_v3,smb_en,"backstage alternative for startups",phrase,0.80,enabled,alternative positioning intent
-forgespace_br_en_visibility_v3,smb_en,"platform engineering for startups",exact,0.80,enabled,platform engineering smb intent
-forgespace_br_en_visibility_v3,smb_en,"platform engineering for startups",phrase,0.80,enabled,platform engineering smb intent
-forgespace_br_en_visibility_v3,oss_en,"open source internal developer platform",exact,0.80,enabled,open-source ecosystem intent
-forgespace_br_en_visibility_v3,oss_en,"open source internal developer platform",phrase,0.80,enabled,open-source ecosystem intent
-forgespace_br_en_visibility_v3,oss_en,"contribute to open source dev tools",exact,0.80,enabled,contributor intent
-forgespace_br_en_visibility_v3,oss_en,"contribute to open source dev tools",phrase,0.80,enabled,contributor intent
-forgespace_br_en_visibility_v3,smb_pt,"plataforma de desenvolvimento interno",exact,0.80,paused,paused until PT landing exists
-forgespace_br_en_visibility_v3,smb_pt,"geracao de codigo com ia para empresas",phrase,0.80,paused,paused until PT landing exists
+forgespace_br_en_visibility_v3,smb_en,"internal developer platform",exact,2.50,enabled,core product category — high intent
+forgespace_br_en_visibility_v3,smb_en,"internal developer platform",phrase,2.50,enabled,core product category — discovery
+forgespace_br_en_visibility_v3,smb_en,"backstage alternative",exact,2.50,enabled,comparison-intent — evaluators
+forgespace_br_en_visibility_v3,smb_en,"backstage alternative",phrase,2.50,enabled,comparison-intent — discovery
+forgespace_br_en_visibility_v3,smb_en,"platform engineering tools",exact,2.50,enabled,broader category — practitioners
+forgespace_br_en_visibility_v3,smb_en,"platform engineering tools",phrase,2.50,enabled,broader category — discovery
+forgespace_br_en_visibility_v3,smb_en,"IDP for startups",exact,2.50,enabled,SMB-specific intent
+forgespace_br_en_visibility_v3,smb_en,"IDP for startups",phrase,2.50,enabled,SMB-specific discovery
+forgespace_br_en_visibility_v3,oss_en,"open source developer platform",exact,2.50,enabled,OSS ecosystem intent
+forgespace_br_en_visibility_v3,oss_en,"open source developer platform",phrase,2.50,enabled,OSS ecosystem discovery
+forgespace_br_en_visibility_v3,oss_en,"open source IDP",exact,2.50,enabled,shorter variant — emerging term
+forgespace_br_en_visibility_v3,oss_en,"open source IDP",phrase,2.50,enabled,shorter variant — discovery
+forgespace_br_en_visibility_v3,oss_en,"developer platform github",exact,2.50,enabled,GitHub discovery intent
+forgespace_br_en_visibility_v3,oss_en,"developer platform github",phrase,2.50,enabled,GitHub discovery — broader
+forgespace_br_en_visibility_v3,smb_pt,"plataforma de desenvolvimento interno",exact,2.50,paused,paused until PT landing exists
+forgespace_br_en_visibility_v3,smb_pt,"geracao de codigo com ia para empresas",phrase,2.50,paused,paused until PT landing exists
