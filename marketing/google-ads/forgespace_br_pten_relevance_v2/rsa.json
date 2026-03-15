@@ -35,19 +35,19 @@
           "descriptions": [
             "Open-source IDP with AI governance, scorecards, and audit trails. Free to start on GitHub.",
             "Backstage alternative for small teams. No platform department needed. Start free today.",
-            "Platform engineering tools with practical governance. Self-hosted, open source, MIT licensed.",
-            "Ship AI-assisted products with quality gates and visibility. No enterprise contract needed."
+            "Platform engineering tools with practical governance. Self-hosted, open source, MIT.",
+            "Ship AI-assisted products with quality gates and visibility. No contract needed."
           ]
         },
         {
           "variant": "challenger",
           "headlines": [
             "Internal Developer Platform",
-            "Backstage Alternative for Teams",
-            "Platform Engineering, Simplified",
-            "IDP Without Enterprise Overhead",
+            "Backstage Alternative — Teams",
+            "Platform Engineering Made Easy",
+            "IDP Without the Overhead",
             "Governed AI Delivery — Free",
-            "From Prompt to Auditable Output",
+            "Prompt to Auditable Output",
             "No Platform Team Required",
             "Quality Scorecards Built In",
             "Policy Packs & Audit Trails",
@@ -59,11 +59,11 @@
             "Start with Forge Space"
           ],
           "headline_pins": {
-            "1": ["Internal Developer Platform", "Backstage Alternative for Teams", "Platform Engineering, Simplified", "IDP Without Enterprise Overhead"],
+            "1": ["Internal Developer Platform", "Backstage Alternative — Teams", "Platform Engineering Made Easy", "IDP Without the Overhead"],
             "3": ["Try It Free on GitHub", "Start with Forge Space", "Ship Code With Confidence"]
           },
           "descriptions": [
-            "Forge Space gives small teams practical governance and visibility for AI-assisted delivery.",
+            "Forge Space gives small teams practical governance and visibility for AI delivery.",
             "Move from idea to governed delivery with policy packs, scorecards, and audit trails.",
             "Open source, self-hosted, MIT licensed. Clear paths for contributors and buyers alike.",
             "See how your team can ship AI-enabled products with confidence. Explore repos on GitHub."
