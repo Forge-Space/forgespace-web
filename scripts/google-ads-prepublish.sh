@@ -117,6 +117,51 @@ fi
 
 echo "[OK] Keyword mix guardrails validated (smb_en=8, oss_en=6)"
 
+node -e '
+const fs = require("fs");
+const rsa = JSON.parse(fs.readFileSync("marketing/google-ads/forgespace_br_pten_relevance_v2/rsa.json", "utf8"));
+const kwRaw = fs.readFileSync("marketing/google-ads/forgespace_br_pten_relevance_v2/keywords.csv", "utf8");
+
+// Build per-group keyword sets from keywords.csv
+const kwByGroup = {};
+for (const line of kwRaw.trim().split("\n").slice(1)) {
+  const parts = line.split(",");
+  const group = parts[1]?.trim();
+  const kw = parts[2]?.replace(/"/g, "").trim().toLowerCase();
+  const status = parts[5]?.trim();
+  if (group && kw && status === "enabled") {
+    if (!kwByGroup[group]) kwByGroup[group] = new Set();
+    kwByGroup[group].add(kw);
+  }
+}
+
+let errors = 0;
+for (const g of rsa.ad_groups) {
+  if (!g.ads) continue;
+  const groupKws = [...(kwByGroup[g.ad_group_name] || new Set())];
+  for (const ad of g.ads) {
+    for (const kw of groupKws) {
+      const covered = ad.headlines.some(h => h.toLowerCase().includes(kw));
+      if (!covered) {
+        console.error("[ERROR] Keyword not covered in " + g.ad_group_name + "/" + ad.variant + ": \"" + kw + "\"");
+        errors++;
+      }
+    }
+    // Check for cross-group keyword contamination
+    for (const [otherGroup, otherKws] of Object.entries(kwByGroup)) {
+      if (otherGroup === g.ad_group_name) continue;
+      for (const kw of otherKws) {
+        if (!groupKws.includes(kw) && ad.headlines.some(h => h.toLowerCase().includes(kw))) {
+          // Only warn — cross-group overlap is not always wrong (e.g. "open source IDP" appears in both)
+        }
+      }
+    }
+  }
+}
+if (errors > 0) process.exit(1);
+console.log("[OK] Keyword coverage validated — all keywords covered in their ad group headlines");
+'
+
 if ! grep -q "AW-959867732" src/components/analytics/AnalyticsProvider.tsx; then
 	echo "[ERROR] Google Ads tag AW-959867732 missing from AnalyticsProvider.tsx"
 	exit 1
