@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Forge-Space/.github/.github/actions/setup-node@main
-      - run: npm test
+      - run: npm run test:coverage
 
   quality:
     name: Quality Gates
