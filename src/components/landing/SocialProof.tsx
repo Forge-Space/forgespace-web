@@ -95,64 +95,6 @@ function StatBadge({ value, label, index, active }: StatBadgeProps) {
   );
 }
 
-interface QuoteCardProps {
-  quote: string;
-  name: string;
-  role: string;
-  initials: string;
-  index: number;
-}
-
-function QuoteCard({ quote, name, role, initials, index }: QuoteCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, ease: EASE_SIZA, delay: index * 0.1 }}
-      className="rounded-xl border border-forge-border bg-forge-surface p-6"
-    >
-      <p className="mb-4 text-sm italic leading-relaxed text-forge-text-muted">
-        &ldquo;{quote}&rdquo;
-      </p>
-      <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-forge-primary/30 bg-forge-primary/20 text-xs font-bold text-forge-primary">
-          {initials}
-        </div>
-        <div>
-          <p className="text-sm font-medium text-foreground">{name}</p>
-          <p className="text-xs text-forge-text-subtle">{role}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-const QUOTES: QuoteCardProps[] = [
-  {
-    quote:
-      "Siza gave us a catalog of 47 repos in 20 minutes. Backstage would have taken weeks to set up.",
-    name: "@dev_marcos",
-    role: "Platform Engineer, 50-person startup",
-    initials: "DM",
-    index: 0,
-  },
-  {
-    quote:
-      "forge-ai-action in CI means every PR gets a governance score. It caught 3 breaking changes last sprint.",
-    name: "@lucasdev_ts",
-    role: "Lead Developer, SaaS company",
-    initials: "LD",
-    index: 1,
-  },
-  {
-    quote: "The BYOK model was the dealbreaker for us. Our keys never leave our infra.",
-    name: "@ananda_ops",
-    role: "DevOps Lead, fintech team",
-    initials: "AO",
-    index: 2,
-  },
-];
 
 export function SocialProof({ snapshot }: SocialProofProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -216,12 +158,7 @@ export function SocialProof({ snapshot }: SocialProofProps) {
           />
         </div>
 
-        {/* Developer quote cards */}
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
-          {QUOTES.map((q) => (
-            <QuoteCard key={q.name} {...q} />
-          ))}
-        </div>
+
       </div>
     </section>
   );
