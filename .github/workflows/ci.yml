@@ -51,4 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Forge-Space/.github/.github/actions/setup-node@main
-      - run: npm audit --audit-level=high || true
+      - name: Security Audit
+        run: npm audit --audit-level=high
+        continue-on-error: true

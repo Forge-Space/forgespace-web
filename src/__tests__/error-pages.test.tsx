@@ -28,7 +28,7 @@ describe("NotFound", () => {
 
   it("renders a link back to home", () => {
     render(<NotFound />);
-    const link = screen.getByRole("link", { name: /back to home/i });
+    const link = screen.getByRole("link", { name: /^Home$/i });
     expect(link.getAttribute("href")).toBe("/");
   });
 

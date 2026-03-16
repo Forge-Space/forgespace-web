@@ -3,7 +3,6 @@ import PricingPage from "./client";
 import { getPricingFaqJsonLd } from "./faq";
 import { getBreadcrumbJsonLd, softwareApplicationJsonLd } from "@/app/structured-data";
 
-export const dynamic = "force-dynamic";
 export const metadata = getPageMetadata("pricing");
 
 const breadcrumb = getBreadcrumbJsonLd([{ name: "Pricing", path: "/pricing" }]);

@@ -128,6 +128,14 @@ export function SocialProof({ snapshot }: SocialProofProps) {
       className="border-y border-forge-border bg-forge-bg-elevated py-20 md:py-28"
     >
       <div className="mx-auto max-w-5xl px-6">
+        {/* Section heading */}
+        <div className="text-center mb-12">
+          <p className="label-mono mb-3">BUILT IN THE OPEN</p>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground">
+            Real numbers. Open source.
+          </h2>
+        </div>
+
         {/* Stat counters */}
         <div className={`grid gap-8 ${showDownloads ? "grid-cols-2 md:grid-cols-4" : "grid-cols-2 md:grid-cols-3"}`}>
           <StatCounter
