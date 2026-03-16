@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/pricing`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/ecosystem`,
@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/pt`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 0.7,
     },
   ];
 }

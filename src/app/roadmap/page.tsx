@@ -1,7 +1,7 @@
 import { getPageMetadata } from "@/app/seo";
 import RoadmapPage from "./client";
 import { getEcosystemSnapshot } from "@/lib/ecosystem-data";
-import { getBreadcrumbJsonLd } from "@/app/structured-data";
+import { getBreadcrumbJsonLd, softwareApplicationJsonLd } from "@/app/structured-data";
 
 export const metadata = getPageMetadata("roadmap");
 
@@ -14,6 +14,10 @@ export default async function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
       />
       <h1 className="sr-only">Forge Space Roadmap</h1>
       <RoadmapPage repoCount={snapshot.repoCount} />

@@ -138,6 +138,15 @@ export function getPageMetadata(slug: PageMetadataSlug): Metadata {
     keywords: page.keywords,
     alternates: {
       canonical: canonicalUrl,
+      ...(slug === "home" || slug === "pt"
+        ? {
+            languages: {
+              en: "https://forgespace.co",
+              "pt-BR": "https://forgespace.co/pt",
+              "x-default": "https://forgespace.co",
+            },
+          }
+        : {}),
     },
     openGraph: {
       title: openGraphTitle,

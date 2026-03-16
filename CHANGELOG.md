@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **hreflang alternates** — `seo.ts` now emits `<link rel="alternate" hreflang>` pairs for `en`/`pt-BR`/`x-default` on the home and `/pt` routes
+- **SoftwareApplication JSON-LD on all pages** — `/ecosystem`, `/enterprise`, `/roadmap` now carry `SoftwareApplication` schema alongside `BreadcrumbList`
+- **Coverage thresholds** — `@vitest/coverage-v8` installed with explicit `provider: v8` and 80/80/75 thresholds for lines/functions/branches
+- **Error page tests** — `error-pages.test.tsx` covers `not-found.tsx` (404) and `global-error.tsx` (reset button)
+- **Deploy CI gate** — `deploy.yml` now runs lint + type-check + test before production deployment
+
+### Changed
+
+- **Sitemap priorities** — `/pricing` raised to `0.9` (conversion page), `/pt` corrected to `0.7` (language variant)
+
 ## [0.6.0] - 2026-03-16
 
 ### Added

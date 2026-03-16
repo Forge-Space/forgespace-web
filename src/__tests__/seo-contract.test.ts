@@ -34,6 +34,21 @@ describe("SEO metadata contract", () => {
     }
   });
 
+  it("emits hreflang alternates for home and pt language pair", () => {
+    const homeMeta = getPageMetadata("home");
+    const ptMeta = getPageMetadata("pt");
+    const homeLanguages = homeMeta.alternates?.languages as Record<string, string> | undefined;
+    const ptLanguages = ptMeta.alternates?.languages as Record<string, string> | undefined;
+
+    expect(homeLanguages?.["en"]).toBe("https://forgespace.co");
+    expect(homeLanguages?.["pt-BR"]).toBe("https://forgespace.co/pt");
+    expect(homeLanguages?.["x-default"]).toBe("https://forgespace.co");
+
+    expect(ptLanguages?.["en"]).toBe("https://forgespace.co");
+    expect(ptLanguages?.["pt-BR"]).toBe("https://forgespace.co/pt");
+    expect(ptLanguages?.["x-default"]).toBe("https://forgespace.co");
+  });
+
   it("uses unique descriptions across indexable routes", () => {
     const descriptions = routes.map((route) => getPageMetadata(route.slug).description);
     const uniqueDescriptions = new Set(descriptions);
