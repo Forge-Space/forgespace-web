@@ -6,7 +6,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/_next/"],
+        disallow: ["/_next/", "/api/"],
+      },
+      {
+        userAgent: ["GPTBot", "ClaudeBot", "CCBot", "Amazonbot", "Bytespider"],
+        disallow: ["/"],
       },
     ],
     host: "https://forgespace.co",

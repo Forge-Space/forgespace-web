@@ -17,6 +17,7 @@ describe("SEO metadata contract", () => {
     { slug: "roadmap" as const, canonical: "https://forgespace.co/roadmap" },
     { slug: "enterprise" as const, canonical: "https://forgespace.co/enterprise" },
     { slug: "startups" as const, canonical: "https://forgespace.co/startups" },
+    { slug: "pt" as const, canonical: "https://forgespace.co/pt" },
   ];
 
   it("provides canonical, open graph URL, and twitter metadata per route", () => {
@@ -64,12 +65,19 @@ describe("Sitemap and robots", () => {
 
   it("publishes sitemap and blocks internal next assets", () => {
     const config = robots();
-    const firstRule = Array.isArray(config.rules) ? config.rules[0] : undefined;
+    const rules = Array.isArray(config.rules) ? config.rules : [];
+    const firstRule = rules[0];
+    const aiBotsRule = rules.find(
+      (r) => Array.isArray(r.userAgent) && (r.userAgent as string[]).includes("GPTBot"),
+    );
 
     expect(config.sitemap).toBe("https://forgespace.co/sitemap.xml");
     expect(config.host).toBe("https://forgespace.co");
     expect(firstRule?.allow).toBe("/");
     expect(firstRule?.disallow).toContain("/_next/");
+    expect(firstRule?.disallow).toContain("/api/");
+    expect(aiBotsRule).toBeDefined();
+    expect(aiBotsRule?.disallow).toContain("/");
   });
 });
 

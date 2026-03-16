@@ -2,6 +2,7 @@
 @source "../";
 
 :root {
+  color-scheme: dark;
   --background: #121214;
   --foreground: #fafafa;
   --forge-bg: #121214;
@@ -16,7 +17,7 @@
   --forge-primary-pressed: #6D28D9;
   --forge-text: #fafafa;
   --forge-text-muted: #a1a1aa;
-  --forge-text-subtle: #a1a1aa;
+  --forge-text-subtle: #71717a;
   --forge-accent: rgba(139, 92, 246, 0.12);
   --forge-accent-foreground: #8B5CF6;
   --forge-ring: #8B5CF6;
