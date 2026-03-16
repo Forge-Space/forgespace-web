@@ -1,6 +1,6 @@
 import { getPageMetadata } from "@/app/seo";
 import StartupsPage from "./client";
-import { getBreadcrumbJsonLd } from "@/app/structured-data";
+import { getBreadcrumbJsonLd, softwareApplicationJsonLd } from "@/app/structured-data";
 
 export const dynamic = "force-dynamic";
 export const metadata = getPageMetadata("startups");
@@ -13,6 +13,10 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
       />
       <StartupsPage />
     </>
