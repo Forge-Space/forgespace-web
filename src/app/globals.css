@@ -169,6 +169,14 @@ body {
   to { transform: translateX(-50%); }
 }
 
+/* Display typography utilities — wired from CSS tokens */
+@layer utilities {
+  .text-display-xl { font-size: var(--text-display-xl); }
+  .text-display-lg { font-size: var(--text-display-lg); }
+  .text-display-md { font-size: var(--text-display-md); }
+  .text-display-sm { font-size: var(--text-display-sm); }
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

@@ -33,7 +33,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE_SIZA }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
               <span className="text-white">Ship software</span>
               <br />
               <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">

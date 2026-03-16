@@ -517,7 +517,7 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-forge-primary">
               Platform features
             </p>
-            <h1 className="mb-5 font-display text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="mb-5 font-display text-display-xl font-bold tracking-tight">
               Built for teams
               <br />
               <span className="text-forge-text-muted">that ship.</span>

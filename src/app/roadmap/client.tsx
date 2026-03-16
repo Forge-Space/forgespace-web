@@ -1,19 +1,26 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Circle, Clock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
-import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 
 type PhaseStatus = "complete" | "active" | "planned";
 
+interface PhaseItem {
+  text: string;
+  status: PhaseStatus;
+}
+
 interface Phase {
+  number: string;
   status: PhaseStatus;
   title: string;
+  subtitle: string;
   description: string;
-  items: string[];
+  stat: string;
+  items: PhaseItem[];
 }
 
 interface RoadmapPageProps {
@@ -23,44 +30,92 @@ interface RoadmapPageProps {
 function buildPhases(repoCount: number): Phase[] {
   return [
     {
+      number: "01",
       status: "complete",
-      title: "Phase 1 — Foundation",
+      title: "Foundation",
+      subtitle: "Core platform capabilities",
       description:
         "Core platform capabilities shipped and operating in production workflows.",
+      stat: "7 items shipped",
       items: [
-        "AI code generation with live preview",
-        "Post-generation quality scorecards",
-        "Golden Path scaffolding workflows",
-        "Software catalog with dependency graph",
-        "BYOK encryption and model routing",
-        "Migration assessment and planning toolchain",
-        `${repoCount} product repositories aligned on governance standards`,
+        { text: "AI code generation with live preview", status: "complete" },
+        { text: "Post-generation quality scorecards", status: "complete" },
+        { text: "Golden Path scaffolding workflows", status: "complete" },
+        {
+          text: "Software catalog with dependency graph",
+          status: "complete",
+        },
+        { text: "BYOK encryption and model routing", status: "complete" },
+        {
+          text: "Migration assessment and planning toolchain",
+          status: "complete",
+        },
+        {
+          text: `${repoCount} product repositories aligned on governance standards`,
+          status: "complete",
+        },
       ],
     },
     {
+      number: "02",
       status: "active",
-      title: "Phase 2 — Adoption",
+      title: "Adoption",
+      subtitle: "Discoverability & onboarding",
       description:
         "Improve discoverability, onboarding, and decision-ready platform visibility.",
+      stat: "5 items in progress",
       items: [
-        "Live ecosystem metadata sync on marketing surfaces",
-        "Expanded docs for governance and migration workflows",
-        "Community-ready examples and templates",
-        "Contributor onboarding improvements across repos",
-        "Website narrative and UX refinement",
+        {
+          text: "Live ecosystem metadata sync on marketing surfaces",
+          status: "active",
+        },
+        {
+          text: "Expanded docs for governance and migration workflows",
+          status: "active",
+        },
+        {
+          text: "Community-ready examples and templates",
+          status: "active",
+        },
+        {
+          text: "Contributor onboarding improvements across repos",
+          status: "active",
+        },
+        {
+          text: "Website narrative and UX refinement",
+          status: "active",
+        },
       ],
     },
     {
+      number: "03",
       status: "planned",
-      title: "Phase 3 — Scale",
+      title: "Scale",
+      subtitle: "Enterprise & extensibility",
       description:
         "Extend collaboration, enterprise controls, and ecosystem extensibility.",
+      stat: "5 items planned",
       items: [
-        "Collaborative multi-agent workspaces",
-        "Cross-product auth and policy unification",
-        "Enterprise SSO and compliance controls",
-        "Organization-level quality and trend analytics",
-        "Extension and plugin ecosystem growth",
+        {
+          text: "Collaborative multi-agent workspaces",
+          status: "planned",
+        },
+        {
+          text: "Cross-product auth and policy unification",
+          status: "planned",
+        },
+        {
+          text: "Enterprise SSO and compliance controls",
+          status: "planned",
+        },
+        {
+          text: "Organization-level quality and trend analytics",
+          status: "planned",
+        },
+        {
+          text: "Extension and plugin ecosystem growth",
+          status: "planned",
+        },
       ],
     },
   ];
@@ -68,27 +123,48 @@ function buildPhases(repoCount: number): Phase[] {
 
 const statusConfig: Record<
   PhaseStatus,
-  { icon: typeof CheckCircle2; color: string; bg: string; label: string }
+  { badge: string; bullet: string; pillBg: string; pillLabel: string }
 > = {
   complete: {
-    icon: CheckCircle2,
-    color: "text-green-400",
-    bg: "bg-green-400/10 border-green-400/30",
-    label: "Complete",
+    badge: "bg-green-500/15 text-green-400 border border-green-500/25",
+    bullet: "text-green-400",
+    pillBg: "bg-green-500",
+    pillLabel: "Foundation · Complete",
   },
   active: {
-    icon: Clock,
-    color: "text-forge-primary",
-    bg: "bg-forge-primary/10 border-forge-primary/30",
-    label: "In Progress",
+    badge:
+      "bg-forge-primary/15 text-forge-primary border border-forge-primary/25",
+    bullet: "text-forge-primary",
+    pillBg: "bg-forge-primary",
+    pillLabel: "Adoption · Active",
   },
   planned: {
-    icon: Circle,
-    color: "text-forge-text-subtle",
-    bg: "bg-forge-surface border-forge-border",
-    label: "Planned",
+    badge: "bg-forge-surface text-forge-text-subtle border border-forge-border",
+    bullet: "text-forge-text-subtle",
+    pillBg: "bg-forge-surface border border-forge-border",
+    pillLabel: "Scale · Planned",
   },
 };
+
+function ItemBullet({ status }: { status: PhaseStatus }) {
+  if (status === "complete") {
+    return (
+      <span className="mt-0.5 shrink-0 text-green-400 text-sm leading-none">
+        ✓
+      </span>
+    );
+  }
+  if (status === "active") {
+    return (
+      <span className="mt-1 shrink-0 h-2 w-2 rounded-full bg-forge-primary block" />
+    );
+  }
+  return (
+    <span className="mt-0.5 shrink-0 text-forge-text-subtle text-sm leading-none">
+      ○
+    </span>
+  );
+}
 
 export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
   const phases = buildPhases(repoCount);
@@ -98,98 +174,177 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
       id="main-content"
       className="min-h-screen bg-background font-sans text-foreground"
     >
-      <Section
-        variant="gradient"
-        label="Roadmap"
-        title="Where we're headed"
-        subtitle="A transparent view of what is shipped, what is in progress, and what is next."
-      >
-        <div className="max-w-3xl space-y-6">
-          {phases.map((phase, index) => {
-            const config = statusConfig[phase.status];
-            const Icon = config.icon;
+      {/* Hero */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* Radial gradient backdrop */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.18) 0%, transparent 70%)",
+          }}
+        />
 
+        <div className="relative max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE_SIZA }}
+          >
+            <p className="label-mono mb-6">ROADMAP</p>
+            <h1 className="font-display text-display-lg font-bold tracking-tight text-foreground leading-tight mb-6">
+              Building the future
+              <br />
+              of{" "}
+              <span className="text-gradient-primary">AI governance.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-forge-text-muted leading-relaxed max-w-2xl">
+              A transparent view of what is shipped, in progress, and what
+              comes next.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Phase Progress Bar */}
+      <div className="max-w-5xl mx-auto px-6 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.2 }}
+          className="flex items-center gap-0"
+        >
+          {phases.map((phase, i) => {
+            const config = statusConfig[phase.status];
             return (
-              <motion.div
-                key={phase.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  ease: EASE_SIZA,
-                  delay: index * 0.1,
-                }}
-                className={`rounded-xl border p-6 md:p-8 ${config.bg}`}
-              >
-                <div className="mb-3 flex items-center gap-3">
-                  <Icon className={`h-5 w-5 ${config.color}`} />
-                  <h3 className="font-display text-lg font-semibold text-foreground">
-                    {phase.title}
-                  </h3>
-                  <span className={`ml-auto text-xs font-mono ${config.color}`}>
-                    {config.label}
+              <div key={phase.number} className="flex items-center flex-1">
+                <div className="flex flex-col items-center gap-2 flex-1">
+                  <div
+                    className={`h-2 w-full rounded-full ${config.pillBg} ${phase.status === "active" ? "animate-pulse" : ""}`}
+                  />
+                  <span className="text-xs font-mono text-forge-text-subtle whitespace-nowrap">
+                    {config.pillLabel}
                   </span>
                 </div>
-                <p className="mb-4 text-sm leading-relaxed text-forge-text-muted">
-                  {phase.description}
-                </p>
-                <ul className="space-y-2">
+                {i < phases.length - 1 && (
+                  <div className="h-[1px] w-4 bg-forge-border shrink-0" />
+                )}
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
+
+      {/* Phase Sections */}
+      <div className="max-w-5xl mx-auto px-6 pb-24">
+        {phases.map((phase, index) => {
+          const config = statusConfig[phase.status];
+          return (
+            <motion.div
+              key={phase.number}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                ease: EASE_SIZA,
+                delay: index * 0.1,
+              }}
+            >
+              {index > 0 && (
+                <div className="border-t border-forge-border" />
+              )}
+              <div className="lg:grid lg:grid-cols-[1fr_2fr] gap-12 py-14">
+                {/* Left: phase meta */}
+                <div className="mb-8 lg:mb-0">
+                  <p className="font-mono text-6xl font-bold text-forge-border leading-none mb-4 select-none">
+                    {phase.number}
+                  </p>
+                  <span
+                    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-mono font-medium mb-4 ${config.badge}`}
+                  >
+                    {phase.status === "complete"
+                      ? "Complete"
+                      : phase.status === "active"
+                        ? "Active"
+                        : "Planned"}
+                  </span>
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-2">
+                    {phase.title}
+                  </h2>
+                  <p className="text-sm text-forge-text-muted leading-relaxed mb-4">
+                    {phase.description}
+                  </p>
+                  <p className="text-xs font-mono text-forge-text-subtle">
+                    {phase.stat}
+                  </p>
+                </div>
+
+                {/* Right: item list */}
+                <ul className="space-y-3">
                   {phase.items.map((item) => (
                     <li
-                      key={item}
-                      className="flex items-start gap-2 text-sm text-forge-text-muted"
+                      key={item.text}
+                      className="flex items-start gap-3 text-sm text-forge-text-muted"
                     >
+                      <ItemBullet status={item.status} />
                       <span
-                        className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
-                          phase.status === "complete"
-                            ? "bg-green-400/60"
-                            : phase.status === "active"
-                              ? "bg-forge-primary/60"
-                              : "bg-forge-text-subtle/40"
-                        }`}
-                      />
-                      {item}
+                        className={
+                          item.status === "complete"
+                            ? "text-foreground/80"
+                            : item.status === "active"
+                              ? "text-foreground/70"
+                              : "text-forge-text-subtle"
+                        }
+                      >
+                        {item.text}
+                      </span>
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.4 }}
-          className="mt-12 flex flex-wrap gap-4"
-        >
-          <Button
-            href="https://siza.forgespace.co"
-            external
-            size="lg"
-            ctaEvent={FORGE_CTA_EVENTS.SIZA}
-            ctaTarget="siza"
-            ctaLocation="roadmap_primary"
-            passAttribution
+      {/* CTA Row */}
+      <div className="border-t border-forge-border">
+        <div className="max-w-5xl mx-auto px-6 py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: EASE_SIZA }}
+            className="flex flex-wrap gap-4"
           >
-            Try Siza
-            <ArrowRight className="h-4 w-4" />
-          </Button>
-          <Button
-            href="https://github.com/Forge-Space"
-            external
-            variant="outline"
-            size="lg"
-            ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-            ctaTarget="github"
-            ctaLocation="roadmap_secondary"
-          >
-            View on GitHub
-          </Button>
-        </motion.div>
-      </Section>
+            <Button
+              href="https://siza.forgespace.co"
+              external
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.SIZA}
+              ctaTarget="siza"
+              ctaLocation="roadmap_primary"
+              passAttribution
+            >
+              Try Siza
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button
+              href="https://github.com/Forge-Space"
+              external
+              variant="outline"
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+              ctaTarget="github"
+              ctaLocation="roadmap_secondary"
+            >
+              View on GitHub
+            </Button>
+          </motion.div>
+        </div>
+      </div>
     </main>
   );
 }

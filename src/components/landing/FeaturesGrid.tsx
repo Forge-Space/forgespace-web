@@ -16,7 +16,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
           Features
         </p>
-        <h2 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-4">
+        <h2 className="text-display-lg font-display font-bold tracking-tight mb-4">
           Built for developers who ship
         </h2>
         <p className="text-xl text-forge-text-muted max-w-2xl">

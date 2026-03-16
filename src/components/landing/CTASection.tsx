@@ -38,7 +38,7 @@ export function CTASection() {
             Get started today
           </p>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight mb-6">
+          <h2 className="text-display-lg font-display font-extrabold tracking-tight mb-6">
             Your codebase,{" "}
             <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
               finally visible.

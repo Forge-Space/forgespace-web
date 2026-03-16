@@ -143,7 +143,7 @@ export default function PricingPage() {
             }}
           />
 
-          <h1 className="relative text-4xl sm:text-5xl font-display font-bold tracking-tight mb-4 leading-tight">
+          <h1 className="relative text-display-lg font-display font-bold tracking-tight mb-4 leading-tight">
             Start free.{" "}
             <span className="text-forge-primary">Ship with confidence.</span>
           </h1>
