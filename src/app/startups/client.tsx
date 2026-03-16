@@ -84,9 +84,17 @@ const ACCELERATOR_TIERS = [
 
 const STATS = [
   { value: "9", label: "Open-source repos" },
-  { value: "2,994+", label: "Tests passing" },
   { value: "MIT", label: "Licensed" },
   { value: "$0", label: "To start" },
+  { value: "Self-Hostable", label: "No vendor lock-in" },
+];
+
+// Siza scorecard mockup rows
+const SCORECARD_ROWS = [
+  { status: "pass", label: "Security", score: "94/100" },
+  { status: "pass", label: "Accessibility", score: "89/100" },
+  { status: "pass", label: "Maintainability", score: "91/100" },
+  { status: "warn", label: "Performance", score: "72/100" },
 ];
 
 export default function StartupsPage() {
@@ -99,57 +107,122 @@ export default function StartupsPage() {
       />
 
       <main id="main-content" className="relative">
-        {/* Hero */}
-        <PageSection
-          label="FOR STARTUPS"
-          title="Ship Faster Without a Platform Team"
-          subtitle="Enterprise governance at startup speed. Free for teams under 15 devs."
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.2 }}
-            className="flex flex-wrap gap-3"
-          >
-            <Button
-              href="https://siza.forgespace.co"
-              external
-              variant="primary"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.SIZA}
-              ctaTarget="siza"
-              ctaLocation="startups_hero_start_free"
-              passAttribution
-            >
-              Start Free
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-            <Button
-              href="https://github.com/Forge-Space"
-              external
-              variant="outline"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-              ctaTarget="github"
-              ctaLocation="startups_hero_github"
-            >
-              <Github className="w-4 h-4" />
-              View on GitHub
-            </Button>
-            <Button
-              href="/enterprise"
-              variant="ghost"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
-              ctaTarget="contact_sales"
-              ctaLocation="startups_hero_talk_to_us"
-            >
-              Talk to Us
-            </Button>
-          </motion.div>
-        </PageSection>
+        {/* Hero — 2-column split */}
+        <section className="relative py-20 sm:py-28">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left: existing PageSection hero content */}
+              <div>
+                <PageSection
+                  label="FOR STARTUPS"
+                  title="Ship Faster Without a Platform Team"
+                  subtitle="Enterprise governance at startup speed. Free for teams under 15 devs."
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.2 }}
+                    className="flex flex-wrap gap-3"
+                  >
+                    <Button
+                      href="https://siza.forgespace.co"
+                      external
+                      variant="primary"
+                      size="lg"
+                      ctaEvent={FORGE_CTA_EVENTS.SIZA}
+                      ctaTarget="siza"
+                      ctaLocation="startups_hero_start_free"
+                      passAttribution
+                    >
+                      Start Free
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      href="https://github.com/Forge-Space"
+                      external
+                      variant="outline"
+                      size="lg"
+                      ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+                      ctaTarget="github"
+                      ctaLocation="startups_hero_github"
+                    >
+                      <Github className="w-4 h-4" />
+                      View on GitHub
+                    </Button>
+                    <Button
+                      href="/enterprise"
+                      variant="ghost"
+                      size="lg"
+                      ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
+                      ctaTarget="contact_sales"
+                      ctaLocation="startups_hero_talk_to_us"
+                    >
+                      Talk to Us
+                    </Button>
+                  </motion.div>
+                </PageSection>
+              </div>
 
-        {/* Pain Points */}
+              {/* Right: Siza scorecard mockup */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.3 }}
+                className="hidden lg:block"
+                aria-hidden
+              >
+                <div className="bg-[#0d0d0f] border border-[--forge-border] rounded-xl p-6 font-mono text-sm shadow-2xl shadow-black/40">
+                  {/* Header */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="flex gap-1.5">
+                      <span className="w-3 h-3 rounded-full bg-[#3a3a3e]" />
+                      <span className="w-3 h-3 rounded-full bg-[#3a3a3e]" />
+                      <span className="w-3 h-3 rounded-full bg-[#3a3a3e]" />
+                    </div>
+                    <span className="ml-2 text-xs text-[#6b6b72]">forge-ai-action · PR #47</span>
+                  </div>
+
+                  <div className="border-t border-[--forge-border] pt-4 space-y-2.5">
+                    {SCORECARD_ROWS.map((row) => (
+                      <div key={row.label} className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          {row.status === "pass" ? (
+                            <span className="text-emerald-400 text-xs">✓</span>
+                          ) : (
+                            <span className="text-amber-400 text-xs">⚠</span>
+                          )}
+                          <span className="text-[#c4c4cc] text-xs">{row.label}</span>
+                        </div>
+                        <span
+                          className={
+                            row.status === "pass"
+                              ? "text-emerald-400 text-xs tabular-nums"
+                              : "text-amber-400 text-xs tabular-nums"
+                          }
+                        >
+                          {row.score}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="border-t border-[--forge-border] mt-4 pt-4 flex items-center justify-between">
+                    <span className="text-[#6b6b72] text-xs">Overall</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#7c3aed] font-bold text-sm">A</span>
+                      <span className="text-[#c4c4cc] text-xs tabular-nums">87/100</span>
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
+                        Passed
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pain Points — editorial numbered list */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">
             <motion.p
@@ -170,32 +243,38 @@ export default function StartupsPage() {
             >
               Startups move fast — governance doesn&apos;t keep up
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+            <div className="flex flex-col">
               {PAIN_POINTS.map((p, i) => (
                 <motion.div
                   key={p.title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    ease: EASE_SIZA,
-                    delay: 0.1 + i * 0.08,
-                  }}
-                  className="rounded-xl border border-forge-border bg-forge-surface/50 p-6"
+                  transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.1 + i * 0.08 }}
+                  className="border-t border-forge-border py-8 grid grid-cols-[3rem_1fr] sm:grid-cols-[4rem_1fr] gap-6 items-start"
                 >
-                  <p.icon className="w-5 h-5 text-forge-primary mb-3" />
-                  <h3 className="font-display font-semibold text-foreground mb-1">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-forge-text-muted">{p.desc}</p>
+                  <span className="font-mono text-2xl sm:text-3xl font-bold text-forge-primary/30 leading-none pt-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <p.icon className="w-5 h-5 text-forge-primary flex-shrink-0" />
+                      <h3 className="font-display font-semibold text-lg text-foreground leading-tight">
+                        {p.title}
+                      </h3>
+                    </div>
+                    <p className="text-forge-text-muted leading-relaxed">{p.desc}</p>
+                  </div>
                 </motion.div>
               ))}
+              {/* closing bottom border */}
+              <div className="border-t border-forge-border" />
             </div>
           </div>
         </section>
 
-        {/* How Forge Space Helps */}
+        {/* How Forge Space Helps — 2x2 with accents */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">
             <motion.p
@@ -223,25 +302,23 @@ export default function StartupsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    ease: EASE_SIZA,
-                    delay: 0.1 + i * 0.08,
-                  }}
-                  className="rounded-xl border border-forge-border bg-forge-surface/50 p-6"
+                  transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.1 + i * 0.08 }}
+                  className="rounded-xl border border-forge-border border-l-2 border-l-[color:color-mix(in_srgb,var(--forge-primary)_40%,transparent)] bg-forge-surface/50 p-6"
                 >
-                  <f.icon className="w-5 h-5 text-forge-primary mb-3" />
-                  <h3 className="font-display font-semibold text-foreground mb-1">
+                  <div className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-forge-primary/10 mb-4">
+                    <f.icon className="w-4 h-4 text-forge-primary" />
+                  </div>
+                  <h3 className="font-display font-semibold text-lg text-foreground mb-2">
                     {f.title}
                   </h3>
-                  <p className="text-sm text-forge-text-muted">{f.desc}</p>
+                  <p className="text-sm text-forge-text-muted leading-relaxed">{f.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* For Accelerator Programs */}
+        {/* For Accelerator Programs — numbered benefit list */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">
             <motion.div
@@ -265,27 +342,30 @@ export default function StartupsPage() {
                 enterprise-grade governance from day one — at zero cost.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+              {/* Numbered benefit list */}
+              <div className="flex flex-col mb-8">
                 {ACCELERATOR_TIERS.map((tier, i) => (
                   <motion.div
                     key={tier.name}
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{
-                      duration: 0.4,
-                      ease: EASE_SIZA,
-                      delay: 0.15 + i * 0.08,
-                    }}
-                    className="rounded-lg border border-forge-border bg-background/50 p-5"
+                    transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.15 + i * 0.08 }}
+                    className="border-t border-forge-primary/20 py-5 grid grid-cols-[2.5rem_1fr] gap-4 items-start"
                   >
-                    <tier.icon className="w-5 h-5 text-forge-primary mb-3" />
-                    <h3 className="font-display font-semibold text-foreground text-sm mb-1">
-                      {tier.name}
-                    </h3>
-                    <p className="text-sm text-forge-text-muted">{tier.desc}</p>
+                    <span className="font-mono text-sm font-bold text-forge-primary/50 leading-none pt-0.5">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <span className="font-display font-semibold text-foreground">
+                        {tier.name}
+                      </span>
+                      <span className="text-forge-text-muted ml-2">—</span>
+                      <span className="text-forge-text-muted ml-2 text-sm">{tier.desc}</span>
+                    </div>
                   </motion.div>
                 ))}
+                <div className="border-t border-forge-primary/20" />
               </div>
 
               <Button
@@ -304,7 +384,7 @@ export default function StartupsPage() {
           </div>
         </section>
 
-        {/* Social Proof / Stats */}
+        {/* Stats — single horizontal bar */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">
             <motion.p
@@ -325,27 +405,32 @@ export default function StartupsPage() {
             >
               Zero-cost architecture, production-grade quality
             </motion.h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+
+            {/* Horizontal stats bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.1 }}
+              className="flex flex-wrap items-center justify-center gap-x-0 gap-y-4 mb-10 rounded-xl border border-forge-border bg-forge-surface/30 px-6 py-6"
+            >
               {STATS.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    ease: EASE_SIZA,
-                    delay: 0.1 + i * 0.06,
-                  }}
-                  className="text-center rounded-xl border border-forge-border bg-forge-surface/50 p-6"
-                >
-                  <p className="text-3xl font-display font-bold text-foreground mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-sm text-forge-text-muted">{stat.label}</p>
-                </motion.div>
+                <div key={stat.label} className="flex items-center">
+                  <div className="flex items-baseline gap-2 px-5">
+                    <span className="text-2xl sm:text-3xl font-display font-bold text-foreground">
+                      {stat.value}
+                    </span>
+                    <span className="text-sm text-forge-text-muted whitespace-nowrap">
+                      {stat.label}
+                    </span>
+                  </div>
+                  {i < STATS.length - 1 && (
+                    <span className="text-forge-border text-lg font-light select-none">·</span>
+                  )}
+                </div>
               ))}
-            </div>
+            </motion.div>
+
             <div className="flex flex-wrap justify-center gap-3">
               <Badge variant="outline">MIT Licensed</Badge>
               <Badge variant="outline">Open Source</Badge>
@@ -354,8 +439,8 @@ export default function StartupsPage() {
             </div>
           </div>
         </section>
-
       </main>
+
       <CTASection />
     </div>
   );

@@ -1,255 +1,582 @@
 "use client";
 
 import { motion } from "motion/react";
-import {
-  Sparkles,
-  Shield,
-  Plug,
-  Lock,
-  BarChart3,
-  GitBranch,
-  ShieldCheck,
-  LayoutGrid,
-  Compass,
-  ArrowRightLeft,
-} from "lucide-react";
+import { Lock } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
-import { Section } from "@/components/ui/Section";
-import { type LucideIcon } from "lucide-react";
-
-interface FeatureDetail {
-  icon: LucideIcon;
-  label: string;
-  title: string;
-  description: string;
-  bullets: string[];
-}
+import { TrustStrip } from "@/components/landing/TrustStrip";
 
 interface FeaturesPageProps {
   repoCount: number;
 }
 
-const FEATURES: FeatureDetail[] = [
-  {
-    icon: Sparkles,
-    label: "Generation",
-    title: "AI that writes production code, not throwaway demos",
-    description:
-      "Describe what you need and generate implementation-ready output with architecture, typing, loading states, and accessibility in place.",
-    bullets: [
-      "React, Next.js, Vue, and HTML workflows",
-      "Structured output with reviewable diff paths",
-      "Live preview loop before merge",
-      "Model-agnostic generation pipeline",
-    ],
-  },
-  {
-    icon: Shield,
-    label: "Governance",
-    title: "Quality scoring is built into every generation",
-    description:
-      "Post-generation scoring evaluates security, accessibility, maintainability, and reliability so quality gates start at generation time.",
-    bullets: [
-      "Weighted quality categories",
-      "Grade-based output summaries",
-      "Policy-pack alignment",
-      "CI-compatible reporting",
-    ],
-  },
-  {
-    icon: Plug,
-    label: "MCP-Native",
-    title: "Composable architecture with zero lock-in",
-    description:
-      "Generation, migration, and branding capabilities are exposed as MCP tools, letting teams swap providers and compose custom stacks.",
-    bullets: [
-      "Tool-router architecture via mcp-gateway",
-      "Independent service versioning",
-      "Self-hostable runtime options",
-      "Open-source contract surface",
-    ],
-  },
-  {
-    icon: Lock,
-    label: "Security",
-    title: "BYOK with encrypted key handling",
-    description:
-      "Bring-your-own-key flows keep provider credentials encrypted client-side with strict boundary validation across service calls.",
-    bullets: [
-      "Client-side key encryption",
-      "Supabase Row-Level Security enforcement",
-      "Audit events from prompt to merge",
-      "Security scanning in CI pipelines",
-    ],
-  },
-  {
-    icon: BarChart3,
-    label: "Observability",
-    title: "Trace quality and delivery outcomes over time",
-    description:
-      "Track generation trends, score evolution, and service relationships with software catalog and API visibility built in.",
-    bullets: [
-      "Catalog and dependency graph",
-      "Generation and score history",
-      "CI/CD and API visibility panels",
-      "Backstage-compatible imports",
-    ],
-  },
-  {
-    icon: GitBranch,
-    label: "Golden Paths",
-    title: "Scaffold with standards encoded from day one",
-    description:
-      "Golden Path templates package governance, CI, and quality defaults so new services inherit platform standards automatically.",
-    bullets: [
-      "Template-driven bootstrap workflows",
-      "Parameter-based scaffolding",
-      "Governance defaults pre-wired",
-      "CLI-first and UI-first entry points",
-    ],
-  },
-  {
-    icon: ShieldCheck,
-    label: "CI Quality Gates",
-    title: "Enforce quality directly in pull requests",
-    description:
-      "forge-ai-action brings scanner checks, migration reports, and PR annotations directly into your existing GitHub workflows.",
-    bullets: [
-      "Assess, migrate, and score commands",
-      "Inline annotations and PR summaries",
-      "Threshold-based blocking rules",
-      "Delta tracking on changed files",
-    ],
-  },
-  {
-    icon: LayoutGrid,
-    label: "Gallery",
-    title: "Reuse high-signal generation patterns",
-    description:
-      "Browse featured outputs with quality context, copy code, and reuse prompts to accelerate onboarding and adoption.",
-    bullets: [
-      "Framework-level filtering",
-      "Prompt and code reuse paths",
-      "Quality badges on artifacts",
-      "Community curation workflow",
-    ],
-  },
-  {
-    icon: ArrowRightLeft,
-    label: "Migration",
-    title: "Modernize legacy systems with governed plans",
-    description:
-      "Assessment and migration tooling maps risk, suggests strategy, and builds phased modernization plans with objective gates.",
-    bullets: [
-      "Health scoring across critical categories",
-      "Boundary detection for staged extraction",
-      "Phased roadmap with gate thresholds",
-      "Actionable findings by priority",
-    ],
-  },
-  {
-    icon: Compass,
-    label: "Onboarding",
-    title: "Adopt faster with guided product flows",
-    description:
-      "Interactive onboarding introduces generation, catalog, templates, and governance surfaces without requiring separate setup docs.",
-    bullets: [
-      "Guided in-app walkthrough",
-      "Feature discovery overlays",
-      "Re-runnable demos for teams",
-      "Low-friction setup defaults",
-    ],
-  },
-];
+// ─── Mockup components ────────────────────────────────────────────────────────
+
+function MockAIGeneration() {
+  return (
+    <div className="rounded-xl border border-forge-border bg-[#0d0d0f] p-5 font-mono text-xs leading-relaxed overflow-x-auto">
+      <div className="mb-3 flex items-center gap-2 border-b border-forge-border pb-3">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+        <span className="ml-2 text-forge-text-subtle">siza — generate</span>
+      </div>
+      <div className="mb-4 rounded-lg border border-forge-border bg-forge-surface px-3 py-2 text-forge-text-muted">
+        <span className="text-forge-text-subtle">prompt:</span>{" "}
+        <span className="text-foreground/80">
+          &quot;User card with avatar, name, role and status badge&quot;
+        </span>
+      </div>
+      <div className="space-y-0.5">
+        <span className="text-forge-text-subtle italic">{"// Generated by Siza"}</span>
+        <br />
+        <span className="text-violet-400">export function </span>
+        <span className="text-sky-400">UserCard</span>
+        <span className="text-forge-text-muted">{"({ user }: Props) {"}</span>
+        <br />
+        <span className="text-foreground/40">{"  "}</span>
+        <span className="text-violet-400">return </span>
+        <span className="text-sky-400">{"<Card "}</span>
+        <span className="text-forge-text-muted">className=</span>
+        <span className="text-emerald-400">{'"flex gap-3 p-4"'}</span>
+        <span className="text-sky-400">{">"}</span>
+        <br />
+        <span className="text-foreground/40">{"    "}</span>
+        <span className="text-sky-400">{"<Avatar "}</span>
+        <span className="text-forge-text-muted">src=</span>
+        <span className="text-amber-400">{"{"}</span>
+        <span className="text-forge-text-muted">user.avatar</span>
+        <span className="text-amber-400">{"}"}</span>
+        <span className="text-sky-400">{" />"}</span>
+        <br />
+        <span className="text-foreground/40">{"    "}</span>
+        <span className="text-sky-400">{"<div>"}</span>
+        <br />
+        <span className="text-foreground/40">{"      "}</span>
+        <span className="text-sky-400">{"<p "}</span>
+        <span className="text-forge-text-muted">className=</span>
+        <span className="text-emerald-400">{'"font-semibold"'}</span>
+        <span className="text-sky-400">{">"}</span>
+        <span className="text-amber-400">{"{"}</span>
+        <span className="text-forge-text-muted">user.name</span>
+        <span className="text-amber-400">{"}"}</span>
+        <span className="text-sky-400">{"</p>"}</span>
+        <br />
+        <span className="text-foreground/40">{"      "}</span>
+        <span className="text-sky-400">{"<StatusBadge "}</span>
+        <span className="text-forge-text-muted">status=</span>
+        <span className="text-amber-400">{"{"}</span>
+        <span className="text-forge-text-muted">user.status</span>
+        <span className="text-amber-400">{"}"}</span>
+        <span className="text-sky-400">{" />"}</span>
+        <br />
+        <span className="text-foreground/40">{"    "}</span>
+        <span className="text-sky-400">{"</div>"}</span>
+        <br />
+        <span className="text-foreground/40">{"  "}</span>
+        <span className="text-sky-400">{"</Card>"}</span>
+        <br />
+        <span className="text-forge-text-muted">{"}"}</span>
+      </div>
+    </div>
+  );
+}
+
+function MockGovernanceCIGates() {
+  const checks = [
+    { label: "Security", score: "94 / 100", color: "text-emerald-400" },
+    { label: "Accessibility", score: "87 / 100", color: "text-emerald-400" },
+    { label: "Maintainability", score: "91 / 100", color: "text-emerald-400" },
+    { label: "Reliability", score: "89 / 100", color: "text-emerald-400" },
+    { label: "Warnings", score: "2", color: "text-amber-400" },
+    { label: "Blocking errors", score: "0", color: "text-emerald-400" },
+  ];
+  return (
+    <div className="rounded-xl border border-forge-border bg-[#0d0d0f] overflow-hidden">
+      <div className="flex items-center justify-between border-b border-forge-border px-4 py-3">
+        <span className="font-mono text-xs text-forge-text-muted">
+          forge-ai-action
+        </span>
+        <span className="flex items-center gap-1.5 rounded-full bg-violet-500/10 px-2.5 py-0.5 text-xs font-medium text-violet-400">
+          ✓ passed
+        </span>
+      </div>
+      <div className="divide-y divide-forge-border">
+        {checks.map((c) => (
+          <div
+            key={c.label}
+            className="flex items-center justify-between px-4 py-2.5 font-mono text-sm"
+          >
+            <span className="text-forge-text-muted">{c.label}</span>
+            <span className={c.color}>{c.score}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MockMCPArchitecture() {
+  return (
+    <div className="rounded-xl border border-forge-border bg-[#0d0d0f] p-6 font-mono text-sm">
+      <p className="mb-5 text-xs uppercase tracking-widest text-forge-text-subtle">
+        Service topology
+      </p>
+      <div className="space-y-3">
+        {[
+          { name: "Your LLM (Claude / GPT / Gemini)", color: "text-sky-400" },
+          null,
+          { name: "mcp-gateway", color: "text-violet-400", badge: "router" },
+          null,
+          {
+            name: "siza-gen",
+            color: "text-emerald-400",
+            badge: "generation",
+          },
+          {
+            name: "branding-mcp",
+            color: "text-amber-400",
+            badge: "design tokens",
+          },
+          {
+            name: "forge-ai-init",
+            color: "text-sky-400",
+            badge: "governance",
+          },
+        ].map((item, i) =>
+          item === null ? (
+            <div key={i} className="flex items-center gap-2 pl-4">
+              <span className="text-forge-primary text-lg leading-none">↓</span>
+            </div>
+          ) : (
+            <div
+              key={item.name}
+              className="flex items-center gap-3 rounded-lg border border-forge-border bg-forge-surface px-3 py-2.5"
+            >
+              <span className={item.color}>{item.name}</span>
+              {item.badge && (
+                <span className="ml-auto rounded-full bg-forge-primary/10 px-2 py-0.5 text-xs text-forge-primary">
+                  {item.badge}
+                </span>
+              )}
+            </div>
+          ),
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MockGoldenPaths() {
+  return (
+    <div className="rounded-xl border border-forge-border bg-[#0d0d0f] p-5 font-mono text-xs leading-relaxed">
+      <div className="mb-3 flex items-center gap-2 border-b border-forge-border pb-3">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+        <span className="ml-2 text-forge-text-subtle">terminal</span>
+      </div>
+      <div className="space-y-1">
+        <div>
+          <span className="text-emerald-400">$</span>
+          <span className="text-foreground/80">
+            {" "}
+            npx forge-space scaffold{" "}
+          </span>
+          <span className="text-violet-400">--template</span>
+          <span className="text-amber-400"> nextjs-app</span>
+        </div>
+        <div className="pt-2 text-forge-text-muted">
+          ✓ Cloning template...
+        </div>
+        <div className="text-forge-text-muted">
+          ✓ Applying governance defaults...
+        </div>
+        <div className="text-forge-text-muted">✓ Wiring CI quality gates...</div>
+        <div className="pt-2 text-forge-text-subtle">
+          my-app/
+          <br />
+          {"  "}├── .github/workflows/forge-ci.yml
+          <br />
+          {"  "}├── forge.config.ts
+          <br />
+          {"  "}├── src/
+          <br />
+          {"  "}│{"   "}└── components/
+          <br />
+          {"  "}└── package.json
+        </div>
+        <div className="pt-2 text-emerald-400">
+          Ready. Governance defaults pre-wired.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MockMigration() {
+  const rows = [
+    { name: "AuthService", score: 72, risk: "Medium", riskColor: "text-amber-400 bg-amber-400/10" },
+    { name: "UserDashboard", score: 38, risk: "High", riskColor: "text-red-400 bg-red-400/10" },
+    { name: "PaymentFlow", score: 85, risk: "Low", riskColor: "text-emerald-400 bg-emerald-400/10" },
+    { name: "LegacyReports", score: 21, risk: "High", riskColor: "text-red-400 bg-red-400/10" },
+    { name: "NotificationSvc", score: 61, risk: "Medium", riskColor: "text-amber-400 bg-amber-400/10" },
+  ];
+  return (
+    <div className="rounded-xl border border-forge-border bg-[#0d0d0f] overflow-hidden">
+      <div className="border-b border-forge-border px-4 py-3 font-mono text-xs text-forge-text-subtle">
+        migration assessment · 5 components
+      </div>
+      <table className="w-full font-mono text-xs">
+        <thead>
+          <tr className="border-b border-forge-border text-forge-text-subtle">
+            <th className="px-4 py-2 text-left font-normal">Component</th>
+            <th className="px-4 py-2 text-center font-normal">Health</th>
+            <th className="px-4 py-2 text-right font-normal">Risk</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-forge-border">
+          {rows.map((r) => (
+            <tr key={r.name}>
+              <td className="px-4 py-2.5 text-forge-text-muted">{r.name}</td>
+              <td className="px-4 py-2.5 text-center">
+                <span
+                  className={
+                    r.score >= 75
+                      ? "text-emerald-400"
+                      : r.score >= 50
+                        ? "text-amber-400"
+                        : "text-red-400"
+                  }
+                >
+                  {r.score}
+                </span>
+              </td>
+              <td className="px-4 py-2.5 text-right">
+                <span
+                  className={`rounded-full px-2 py-0.5 text-xs ${r.riskColor}`}
+                >
+                  {r.risk}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function MockBYOKSecurity() {
+  return (
+    <div className="rounded-xl border border-forge-border bg-[#0d0d0f] p-6 font-mono text-sm">
+      <div className="mb-6 flex justify-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-500/15 ring-1 ring-violet-500/30">
+          <Lock className="h-8 w-8 text-violet-400" />
+        </div>
+      </div>
+      <div className="space-y-3">
+        {[
+          {
+            step: "01",
+            label: "Your API key",
+            detail: "never leaves your browser",
+            color: "text-sky-400",
+          },
+          {
+            step: "02",
+            label: "AES-256-GCM",
+            detail: "client-side encryption",
+            color: "text-violet-400",
+          },
+          {
+            step: "03",
+            label: "Supabase RLS",
+            detail: "row-level isolation",
+            color: "text-emerald-400",
+          },
+          {
+            step: "04",
+            label: "Audit trail",
+            detail: "prompt → merge events",
+            color: "text-amber-400",
+          },
+        ].map((item, i, arr) => (
+          <div key={item.step}>
+            <div className="flex items-start gap-3 rounded-lg border border-forge-border bg-forge-surface px-3 py-2.5">
+              <span className="text-forge-text-subtle">{item.step}</span>
+              <div>
+                <span className={item.color}>{item.label}</span>
+                <span className="ml-2 text-xs text-forge-text-subtle">
+                  {item.detail}
+                </span>
+              </div>
+            </div>
+            {i < arr.length - 1 && (
+              <div className="flex justify-center py-1 text-forge-primary text-base leading-none">
+                ↓
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Feature section data ─────────────────────────────────────────────────────
+
+interface FeatureSectionData {
+  label: string;
+  index: string;
+  title: string;
+  description: string;
+  bullets: string[];
+  mockup: React.ReactNode;
+  flip?: boolean;
+}
+
+// ─── Section component ────────────────────────────────────────────────────────
+
+function FeatureSection({
+  label,
+  index,
+  title,
+  description,
+  bullets,
+  mockup,
+  flip = false,
+}: FeatureSectionData) {
+  return (
+    <section
+      aria-label={title}
+      className="border-t border-forge-border py-20 md:py-28"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Text side */}
+          <motion.div
+            initial={{ opacity: 0, x: flip ? 20 : -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: EASE_SIZA }}
+            className={flip ? "lg:order-last" : undefined}
+          >
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-forge-primary">
+              {index} · {label}
+            </p>
+            <h2 className="mb-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              {title}
+            </h2>
+            <p className="mb-6 text-lg leading-relaxed text-forge-text-muted">
+              {description}
+            </p>
+            <ul className="space-y-2.5">
+              {bullets.map((b) => (
+                <li key={b} className="flex items-start gap-2.5 text-sm text-forge-text-muted">
+                  <span className="mt-0.5 shrink-0 text-emerald-400">✓</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Visual side */}
+          <motion.div
+            initial={{ opacity: 0, x: flip ? -20 : 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+            className={flip ? undefined : undefined}
+          >
+            {mockup}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
+  const sections: FeatureSectionData[] = [
+    {
+      label: "AI Generation",
+      index: "01",
+      title: "AI that writes production code, not throwaway demos",
+      description:
+        "Describe what you need and generate implementation-ready output with architecture, typing, loading states, and accessibility in place.",
+      bullets: [
+        "React, Next.js, Vue, and HTML workflows",
+        "Structured output with reviewable diff paths",
+        "Live preview loop before merge",
+        "Model-agnostic generation pipeline",
+      ],
+      mockup: <MockAIGeneration />,
+      flip: false,
+    },
+    {
+      label: "CI Quality Gates",
+      index: "02",
+      title: "Enforce quality directly in pull requests",
+      description:
+        "forge-ai-action brings scanner checks, migration reports, and PR annotations directly into your existing GitHub workflows.",
+      bullets: [
+        "Weighted quality categories",
+        "Grade-based output summaries",
+        "Threshold-based blocking rules",
+        "Delta tracking on changed files",
+      ],
+      mockup: <MockGovernanceCIGates />,
+      flip: true,
+    },
+    {
+      label: "MCP Architecture",
+      index: "03",
+      title: "Composable architecture with zero lock-in",
+      description:
+        "Generation, migration, and branding capabilities are exposed as MCP tools, letting teams swap providers and compose custom stacks.",
+      bullets: [
+        "Tool-router architecture via mcp-gateway",
+        "Independent service versioning",
+        "Self-hostable runtime options",
+        "Open-source contract surface",
+      ],
+      mockup: <MockMCPArchitecture />,
+      flip: false,
+    },
+    {
+      label: "Golden Paths",
+      index: "04",
+      title: "Scaffold with standards encoded from day one",
+      description:
+        "Golden Path templates package governance, CI, and quality defaults so new services inherit platform standards automatically.",
+      bullets: [
+        "Template-driven bootstrap workflows",
+        "Parameter-based scaffolding",
+        "Governance defaults pre-wired",
+        "CLI-first and UI-first entry points",
+      ],
+      mockup: <MockGoldenPaths />,
+      flip: true,
+    },
+    {
+      label: "Migration",
+      index: "05",
+      title: "Modernize legacy systems with governed plans",
+      description:
+        "Assessment and migration tooling maps risk, suggests strategy, and builds phased modernization plans with objective gates.",
+      bullets: [
+        "Health scoring across critical categories",
+        "Boundary detection for staged extraction",
+        "Phased roadmap with gate thresholds",
+        "Actionable findings by priority",
+      ],
+      mockup: <MockMigration />,
+      flip: false,
+    },
+    {
+      label: "BYOK Security",
+      index: "06",
+      title: "BYOK with encrypted key handling",
+      description:
+        "Bring-your-own-key flows keep provider credentials encrypted client-side with strict boundary validation across service calls.",
+      bullets: [
+        "Client-side key encryption",
+        "Supabase Row-Level Security enforcement",
+        "Audit events from prompt to merge",
+        "Security scanning in CI pipelines",
+      ],
+      mockup: <MockBYOKSecurity />,
+      flip: true,
+    },
+  ];
+
   return (
     <main
       id="main-content"
       className="min-h-screen bg-background font-sans text-foreground"
     >
-      <Section
-        variant="gradient"
-        label="Features"
-        title="Everything you need to ship with confidence"
-        subtitle={`A complete developer platform across ${repoCount} actively maintained repositories.`}
+      {/* Hero */}
+      <section
+        aria-label="Features hero"
+        className="relative overflow-hidden pb-16 pt-24 sm:pt-32"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.12) 0%, transparent 70%)",
+        }}
       >
-        <div className="space-y-6">
-          {FEATURES.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                ease: EASE_SIZA,
-                delay: index * 0.05,
-              }}
-              className="rounded-xl border border-forge-border bg-forge-surface/40 p-6 transition-all duration-200 hover:border-forge-primary/30 focus-within:border-forge-primary/40 md:p-8"
-            >
-              <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary">
-                  <feature.icon className="h-5 w-5" />
-                </div>
-                <span className="text-xs font-mono uppercase tracking-[0.15em] text-forge-primary">
-                  {feature.label}
-                </span>
-              </div>
-              <h3 className="mb-3 font-display text-xl font-semibold text-foreground">
-                {feature.title}
-              </h3>
-              <p className="mb-4 leading-relaxed text-forge-text-muted">
-                {feature.description}
-              </p>
-              <ul className="space-y-2">
-                {feature.bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="flex items-start gap-2 text-sm text-forge-text-muted"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forge-primary/60" />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE_SIZA }}
+          >
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-forge-primary">
+              Platform features
+            </p>
+            <h1 className="mb-5 font-display text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              Built for teams
+              <br />
+              <span className="text-forge-text-muted">that ship.</span>
+            </h1>
+            <p className="max-w-2xl text-xl leading-relaxed text-forge-text-muted">
+              A complete developer platform spanning {repoCount} actively
+              maintained repositories — with governance built into the generation
+              loop.
+            </p>
+          </motion.div>
         </div>
+      </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, ease: EASE_SIZA, delay: 0.2 }}
-          className="mt-12 flex flex-wrap gap-4"
-        >
-          <Button
-            href="https://github.com/Forge-Space"
-            external
-            size="lg"
-            ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-            ctaTarget="github"
-            ctaLocation="features_github_primary"
+      {/* Trust strip */}
+      <TrustStrip />
+
+      {/* Feature split sections */}
+      {sections.map((section) => (
+        <FeatureSection key={section.index} {...section} />
+      ))}
+
+      {/* CTA row */}
+      <section
+        aria-label="Call to action"
+        className="border-t border-forge-border py-20"
+      >
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: EASE_SIZA }}
+            className="flex flex-wrap items-center gap-4"
           >
-            Explore on GitHub
-          </Button>
-          <Button
-            href="https://siza.forgespace.co"
-            external
-            variant="outline"
-            size="lg"
-            ctaEvent={FORGE_CTA_EVENTS.SIZA}
-            ctaTarget="siza"
-            ctaLocation="features_siza_secondary"
-            passAttribution
-          >
-            Try Siza Free
-          </Button>
-        </motion.div>
-      </Section>
+            <Button
+              href="https://github.com/Forge-Space"
+              external
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+              ctaTarget="github"
+              ctaLocation="features_github_primary"
+            >
+              Explore on GitHub
+            </Button>
+            <Button
+              href="https://siza.forgespace.co"
+              external
+              variant="outline"
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.SIZA}
+              ctaTarget="siza"
+              ctaLocation="features_siza_secondary"
+              passAttribution
+            >
+              Try Siza Free
+            </Button>
+          </motion.div>
+        </div>
+      </section>
     </main>
   );
 }

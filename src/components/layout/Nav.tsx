@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, Suspense } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, Github } from "lucide-react";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
@@ -37,10 +37,89 @@ function ForgeMonogram({ className = "" }: { className?: string }) {
   );
 }
 
+function NavLinks({ mobile = false, onNavigate }: { mobile?: boolean; onNavigate?: () => void }) {
+  const pathname = usePathname();
+
+  const linkClass = (href: string) => {
+    const isActive = pathname === href;
+    if (mobile) {
+      return isActive
+        ? "relative rounded-md px-3 py-2.5 text-sm text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-forge-primary after:rounded-full"
+        : "rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface";
+    }
+    return isActive
+      ? "relative rounded-md px-3 py-2 text-sm text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-forge-primary after:rounded-full"
+      : "rounded-md px-3 py-2 text-sm text-forge-text-muted hover:text-foreground transition-colors hover:bg-forge-surface";
+  };
+
+  return (
+    <>
+      {NAV_LINKS.map((link) =>
+        link.external ? (
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onNavigate}
+            data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
+            data-fs-cta-target="github"
+            data-fs-cta-location={`nav_${mobile ? "mobile_" : ""}${link.label.toLowerCase()}`}
+            className={
+              mobile
+                ? "rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                : "rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+            }
+          >
+            {link.label}
+          </a>
+        ) : (
+          <Link
+            key={link.label}
+            href={link.href}
+            onClick={onNavigate}
+            className={linkClass(link.href)}
+          >
+            {link.label}
+          </Link>
+        ),
+      )}
+    </>
+  );
+}
+
+function NavStarBadge() {
+  const [stars, setStars] = useState(0);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/Forge-Space/siza")
+      .then((res) => res.json())
+      .then((data: { stargazers_count?: number }) => {
+        if (typeof data.stargazers_count === "number" && data.stargazers_count > 0) {
+          setStars(data.stargazers_count);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  return (
+    <a
+      href="https://github.com/Forge-Space"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-forge-border bg-forge-surface text-xs text-forge-text-muted hover:border-forge-border-hover hover:text-foreground transition-all"
+    >
+      <Github className="w-3.5 h-3.5" />
+      {stars > 0 && (
+        <span>{stars > 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}</span>
+      )}
+      <span>★</span>
+    </a>
+  );
+}
+
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [stars, setStars] = useState(0);
-  const pathname = usePathname();
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
@@ -57,31 +136,6 @@ export function Nav() {
     };
   }, [mobileOpen, closeMobile]);
 
-  useEffect(() => {
-    fetch("https://api.github.com/repos/Forge-Space/siza")
-      .then((res) => res.json())
-      .then((data: { stargazers_count?: number }) => {
-        if (typeof data.stargazers_count === "number" && data.stargazers_count > 0) {
-          setStars(data.stargazers_count);
-        }
-      })
-      .catch(() => {});
-  }, []);
-
-  const navLinkClass = (href: string) => {
-    const isActive = pathname === href;
-    return isActive
-      ? "relative rounded-md px-3 py-2 text-sm text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-forge-primary after:rounded-full"
-      : "rounded-md px-3 py-2 text-sm text-forge-text-muted hover:text-foreground transition-colors hover:bg-forge-surface";
-  };
-
-  const mobileLinkClass = (href: string) => {
-    const isActive = pathname === href;
-    return isActive
-      ? "relative rounded-md px-3 py-2.5 text-sm text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-forge-primary after:rounded-full"
-      : "rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface";
-  };
-
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-forge-border bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
@@ -97,45 +151,24 @@ export function Nav() {
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map((link) =>
-              link.external ? (
-                <a
+            <Suspense fallback={
+              NAV_LINKS.map((link) => (
+                <span
                   key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
-                  data-fs-cta-target="github"
-                  data-fs-cta-location={`nav_${link.label.toLowerCase()}`}
-                  className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                  className="rounded-md px-3 py-2 text-sm text-forge-text-muted"
                 >
                   {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={navLinkClass(link.href)}
-                >
-                  {link.label}
-                </Link>
-              ),
-            )}
+                </span>
+              ))
+            }>
+              <NavLinks />
+            </Suspense>
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            <a
-              href="https://github.com/Forge-Space"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-forge-border bg-forge-surface text-xs text-forge-text-muted hover:border-forge-border-hover hover:text-foreground transition-all"
-            >
-              <Github className="w-3.5 h-3.5" />
-              {stars > 0 && (
-                <span>{stars > 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}</span>
-              )}
-              <span>★</span>
-            </a>
+            <Suspense fallback={null}>
+              <NavStarBadge />
+            </Suspense>
             <a
               href="https://siza.forgespace.co"
               target="_blank"
@@ -195,32 +228,18 @@ export function Nav() {
             </div>
 
             <div className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) =>
-                link.external ? (
-                  <a
+              <Suspense fallback={
+                NAV_LINKS.map((link) => (
+                  <span
                     key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={closeMobile}
-                    data-fs-cta-event={FORGE_CTA_EVENTS.GITHUB}
-                    data-fs-cta-target="github"
-                    data-fs-cta-location={`nav_mobile_${link.label.toLowerCase()}`}
-                    className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                    className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted"
                   >
                     {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={closeMobile}
-                    className={mobileLinkClass(link.href)}
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
+                  </span>
+                ))
+              }>
+                <NavLinks mobile onNavigate={closeMobile} />
+              </Suspense>
             </div>
 
             <div className="mt-auto flex flex-col gap-3">
