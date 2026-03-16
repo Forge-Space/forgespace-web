@@ -10,7 +10,8 @@ interface SocialProofProps {
 }
 
 function useCountUp(target: number, duration = 1500, active: boolean) {
-  const [count, setCount] = useState(0);
+  const resolvedTarget = active ? target : 0;
+  const [count, setCount] = useState(resolvedTarget);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function StatCounter({ target, label, index, active }: StatCounterProps) {
   const displayValue =
     target >= 1000
       ? count >= 1000
-        ? `${Math.floor(count / 1000)}k`
+        ? `${(count / 1000).toFixed(1)}k`
         : String(count)
       : String(count);
 
@@ -188,7 +189,7 @@ export function SocialProof({ snapshot }: SocialProofProps) {
         <div className={`grid gap-8 ${showDownloads ? "grid-cols-2 md:grid-cols-4" : "grid-cols-2 md:grid-cols-3"}`}>
           <StatCounter
             target={snapshot.repoCount}
-            label="Open Source Repos"
+            label={showDownloads ? "Open Source Repos" : "Product Repos"}
             index={0}
             active={countersActive}
           />

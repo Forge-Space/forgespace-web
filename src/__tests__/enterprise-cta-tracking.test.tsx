@@ -14,22 +14,37 @@ import { render, screen } from "@testing-library/react";
 import EnterprisePage from "@/app/enterprise/client";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
+function makeMotionComponent(tag: string) {
+  const MotionComponent = ({
+    children,
+    ...props
+  }: {
+    children?: React.ReactNode;
+    [key: string]: unknown;
+  }) => {
+    const rest = { ...(props as Record<string, unknown>) };
+    delete rest.initial;
+    delete rest.animate;
+    delete rest.transition;
+    delete rest.whileInView;
+    delete rest.viewport;
+    delete rest.variants;
+    const Tag = tag as keyof React.JSX.IntrinsicElements;
+    return <Tag {...(rest as React.HTMLAttributes<HTMLElement>)}>{children}</Tag>;
+  };
+  MotionComponent.displayName = `Motion${tag}`;
+  return MotionComponent;
+}
+
 vi.mock("motion/react", () => ({
-  motion: {
-    div: ({
-      children,
-      ...props
-    }: {
-      children?: React.ReactNode;
-      [key: string]: unknown;
-    }) => {
-      const rest = { ...(props as Record<string, unknown>) };
-      delete rest.initial;
-      delete rest.animate;
-      delete rest.transition;
-      return <div {...rest}>{children}</div>;
+  motion: new Proxy(
+    {},
+    {
+      get(_target, prop: string) {
+        return makeMotionComponent(prop);
+      },
     },
-  },
+  ),
 }));
 
 vi.mock("next/link", () => ({

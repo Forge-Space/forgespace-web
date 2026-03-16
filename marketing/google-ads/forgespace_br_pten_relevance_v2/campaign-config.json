@@ -9,7 +9,7 @@
     "display_expansion": false
   },
   "location_targeting": ["Brazil"],
-  "language_targeting": ["English"],
+  "language_targeting": ["English", "Portuguese"],
   "location_options": {
     "target": "Presence",
     "exclude": "Presence"

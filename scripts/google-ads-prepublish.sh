@@ -80,8 +80,15 @@ if (config.budget?.amount_per_day_brl !== 10) {
   throw new Error("Daily budget must be R$10");
 }
 
-if (JSON.stringify(config.language_targeting) !== JSON.stringify(["English"])) {
-  throw new Error("Language targeting must be English-only for v3.2");
+const langs = config.language_targeting || [];
+if (!langs.includes("English")) {
+  throw new Error("Language targeting must include English");
+}
+const allowedLangs = ["English", "Portuguese"];
+for (const l of langs) {
+  if (!allowedLangs.includes(l)) {
+    throw new Error("Unexpected language: " + l + ". Allowed: " + allowedLangs.join(", "));
+  }
 }
 
 const adGroups = new Map((config.ad_groups || []).map((g) => [g.name, g.status]));
@@ -124,7 +131,14 @@ if [ "$startups_en_keywords" -ne 6 ]; then
 	exit 1
 fi
 
-echo "[OK] Keyword mix guardrails validated (smb_en=6, oss_en=6, startups_en=6)"
+smb_pt_keywords=$(awk -F, 'NR>1 && $2=="smb_pt" && $6=="enabled" {c++} END {print c+0}' "$CAMPAIGN_DIR/keywords.csv")
+
+if [ "$smb_pt_keywords" -ne 6 ]; then
+	echo "[ERROR] smb_pt must have exactly 6 enabled keyword variants."
+	exit 1
+fi
+
+echo "[OK] Keyword mix guardrails validated (smb_en=6, oss_en=6, startups_en=6, smb_pt=6)"
 
 node -e '
 const fs = require("fs");
@@ -185,20 +199,31 @@ const kwRaw = fs.readFileSync("marketing/google-ads/forgespace_br_pten_relevance
 const negLines = negRaw.trim().split("\n").slice(1);
 const negatives = negLines.map(l => {
   const parts = l.split(",");
-  return { keyword: parts[1]?.toLowerCase().trim(), matchType: parts[2]?.trim() };
+  return {
+    scope: parts[0]?.trim(),
+    keyword: parts[1]?.toLowerCase().trim(),
+    matchType: parts[2]?.trim()
+  };
 }).filter(n => n.keyword);
 
 const kwLines = kwRaw.trim().split("\n").slice(1);
 const keywords = kwLines
   .filter(l => l.includes(",enabled,"))
-  .map(l => { const m = l.match(/,"([^"]+)",/); return m ? m[1].toLowerCase() : ""; })
-  .filter(Boolean);
+  .map(l => {
+    const parts = l.split(",");
+    return {
+      adGroup: parts[1]?.trim(),
+      keyword: parts[2]?.replace(/"/g, "").trim().toLowerCase()
+    };
+  })
+  .filter(k => k.keyword);
 
 let conflicts = 0;
 for (const neg of negatives) {
   for (const kw of keywords) {
-    if (neg.matchType === "broad" && kw.includes(neg.keyword)) {
-      console.error("[ERROR] Negative keyword conflict: \"" + neg.keyword + "\" (broad) blocks positive keyword \"" + kw + "\"");
+    const negApplies = neg.scope === "campaign" || neg.scope === kw.adGroup;
+    if (negApplies && neg.matchType === "broad" && kw.keyword.includes(neg.keyword)) {
+      console.error("[ERROR] Negative keyword conflict: \"" + neg.keyword + "\" (" + neg.scope + ", broad) blocks positive keyword \"" + kw.keyword + "\" in " + kw.adGroup);
       conflicts++;
     }
   }

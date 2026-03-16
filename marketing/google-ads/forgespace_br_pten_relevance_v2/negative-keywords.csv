@@ -13,8 +13,12 @@ campaign,tutorial,broad,education,
 campaign,bootcamp,broad,education,
 campaign,certification,broad,education,
 campaign,certificado,broad,education,PT: certificate
-campaign,gratuito,broad,freebie,PT: free — safe to exclude (PT searchers not our EN target)
-campaign,gratis,broad,freebie,PT: free — safe to exclude (PT searchers not our EN target)
+smb_en,gratuito,broad,freebie,moved from campaign — blocks PT discovery if campaign-level
+smb_en,gratis,broad,freebie,moved from campaign — blocks PT discovery if campaign-level
+oss_en,gratuito,broad,freebie,moved from campaign — blocks PT discovery if campaign-level
+oss_en,gratis,broad,freebie,moved from campaign — blocks PT discovery if campaign-level
+startups_en,gratuito,broad,freebie,moved from campaign — blocks PT discovery if campaign-level
+startups_en,gratis,broad,freebie,moved from campaign — blocks PT discovery if campaign-level
 campaign,baixar,broad,download,PT: download
 campaign,apk,broad,download,
 campaign,template free,phrase,freebie,phrase match is safe — only blocks exact phrase
@@ -47,8 +51,19 @@ campaign,copilot,broad,dev-tool-noise,Microsoft Copilot confusion
 campaign,vercel,broad,dev-tool-noise,hosting platform — different category
 campaign,netlify,broad,dev-tool-noise,hosting platform — different category
 campaign,heroku,broad,dev-tool-noise,hosting platform — different category
-campaign,how to,phrase,low-intent-research,informational intent — not buyer
-campaign,what is,phrase,low-intent-research,informational intent — not buyer
-campaign,learn,broad,low-intent-research,educational intent — not buyer
+smb_en,how to,phrase,low-intent-research,informational intent — not buyer
+smb_en,what is,phrase,low-intent-research,informational intent — not buyer
+oss_en,how to,phrase,low-intent-research,informational intent — not buyer
+oss_en,what is,phrase,low-intent-research,informational intent — not buyer
+startups_en,how to,phrase,low-intent-research,informational intent — not buyer
+startups_en,what is,phrase,low-intent-research,informational intent — not buyer
+smb_en,learn,broad,low-intent-research,educational intent — not buyer
+oss_en,learn,broad,low-intent-research,educational intent — not buyer
+startups_en,learn,broad,low-intent-research,educational intent — not buyer
 campaign,free template,phrase,freebie,template seekers — not platform buyers
 campaign,free tool,phrase,freebie,tool seekers — not platform buyers
+smb_pt,emprego,broad,employment,PT: job/employment
+smb_pt,contratação,broad,employment,PT: hiring
+smb_pt,como fazer,phrase,low-intent-research,PT: how to
+smb_pt,o que é,phrase,low-intent-research,PT: what is
+smb_pt,aprender,broad,low-intent-research,PT: learn
