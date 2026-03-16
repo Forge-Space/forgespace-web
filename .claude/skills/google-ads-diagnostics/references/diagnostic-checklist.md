@@ -9,6 +9,8 @@
 - [ ] Daily budget >= R$10 (or configured amount)
 - [ ] Max CPC is competitive for the vertical (B2B tech: >= $0.50 USD)
 - [ ] Location + language targeting has adequate audience size
+- [ ] Language targeting includes ALL languages used in ad group keywords (e.g., Portuguese for smb_pt)
+- [ ] Campaign-level negatives don't block localized ad groups (e.g., "gratuito" blocking PT searches)
 - [ ] Ad schedule is not overly restrictive
 
 ## Keyword Viability

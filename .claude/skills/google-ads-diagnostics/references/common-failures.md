@@ -85,3 +85,25 @@
 **Root cause**: Users arrive expecting one thing but the page serves a different intent.
 **Example**: "backstage alternative for startups" → /enterprise (which is about enterprise support/sales), not about evaluating alternatives.
 **Fix**: Route comparison-intent keywords to a page with feature comparison, GitHub links, and evaluation paths.
+
+## Language Targeting Mismatch
+
+### Campaign language excludes ad group's target audience
+**Symptom**: Ad group with localized keywords (e.g., Portuguese) gets 0 impressions despite the campaign being active and qualified.
+**Root cause**: Campaign language targeting is set to English-only, but an ad group has Portuguese keywords targeting Brazilian searchers. Google won't show Portuguese ads to users whose browser/search language is Portuguese if the campaign only targets English.
+**Example**: `smb_pt` ad group with "plataforma de desenvolvimento" keywords, but campaign `language_targeting: ["English"]` — zero impressions because PT searchers are excluded.
+**Fix**: Add Portuguese to campaign language targeting. Verify in Google Ads → Campaign Settings → Idiomas that all languages matching ad group keywords are included.
+
+### Campaign-level negatives blocking localized ad groups
+**Symptom**: Localized ad group gets 0 impressions or very low volume despite language targeting being correct.
+**Root cause**: Campaign-level negative keywords block searches in other languages. E.g., `gratuito` (broad, campaign-level) blocks any Portuguese search containing "free" — but the PT ad group's headlines use "Grátis"/"Gratuito".
+**Example**: Negative `gratuito` (broad, campaign) blocks "plataforma de desenvolvimento gratuito" — a valid PT search.
+**Fix**: Move language-specific negatives from campaign-level to ad-group-level. Only apply `gratuito`/`gratis` as negatives on English ad groups, not the whole campaign.
+
+## Conversion Tracking Silent Failures
+
+### Tracking code gated behind unrelated env var
+**Symptom**: Google Ads tag never fires, conversion tracking shows "not verified", 0 conversions despite clicks.
+**Root cause**: Google Ads gtag loading is inside a conditional block that depends on another service's environment variable (e.g., GA4 tracking ID). If that env var is unset in production, ALL tracking silently fails.
+**Example**: `if (!GA4_TRACKING_ID) return;` skips the entire useEffect that also configures `gtag('config', 'AW-959867732')`.
+**Fix**: Decouple each tracking service's initialization. Google Ads should load independently of GA4. Use `const gtagId = GA4_ID ?? ADS_ID` as fallback.
