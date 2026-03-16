@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Github, ArrowRight } from "lucide-react";
+import { Github, ArrowRight, Mail } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
@@ -38,11 +38,8 @@ export function CTASection() {
             Get started today
           </p>
 
-          <h2 className="text-display-lg font-display font-extrabold tracking-tight mb-6">
-            Your codebase,{" "}
-            <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
-              finally visible.
-            </span>
+          <h2 className="text-display-lg font-display font-extrabold tracking-tight mb-6 bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
+            Get visibility where it matters
           </h2>
 
           <p className="text-xl text-forge-text-muted max-w-xl mx-auto mb-10 leading-relaxed">
@@ -67,8 +64,20 @@ export function CTASection() {
               ctaLocation="landing_cta_primary"
             >
               <Github className="w-4 h-4" />
-              View on GitHub
+              Explore on GitHub
               <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button
+              href="mailto:support@forgespace.co?subject=Forge%20Space%20for%20my%20team"
+              variant="outline"
+              size="lg"
+              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
+              ctaTarget="contact_sales"
+              ctaLocation="landing_cta_secondary"
+              passAttribution
+            >
+              <Mail className="w-4 h-4" />
+              Contact Forge Space
             </Button>
             <Button
               href="https://siza.forgespace.co"
@@ -77,7 +86,7 @@ export function CTASection() {
               size="lg"
               ctaEvent={FORGE_CTA_EVENTS.SIZA}
               ctaTarget="siza"
-              ctaLocation="landing_cta_secondary"
+              ctaLocation="landing_cta_tertiary"
               passAttribution
             >
               Try Siza Demo

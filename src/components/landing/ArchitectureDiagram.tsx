@@ -17,10 +17,10 @@ export function ArchitectureDiagram({ repoCount, releasedRepoCount }: Architectu
 
   const nodes = [
     { cx: 80, label: "Your Codebase", sub: "source", variant: "default" as const },
-    { cx: 240, label: "siza scan", sub: "analysis", variant: "violet" as const },
-    { cx: 400, label: "JSON Manifest", sub: "output", variant: "default" as const },
-    { cx: 560, label: "AI Governance", sub: "policy", variant: "violet" as const },
-    { cx: 720, label: "Catalog + CI", sub: "delivery", variant: "success" as const },
+    { cx: 240, label: "Siza", sub: "scan + catalog", variant: "violet" as const },
+    { cx: 400, label: "core", sub: "governance", variant: "default" as const },
+    { cx: 560, label: "mcp-gateway", sub: "routing", variant: "violet" as const },
+    { cx: 720, label: "ui-mcp + branding-mcp", sub: "delivery", variant: "success" as const },
   ];
 
   const fills: Record<string, string> = {
@@ -55,7 +55,7 @@ export function ArchitectureDiagram({ repoCount, releasedRepoCount }: Architectu
             Architecture
           </p>
           <h2 className="mb-4 text-3xl font-display font-bold tracking-tight text-foreground sm:text-4xl">
-            How Forge Space works
+            Four layers. {repoCount} product repos.
           </h2>
           <p className="text-lg leading-relaxed text-forge-text-muted">
             One scan. A living catalog. Governance built into every step.

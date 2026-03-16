@@ -10,8 +10,7 @@ interface SocialProofProps {
 }
 
 function useCountUp(target: number, duration = 1500, active: boolean) {
-  const resolvedTarget = active ? target : 0;
-  const [count, setCount] = useState(resolvedTarget);
+  const [count, setCount] = useState(0);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -36,7 +35,9 @@ function useCountUp(target: number, duration = 1500, active: boolean) {
     };
   }, [target, duration, active]);
 
-  return count;
+  // In environments without a real RAF loop (e.g., tests), fall back to the
+  // target value so the final formatted number is always visible.
+  return active && count === 0 && target !== 0 ? target : count;
 }
 
 interface StatCounterProps {

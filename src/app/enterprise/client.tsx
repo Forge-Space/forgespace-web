@@ -67,7 +67,18 @@ function HeroSection() {
             transition={transition(0.21)}
           >
             <Button
+              href="https://github.com/Forge-Space"
+              external
+              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+              ctaTarget="github"
+              ctaLocation="enterprise_github_primary"
+              size="lg"
+            >
+              Explore on GitHub
+            </Button>
+            <Button
               href="mailto:support@forgespace.co"
+              variant="outline"
               ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
               ctaTarget="contact_sales"
               ctaLocation="enterprise_hero_primary"
@@ -75,17 +86,6 @@ function HeroSection() {
               size="lg"
             >
               Contact Sales
-            </Button>
-            <Button
-              href="https://github.com/Forge-Space"
-              external
-              variant="outline"
-              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-              ctaTarget="github"
-              ctaLocation="enterprise_hero_github"
-              size="lg"
-            >
-              View on GitHub
             </Button>
           </motion.div>
 
@@ -390,7 +390,7 @@ function CtaSection() {
           passAttribution
           size="lg"
         >
-          Contact Sales
+          Get in Touch
         </Button>
         <Button
           href="https://github.com/Forge-Space"

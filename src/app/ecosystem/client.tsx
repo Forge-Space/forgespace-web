@@ -41,7 +41,7 @@ function ArchitectureOverview() {
       <p className="mb-3 text-center text-[10px] font-mono uppercase tracking-[0.18em] text-forge-text-subtle">
         Architecture
       </p>
-      <div className="mx-auto max-w-sm rounded-xl border border-forge-border bg-[#0d0d0f] p-6 font-mono text-sm">
+      <div aria-hidden="true" className="mx-auto max-w-sm rounded-xl border border-forge-border bg-[#0d0d0f] p-6 font-mono text-sm">
         <div className="flex flex-col items-center gap-0 text-center">
           <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-5 py-2 text-foreground">
             Your App
@@ -50,11 +50,11 @@ function ArchitectureOverview() {
           <div className="flex w-full items-start justify-center gap-6">
             <div className="flex flex-col items-center gap-0">
               <div className="rounded-lg border border-forge-primary/40 bg-forge-primary/10 px-4 py-2 text-forge-primary">
-                mcp-gateway
+                MCP Gateway
               </div>
               <div className="py-1 text-forge-text-subtle">↓</div>
               <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-4 py-2 text-forge-text-muted">
-                branding-mcp
+                Branding MCP
               </div>
               <div className="py-1 text-forge-text-subtle">↓</div>
               <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-4 py-2 text-foreground">
@@ -64,7 +64,7 @@ function ArchitectureOverview() {
             <div className="pt-[2.75rem] text-forge-text-subtle">→</div>
             <div className="flex flex-col items-center gap-0">
               <div className="rounded-lg border border-forge-primary/40 bg-forge-primary/10 px-4 py-2 text-forge-primary">
-                siza-gen
+                Siza Gen
               </div>
               <div className="py-1 text-forge-text-subtle">↓</div>
               <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-4 py-2 text-forge-text-muted">

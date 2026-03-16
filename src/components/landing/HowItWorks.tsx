@@ -12,7 +12,7 @@ export function HowItWorks() {
             How it works
           </p>
           <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-foreground mb-4">
-            From scan to catalog in minutes.
+            From prompt to production
           </h2>
           <p className="text-lg text-forge-text-muted max-w-xl">
             No agents to configure. No YAML to memorize. Siza does the work.
@@ -32,7 +32,7 @@ export function HowItWorks() {
                 01
               </div>
               <h3 className="text-3xl font-display font-bold tracking-tight mb-3">
-                Install and scan your repo
+                Generate
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 One CLI command. Siza scans your codebase and extracts a complete component manifest.
@@ -134,7 +134,7 @@ export function HowItWorks() {
                 02
               </div>
               <h3 className="text-3xl font-display font-bold tracking-tight mb-3">
-                Your catalog, generated automatically
+                Score
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 Siza publishes a live catalog to siza.forgespace.co — searchable, browseable, always up to date.
@@ -158,7 +158,7 @@ export function HowItWorks() {
                 03
               </div>
               <h3 className="text-3xl font-display font-bold tracking-tight mb-3">
-                Governance in every PR
+                Ship
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 Add forge-ai-action to your GitHub workflow. Every PR gets scored — automatically.

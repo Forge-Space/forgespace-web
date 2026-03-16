@@ -60,4 +60,21 @@ if (typeof window !== "undefined") {
     value: resolvedStorage,
     configurable: true,
   });
+
+  if (typeof window.IntersectionObserver === "undefined") {
+    Object.defineProperty(window, "IntersectionObserver", {
+      configurable: true,
+      value: class IntersectionObserver {
+        private callback: (entries: { isIntersecting: boolean }[]) => void;
+        constructor(callback: (entries: { isIntersecting: boolean }[]) => void) {
+          this.callback = callback;
+        }
+        observe() {
+          this.callback([{ isIntersecting: true }]);
+        }
+        unobserve() {}
+        disconnect() {}
+      },
+    });
+  }
 }
