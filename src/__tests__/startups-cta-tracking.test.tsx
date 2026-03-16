@@ -3,13 +3,14 @@
  *
  * Verifies that /startups carries GitHub CTAs with correct tracking attributes
  * so fs_cta_github_click (primary conversion) can fire when startups_en ad
- * traffic lands here. The page must have GitHub CTAs in both hero and footer
- * sections to maximise conversion opportunity above and below the fold.
+ * traffic lands here. The page has GitHub CTAs in both the hero section and
+ * the shared CTASection at the bottom for maximum conversion opportunity.
  */
 import React from "react";
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import StartupsPage from "@/app/startups/client";
+import { CTASection } from "@/components/landing/CTASection";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 vi.mock("motion/react", () => ({
@@ -123,28 +124,6 @@ describe("StartupsPage — CTA tracking contract", () => {
     expect(heroLink).toHaveAttribute("rel", "noopener noreferrer");
   });
 
-  it("footer GitHub CTA has correct tracking event", () => {
-    render(<StartupsPage />);
-    const footerLink = screen
-      .getAllByRole("link")
-      .find(
-        (el) =>
-          el.getAttribute("data-fs-cta-event") === FORGE_CTA_EVENTS.GITHUB &&
-          el.getAttribute("data-fs-cta-location") === "startups_footer_github",
-      );
-    expect(footerLink).toBeDefined();
-  });
-
-  it("footer GitHub CTA points to Forge-Space GitHub org", () => {
-    render(<StartupsPage />);
-    const footerLink = screen
-      .getAllByRole("link")
-      .find(
-        (el) => el.getAttribute("data-fs-cta-location") === "startups_footer_github",
-      );
-    expect(footerLink).toHaveAttribute("href", "https://github.com/Forge-Space");
-  });
-
   it("Siza CTA is present as primary start-free action", () => {
     render(<StartupsPage />);
     const sizaLinks = screen
@@ -164,5 +143,40 @@ describe("StartupsPage — CTA tracking contract", () => {
           el.getAttribute("data-fs-cta-event") === FORGE_CTA_EVENTS.CONTACT_SALES,
       );
     expect(salesLinks.length).toBeGreaterThanOrEqual(1);
+  });
+});
+
+describe("StartupsPage — bottom CTASection tracking contract", () => {
+  it("renders GitHub CTA with correct event and location", () => {
+    render(<CTASection />);
+    const btn = screen.getByText("Explore on GitHub").closest("a");
+    expect(btn).toHaveAttribute("data-fs-cta-event", FORGE_CTA_EVENTS.GITHUB);
+    expect(btn).toHaveAttribute("data-fs-cta-target", "github");
+    expect(btn).toHaveAttribute("data-fs-cta-location", "landing_cta_primary");
+  });
+
+  it("renders Contact Sales CTA with correct event and location", () => {
+    render(<CTASection />);
+    const btn = screen.getByText("Contact Forge Space").closest("a");
+    expect(btn).toHaveAttribute(
+      "data-fs-cta-event",
+      FORGE_CTA_EVENTS.CONTACT_SALES,
+    );
+    expect(btn).toHaveAttribute("data-fs-cta-target", "contact_sales");
+    expect(btn).toHaveAttribute(
+      "data-fs-cta-location",
+      "landing_cta_secondary",
+    );
+  });
+
+  it("renders Siza CTA with correct event and location", () => {
+    render(<CTASection />);
+    const btn = screen.getByText("Try Siza Demo").closest("a");
+    expect(btn).toHaveAttribute("data-fs-cta-event", FORGE_CTA_EVENTS.SIZA);
+    expect(btn).toHaveAttribute("data-fs-cta-target", "siza");
+    expect(btn).toHaveAttribute(
+      "data-fs-cta-location",
+      "landing_cta_tertiary",
+    );
   });
 });

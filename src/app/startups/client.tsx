@@ -14,7 +14,6 @@ import {
   GitBranch,
   FlaskConical,
   Scale,
-  Zap,
   Github,
 } from "lucide-react";
 import { PageSection } from "@/components/layout/PageSection";
@@ -22,6 +21,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
+import { CTASection } from "@/components/landing/CTASection";
 
 const PAIN_POINTS = [
   {
@@ -355,65 +355,8 @@ export default function StartupsPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="py-16 pb-24">
-          <div className="max-w-4xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: EASE_SIZA }}
-              className="text-center"
-            >
-              <Zap className="w-6 h-6 text-forge-primary mx-auto mb-4" />
-              <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground mb-3">
-                Start shipping governed code today
-              </h2>
-              <p className="text-forge-text-muted mb-8 max-w-lg mx-auto">
-                Free for teams under 15 devs. No credit card. No platform
-                engineer required.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <Button
-                  href="https://siza.forgespace.co"
-                  external
-                  variant="primary"
-                  size="lg"
-                  ctaEvent={FORGE_CTA_EVENTS.SIZA}
-                  ctaTarget="siza"
-                  ctaLocation="startups_footer_start_free"
-                  passAttribution
-                >
-                  Start Free
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-                <Button
-                  href="https://github.com/Forge-Space"
-                  external
-                  variant="outline"
-                  size="lg"
-                  ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-                  ctaTarget="github"
-                  ctaLocation="startups_footer_github"
-                >
-                  <Github className="w-4 h-4" />
-                  View on GitHub
-                </Button>
-                <Button
-                  href="/enterprise"
-                  variant="ghost"
-                  size="lg"
-                  ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
-                  ctaTarget="contact_sales"
-                  ctaLocation="startups_footer_talk_to_us"
-                >
-                  Talk to Us
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
       </main>
+      <CTASection />
     </div>
   );
 }
