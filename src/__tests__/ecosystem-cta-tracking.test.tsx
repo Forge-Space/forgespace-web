@@ -14,6 +14,7 @@ import { render, screen } from "@testing-library/react";
 import EcosystemPage from "@/app/ecosystem/client";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import type { EcosystemSnapshot, EcosystemRepo } from "@/lib/ecosystem-data";
+import { CTASection } from "@/components/landing/CTASection";
 
 vi.mock("motion/react", () => ({
   motion: {
@@ -146,5 +147,37 @@ describe("EcosystemPage — CTA tracking contract", () => {
     const link = screen.getByText("test-repo").closest("a");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  });
+});
+
+describe("EcosystemPage — bottom CTASection tracking contract", () => {
+  it("renders GitHub CTA with correct event and location", () => {
+    render(<CTASection />);
+    const btn = screen.getByText("Explore on GitHub").closest("a");
+    expect(btn).toHaveAttribute("data-fs-cta-event", FORGE_CTA_EVENTS.GITHUB);
+    expect(btn).toHaveAttribute("data-fs-cta-target", "github");
+    expect(btn).toHaveAttribute("data-fs-cta-location", "landing_cta_primary");
+  });
+
+  it("renders Contact Sales CTA with correct event and location", () => {
+    render(<CTASection />);
+    const btn = screen.getByText("Contact Forge Space").closest("a");
+    expect(btn).toHaveAttribute(
+      "data-fs-cta-event",
+      FORGE_CTA_EVENTS.CONTACT_SALES,
+    );
+    expect(btn).toHaveAttribute("data-fs-cta-target", "contact_sales");
+    expect(btn).toHaveAttribute(
+      "data-fs-cta-location",
+      "landing_cta_secondary",
+    );
+  });
+
+  it("renders Siza CTA with correct event and location", () => {
+    render(<CTASection />);
+    const btn = screen.getByText("Try Siza Demo").closest("a");
+    expect(btn).toHaveAttribute("data-fs-cta-event", FORGE_CTA_EVENTS.SIZA);
+    expect(btn).toHaveAttribute("data-fs-cta-target", "siza");
+    expect(btn).toHaveAttribute("data-fs-cta-location", "landing_cta_tertiary");
   });
 });
