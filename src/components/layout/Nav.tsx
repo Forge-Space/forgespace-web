@@ -212,7 +212,7 @@ export function Nav() {
             onClick={closeMobile}
             aria-hidden
           />
-          <div className="absolute right-0 top-0 h-full w-72 bg-background border-l border-forge-border p-6 flex flex-col">
+          <div className="absolute right-0 top-0 h-full w-72 bg-background border-l border-forge-border p-6 flex flex-col" role="dialog" aria-modal="true" aria-label="Navigation menu">
             <div className="flex items-center justify-between mb-8">
               <span className="font-display text-base font-bold text-foreground">
                 Forge Space

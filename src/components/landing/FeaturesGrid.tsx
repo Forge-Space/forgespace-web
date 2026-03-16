@@ -38,10 +38,9 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
                 Feature 1 of 6
               </p>
-              <h3 className="sr-only">AI-Powered Generation</h3>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
                 Describe it. Get production code.
-              </h2>
+              </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 Natural language to typed, reviewable UI. Siza understands your design
                 system and generates components that fit your codebase.
@@ -108,7 +107,6 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       {/* Feature 2: MCP-Native Architecture — mockup left, text right */}
       <section aria-label="MCP-Native Architecture" className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
-          <h3 className="sr-only">MCP-Native Architecture</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -144,9 +142,9 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
                 Feature 2 of 6
               </p>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
                 Every capability, swappable.
-              </h2>
+              </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 Generation, governance, branding, and migration are composed through
                 MCP — each layer independently replaceable without forking the platform.
@@ -169,10 +167,9 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
                 Feature 3 of 6
               </p>
-              <h3 className="sr-only">CI Quality Gates</h3>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
                 Quality gates in every PR.
-              </h2>
+              </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 forge-ai-action runs scoring, annotations, and threshold enforcement
                 automatically in your GitHub workflow — no dashboard required.
@@ -216,7 +213,6 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
 
       {/* Feature 4: Privacy-First BYOK — mockup left, text right */}
       <section aria-label="Privacy-First BYOK" className="py-20 md:py-28">
-        <h3 className="sr-only">Privacy-First BYOK</h3>
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -243,9 +239,9 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
                 Feature 4 of 6
               </p>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
                 Your keys. Your infra. Your rules.
-              </h2>
+              </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
                 Client-side AES-256 encryption means your API keys never touch our
                 servers. Self-host the full stack under MIT — or run it locally with Docker.
@@ -257,7 +253,6 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       {/* Feature 5: Zero-Cost Start */}
       <section aria-label="Zero-Cost Start" className="py-12 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
-          <h3 className="sr-only">Zero-Cost Start</h3>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -278,7 +273,6 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       {/* Feature 6: Self-Hostable */}
       <section aria-label="Self-Hostable" className="py-12 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
-          <h3 className="sr-only">Self-Hostable</h3>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}

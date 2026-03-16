@@ -366,9 +366,9 @@ function FeatureSection({
             <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-forge-primary">
               {index} · {label}
             </p>
-            <h2 className="mb-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            <h3 className="mb-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
               {title}
-            </h2>
+            </h3>
             <p className="mb-6 text-lg leading-relaxed text-forge-text-muted">
               {description}
             </p>

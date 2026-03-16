@@ -104,12 +104,12 @@ describe("FeaturesGrid", () => {
 
   it("renders feature cards", () => {
     render(<FeaturesGrid repoCount={snapshot.repoCount} />);
-    expect(screen.getByText("AI-Powered Generation")).toBeInTheDocument();
-    expect(screen.getByText("MCP-Native Architecture")).toBeInTheDocument();
-    expect(screen.getByText("Privacy-First BYOK")).toBeInTheDocument();
-    expect(screen.getByText("Zero-Cost Start")).toBeInTheDocument();
-    expect(screen.getByText("Self-Hostable")).toBeInTheDocument();
-    expect(screen.getByText("Multi-Model Workflows")).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "AI-Powered Generation" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "MCP-Native Architecture" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Privacy-First BYOK" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Zero-Cost Start" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Self-Hostable" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Multi-Model Workflows" })).toBeInTheDocument();
   });
 });
 
