@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://forgespace.co";
-const LAST_MODIFIED = new Date("2026-03-11T00:00:00.000Z");
+const LAST_MODIFIED = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

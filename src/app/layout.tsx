@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 import { DM_Sans, Sora, IBM_Plex_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
-import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
+import { ClientAnalytics } from "@/components/analytics/ClientAnalytics";
 import { globalStructuredData } from "@/app/structured-data";
 import "./globals.css";
 
@@ -90,19 +89,17 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${sora.variable} ${ibmPlexMono.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
-        <Suspense fallback={null}>
-          <AnalyticsProvider>
-            <a
-              href="#main-content"
-              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-forge-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
-            >
-              Skip to content
-            </a>
-            <Nav />
-            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
-            <Footer />
-          </AnalyticsProvider>
-        </Suspense>
+        <ClientAnalytics>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-forge-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+          >
+            Skip to content
+          </a>
+          <Nav />
+          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+          <Footer />
+        </ClientAnalytics>
       </body>
     </html>
   );

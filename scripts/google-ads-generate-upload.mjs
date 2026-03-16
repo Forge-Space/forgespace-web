@@ -336,8 +336,13 @@ function run() {
   const output = lines.join("\n") + "\n";
   fs.writeFileSync(OUTPUT_PATH, output, "utf8");
 
+  const cleanLines = lines.filter((l) => !l.startsWith("#") && l.trim() !== "");
+  const CLEAN_PATH = OUTPUT_PATH.replace(".csv", "-clean.csv");
+  fs.writeFileSync(CLEAN_PATH, cleanLines.join("\n") + "\n", "utf8");
+
   const lineCount = output.split("\n").length;
   console.log(`[OK] Generated: ${OUTPUT_PATH} (${lineCount} lines)`);
+  console.log(`[OK] Generated: ${CLEAN_PATH} (${cleanLines.length} lines, no comments)`);
 
   // Summary
   const enabledGroups = rsa.ad_groups.filter((g) => g.status === "enabled" && g.ads);

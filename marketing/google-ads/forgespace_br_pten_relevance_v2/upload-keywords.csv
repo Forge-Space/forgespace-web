@@ -1,0 +1,27 @@
+Campaign,Ad group,Keyword,Match type,Max CPC,Status
+forgespace_br_en_visibility_v3,smb_en,internal developer platform,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_en,internal developer platform,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_en,backstage alternative,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_en,backstage alternative,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_en,platform engineering tools,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_en,platform engineering tools,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_en,IDP for startups,Exact,2.50,Paused
+forgespace_br_en_visibility_v3,smb_en,IDP for startups,Phrase,2.50,Paused
+forgespace_br_en_visibility_v3,oss_en,open source developer platform,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,oss_en,open source developer platform,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,oss_en,open source IDP,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,oss_en,open source IDP,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,oss_en,developer platform github,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,oss_en,developer platform github,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,startups_en,IDP for startups,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,startups_en,IDP for startups,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,startups_en,dev platform for startups,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,startups_en,dev platform for startups,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,startups_en,platform engineering startups,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,startups_en,platform engineering startups,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_pt,plataforma de desenvolvimento,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_pt,plataforma de desenvolvimento,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_pt,alternativa ao backstage,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_pt,alternativa ao backstage,Phrase,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_pt,ferramentas de plataforma,Exact,2.50,Enabled
+forgespace_br_en_visibility_v3,smb_pt,ferramentas de plataforma,Phrase,2.50,Enabled

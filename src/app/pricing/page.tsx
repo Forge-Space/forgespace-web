@@ -2,6 +2,7 @@ import { getPageMetadata } from "@/app/seo";
 import PricingPage from "./client";
 import { getPricingFaqJsonLd } from "./faq";
 
+export const dynamic = "force-dynamic";
 export const metadata = getPageMetadata("pricing");
 
 export default function Page() {

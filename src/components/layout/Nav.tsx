@@ -38,7 +38,7 @@ function ForgeMonogram({ className = "" }: { className?: string }) {
 }
 
 function NavLinks({ mobile = false, onNavigate }: { mobile?: boolean; onNavigate?: () => void }) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
 
   const linkClass = (href: string) => {
     const isActive = pathname === href;
