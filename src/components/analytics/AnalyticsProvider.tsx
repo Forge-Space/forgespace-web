@@ -10,12 +10,14 @@ import {
 } from "@/lib/analytics/first-touch-attribution";
 import {
   trackForgeCtaEvent,
+  trackGadsConversion,
   trackGa4Pageview,
   type ForgeCtaEvent,
 } from "@/lib/analytics/ga4";
 
 const GA4_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 const GADS_TRACKING_ID = "AW-959867732";
+const GADS_CONVERSION_LABEL = `${GADS_TRACKING_ID}/dV0FCNCgr4YcENTW2ckD`;
 
 function getCurrentPagePath(pathname: string, query: string): string {
   return query ? `${pathname}?${query}` : pathname;
@@ -69,6 +71,8 @@ function handleCtaClick(event: MouseEvent): void {
     cta_location: anchor.dataset.fsCtaLocation ?? null,
     destination_url: anchor.href,
   });
+
+  trackGadsConversion(GADS_CONVERSION_LABEL);
 }
 
 export default function AnalyticsProvider({ children }: PropsWithChildren) {
@@ -83,23 +87,33 @@ export default function AnalyticsProvider({ children }: PropsWithChildren) {
   }, [pathname]);
 
   useEffect(() => {
-    if (!GA4_TRACKING_ID || typeof window === "undefined") {
+    if (typeof window === "undefined") {
       return;
     }
 
+    const gtagId = GA4_TRACKING_ID ?? GADS_TRACKING_ID;
     const scriptTag = document.createElement("script");
     scriptTag.async = true;
-    scriptTag.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_TRACKING_ID}`;
+    scriptTag.src =
+      `https://www.googletagmanager.com/gtag/js?id=${gtagId}`;
+
+    const configLines = [
+      "window.dataLayer = window.dataLayer || [];",
+      "function gtag(){dataLayer.push(arguments);}",
+      "window.gtag = gtag;",
+      "gtag('js', new Date());",
+    ];
+
+    if (GA4_TRACKING_ID) {
+      configLines.push(
+        `gtag('config', '${GA4_TRACKING_ID}', { send_page_view: false });`,
+      );
+    }
+
+    configLines.push(`gtag('config', '${GADS_TRACKING_ID}');`);
 
     const inlineScriptTag = document.createElement("script");
-    inlineScriptTag.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', '${GA4_TRACKING_ID}', { send_page_view: false });
-      gtag('config', '${GADS_TRACKING_ID}');
-    `;
+    inlineScriptTag.textContent = configLines.join("\n");
 
     document.head.append(scriptTag, inlineScriptTag);
 
@@ -118,7 +132,10 @@ export default function AnalyticsProvider({ children }: PropsWithChildren) {
 
     trackGa4Pageview(
       GA4_TRACKING_ID,
-      getCurrentPagePath(pathname, query.startsWith("?") ? query.slice(1) : query),
+      getCurrentPagePath(
+        pathname,
+        query.startsWith("?") ? query.slice(1) : query,
+      ),
       window.location.href,
     );
   }, [pathname]);

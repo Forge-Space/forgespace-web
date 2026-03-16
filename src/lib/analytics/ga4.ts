@@ -65,6 +65,17 @@ export function trackForgeCtaEvent(
   trackGa4Event(eventName, params);
 }
 
+export function trackGadsConversion(
+  sendTo: string,
+  params?: Record<string, unknown>,
+): void {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") {
+    return;
+  }
+
+  window.gtag("event", "conversion", { send_to: sendTo, ...params });
+}
+
 export function trackGa4Pageview(
   trackingId: string,
   pagePath: string,
