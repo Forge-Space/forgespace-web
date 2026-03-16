@@ -114,9 +114,9 @@ export default function StartupsPage() {
               {/* Left: existing PageSection hero content */}
               <div>
                 <PageSection
-                  label="FOR STARTUPS"
-                  title="Ship Faster Without a Platform Team"
-                  subtitle="Enterprise governance at startup speed. Free for teams under 15 devs."
+                  label="IDP FOR STARTUPS"
+                  title="The Dev Platform for Startups"
+                  subtitle="Enterprise governance at startup speed — no platform team required. Free for teams under 15 devs."
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}

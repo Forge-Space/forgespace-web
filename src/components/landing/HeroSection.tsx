@@ -34,16 +34,17 @@ export function HeroSection() {
             transition={{ duration: 0.7, ease: EASE_SIZA }}
           >
             <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
-              <span className="text-white">Ship software</span>
+              <span className="text-white">Open-source IDP</span>
               <br />
               <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
-                your team can govern.
+                for teams that ship.
               </span>
             </h1>
 
             <p className="text-lg text-forge-text-muted max-w-md mb-8 leading-relaxed">
-              Open-source IDP. Siza scans your codebase and generates a living
-              catalog — no Backstage overhead.
+              The Backstage alternative built for speed. Siza scans your
+              codebase and generates a living catalog — AI governance without
+              the overhead.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-4">
@@ -56,7 +57,7 @@ export function HeroSection() {
                 ctaLocation="hero_primary"
               >
                 <Github className="w-4 h-4" />
-                View on GitHub
+                Explore on GitHub
                 <ArrowRight className="w-4 h-4" />
               </Button>
               <Button

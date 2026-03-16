@@ -187,9 +187,9 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
     >
       <Section
         variant="gradient"
-        label="Ecosystem"
+        label="Open Source Developer Platform"
         title={`${snapshot.repoCount} repos. One platform.`}
-        subtitle="Live GitHub metadata synced every 6 hours with resilient fallback snapshots."
+        subtitle="The open source IDP built on GitHub. Live metadata synced every 6 hours with resilient fallback snapshots."
       >
         {/* Stat Pills */}
         <div className="mb-10 flex flex-wrap justify-center gap-3">
