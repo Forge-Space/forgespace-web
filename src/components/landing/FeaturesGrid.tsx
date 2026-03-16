@@ -1,149 +1,255 @@
 "use client";
 
 import { motion } from "motion/react";
-import {
-  Sparkles,
-  Plug,
-  Shield,
-  Gift,
-  Server,
-  Cpu,
-  ShieldCheck,
-  LayoutGrid,
-  Compass,
-  ArrowRightLeft,
-} from "lucide-react";
+import { Lock } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
-import { type LucideIcon } from "lucide-react";
-
-interface Feature {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
 
 interface FeaturesGridProps {
   repoCount: number;
 }
 
-const FEATURES: Feature[] = [
-  {
-    icon: Sparkles,
-    title: "AI-Powered Generation",
-    description:
-      "Natural language to production UI. Describe a dashboard, form, or landing page and get structured, typed, reviewable code.",
-  },
-  {
-    icon: Plug,
-    title: "MCP-Native Architecture",
-    description:
-      "Generation, governance, branding, and migration capabilities are composed through MCP so each layer stays replaceable.",
-  },
-  {
-    icon: Shield,
-    title: "Privacy-First BYOK",
-    description:
-      "Bring your own API key with client-side AES-256 encryption. Your credentials never touch our servers.",
-  },
-  {
-    icon: Gift,
-    title: "Zero-Cost Start",
-    description:
-      "Start free with open-source defaults and scale into managed workflows only when your team needs them.",
-  },
-  {
-    icon: Server,
-    title: "Self-Hostable",
-    description:
-      "Run the stack locally with Docker under MIT licensing and keep full control over infrastructure and data.",
-  },
-  {
-    icon: Cpu,
-    title: "Multi-Model Workflows",
-    description:
-      "Switch between Gemini, Claude, GPT, and local models without rewriting your generation flow.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "CI Quality Gates",
-    description:
-      "Integrate forge-ai-action in GitHub workflows for automatic scoring, PR annotations, and threshold enforcement.",
-  },
-  {
-    icon: LayoutGrid,
-    title: "Generation Gallery",
-    description:
-      "Browse high-quality examples, copy code, and reuse prompts to accelerate onboarding and internal standards.",
-  },
-  {
-    icon: ArrowRightLeft,
-    title: "Legacy Migration",
-    description:
-      "Assess legacy systems, identify safe boundaries, and generate phased modernization plans with measurable gates.",
-  },
-  {
-    icon: Compass,
-    title: "Guided Onboarding",
-    description:
-      "Built-in tours and curated defaults help new teams adopt the platform without separate setup playbooks.",
-  },
-];
-
 export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
   return (
-    <section className="relative py-20 md:py-28">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "var(--forge-gradient-section)" }}
-        aria-hidden
-      />
-      <div className="relative mx-auto max-w-5xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: EASE_SIZA }}
-          className="mb-14 max-w-2xl"
-        >
-          <p className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
-            Features
-          </p>
-          <h2 className="mb-4 text-3xl font-display font-bold tracking-tight text-foreground sm:text-4xl">
-            Built for developers who ship
-          </h2>
-          <p className="text-lg leading-relaxed text-forge-text-muted">
-            A full delivery stack across {repoCount} actively maintained repositories, with
-            governance built into the generation loop.
-          </p>
-        </motion.div>
+    <div>
+      {/* Section header */}
+      <div className="max-w-6xl mx-auto px-6 pt-20 pb-4">
+        <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
+          Features
+        </p>
+        <h2 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-4">
+          Built for developers who ship
+        </h2>
+        <p className="text-xl text-forge-text-muted max-w-2xl">
+          A complete delivery stack across {repoCount} actively maintained repos,
+          with governance built into the generation loop.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((feature, index) => (
+      {/* Feature 1: AI-Powered Generation — text left, mockup right */}
+      <section aria-label="AI-Powered Generation" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{
-                duration: 0.4,
-                ease: EASE_SIZA,
-                delay: index * 0.06,
-              }}
-              className="group rounded-xl border border-forge-border bg-forge-surface p-6 transition-all duration-200 hover:border-forge-primary/40 hover:shadow-[var(--forge-glow-primary-sm)]"
+              transition={{ duration: 0.6, ease: EASE_SIZA }}
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-forge-primary/10 text-forge-primary transition-colors group-hover:bg-forge-primary/20">
-                <feature.icon className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 font-display font-semibold text-foreground">
-                {feature.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-forge-text-muted">
-                {feature.description}
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
+                Feature 1 of 4
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+                Describe it. Get production code.
+              </h2>
+              <p className="text-lg text-forge-text-muted leading-relaxed">
+                Natural language to typed, reviewable UI. Siza understands your design
+                system and generates components that fit your codebase.
               </p>
             </motion.div>
-          ))}
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+            >
+              <div className="bg-[#0d0d0f] border border-forge-border rounded-xl p-4 font-mono text-xs leading-relaxed overflow-x-auto">
+                <span className="text-forge-text-subtle italic">{"// Generated by Siza"}</span>
+                {"\n"}
+                <span className="text-violet-400">export function</span>
+                {" "}
+                <span className="text-sky-400">UserCard</span>
+                {"("}
+                {"{ user }: UserCardProps) {"}
+                {"\n  "}
+                <span className="text-violet-400">return</span>
+                {"(\n    "}
+                <span className="text-sky-400">{"<Card"}</span>
+                {" "}
+                <span className="text-forge-text-muted">className=</span>
+                <span className="text-emerald-400">{'"p-4 flex gap-3 items-center"'}</span>
+                <span className="text-sky-400">{">"}</span>
+                {"\n      "}
+                <span className="text-sky-400">{"<Avatar"}</span>
+                {" "}
+                <span className="text-forge-text-muted">src=</span>
+                {"{"}<span className="text-forge-text-muted">user.avatar</span>{"}"}{" "}
+                <span className="text-sky-400">{"/>"}</span>
+                {"\n      "}
+                <span className="text-sky-400">{"<div>"}</span>
+                {"\n        "}
+                <span className="text-sky-400">{"<p"}</span>
+                {" "}
+                <span className="text-forge-text-muted">className=</span>
+                <span className="text-emerald-400">{'"font-medium"'}</span>
+                <span className="text-sky-400">{">"}</span>
+                {"{"}<span className="text-forge-text-muted">user.name</span>{"}"}{" "}
+                <span className="text-sky-400">{"</p>"}</span>
+                {"\n        "}
+                <span className="text-sky-400">{"<p"}</span>
+                {" "}
+                <span className="text-forge-text-muted">className=</span>
+                <span className="text-emerald-400">{'"text-muted text-sm"'}</span>
+                <span className="text-sky-400">{">"}</span>
+                {"{"}<span className="text-forge-text-muted">user.role</span>{"}"}{" "}
+                <span className="text-sky-400">{"</p>"}</span>
+                {"\n      "}
+                <span className="text-sky-400">{"</div>"}</span>
+                {"\n    "}
+                <span className="text-sky-400">{"</Card>"}</span>
+                {"\n  );\n}"}
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Feature 2: MCP-Native Architecture — mockup left, text right */}
+      <section aria-label="MCP-Native Architecture" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA }}
+              className="flex flex-col items-center justify-center"
+            >
+              <div className="flex items-center justify-center flex-wrap gap-2">
+                <div className="border border-forge-border rounded-lg px-4 py-2 text-sm text-forge-text-muted bg-forge-surface">
+                  Your LLM
+                </div>
+                <span className="text-forge-primary text-xl mx-2">→</span>
+                <div className="border border-forge-border rounded-lg px-4 py-2 text-sm text-forge-text-muted bg-forge-surface">
+                  MCP Gateway
+                </div>
+                <span className="text-forge-primary text-xl mx-2">→</span>
+                <div className="border border-forge-border rounded-lg px-4 py-2 text-sm text-forge-text-muted bg-forge-surface">
+                  Siza
+                </div>
+              </div>
+              <p className="text-xs text-forge-text-subtle mt-4 text-center">
+                Plug in Gemini, Claude, or GPT — same governance layer.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+            >
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
+                Feature 2 of 4
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+                Every capability, swappable.
+              </h2>
+              <p className="text-lg text-forge-text-muted leading-relaxed">
+                Generation, governance, branding, and migration are composed through
+                MCP — each layer independently replaceable without forking the platform.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 3: CI Quality Gates — text left, mockup right */}
+      <section aria-label="CI Quality Gates" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA }}
+            >
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
+                Feature 3 of 4
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+                Quality gates in every PR.
+              </h2>
+              <p className="text-lg text-forge-text-muted leading-relaxed">
+                forge-ai-action runs scoring, annotations, and threshold enforcement
+                automatically in your GitHub workflow — no dashboard required.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+            >
+              <div className="border border-forge-border rounded-xl bg-forge-surface overflow-hidden border-l-4 border-l-violet-500">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-forge-border">
+                  <span className="font-mono text-sm text-forge-text-muted">
+                    forge-ai-action
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-violet-400 bg-violet-400/10 px-2 py-0.5 rounded-full">
+                    ✓ passed
+                  </span>
+                </div>
+                <div className="px-4 py-3 space-y-2 font-mono text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400">Score: 94/100</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-forge-text-muted">Components reviewed: 23</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-amber-400">2 warnings</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400">0 errors</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 4: Privacy-First BYOK — mockup left, text right */}
+      <section aria-label="Privacy-First BYOK" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA }}
+              className="flex flex-col items-center justify-center"
+            >
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-violet-500/20">
+                <Lock className="h-12 w-12 text-violet-400" />
+              </div>
+              <p className="text-xs text-forge-text-subtle mt-4 text-center tracking-wider">
+                AES-256 · Client-side only · MIT License
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+            >
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
+                Feature 4 of 4
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+                Your keys. Your infra. Your rules.
+              </h2>
+              <p className="text-lg text-forge-text-muted leading-relaxed">
+                Client-side AES-256 encryption means your API keys never touch our
+                servers. Self-host the full stack under MIT — or run it locally with Docker.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

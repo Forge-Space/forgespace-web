@@ -2,10 +2,9 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
-import { ArrowRight, Github, Mail } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
 const HeroParticlesBackground = dynamic(
@@ -18,7 +17,7 @@ const HeroParticlesBackground = dynamic(
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       <HeroParticlesBackground />
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
@@ -26,75 +25,123 @@ export function HeroSection() {
         aria-hidden
       />
 
-      <div className="relative z-[2] max-w-4xl mx-auto px-6 py-24 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE_SIZA }}
-        >
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            <Badge>Open Source</Badge>
-            <Badge variant="outline">Internal Developer Platform</Badge>
-          </div>
+      <div className="relative z-[2] max-w-7xl mx-auto px-6 py-20 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE_SIZA }}
+          >
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
+              <span className="text-white">Ship software</span>
+              <br />
+              <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
+                your team can govern.
+              </span>
+            </h1>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight mb-6 leading-[1.1]">
-            Open-source IDP for teams
-            <br />
-            <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
-              without a platform department.
+            <p className="text-lg text-forge-text-muted max-w-md mb-8 leading-relaxed">
+              Open-source IDP. Siza scans your codebase and generates a living
+              catalog — no Backstage overhead.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
+              <Button
+                href="https://github.com/Forge-Space"
+                external
+                size="lg"
+                ctaEvent={FORGE_CTA_EVENTS.GITHUB}
+                ctaTarget="github"
+                ctaLocation="hero_primary"
+              >
+                <Github className="w-4 h-4" />
+                View on GitHub
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button
+                href="https://siza.forgespace.co"
+                external
+                variant="outline"
+                size="lg"
+                ctaEvent={FORGE_CTA_EVENTS.SIZA}
+                ctaTarget="siza"
+                ctaLocation="hero_secondary"
+                passAttribution
+              >
+                Try Siza Demo
+              </Button>
+            </div>
+
+            <span className="text-xs text-forge-text-subtle">
+              MIT License · No login required · Works with any Git host
             </span>
-          </h1>
+          </motion.div>
 
-          <p className="text-lg md:text-xl text-forge-text-muted max-w-2xl mx-auto mb-3 leading-relaxed">
-            Ship AI-assisted products with practical governance and visibility.
-            Forge Space gives small teams a Backstage alternative without heavy
-            platform overhead.
-          </p>
-          <p className="text-sm text-forge-text-subtle max-w-xl mx-auto mb-10">
-            Open source first. Start with GitHub, test Siza, or talk to us
-            about SMB fit.
-          </p>
+          {/* Right: Terminal mockup */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: EASE_SIZA }}
+            className="relative"
+          >
+            <div className="absolute -inset-4 bg-violet-500/10 blur-2xl rounded-2xl -z-10" />
+            <div className="bg-[#0d0d0f] border border-forge-border rounded-xl overflow-hidden">
+              {/* Title bar */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-forge-border">
+                <span className="w-[10px] h-[10px] rounded-full bg-[#FF5F57]" />
+                <span className="w-[10px] h-[10px] rounded-full bg-[#FFBD2E]" />
+                <span className="w-[10px] h-[10px] rounded-full bg-[#28C840]" />
+                <span className="ml-3 text-xs text-forge-text-subtle font-mono">
+                  siza scan
+                </span>
+              </div>
 
-          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center">
-            <Button
-              href="https://github.com/Forge-Space"
-              external
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-              ctaTarget="github"
-              ctaLocation="hero_primary"
-            >
-              <Github className="w-4 h-4" />
-              View on GitHub
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-            <Button
-              href="mailto:support@forgespace.co?subject=Forge%20Space%20for%20my%20team"
-              external
-              variant="outline"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
-              ctaTarget="contact_sales"
-              ctaLocation="hero_secondary"
-              passAttribution
-            >
-              <Mail className="w-4 h-4" />
-              Talk to Forge Space
-            </Button>
-            <Button
-              href="https://siza.forgespace.co"
-              external
-              variant="ghost"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.SIZA}
-              ctaTarget="siza"
-              ctaLocation="hero_tertiary"
-              passAttribution
-            >
-              Try Siza Demo
-            </Button>
-          </div>
-        </motion.div>
+              {/* Terminal body */}
+              <div className="px-5 py-5 space-y-1 text-xs font-mono">
+                <p className="text-forge-text-muted">
+                  $ siza scan --repo forge-space/forgespace-web
+                </p>
+                <p className="text-forge-text-subtle">&nbsp;</p>
+                <p className="text-emerald-400">✓ Scanning 847 files...</p>
+                <p className="text-emerald-400">
+                  ✓ Extracting components (23 found)
+                </p>
+                <p className="text-emerald-400">✓ Mapping dependencies</p>
+                <p className="text-emerald-400">
+                  ✓ Running AI governance checks
+                </p>
+                <p className="text-forge-text-subtle">&nbsp;</p>
+                <p className="text-forge-text-muted">
+                  ┌─────────────────────────────────────────┐
+                </p>
+                <p className="text-forge-text-muted">
+                  │&nbsp; forge-space/forgespace-web
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+                </p>
+                <p>
+                  <span className="text-forge-text-muted">│&nbsp; Score: </span>
+                  <span className="text-violet-400">94/100</span>
+                  <span className="text-violet-400">
+                    &nbsp; ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░
+                  </span>
+                  <span className="text-forge-text-muted">&nbsp; │</span>
+                </p>
+                <p className="text-forge-text-muted">
+                  │&nbsp; Components: 23&nbsp; Issues:
+                  2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+                </p>
+                <p className="text-forge-text-muted">
+                  └─────────────────────────────────────────┘
+                </p>
+                <p className="text-forge-text-subtle">&nbsp;</p>
+                <p className="text-forge-primary">
+                  ↗ Catalog published → siza.forgespace.co
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

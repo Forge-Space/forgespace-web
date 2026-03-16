@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, Github } from "lucide-react";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 
@@ -38,6 +39,8 @@ function ForgeMonogram({ className = "" }: { className?: string }) {
 
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [stars, setStars] = useState(0);
+  const pathname = usePathname();
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
@@ -53,6 +56,31 @@ export function Nav() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen, closeMobile]);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/Forge-Space/siza")
+      .then((res) => res.json())
+      .then((data: { stargazers_count?: number }) => {
+        if (typeof data.stargazers_count === "number" && data.stargazers_count > 0) {
+          setStars(data.stargazers_count);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const navLinkClass = (href: string) => {
+    const isActive = pathname === href;
+    return isActive
+      ? "relative rounded-md px-3 py-2 text-sm text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-forge-primary after:rounded-full"
+      : "rounded-md px-3 py-2 text-sm text-forge-text-muted hover:text-foreground transition-colors hover:bg-forge-surface";
+  };
+
+  const mobileLinkClass = (href: string) => {
+    const isActive = pathname === href;
+    return isActive
+      ? "relative rounded-md px-3 py-2.5 text-sm text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-forge-primary after:rounded-full"
+      : "rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface";
+  };
 
   return (
     <>
@@ -87,7 +115,7 @@ export function Nav() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="rounded-md px-3 py-2 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                  className={navLinkClass(link.href)}
                 >
                   {link.label}
                 </Link>
@@ -96,6 +124,18 @@ export function Nav() {
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
+            <a
+              href="https://github.com/Forge-Space"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-forge-border bg-forge-surface text-xs text-forge-text-muted hover:border-forge-border-hover hover:text-foreground transition-all"
+            >
+              <Github className="w-3.5 h-3.5" />
+              {stars > 0 && (
+                <span>{stars > 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}</span>
+              )}
+              <span>★</span>
+            </a>
             <a
               href="https://siza.forgespace.co"
               target="_blank"
@@ -175,7 +215,7 @@ export function Nav() {
                     key={link.label}
                     href={link.href}
                     onClick={closeMobile}
-                    className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
+                    className={mobileLinkClass(link.href)}
                   >
                     {link.label}
                   </Link>

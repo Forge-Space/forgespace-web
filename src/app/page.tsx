@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/landing/HeroSection";
+import { TrustStrip } from "@/components/landing/TrustStrip";
 import { FeaturesGrid } from "@/components/landing/FeaturesGrid";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { SocialProof } from "@/components/landing/SocialProof";
@@ -23,6 +24,7 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
       />
       <HeroSection />
+      <TrustStrip />
       <SocialProof snapshot={snapshot} />
       <FeaturesGrid repoCount={snapshot.repoCount} />
       <HowItWorks />
