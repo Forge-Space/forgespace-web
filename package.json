@@ -19,6 +19,7 @@
     "startups:status": "bash scripts/startup-programs-status.sh",
     "check:cycles": "madge --circular --extensions ts,tsx src/",
     "knip": "knip",
+    "analyze": "ANALYZE=true npm run build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.4.3",
+    "@next/bundle-analyzer": "^16.1.6",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
