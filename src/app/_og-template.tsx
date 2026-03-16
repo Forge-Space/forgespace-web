@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-export type OGTemplateProps = {
+type OGTemplateProps = {
   title: string;
   subtitle: string;
   badge?: string;
