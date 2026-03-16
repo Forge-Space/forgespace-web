@@ -37,8 +37,23 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-03-16
+
 ### Added
 
+- **CTASection on /ecosystem** — Shared `<CTASection />` at bottom of ecosystem
+  page with CTA tracking tests for GitHub, Contact Sales, and Siza events
+- **CTASection on /startups** — Replaced inline Final CTA with shared
+  `<CTASection />`, wiring the `startups_en` ad group landing to the
+  `fs_cta_github_click` primary conversion surface; 4 CTA contract tests added
+- **Real npm download stats** — Landing page now pulls live download counts
+  instead of static numbers
+- **Portuguese landing page (/pt)** — PT-BR variant for `smb_pt` ad group;
+  Brazilian audience landing with native copy
+- **Startups landing page (/startups)** — Accelerator-positioned page for the
+  `startups_en` ad group route
+- **smb_pt ad group activation** — v3.5 campaign with Portuguese keywords and
+  RSA ads
 - **Hero fallback guard** — Home route now keeps a branded static background
   when WebGL is unavailable instead of failing the page
 - **Public route skip navigation** — Added skip-to-content support with a
@@ -198,6 +213,13 @@ All notable changes to this project will be documented in this file.
 - `useReducedMotion()` support for accessibility
 - Custom `global-error.tsx` and `not-found.tsx`
 
-[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.5.0...v0.6.0
+[0.5.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.4.2...v0.5.0
+[0.4.2]: https://github.com/Forge-Space/forgespace-web/compare/v0.4.1...v0.4.2
+[0.4.1]: https://github.com/Forge-Space/forgespace-web/compare/v0.4.0...v0.4.1
+[0.4.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.2.1...v0.3.0
+[0.2.1]: https://github.com/Forge-Space/forgespace-web/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Forge-Space/forgespace-web/releases/tag/v0.1.0
