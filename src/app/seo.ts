@@ -129,6 +129,8 @@ export function getPageMetadata(slug: PageMetadataSlug): Metadata {
   const page = pages[slug];
   const canonicalUrl = toAbsoluteUrl(page.canonicalPath);
   const openGraphTitle = page.absoluteTitle ? page.title : `${page.title} | Forge Space`;
+  const ogImagePath =
+    page.canonicalPath === "/" ? "/opengraph-image" : `${page.canonicalPath}/opengraph-image`;
 
   return {
     title: page.absoluteTitle ? { absolute: page.title } : page.title,
@@ -141,13 +143,13 @@ export function getPageMetadata(slug: PageMetadataSlug): Metadata {
       title: openGraphTitle,
       description: page.description,
       url: canonicalUrl,
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: "Forge Space" }],
+      images: [{ url: ogImagePath, width: 1200, height: 630, alt: openGraphTitle }],
     },
     twitter: {
       card: "summary_large_image",
       title: page.twitterTitle ?? openGraphTitle,
       description: page.twitterDescription ?? page.description,
-      images: ["/og.png"],
+      images: [ogImagePath],
     },
   };
 }
