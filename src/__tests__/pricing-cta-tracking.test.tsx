@@ -9,6 +9,7 @@
 import React from "react";
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import PricingPage from "@/app/pricing/client";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
@@ -146,5 +147,27 @@ describe("PricingPage — CTA tracking contract", () => {
     render(<PricingPage />);
     const link = screen.getByText("Contact us").closest("a");
     expect(link).toHaveAttribute("data-fs-pass-attribution", "true");
+  });
+
+  it("FAQ toggles expose accessible accordion semantics", async () => {
+    const user = userEvent.setup();
+    render(<PricingPage />);
+
+    const faqTrigger = screen.getByRole("button", {
+      name: "What counts as a generation?",
+    });
+    expect(faqTrigger).toHaveAttribute("aria-expanded", "false");
+
+    const panelId = faqTrigger.getAttribute("aria-controls");
+    expect(panelId).toBeTruthy();
+    expect(document.getElementById(panelId as string)).toBeNull();
+
+    await user.click(faqTrigger);
+
+    expect(faqTrigger).toHaveAttribute("aria-expanded", "true");
+    const answerPanel = document.getElementById(panelId as string);
+    expect(answerPanel).toBeInTheDocument();
+    expect(answerPanel).toHaveAttribute("role", "region");
+    expect(answerPanel).toHaveAttribute("aria-labelledby", faqTrigger.id);
   });
 });
