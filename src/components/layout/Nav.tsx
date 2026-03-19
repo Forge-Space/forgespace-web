@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useState, useCallback, useEffect, Suspense } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Github } from "lucide-react";
+import { Menu, Github } from "lucide-react";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
+import { MobileMenu } from "@/components/layout/MobileMenu";
 
 const NAV_LINKS = [
   { label: "Features", href: "/features" },
@@ -141,19 +142,6 @@ export function Nav() {
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
-  useEffect(() => {
-    if (!mobileOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeMobile();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen, closeMobile]);
-
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-forge-border bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
@@ -223,71 +211,7 @@ export function Nav() {
         </div>
       </nav>
 
-      {mobileOpen && (
-        <div className="fixed inset-0 z-[100] md:hidden">
-          <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={closeMobile}
-            aria-hidden
-          />
-          <div className="absolute right-0 top-0 h-full w-72 bg-background border-l border-forge-border p-6 flex flex-col" role="dialog" aria-modal="true" aria-label="Navigation menu">
-            <div className="flex items-center justify-between mb-8">
-              <span className="font-display text-base font-bold text-foreground">
-                Forge Space
-              </span>
-              <button
-                type="button"
-                onClick={closeMobile}
-                className="rounded-md p-2 text-forge-text-muted hover:text-foreground"
-                aria-label="Close menu"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Suspense fallback={
-                NAV_LINKS.map((link) => (
-                  <span
-                    key={link.label}
-                    className="rounded-md px-3 py-2.5 text-sm text-forge-text-muted"
-                  >
-                    {link.label}
-                  </span>
-                ))
-              }>
-                <NavLinks mobile onNavigate={closeMobile} />
-              </Suspense>
-            </div>
-
-            <div className="mt-auto flex flex-col gap-3">
-              <a
-                href="https://siza.forgespace.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMobile}
-                data-fs-cta-event={FORGE_CTA_EVENTS.SIZA}
-                data-fs-cta-target="siza"
-                data-fs-cta-location="nav_signin_mobile"
-                data-fs-pass-attribution="true"
-                className="rounded-md px-3 py-2.5 text-sm text-center text-forge-text-muted transition-colors hover:text-foreground hover:bg-forge-surface"
-              >
-                Sign in
-              </a>
-              <Button
-                href="https://siza.forgespace.co"
-                external
-                ctaEvent={FORGE_CTA_EVENTS.SIZA}
-                ctaTarget="siza"
-                ctaLocation="nav_get_started_mobile"
-                passAttribution
-              >
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+      <MobileMenu isOpen={mobileOpen} onClose={closeMobile} links={NAV_LINKS} />
     </>
   );
 }
