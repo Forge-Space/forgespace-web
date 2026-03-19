@@ -216,7 +216,10 @@ describe("AnalyticsProvider runtime behavior", () => {
   });
 
   it("removes click listener on unmount", () => {
-    const { unmount, getByTestId } = render(
+    const addSpy = vi.spyOn(document, "addEventListener");
+    const removeSpy = vi.spyOn(document, "removeEventListener");
+
+    const { unmount } = render(
       <AnalyticsProvider>
         <a
           data-fs-cta-event="fs_cta_siza_click"
@@ -228,10 +231,13 @@ describe("AnalyticsProvider runtime behavior", () => {
       </AnalyticsProvider>,
     );
 
-    const cta = getByTestId("cta-cleanup");
-    unmount();
-    fireEvent.click(cta);
+    const clickHandler = addSpy.mock.calls.find(call => call[0] === "click")?.[1];
+    expect(clickHandler).toBeTypeOf("function");
 
-    expect(mockTrackForgeCtaEvent).not.toHaveBeenCalled();
+    unmount();
+    expect(removeSpy).toHaveBeenCalledWith("click", clickHandler);
+
+    addSpy.mockRestore();
+    removeSpy.mockRestore();
   });
 });
