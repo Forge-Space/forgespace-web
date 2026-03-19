@@ -10,6 +10,11 @@ describe('Design Tokens', () => {
     expect(forgeTokens).toHaveProperty('primary');
     expect(forgeTokens).toHaveProperty('primaryHover');
     expect(forgeTokens).toHaveProperty('radiusMd');
+    expect(forgeTokens).toHaveProperty('gradientButton');
+    expect(forgeTokens).toHaveProperty('gradientCard');
+    expect(forgeTokens).toHaveProperty('shadowSm');
+    expect(forgeTokens).toHaveProperty('shadowMd');
+    expect(forgeTokens).toHaveProperty('shadowLg');
   });
 
   it('should use valid hex colors', () => {
@@ -27,6 +32,14 @@ describe('Design Tokens', () => {
 
   it('should have dark background', () => {
     expect(forgeTokens.bg).toBe('#121214');
+  });
+
+  it('should expose gradient and shadow tokens', () => {
+    expect(forgeTokens.gradientButton).toContain('gradient(');
+    expect(forgeTokens.gradientCard).toContain('gradient(');
+    expect(forgeTokens.shadowSm).toContain('rgba(');
+    expect(forgeTokens.shadowMd).toContain('rgba(');
+    expect(forgeTokens.shadowLg).toContain('rgba(');
   });
 });
 
