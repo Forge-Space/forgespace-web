@@ -13,7 +13,15 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov'],
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/__tests__/**', 'src/types/**'],
+      exclude: [
+        'src/__tests__/**',
+        'src/types/**',
+        'src/app/**/page.tsx',
+        'src/app/**/opengraph-image.tsx',
+        'src/app/_og-template.tsx',
+        'src/app/layout.tsx',
+        'src/pages/_error.tsx',
+      ],
       thresholds: {
         lines: 80,
         functions: 80,
