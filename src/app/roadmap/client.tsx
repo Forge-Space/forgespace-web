@@ -11,6 +11,7 @@ type PhaseStatus = "complete" | "active" | "planned";
 interface PhaseItem {
   text: string;
   status: PhaseStatus;
+  href?: string;
 }
 
 interface Phase {
@@ -38,21 +39,40 @@ function buildPhases(repoCount: number): Phase[] {
         "Core platform capabilities shipped and operating in production workflows.",
       stat: "7 items shipped",
       items: [
-        { text: "AI code generation with live preview", status: "complete" },
-        { text: "Post-generation quality scorecards", status: "complete" },
-        { text: "Golden Path scaffolding workflows", status: "complete" },
+        {
+          text: "AI code generation with live preview",
+          status: "complete",
+          href: "https://github.com/Forge-Space/siza",
+        },
+        {
+          text: "Post-generation quality scorecards",
+          status: "complete",
+          href: "https://github.com/Forge-Space/core",
+        },
+        {
+          text: "Golden Path scaffolding workflows",
+          status: "complete",
+          href: "https://github.com/Forge-Space/siza-gen",
+        },
         {
           text: "Software catalog with dependency graph",
           status: "complete",
+          href: "https://github.com/Forge-Space/siza",
         },
-        { text: "BYOK encryption and model routing", status: "complete" },
+        {
+          text: "BYOK encryption and model routing",
+          status: "complete",
+          href: "https://github.com/Forge-Space/siza#readme",
+        },
         {
           text: "Migration assessment and planning toolchain",
           status: "complete",
+          href: "https://github.com/Forge-Space/forge-ai-init",
         },
         {
           text: `${repoCount} product repositories aligned on governance standards`,
           status: "complete",
+          href: "https://github.com/Forge-Space",
         },
       ],
     },
@@ -68,22 +88,27 @@ function buildPhases(repoCount: number): Phase[] {
         {
           text: "Live ecosystem metadata sync on marketing surfaces",
           status: "active",
+          href: "https://github.com/Forge-Space/forgespace-web/pull/82",
         },
         {
           text: "Expanded docs for governance and migration workflows",
           status: "active",
+          href: "https://github.com/Forge-Space/siza#readme",
         },
         {
           text: "Community-ready examples and templates",
           status: "active",
+          href: "https://github.com/Forge-Space/siza/issues",
         },
         {
           text: "Contributor onboarding improvements across repos",
           status: "active",
+          href: "https://github.com/Forge-Space/.github",
         },
         {
           text: "Website narrative and UX refinement",
           status: "active",
+          href: "https://github.com/Forge-Space/forgespace-web/pull/82",
         },
       ],
     },
@@ -99,22 +124,27 @@ function buildPhases(repoCount: number): Phase[] {
         {
           text: "Collaborative multi-agent workspaces",
           status: "planned",
+          href: "https://github.com/Forge-Space/siza/issues",
         },
         {
           text: "Cross-product auth and policy unification",
           status: "planned",
+          href: "https://github.com/Forge-Space/mcp-gateway",
         },
         {
           text: "Enterprise SSO and compliance controls",
           status: "planned",
+          href: "https://github.com/Forge-Space/siza/issues",
         },
         {
           text: "Organization-level quality and trend analytics",
           status: "planned",
+          href: "https://github.com/Forge-Space/core",
         },
         {
           text: "Extension and plugin ecosystem growth",
           status: "planned",
+          href: "https://github.com/Forge-Space/ui-mcp",
         },
       ],
     },
@@ -166,7 +196,7 @@ function ItemBullet({ status }: { status: PhaseStatus }) {
   );
 }
 
-export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
+export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
   const phases = buildPhases(repoCount);
 
   return (
@@ -289,17 +319,34 @@ export default function RoadmapPage({ repoCount }: RoadmapPageProps) {
                       className="flex items-start gap-3 text-sm text-forge-text-muted"
                     >
                       <ItemBullet status={item.status} />
-                      <span
-                        className={
-                          item.status === "complete"
-                            ? "text-foreground/80"
-                            : item.status === "active"
-                              ? "text-foreground/70"
-                              : "text-forge-text-subtle"
-                        }
-                      >
-                        {item.text}
-                      </span>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={
+                            item.status === "complete"
+                              ? "text-foreground/80 underline decoration-forge-border underline-offset-4 transition-colors hover:text-foreground"
+                              : item.status === "active"
+                                ? "text-foreground/70 underline decoration-forge-border underline-offset-4 transition-colors hover:text-foreground"
+                                : "text-forge-text-subtle underline decoration-forge-border underline-offset-4 transition-colors hover:text-foreground"
+                          }
+                        >
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span
+                          className={
+                            item.status === "complete"
+                              ? "text-foreground/80"
+                              : item.status === "active"
+                                ? "text-foreground/70"
+                                : "text-forge-text-subtle"
+                          }
+                        >
+                          {item.text}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
