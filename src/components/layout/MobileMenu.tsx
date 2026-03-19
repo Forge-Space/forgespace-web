@@ -8,7 +8,7 @@ import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 import { EASE_SIZA } from "@/lib/constants";
 
-export interface MobileNavLink {
+interface MobileNavLink {
   label: string;
   href: string;
   external?: boolean;
