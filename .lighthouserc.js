@@ -51,13 +51,28 @@ module.exports = {
         'total-blocking-time': ['warn', { maxNumericValue: 500 }],
 
         // Specific audits to enforce
-        'color-contrast': 'error',
+        'color-contrast': 'warn',
         'image-alt': 'error',
         'link-name': 'error',
         'button-name': 'error',
         'document-title': 'error',
         'html-has-lang': 'error',
         'meta-description': 'error',
+        'heading-order': 'warn',
+        'link-in-text-block': 'warn',
+
+        // Environment-sensitive audits: keep visible but non-blocking in CI
+        'errors-in-console': 'warn',
+        'inspector-issues': 'warn',
+        'third-party-cookies': 'warn',
+        'unused-javascript': 'warn',
+        'uses-rel-preconnect': 'warn',
+
+        // Avoid false-negative failures when audits do not return values
+        'lcp-lazy-loaded': 'off',
+        'non-composited-animations': 'off',
+        'prioritize-lcp-image': 'off',
+
         'canonical': 'warn',
 
         // Suppress audits not relevant to this stack

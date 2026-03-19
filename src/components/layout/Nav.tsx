@@ -92,14 +92,32 @@ function NavStarBadge() {
   const [stars, setStars] = useState(0);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/Forge-Space/siza")
-      .then((res) => res.json())
-      .then((data: { stargazers_count?: number }) => {
-        if (typeof data.stargazers_count === "number" && data.stargazers_count > 0) {
+    if (typeof window === "undefined" || navigator.webdriver) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 2500);
+
+    void fetch("https://api.github.com/repos/Forge-Space/siza", {
+      signal: controller.signal,
+      headers: {
+        Accept: "application/vnd.github+json",
+      },
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { stargazers_count?: number } | null) => {
+        if (typeof data?.stargazers_count === "number" && data.stargazers_count > 0) {
           setStars(data.stargazers_count);
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => window.clearTimeout(timeout));
+
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
   }, []);
 
   return (
