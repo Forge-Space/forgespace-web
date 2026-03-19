@@ -114,4 +114,24 @@ describe("RoadmapPage — CTA tracking contract", () => {
       siza.compareDocumentPosition(github) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
   });
+
+  it("renders roadmap milestone links as external anchors", () => {
+    render(<RoadmapPage />);
+    const milestone = screen.getByText("AI code generation with live preview");
+    const link = milestone.closest("a");
+
+    expect(link).toHaveAttribute("href", "https://github.com/Forge-Space/siza");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
+  it("uses fallback repo count when repoCount is not provided", () => {
+    render(<RoadmapPage />);
+
+    expect(
+      screen.getByText(
+        "10 product repositories aligned on governance standards",
+      ),
+    ).toBeInTheDocument();
+  });
 });
