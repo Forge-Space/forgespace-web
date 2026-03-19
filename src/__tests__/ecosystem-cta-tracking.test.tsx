@@ -63,6 +63,14 @@ function makeSnapshot(repos: EcosystemRepo[]): EcosystemSnapshot {
 }
 
 describe("EcosystemPage — CTA tracking contract", () => {
+  it("reuses shared architecture diagram section", () => {
+    const repo = makeRepo({ url: "https://github.com/Forge-Space/core" });
+    render(<EcosystemPage snapshot={makeSnapshot([repo])} />);
+    expect(
+      screen.getByLabelText("Forge Space architecture flow diagram"),
+    ).toBeInTheDocument();
+  });
+
   it("attaches data-fs-cta-event to GitHub repo links", () => {
     const repo = makeRepo({ url: "https://github.com/Forge-Space/core" });
     render(<EcosystemPage snapshot={makeSnapshot([repo])} />);
@@ -96,7 +104,9 @@ describe("EcosystemPage — CTA tracking contract", () => {
       url: "https://github.com/Forge-Space/mcp-gateway",
     });
     render(<EcosystemPage snapshot={makeSnapshot([repo])} />);
-    const link = screen.getByText("mcp-gateway").closest("a");
+    const link = screen
+      .getByRole("heading", { name: "mcp-gateway", level: 4 })
+      .closest("a");
     expect(link).toHaveAttribute(
       "data-fs-cta-location",
       "ecosystem_repo_mcp_gateway",
@@ -133,7 +143,9 @@ describe("EcosystemPage — CTA tracking contract", () => {
     render(<EcosystemPage snapshot={makeSnapshot(repos)} />);
 
     for (const repo of repos) {
-      const link = screen.getByText(repo.name).closest("a");
+      const link = screen
+        .getByRole("heading", { name: repo.name, level: 4 })
+        .closest("a");
       expect(link).toHaveAttribute(
         "data-fs-cta-event",
         FORGE_CTA_EVENTS.GITHUB,

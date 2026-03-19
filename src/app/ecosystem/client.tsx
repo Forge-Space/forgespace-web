@@ -9,8 +9,9 @@ import {
   type RepoGroup,
 } from "@/lib/ecosystem-data";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
-import { Section } from "@/components/ui/Section";
+import { ArchitectureDiagram } from "@/components/landing/ArchitectureDiagram";
 import { CTASection } from "@/components/landing/CTASection";
+import { Section } from "@/components/ui/Section";
 
 interface EcosystemPageProps {
   snapshot: EcosystemSnapshot;
@@ -27,55 +28,6 @@ function buildGroups(repos: EcosystemRepo[]): Array<{ title: RepoGroup; repos: E
     title,
     repos: repos.filter((repo) => repo.group === title),
   })).filter((group) => group.repos.length > 0);
-}
-
-function ArchitectureOverview() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, ease: EASE_SIZA }}
-      className="mb-14"
-    >
-      <p className="mb-3 text-center text-[10px] font-mono uppercase tracking-[0.18em] text-forge-text-subtle">
-        Architecture
-      </p>
-      <div aria-hidden="true" className="mx-auto max-w-sm rounded-xl border border-forge-border bg-[#0d0d0f] p-6 font-mono text-sm">
-        <div className="flex flex-col items-center gap-0 text-center">
-          <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-5 py-2 text-foreground">
-            Your App
-          </div>
-          <div className="py-1 text-forge-text-subtle">↓</div>
-          <div className="flex w-full items-start justify-center gap-6">
-            <div className="flex flex-col items-center gap-0">
-              <div className="rounded-lg border border-forge-primary/40 bg-forge-primary/10 px-4 py-2 text-forge-primary">
-                MCP Gateway
-              </div>
-              <div className="py-1 text-forge-text-subtle">↓</div>
-              <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-4 py-2 text-forge-text-muted">
-                Branding MCP
-              </div>
-              <div className="py-1 text-forge-text-subtle">↓</div>
-              <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-4 py-2 text-foreground">
-                Your Output
-              </div>
-            </div>
-            <div className="pt-[2.75rem] text-forge-text-subtle">→</div>
-            <div className="flex flex-col items-center gap-0">
-              <div className="rounded-lg border border-forge-primary/40 bg-forge-primary/10 px-4 py-2 text-forge-primary">
-                Siza Gen
-              </div>
-              <div className="py-1 text-forge-text-subtle">↓</div>
-              <div className="rounded-lg border border-forge-border/70 bg-forge-surface/60 px-4 py-2 text-forge-text-muted">
-                forge-ai-action
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
 }
 
 function GroupHeader({ title }: { title: string }) {
@@ -204,8 +156,12 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
           </span>
         </div>
 
-        {/* Architecture Overview */}
-        <ArchitectureOverview />
+        <div className="mb-14">
+          <ArchitectureDiagram
+            repoCount={snapshot.repoCount}
+            releasedRepoCount={snapshot.releasedRepoCount}
+          />
+        </div>
 
         {/* Repo Groups */}
         <div className="space-y-14">
