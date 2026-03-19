@@ -89,14 +89,19 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
   return <span className="text-sm text-foreground">{value}</span>;
 }
 
-function FAQItem({ q, a }: { q: string; a: string }) {
+function FAQItem({ q, a, itemId }: { q: string; a: string; itemId: string }) {
   const [open, setOpen] = useState(false);
+  const triggerId = `pricing-faq-trigger-${itemId}`;
+  const panelId = `pricing-faq-panel-${itemId}`;
 
   return (
     <div className="border-b border-forge-border last:border-b-0">
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        id={triggerId}
+        aria-expanded={open}
+        aria-controls={panelId}
         className="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-foreground transition-colors hover:text-forge-primary"
       >
         {q}
@@ -105,9 +110,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         />
       </button>
       {open && (
-        <p className="pb-4 text-sm text-forge-text-muted leading-relaxed">
-          {a}
-        </p>
+        <div id={panelId} role="region" aria-labelledby={triggerId}>
+          <p className="pb-4 text-sm text-forge-text-muted leading-relaxed">{a}</p>
+        </div>
       )}
     </div>
   );
@@ -314,7 +319,12 @@ export default function PricingPage() {
           </h2>
           <div className="rounded-xl border border-forge-border bg-forge-surface/30 px-6">
             {FAQ_ITEMS.map((item) => (
-              <FAQItem key={item.q} q={item.q} a={item.a} />
+              <FAQItem
+                key={item.q}
+                q={item.q}
+                a={item.a}
+                itemId={item.q.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+              />
             ))}
           </div>
 
