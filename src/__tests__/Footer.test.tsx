@@ -30,6 +30,7 @@ describe("Footer", () => {
     expect(screen.getByText("Features")).toBeInTheDocument();
     expect(screen.getByText("Ecosystem")).toBeInTheDocument();
     expect(screen.getByText("Enterprise")).toBeInTheDocument();
+    expect(screen.getByText("MIT License")).toBeInTheDocument();
   });
 
   it("displays copyright with current year", () => {
@@ -50,6 +51,11 @@ describe("Footer", () => {
       "https://github.com/Forge-Space",
     );
     expect(github).toHaveAttribute("data-fs-cta-event", "fs_cta_github_click");
+
+    const x = screen.getByLabelText("Forge Space on X");
+    expect(x).toHaveAttribute("target", "_blank");
+    expect(x).toHaveAttribute("rel", "noopener noreferrer");
+    expect(x).toHaveAttribute("href", "https://x.com/ForgeSpaceDev");
   });
 
   it("internal links point to correct routes", () => {
@@ -79,5 +85,26 @@ describe("Footer", () => {
       "fs_cta_contact_sales_click",
     );
     expect(contact).toHaveAttribute("data-fs-pass-attribution", "true");
+  });
+
+  it("renders newsletter call-to-action with attribution", () => {
+    render(<Footer />);
+    const newsletter = screen
+      .getByRole("link", { name: /join roadmap updates/i })
+      .closest("a");
+
+    expect(newsletter).toHaveAttribute(
+      "href",
+      "mailto:support@forgespace.co?subject=Forge%20Space%20newsletter%20updates",
+    );
+    expect(newsletter).toHaveAttribute(
+      "data-fs-cta-event",
+      "fs_cta_contact_sales_click",
+    );
+    expect(newsletter).toHaveAttribute(
+      "data-fs-cta-location",
+      "footer_newsletter_join_updates",
+    );
+    expect(newsletter).toHaveAttribute("data-fs-pass-attribution", "true");
   });
 });

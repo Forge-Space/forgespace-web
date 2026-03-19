@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { Github, Twitter } from "lucide-react";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 const FOOTER_LINKS = {
@@ -37,6 +37,23 @@ const FOOTER_LINKS = {
     {
       label: "Contact",
       href: "mailto:support@forgespace.co",
+      external: true,
+    },
+  ],
+  Legal: [
+    {
+      label: "MIT License",
+      href: "https://github.com/Forge-Space/forgespace-web/blob/main/LICENSE",
+      external: true,
+    },
+    {
+      label: "Terms of Use",
+      href: "https://github.com/Forge-Space/.github/blob/main/TERMS.md",
+      external: true,
+    },
+    {
+      label: "Privacy",
+      href: "https://github.com/Forge-Space/.github/blob/main/PRIVACY.md",
       external: true,
     },
   ],
@@ -113,7 +130,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-forge-border">
       <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <Link
               href="/"
@@ -126,6 +143,18 @@ export function Footer() {
               Open-source Internal Developer Platform. AI generation with
               built-in governance.
             </p>
+            <a
+              href="mailto:support@forgespace.co?subject=Forge%20Space%20newsletter%20updates"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
+              data-fs-cta-target="contact_sales"
+              data-fs-cta-location="footer_newsletter_join_updates"
+              data-fs-pass-attribution="true"
+              className="mt-4 inline-flex items-center rounded-full border border-forge-border px-3 py-1.5 text-xs text-forge-text-muted transition-colors hover:border-forge-primary hover:text-foreground"
+            >
+              Join roadmap updates
+            </a>
             <div className="mt-5 flex items-center gap-4">
               <a
                 href="https://github.com/Forge-Space"
@@ -138,6 +167,17 @@ export function Footer() {
                 aria-label="Forge Space on GitHub"
               >
                 <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://x.com/ForgeSpaceDev"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-fs-cta-target="x"
+                data-fs-cta-location="footer_social_x"
+                className="text-forge-text-subtle transition-colors hover:text-foreground"
+                aria-label="Forge Space on X"
+              >
+                <Twitter className="h-5 w-5" />
               </a>
             </div>
           </div>
