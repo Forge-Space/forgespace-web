@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-03-19
+
 ### Added
 
 - **hreflang alternates** — `seo.ts` now emits `<link rel="alternate" hreflang>` pairs for `en`/`pt-BR`/`x-default` on the home and `/pt` routes
@@ -15,6 +17,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - **Sitemap priorities** — `/pricing` raised to `0.9` (conversion page), `/pt` corrected to `0.7` (language variant)
+- **Next.js security baseline** — upgraded `next`, `eslint-config-next`, and `@next/bundle-analyzer` to `16.2.0`; production build now runs with `next build --webpack` for stable CI output on the new baseline
 
 ## [0.6.0] - 2026-03-16
 
