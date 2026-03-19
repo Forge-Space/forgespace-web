@@ -317,6 +317,12 @@ export default function PricingPage() {
               <FAQItem key={item.q} q={item.q} a={item.a} />
             ))}
           </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <Badge variant="outline">MIT Licensed</Badge>
+            <Badge variant="outline">SOC 2 Ready</Badge>
+            <Badge variant="outline">BYOK Encryption</Badge>
+          </div>
         </motion.div>
 
         {/* Footer contact */}

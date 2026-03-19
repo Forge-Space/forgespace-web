@@ -51,6 +51,14 @@ vi.mock("next/link", () => ({
 }));
 
 describe("PricingPage — CTA tracking contract", () => {
+  it("renders pricing trust badges", () => {
+    render(<PricingPage />);
+
+    expect(screen.getAllByText("MIT Licensed").length).toBeGreaterThan(0);
+    expect(screen.getByText("SOC 2 Ready")).toBeInTheDocument();
+    expect(screen.getByText("BYOK Encryption")).toBeInTheDocument();
+  });
+
   it("renders Free tier Get Started CTA", () => {
     render(<PricingPage />);
     expect(screen.getByText("Get Started")).toBeInTheDocument();
