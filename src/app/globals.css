@@ -39,6 +39,11 @@
     rgba(139, 92, 246, 0.06) 0%,
     transparent 70%
   );
+  --forge-gradient-button: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  --forge-gradient-card: linear-gradient(180deg, rgba(139, 92, 246, 0.12) 0%, rgba(34, 34, 38, 0.85) 100%);
+  --forge-shadow-sm: 0 4px 14px rgba(139, 92, 246, 0.2);
+  --forge-shadow-md: 0 10px 30px rgba(139, 92, 246, 0.28);
+  --forge-shadow-lg: 0 18px 44px rgba(139, 92, 246, 0.36);
 }
 
 @theme inline {
@@ -58,6 +63,11 @@
   --color-forge-accent: var(--forge-accent);
   --color-forge-accent-foreground: var(--forge-accent-foreground);
   --color-forge-ring: var(--forge-ring);
+  --background-image-forge-gradient-button: var(--forge-gradient-button);
+  --background-image-forge-gradient-card: var(--forge-gradient-card);
+  --shadow-forge-sm: var(--forge-shadow-sm);
+  --shadow-forge-md: var(--forge-shadow-md);
+  --shadow-forge-lg: var(--forge-shadow-lg);
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-sans);
   --font-mono: var(--font-mono), ui-monospace, monospace;

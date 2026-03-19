@@ -48,7 +48,8 @@ describe("Button", () => {
     const { rerender } = render(
       <Button variant="primary">Primary</Button>,
     );
-    expect(screen.getByRole("button")).toHaveClass("bg-forge-primary");
+    expect(screen.getByRole("button")).toHaveClass("bg-[image:var(--forge-gradient-button)]");
+    expect(screen.getByRole("button")).toHaveClass("shadow-[var(--forge-shadow-md)]");
 
     rerender(<Button variant="outline">Outline</Button>);
     expect(screen.getByRole("button")).toHaveClass("border");
