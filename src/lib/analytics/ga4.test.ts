@@ -23,6 +23,7 @@ describe("ga4 helpers", () => {
     expect(() => {
       trackForgeCtaEvent(FORGE_CTA_EVENTS.SIZA, { source: "hero" });
     }).not.toThrow();
+    expect(getStoredFirstTouchAttribution).not.toHaveBeenCalled();
   });
 
   it("sends CTA event with attribution when gtag exists", () => {
@@ -78,6 +79,7 @@ describe("ga4 helpers", () => {
       trackGadsConversion("AW-123/abc");
       trackGa4Pageview("G-123", "/pricing", "https://forgespace.co/pricing");
     }).not.toThrow();
+    expect(getStoredFirstTouchAttribution).not.toHaveBeenCalled();
   });
 
   it("sends GA4 pageview config when gtag exists", () => {
