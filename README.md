@@ -10,6 +10,12 @@ Marketing site for [Forge Space](https://forgespace.co) — the open-source deve
 - Motion (motion.dev) for animations
 - Lucide React icons
 
+## UI Notes
+
+- Footer social icons currently include GitHub only (X/Twitter removed).
+- Landing code examples are rendered as multiline `<pre><code>` blocks to keep
+  indentation and formatting stable.
+
 ## Development
 
 **Docker (recommended, matches other Forge Space projects):**

@@ -4,6 +4,13 @@ import { motion } from "motion/react";
 import { EASE_SIZA } from "@/lib/constants";
 
 export function HowItWorks() {
+  const workflowSnippet = `# .github/workflows/forge-ai.yml
+- name: Forge AI Governance
+  uses: forge-space/forge-ai-action@v1
+  with:
+    threshold: 80
+    annotate_pr: true`;
+
   return (
     <section className="py-20 md:py-28 bg-forge-bg-elevated border-t border-forge-border">
       <div className="max-w-6xl mx-auto px-6">
@@ -179,35 +186,9 @@ export function HowItWorks() {
                   <span className="ml-2 text-xs text-forge-text-subtle font-mono">.github/workflows/forge-ai.yml</span>
                 </div>
                 <div className="p-5 font-mono text-sm leading-7">
-                  <p className="text-forge-text-subtle italic"># .github/workflows/forge-ai.yml</p>
-                  <p className="mt-2">
-                    <span className="text-sky-400">- name</span>
-                    <span className="text-forge-text-muted">: </span>
-                    <span className="text-emerald-400">Forge AI Governance</span>
-                  </p>
-                  <p>
-                    {"  "}
-                    <span className="text-sky-400">uses</span>
-                    <span className="text-forge-text-muted">: </span>
-                    <span className="text-emerald-400">forge-space/forge-ai-action@v1</span>
-                  </p>
-                  <p>
-                    {"  "}
-                    <span className="text-sky-400">with</span>
-                    <span className="text-forge-text-muted">:</span>
-                  </p>
-                  <p>
-                    {"    "}
-                    <span className="text-forge-text-muted">threshold</span>
-                    <span className="text-forge-text-muted">: </span>
-                    <span className="text-emerald-400">80</span>
-                  </p>
-                  <p>
-                    {"    "}
-                    <span className="text-forge-text-muted">annotate_pr</span>
-                    <span className="text-forge-text-muted">: </span>
-                    <span className="text-emerald-400">true</span>
-                  </p>
+                  <pre className="text-forge-text-muted whitespace-pre">
+                    <code>{workflowSnippet}</code>
+                  </pre>
                 </div>
               </div>
             </motion.div>
