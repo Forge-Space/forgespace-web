@@ -16,7 +16,7 @@ const pages: Record<string, PageSEO> = {
   home: {
     title: "Forge Space — Generate code with AI. Ship it with confidence.",
     description:
-      "Open-source Internal Developer Platform. AI code generation with scorecards, policy packs, and audit trails. Free for individuals.",
+      "Open-source Internal Developer Platform. AI code generation with scorecards, policy packs, and audit trails.",
     canonicalPath: "/",
     absoluteTitle: true,
     keywords: [
@@ -30,7 +30,7 @@ const pages: Record<string, PageSEO> = {
     ],
     twitterTitle: "Forge Space — IDP for the rest of us",
     twitterDescription:
-      "AI code generation with built-in governance. Free & open source.",
+      "AI code generation with built-in governance. Open source.",
   },
   features: {
     title: "Features",
@@ -54,7 +54,7 @@ const pages: Record<string, PageSEO> = {
   pricing: {
     title: "Pricing",
     description:
-      "Free for individuals, affordable for teams. Open-source IDP with no vendor lock-in. Start generating governed code today.",
+      "Open-source IDP for teams that need governed AI development. Start generating governed code today.",
     canonicalPath: "/pricing",
     keywords: ["IDP pricing", "free developer platform", "open source IDP"],
   },
@@ -87,7 +87,7 @@ const pages: Record<string, PageSEO> = {
   startups: {
     title: "For Startups",
     description:
-      "Enterprise governance at startup speed. Free for teams under 15 devs. AI code generation with scorecards, policy packs, and zero-config security — no platform team required.",
+      "Enterprise governance at startup speed. AI code generation with scorecards, policy packs, and security guardrails for lean engineering teams.",
     canonicalPath: "/startups",
     keywords: [
       "startup developer tools",
@@ -101,7 +101,7 @@ const pages: Record<string, PageSEO> = {
   pt: {
     title: "Forge Space — IDP open-source para times sem equipe de plataforma",
     description:
-      "Plataforma de desenvolvimento open-source com geração de código por IA, scorecards de governança e trilhas de auditoria. Gratuito para indivíduos.",
+      "Plataforma de desenvolvimento open-source com geração de código por IA, scorecards de governança e trilhas de auditoria.",
     canonicalPath: "/pt",
     absoluteTitle: true,
     keywords: [
@@ -115,7 +115,7 @@ const pages: Record<string, PageSEO> = {
     ],
     twitterTitle: "Forge Space — IDP para times sem plataforma",
     twitterDescription:
-      "Geração de código com IA e governança integrada. Gratuito e open source.",
+      "Geração de código com IA e governança integrada. Open source.",
   },
 };
 

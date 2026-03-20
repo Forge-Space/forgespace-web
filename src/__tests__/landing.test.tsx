@@ -107,8 +107,8 @@ describe("FeaturesGrid", () => {
     expect(screen.getByRole("region", { name: "AI-Powered Generation" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "MCP-Native Architecture" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Privacy-First BYOK" })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "Zero-Cost Start" })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "Self-Hostable" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Open-Source Foundation" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Composable Architecture" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Multi-Model Workflows" })).toBeInTheDocument();
   });
 });

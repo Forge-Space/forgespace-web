@@ -143,18 +143,6 @@ export function Footer() {
               Open-source Internal Developer Platform. AI generation with
               built-in governance.
             </p>
-            <a
-              href="mailto:support@forgespace.co?subject=Forge%20Space%20newsletter%20updates"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-fs-cta-event={FORGE_CTA_EVENTS.CONTACT_SALES}
-              data-fs-cta-target="contact_sales"
-              data-fs-cta-location="footer_newsletter_join_updates"
-              data-fs-pass-attribution="true"
-              className="mt-4 inline-flex items-center rounded-full border border-forge-border px-3 py-1.5 text-xs text-forge-text-muted transition-colors hover:border-forge-primary hover:text-foreground"
-            >
-              Join roadmap updates
-            </a>
             <div className="mt-5 flex items-center gap-4">
               <a
                 href="https://github.com/Forge-Space"

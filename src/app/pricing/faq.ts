@@ -14,7 +14,7 @@ export const FAQ_ITEMS: PricingFaqItem[] = [
   },
   {
     q: "What AI models are supported?",
-    a: "Gemini (default on free tier), Claude, GPT-4o, and local models via Ollama. Pro and Team plans get access to priority models with faster response times.",
+    a: "Gemini, Claude, GPT-4o, and local models via Ollama. Model availability depends on your current environment and configured providers.",
   },
   {
     q: "Is my API key secure?",
@@ -22,11 +22,11 @@ export const FAQ_ITEMS: PricingFaqItem[] = [
   },
   {
     q: "Can I bring my own API key on the free plan?",
-    a: "BYOK is available on Pro and Team plans. The free tier uses Gemini with shared capacity.",
+    a: "BYOK availability depends on the active plan and environment configuration.",
   },
   {
     q: "What happens if I exceed my generation limit?",
-    a: "You'll be prompted to upgrade or wait until the next billing cycle. No overage charges — we don't surprise you with bills.",
+    a: "Behavior depends on the active plan configuration and current capacity policy.",
   },
 ];
 

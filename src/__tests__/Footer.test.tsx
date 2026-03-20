@@ -82,24 +82,4 @@ describe("Footer", () => {
     expect(contact).toHaveAttribute("data-fs-pass-attribution", "true");
   });
 
-  it("renders newsletter call-to-action with attribution", () => {
-    render(<Footer />);
-    const newsletter = screen
-      .getByRole("link", { name: /join roadmap updates/i })
-      .closest("a");
-
-    expect(newsletter).toHaveAttribute(
-      "href",
-      "mailto:support@forgespace.co?subject=Forge%20Space%20newsletter%20updates",
-    );
-    expect(newsletter).toHaveAttribute(
-      "data-fs-cta-event",
-      "fs_cta_contact_sales_click",
-    );
-    expect(newsletter).toHaveAttribute(
-      "data-fs-cta-location",
-      "footer_newsletter_join_updates",
-    );
-    expect(newsletter).toHaveAttribute("data-fs-pass-attribution", "true");
-  });
 });

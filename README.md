@@ -13,8 +13,11 @@ Marketing site for [Forge Space](https://forgespace.co) — the open-source deve
 ## UI Notes
 
 - Footer social icons currently include GitHub only (X/Twitter removed).
+- Footer "Join roadmap updates" CTA was removed to avoid unsupported commitments.
 - Landing code examples are rendered as multiline `<pre><code>` blocks to keep
   indentation and formatting stable.
+- Pricing/startups/SEO copy is intentionally phrased around current capabilities
+  instead of guaranteed future-plan commitments.
 
 ## Development
 

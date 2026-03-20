@@ -149,7 +149,7 @@ export default function PricingPage() {
           />
 
           <h1 className="relative text-display-lg font-display font-bold tracking-tight mb-4 leading-tight">
-            Start free.{" "}
+            Start quickly.{" "}
             <span className="text-forge-primary">Ship with confidence.</span>
           </h1>
           <p className="relative text-base text-forge-text-muted max-w-md mx-auto mb-6">
@@ -158,7 +158,7 @@ export default function PricingPage() {
 
           <div className="relative flex items-center justify-center gap-2 flex-wrap">
             <Badge variant="outline">MIT Licensed</Badge>
-            <Badge variant="outline">No credit card required</Badge>
+            <Badge variant="outline">Open Source</Badge>
           </div>
         </motion.div>
 
@@ -169,11 +169,11 @@ export default function PricingPage() {
           transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.2 }}
           className="text-center text-xs text-forge-text-subtle tracking-wide mb-16"
         >
-          Free tier forever
+          Flexible plans
           <span className="mx-2 opacity-40">·</span>
           MIT Licensed
           <span className="mx-2 opacity-40">·</span>
-          Self-Hostable
+          Open Source
         </motion.p>
 
         {/* Pricing cards */}
