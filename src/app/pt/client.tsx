@@ -91,7 +91,7 @@ export default function PtPage() {
               </div>
 
               <span className="text-xs font-mono text-forge-text-subtle tracking-wider">
-                Open Source · MIT · Self-Hostable
+                Open Source · MIT · MCP
               </span>
             </motion.div>
 

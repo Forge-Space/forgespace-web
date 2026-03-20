@@ -222,8 +222,8 @@ export function UserCard({ user }: UserCardProps) {
           </div>
         </div>
       </section>
-      {/* Feature 5: Zero-Cost Start */}
-      <section aria-label="Zero-Cost Start" className="py-12 border-t border-forge-border">
+      {/* Feature 5: Open-Source Foundation */}
+      <section aria-label="Open-Source Foundation" className="py-12 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -236,14 +236,14 @@ export function UserCard({ user }: UserCardProps) {
               Feature 5 of 6
             </p>
             <p className="text-lg font-display font-semibold text-foreground">
-              Zero-Cost Start — Free tier, forever. No credit card required.
+              Open-Source Foundation — Core repositories and packages are public.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Feature 6: Self-Hostable */}
-      <section aria-label="Self-Hostable" className="py-12 border-t border-forge-border">
+      {/* Feature 6: Composable Architecture */}
+      <section aria-label="Composable Architecture" className="py-12 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -256,7 +256,7 @@ export function UserCard({ user }: UserCardProps) {
               Feature 6 of 6
             </p>
             <p className="text-lg font-display font-semibold text-foreground">
-              Self-Hostable — Run the full stack on your own infrastructure with Docker under MIT.
+              Composable Architecture — Combine governance and delivery modules through MCP.
             </p>
           </motion.div>
         </div>

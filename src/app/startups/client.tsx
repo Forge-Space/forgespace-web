@@ -59,8 +59,8 @@ const FEATURES = [
   },
   {
     icon: Rocket,
-    title: "Zero-Cost Start",
-    desc: "Free tier for teams under 15 devs. No credit card required. Upgrade only when you scale.",
+    title: "Fast Adoption",
+    desc: "Start with practical defaults and ship governance quickly with a small team.",
   },
 ];
 
@@ -85,8 +85,8 @@ const ACCELERATOR_TIERS = [
 const STATS = [
   { value: "9", label: "Open-source repos" },
   { value: "MIT", label: "Licensed" },
-  { value: "$0", label: "To start" },
-  { value: "Self-Hostable", label: "No vendor lock-in" },
+  { value: "Public", label: "Codebase" },
+  { value: "MCP", label: "Composable architecture" },
 ];
 
 // Siza scorecard mockup rows
@@ -116,7 +116,7 @@ export default function StartupsPage() {
                 <PageSection
                   label="IDP FOR STARTUPS"
                   title="The Dev Platform for Startups"
-                  subtitle="Enterprise governance at startup speed — no platform team required. Free for teams under 15 devs."
+                  subtitle="Enterprise governance at startup speed for lean engineering teams."
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
@@ -134,7 +134,7 @@ export default function StartupsPage() {
                       ctaLocation="startups_hero_start_free"
                       passAttribution
                     >
-                      Start Free
+                      Start with Siza
                       <ArrowRight className="w-4 h-4" />
                     </Button>
                     <Button

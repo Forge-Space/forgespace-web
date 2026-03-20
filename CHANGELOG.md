@@ -7,7 +7,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - **Footer social links** — removed the X/Twitter social icon link from the site footer.
+- **Footer CTA hardening** — removed the "Join roadmap updates" newsletter CTA from the footer.
 - **Landing code snippets** — normalized snippet rendering to multiline `<pre><code>` blocks with consistent indentation in `HowItWorks` and `FeaturesGrid`.
+- **Marketing copy hardening** — replaced commitment-heavy claims (free-forever/no-credit-card/self-hostable promises) with neutral capability language across landing, startups, pricing, and SEO metadata.
 
 ## [0.7.0] - 2026-03-19
 
