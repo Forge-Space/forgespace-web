@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter } from "lucide-react";
+import { Github } from "lucide-react";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 const FOOTER_LINKS = {
@@ -167,17 +167,6 @@ export function Footer() {
                 aria-label="Forge Space on GitHub"
               >
                 <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://x.com/ForgeSpaceDev"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-fs-cta-target="x"
-                data-fs-cta-location="footer_social_x"
-                className="text-forge-text-subtle transition-colors hover:text-foreground"
-                aria-label="Forge Space on X"
-              >
-                <Twitter className="h-5 w-5" />
               </a>
             </div>
           </div>

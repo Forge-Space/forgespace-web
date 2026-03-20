@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **Footer social links** — removed the X/Twitter social icon link from the site footer.
+- **Landing code snippets** — normalized snippet rendering to multiline `<pre><code>` blocks with consistent indentation in `HowItWorks` and `FeaturesGrid`.
+
 ## [0.7.0] - 2026-03-19
 
 ### Added

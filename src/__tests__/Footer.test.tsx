@@ -51,11 +51,6 @@ describe("Footer", () => {
       "https://github.com/Forge-Space",
     );
     expect(github).toHaveAttribute("data-fs-cta-event", "fs_cta_github_click");
-
-    const x = screen.getByLabelText("Forge Space on X");
-    expect(x).toHaveAttribute("target", "_blank");
-    expect(x).toHaveAttribute("rel", "noopener noreferrer");
-    expect(x).toHaveAttribute("href", "https://x.com/ForgeSpaceDev");
   });
 
   it("internal links point to correct routes", () => {
