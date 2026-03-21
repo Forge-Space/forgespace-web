@@ -156,7 +156,7 @@ export function Nav() {
             </span>
           </Link>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 lg:flex">
             <Suspense fallback={
               NAV_LINKS.map((link) => (
                 <span
@@ -171,7 +171,7 @@ export function Nav() {
             </Suspense>
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <Suspense fallback={null}>
               <NavStarBadge />
             </Suspense>
@@ -203,7 +203,7 @@ export function Nav() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="rounded-md p-2 text-forge-text-muted transition-colors hover:text-foreground md:hidden"
+            className="rounded-md p-2 text-forge-text-muted transition-colors hover:text-foreground lg:hidden"
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />

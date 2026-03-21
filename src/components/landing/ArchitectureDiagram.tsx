@@ -10,7 +10,7 @@ interface ArchitectureDiagramProps {
 
 export function ArchitectureDiagram({ repoCount, releasedRepoCount }: ArchitectureDiagramProps) {
   const nodeY = 120;
-  const nodeW = 130;
+  const nodeW = 142;
   const nodeH = 56;
   const half = nodeW / 2;
   const halfH = nodeH / 2;

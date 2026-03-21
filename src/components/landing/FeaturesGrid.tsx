@@ -268,7 +268,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE_SIZA }}
-            className="flex items-center gap-6"
+            className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6"
           >
             <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
               Feature 5 of 6
@@ -288,7 +288,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE_SIZA }}
-            className="flex items-center gap-6"
+            className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6"
           >
             <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
               Feature 6 of 6

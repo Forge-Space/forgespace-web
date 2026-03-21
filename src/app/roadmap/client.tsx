@@ -153,13 +153,20 @@ function buildPhases(repoCount: number): Phase[] {
 
 const statusConfig: Record<
   PhaseStatus,
-  { badge: string; bullet: string; pillBg: string; pillLabel: string }
+  {
+    badge: string;
+    bullet: string;
+    pillBg: string;
+    pillLabel: string;
+    pillLabelCompact: string;
+  }
 > = {
   complete: {
     badge: "bg-green-500/15 text-green-400 border border-green-500/25",
     bullet: "text-green-400",
     pillBg: "bg-green-500",
     pillLabel: "Foundation · Complete",
+    pillLabelCompact: "Foundation",
   },
   active: {
     badge:
@@ -167,12 +174,14 @@ const statusConfig: Record<
     bullet: "text-forge-primary",
     pillBg: "bg-forge-primary",
     pillLabel: "Adoption · Active",
+    pillLabelCompact: "Adoption",
   },
   planned: {
     badge: "bg-forge-surface text-forge-text-subtle border border-forge-border",
     bullet: "text-forge-text-subtle",
     pillBg: "bg-forge-surface border border-forge-border",
     pillLabel: "Scale · Planned",
+    pillLabelCompact: "Scale",
   },
 };
 
@@ -249,12 +258,13 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
             const config = statusConfig[phase.status];
             return (
               <div key={phase.number} className="flex items-center flex-1">
-                <div className="flex flex-col items-center gap-2 flex-1">
+                <div className="flex min-w-0 flex-col items-center gap-2 flex-1">
                   <div
                     className={`h-2 w-full rounded-full ${config.pillBg} ${phase.status === "active" ? "animate-pulse" : ""}`}
                   />
-                  <span className="text-xs font-mono text-forge-text-subtle whitespace-nowrap">
-                    {config.pillLabel}
+                  <span className="text-[10px] sm:text-xs font-mono text-forge-text-subtle text-center leading-tight max-w-[7.5rem] sm:max-w-none">
+                    <span className="sm:hidden">{config.pillLabelCompact}</span>
+                    <span className="hidden sm:inline">{config.pillLabel}</span>
                   </span>
                 </div>
                 {i < phases.length - 1 && (

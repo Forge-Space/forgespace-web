@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **Responsive layout stability** — fixed roadmap progress labels and breakpoint behavior to remove horizontal overflow on `/roadmap` (mobile) and shared nav overflow at tablet widths.
+- **Architecture section resilience** — adjusted landing feature rows and architecture diagram sizing to avoid visual breakage on narrow viewports while keeping existing content/test contracts.
 - **Footer social links** — removed the X/Twitter social icon link from the site footer.
 - **Footer CTA hardening** — removed the "Join roadmap updates" newsletter CTA from the footer.
 - **Landing code snippets** — normalized snippet rendering to multiline `<pre><code>` blocks with consistent indentation in `HowItWorks` and `FeaturesGrid`.
