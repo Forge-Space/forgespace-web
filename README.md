@@ -196,7 +196,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 ### Components
 
 - `src/components/landing/` — HeroSection, FeaturesGrid, HowItWorks, SocialProof, ArchitectureDiagram, CTASection
-- `src/components/layout/` — Nav (responsive with mobile menu), Footer (multi-column)
+- `src/components/layout/` — Nav (responsive with mobile menu and tablet-safe breakpoints), Footer (multi-column)
 - `src/components/ui/` — Button, Badge, Section (reusable primitives)
 - `src/components/shared/` — HeroParticlesBackground now degrades to a static
   branded fallback when WebGL is unavailable
