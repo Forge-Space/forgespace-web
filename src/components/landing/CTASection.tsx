@@ -67,7 +67,7 @@ export function CTASection({ variant = "default" }: CTASectionProps) {
 
   return (
     <section
-      className="relative py-16 md:py-22 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124, 58, 237, 0.07) 0%, transparent 70%),
