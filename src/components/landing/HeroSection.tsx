@@ -34,7 +34,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, ease: EASE_SIZA }}
           >
             <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.15] mb-6">
-              <span className="text-white">Open-source IDP</span>{" "}
+              <span className="text-white">Open-source IDP </span>
               <br className="hidden sm:block" />
               <span className="text-gradient-primary">
                 for teams that ship.

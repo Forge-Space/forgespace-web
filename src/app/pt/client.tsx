@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Github, Mail } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
@@ -9,6 +10,13 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CTASection } from "@/components/landing/CTASection";
 
 export default function PtPage() {
+  useEffect(() => {
+    document.documentElement.lang = "pt-BR";
+    return () => {
+      document.documentElement.lang = "en";
+    };
+  }, []);
+
   return (
     <main
       id="main-content"
@@ -33,7 +41,7 @@ export default function PtPage() {
               <p className="label-mono mb-4">FORGE SPACE · PT-BR</p>
 
               <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.15] mb-6">
-                <span className="text-white">IDP open-source para times</span>{" "}
+                <span className="text-white">IDP open-source para times </span>
                 <br className="hidden sm:block" />
                 <span className="text-gradient-primary">
                   sem equipe de plataforma.
@@ -165,18 +173,18 @@ export default function PtPage() {
       {/* Proof strip — Portuguese */}
       <div className="border-y border-forge-border bg-forge-bg-elevated py-8">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
-            <span className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
-              <span className="font-display text-2xl font-bold text-foreground">MIT</span>
-              <span className="text-xs text-forge-text-muted">Licença</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-4" role="list" aria-label="Destaques da plataforma">
+            <span role="listitem" aria-label="Licença MIT" className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+              <span aria-hidden className="font-display text-2xl font-bold text-foreground">MIT</span>
+              <span aria-hidden className="text-xs text-forge-text-muted">Licença</span>
             </span>
-            <span className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
-              <span className="font-display text-2xl font-bold text-foreground">MCP</span>
-              <span className="text-xs text-forge-text-muted">Arquitetura</span>
+            <span role="listitem" aria-label="Arquitetura MCP" className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+              <span aria-hidden className="font-display text-2xl font-bold text-foreground">MCP</span>
+              <span aria-hidden className="text-xs text-forge-text-muted">Arquitetura</span>
             </span>
-            <span className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
-              <span className="font-display text-2xl font-bold text-foreground">100%</span>
-              <span className="text-xs text-forge-text-muted">Open Source</span>
+            <span role="listitem" aria-label="100% Open Source" className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+              <span aria-hidden className="font-display text-2xl font-bold text-foreground">100%</span>
+              <span aria-hidden className="text-xs text-forge-text-muted">Open Source</span>
             </span>
           </div>
           <p className="text-center text-xs text-forge-text-subtle font-mono">

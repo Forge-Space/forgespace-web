@@ -233,7 +233,7 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
           >
             <p className="label-mono mb-6">ROADMAP</p>
             <h1 className="font-display text-display-lg font-bold tracking-tight text-foreground leading-[1.15] mb-6">
-              Building the future of{" "}
+              {"Building the future of "}
               <br className="hidden sm:block" />
               <span className="text-gradient-primary">AI governance.</span>
             </h1>
@@ -261,9 +261,12 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
                   <div
                     className={`h-2 w-full rounded-full ${config.pillBg}`}
                   />
-                  <span className="text-[10px] sm:text-xs font-mono text-forge-text-subtle text-center leading-tight max-w-[7.5rem] sm:max-w-none">
-                    <span className="sm:hidden">{config.pillLabelCompact}</span>
-                    <span className="hidden sm:inline">{config.pillLabel}</span>
+                  <span
+                    className="text-[10px] sm:text-xs font-mono text-forge-text-subtle text-center leading-tight max-w-[7.5rem] sm:max-w-none"
+                    aria-label={config.pillLabel}
+                  >
+                    <span aria-hidden className="sm:hidden">{config.pillLabelCompact}</span>
+                    <span aria-hidden className="hidden sm:inline">{config.pillLabel}</span>
                   </span>
                 </div>
                 {i < phases.length - 1 && (

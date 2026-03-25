@@ -422,7 +422,11 @@ export default function EnterprisePage() {
 
         {/* Enterprise compliance badge row — unique to this page */}
         <div className="border-y border-forge-border bg-forge-bg-elevated">
-          <div className="max-w-7xl mx-auto px-6 lg:px-16 py-4 flex flex-wrap items-center gap-4">
+          <div
+            className="max-w-7xl mx-auto px-6 lg:px-16 py-4 flex flex-wrap items-center gap-4"
+            role="list"
+            aria-label="Enterprise compliance features: SOC 2 Ready, SAML / OIDC SSO, Audit Logs, BYOK Encryption, Data Residency, Self-hosted"
+          >
             {[
               { label: "SOC 2 Ready", color: "emerald" },
               { label: "SAML / OIDC SSO", color: "emerald" },
@@ -433,13 +437,14 @@ export default function EnterprisePage() {
             ].map(({ label, color }) => (
               <span
                 key={label}
+                role="listitem"
                 className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-mono ${
                   color === "emerald"
                     ? "border-emerald-500/30 bg-emerald-400/5 text-emerald-400"
                     : "border-forge-primary/30 bg-forge-primary/5 text-forge-primary"
                 }`}
               >
-                <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${color === "emerald" ? "bg-emerald-400" : "bg-forge-primary"}`} />
+                <span aria-hidden className={`h-1.5 w-1.5 rounded-full shrink-0 ${color === "emerald" ? "bg-emerald-400" : "bg-forge-primary"}`} />
                 {label}
               </span>
             ))}

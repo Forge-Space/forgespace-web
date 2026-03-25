@@ -81,10 +81,18 @@ const comparisonRows: {
 
 function ComparisonCell({ value }: { value: ComparisonValue }) {
   if (value === true) {
-    return <Check className="w-4 h-4 text-emerald-400 mx-auto" />;
+    return (
+      <span aria-label="Included">
+        <Check className="w-4 h-4 text-emerald-400 mx-auto" aria-hidden />
+      </span>
+    );
   }
   if (value === false) {
-    return <Minus className="w-4 h-4 text-forge-text-subtle mx-auto opacity-40" />;
+    return (
+      <span aria-label="Not included">
+        <Minus className="w-4 h-4 text-forge-text-subtle mx-auto opacity-40" aria-hidden />
+      </span>
+    );
   }
   return <span className="text-sm text-foreground">{value}</span>;
 }
@@ -102,7 +110,7 @@ function FAQItem({ q, a, itemId }: { q: string; a: string; itemId: string }) {
         id={triggerId}
         aria-expanded={open}
         aria-controls={panelId}
-        className="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-foreground transition-colors hover:text-forge-primary"
+        className="flex w-full items-center justify-between py-5 text-left text-sm font-medium text-foreground transition-colors hover:text-forge-primary"
       >
         {q}
         <ChevronDown
@@ -156,7 +164,7 @@ export default function PricingPage() {
             AI governance for every team — from solo builders to enterprises.
           </p>
 
-          <div className="relative flex items-center justify-center gap-2 flex-wrap">
+          <div className="relative flex items-center justify-center gap-2 flex-wrap" role="group" aria-label="MIT Licensed, Open Source">
             <Badge variant="outline">MIT Licensed</Badge>
             <Badge variant="outline">Open Source</Badge>
           </div>
@@ -216,6 +224,7 @@ export default function PricingPage() {
                 <h2 className="text-lg font-semibold mb-1">{tier.name}</h2>
                 <div className="flex items-baseline gap-1 mb-1">
                   <span className="text-4xl font-bold tracking-tight">{tier.price}</span>
+                  {" "}
                   <span className="text-sm text-forge-text-muted">{tier.period}</span>
                 </div>
                 <p className="text-xs font-medium text-forge-text-subtle uppercase tracking-widest mb-1">
@@ -330,9 +339,8 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2" aria-label="Platform highlights">
             <Badge variant="outline">MIT Licensed</Badge>
-            <Badge variant="outline">SOC 2 Ready</Badge>
             <Badge variant="outline">BYOK Encryption</Badge>
           </div>
         </motion.div>

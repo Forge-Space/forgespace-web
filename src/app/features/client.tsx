@@ -519,7 +519,7 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
               Platform features
             </p>
             <h1 className="mb-5 font-display text-display-xl font-bold tracking-tight leading-[1.15]">
-              Built for teams{" "}
+              {"Built for teams "}
               <br className="hidden sm:block" />
               <span className="text-gradient-primary">that ship.</span>
             </h1>
@@ -538,7 +538,8 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
           <ol className="flex flex-wrap gap-x-6 gap-y-1.5">
             {sections.map((s) => (
               <li key={s.index} className="inline-flex items-center gap-1.5 text-xs font-mono text-forge-text-subtle">
-                <span className="text-forge-primary">{s.index}</span>
+                <span className="text-forge-primary" aria-hidden>{s.index}</span>
+                {" "}
                 <span className="uppercase tracking-[0.12em]">{s.label}</span>
               </li>
             ))}
