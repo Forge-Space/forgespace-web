@@ -1,0 +1,59 @@
+You are improving the UI/UX of an existing Next.js 16 + React 19 + Tailwind v4 marketing website for Forge Space.
+
+Your goal is NOT to rebrand the product from scratch. Keep the existing product positioning, dark premium feel, and technical credibility, but significantly improve clarity, pacing, hierarchy, responsiveness, and polish.
+
+Context about the current app:
+- Routes include `/`, `/features`, `/pricing`, `/ecosystem`, `/roadmap`, `/startups`, `/enterprise`, `/pt`
+- Shared components live in `src/components/layout/*`, `src/components/ui/*`, and `src/components/landing/*`
+- The visual system is currently very dark, very violet-heavy, and heavily dependent on glowing gradients, terminal/dashboard mockups, rounded cards, badge strips, and repeated split two-column sections
+- The app is visually consistent, but too many pages feel like the same layout with different copy
+- Mobile works, but pages are too long, too sparse, and have weak information density
+
+Priority problems to fix:
+1. Reduce excessive vertical whitespace and giant empty bands between sections across the site
+2. Fix headline/rendering spacing bugs where words visually collide, including:
+   - `Open-source IDPfor teams that ship.`
+   - `Built for teamsthat ship.`
+   - `Building the futureof AI governance.`
+   - `IDP open-source para timessem equipe de plataforma.`
+3. Make page layouts feel more distinct by route so `/features`, `/ecosystem`, `/startups`, `/enterprise`, and `/roadmap` do not all feel like the same template
+4. Improve information density and narrative pacing, especially on `/features`, `/ecosystem`, and `/startups`
+5. Simplify repeated trust strips, proof badges, and duplicated CTA patterns so each page has a clearer primary action
+6. Improve mobile compression and readability, especially on `/`, `/pricing`, and `/roadmap`
+7. Improve the mobile menu so it feels more intentional, balanced, and premium
+8. Fully localize the Portuguese experience on `/pt`, including shared CTA/footer content
+9. Preserve accessibility and avoid low-contrast decorative text treatments that weaken readability
+10. Keep the existing design system direction, but reduce overuse of the same violet glow treatment everywhere
+
+Concrete guidance:
+- Do not make the site generic or bland
+- Do not switch to a white SaaS template
+- Keep the dark aesthetic, but create more variation in rhythm, section composition, and content presentation
+- Reduce dependence on giant min-heights and overly loose spacing
+- Tighten headings, supporting copy, and card layouts
+- Improve hierarchy so the most important message is obvious within 3 seconds on every page
+- Make mobile layouts denser, cleaner, and easier to scan
+- Ensure tables, diagrams, and mockups degrade gracefully on small screens
+- Preserve or improve accessibility: focus states, readable contrast, reduced-motion safety, and semantic structure
+
+Expected deliverables:
+1. Implement the UI/UX improvements directly in the codebase
+2. Rework shared components where needed instead of patching each page inconsistently
+3. Fix the text spacing bugs at the source
+4. Improve route-specific page composition so each page has a stronger identity
+5. Ensure `/pt` is fully translated where appropriate
+6. Keep the code clean and reusable
+7. After changes, summarize:
+   - what you changed
+   - which shared components were improved
+   - which pages were most affected
+   - any remaining UX tradeoffs
+
+Important page-specific notes:
+- `/pricing` is the strongest baseline structurally; refine it, don’t reinvent it
+- `/features`, `/ecosystem`, and `/startups` need the most work in pacing and density
+- `/roadmap` needs better compression for list-heavy content
+- `/pt` must stop mixing Portuguese and English in shared sections
+- The homepage should feel more polished and intentional, with less dead space between hero, trust, features, how-it-works, and architecture sections
+
+Please inspect the existing components first, then make the improvements in a systematic way.

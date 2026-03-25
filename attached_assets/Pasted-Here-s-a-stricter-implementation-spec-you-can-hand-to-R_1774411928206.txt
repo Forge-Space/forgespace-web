@@ -1,0 +1,173 @@
+Here’s a stricter implementation spec you can hand to Replit or use as our execution plan.
+
+**Implementation Spec**
+
+- Objective: improve UI/UX without changing product positioning, stack, or core dark premium identity
+- Constraint: preserve existing brand feel, but reduce sameness, dead space, and polish issues
+- Success bar: every major route feels denser, clearer, more distinct, more mobile-friendly, and more polished
+
+**Global Priorities**
+
+- Fix broken headline spacing everywhere words visually collide
+- Reduce excessive vertical whitespace and oversized section min-heights
+- Remove repeated trust-strip / CTA redundancy
+- Improve route differentiation without fragmenting the design system
+- Tighten mobile layouts and compress long pages
+- Complete Portuguese localization on shared sections used by `/pt`
+
+**File-By-File Targets**
+
+- `src/app/globals.css`
+  - Audit global spacing scale and reduce oversized vertical rhythm
+  - Remove or soften utilities that create giant section gaps
+  - Review typography utilities causing word-collision/inline spacing bugs
+  - Add reduced-motion handling for marquee/ambient motion if missing
+  - Rebalance text contrast for muted copy and gradient text readability
+
+- `src/styles/design-tokens.ts`
+  - Keep dark tokens, but reduce overconcentration of violet accents
+  - Introduce a slightly broader neutral/accent hierarchy so every section is not “same purple glow”
+  - Tighten spacing and radius token usage if current values encourage visual bloat
+
+- `src/components/ui/Button.tsx`
+  - Clarify primary vs secondary CTA hierarchy
+  - Reduce overuse of equally loud CTA styles
+  - Add better disabled/loading affordances if simple to support
+  - Ensure mobile sizing and visual weight remain balanced
+
+- `src/components/ui/Section.tsx`
+  - Make this the canonical section shell
+  - Reduce default vertical padding
+  - Support denser variants for list-heavy and text-heavy sections
+  - Standardize title/subtitle spacing to avoid huge dead bands
+
+- `src/components/layout/PageSection.tsx`
+  - Either align with `Section` behavior or remove duplication
+  - Eliminate inconsistent spacing rules between page shells
+
+- `src/components/layout/Nav.tsx`
+  - Tighten nav hierarchy and CTA emphasis
+  - Ensure desktop nav does not feel crowded with equal-priority actions
+  - Improve clarity of primary action vs supporting links
+
+- `src/components/layout/MobileMenu.tsx`
+  - Make overlay feel more intentional and premium
+  - Increase menu readability, improve spacing balance, and reduce “narrow/top-heavy” feel
+  - Make CTA and navigation grouping clearer
+  - Preserve focus trapping and keyboard behavior
+
+- `src/components/layout/Footer.tsx`
+  - Reduce link-wall feeling
+  - Improve grouping and scanability
+  - Add localization support for `/pt`
+  - Avoid ending pages with a visually weak, text-dense block
+
+- `src/components/landing/TrustStrip.tsx`
+  - Reduce repetition and visual noise
+  - Remove dependence on hover-to-pause-only behavior
+  - Add reduced-motion-safe fallback
+  - Consider making this static or less dominant if repeated across pages
+
+- `src/components/landing/CTASection.tsx`
+  - Stop using the same CTA block with the same weight on every route
+  - Add variants by page intent or simplify to a more restrained final CTA
+  - Reduce decorative background intensity where it creates sameness
+  - Add localization support for Portuguese
+
+- `src/components/landing/HowItWorks.tsx`
+  - Compress vertical rhythm
+  - Make step sequence more scannable on mobile
+  - Reduce repeated split-layout monotony
+
+- `src/components/landing/ArchitectureDiagram.tsx`
+  - Improve responsive behavior and spacing around the diagram
+  - Prevent large empty follow-up space on pages like `/ecosystem`
+  - Ensure mobile fallback remains readable
+
+- `src/components/landing/HeroSection.tsx`
+  - Fix headline spacing bug at source
+  - Tighten hero layout so supporting visual does not sit too low on mobile
+  - Clarify one primary CTA and one secondary CTA
+  - Reduce immediate badge/trust overload under the hero
+
+- `src/components/landing/FeaturesGrid.tsx`
+  - This likely needs the heaviest refactor on the homepage
+  - Reduce repeated alternating sections that feel manually stitched together
+  - Consolidate or regroup feature stories into fewer, stronger content blocks
+  - Improve pacing and eliminate dead vertical zones
+
+**Route Files**
+
+- `src/app/page.tsx`
+  - Rebalance homepage section order/spacing
+  - Reduce dead space between hero, trust, features, how-it-works, architecture, and CTA
+  - Make homepage narrative sharper within first scroll
+
+- `src/app/features/client.tsx`
+  - Highest-priority route for redesign of pacing
+  - Break repetitive split-section pattern
+  - Group features into clearer themes
+  - Reduce empty bands and repetitive mockup + copy rhythm
+  - Fix `teamsthat` spacing bug
+
+- `src/app/pricing/client.tsx`
+  - Treat as structural baseline
+  - Refine spacing below pricing tiers and before footer
+  - Improve mobile continuity after stacked cards
+  - Ensure comparison content remains useful on mobile
+
+- `src/app/ecosystem/client.tsx`
+  - Preserve strong architecture content
+  - Reduce large empty region after architecture/repo blocks
+  - Increase density and improve transitions between sections
+
+- `src/app/roadmap/client.tsx`
+  - Fix `futureof` spacing bug
+  - Compress list-heavy roadmap content
+  - Improve hierarchy between phases, progress state, and detail lists
+  - Reduce tall sparse scrolling on mobile
+
+- `src/app/startups/client.tsx`
+  - One of the weakest pacing pages today
+  - Tighten hero-to-proof-to-solution flow
+  - Reduce mid-page emptiness
+  - Make startup-specific content feel sharper and less template-like
+
+- `src/app/enterprise/client.tsx`
+  - Preserve clarity and credibility
+  - Differentiate layout from other feature pages
+  - Reduce repeated mockup cadence and table-heavy sameness
+
+- `src/app/pt/client.tsx`
+  - Fix `timessem` spacing bug
+  - Ensure complete Portuguese localization across shared CTA/footer/nav labels where applicable
+  - Keep Portuguese page structurally coherent with localized copy, not mixed-language fragments
+
+**Likely Root-Cause Checks**
+
+- Search for heading markup that splits styled spans without explicit whitespace handling
+- Search for `min-h-*`, oversized `py-*`, `gap-*`, and section wrappers creating unnecessary page height
+- Search for repeated shared CTA/trust usage across routes and reduce duplication
+- Search for English-only shared strings used by `/pt`
+
+**Acceptance Criteria**
+
+- No visible word-collision headline bugs on any major route
+- Every major route is shorter or denser without feeling cramped
+- `/features`, `/ecosystem`, and `/startups` feel materially more distinct
+- Mobile menu feels balanced and easier to use
+- `/pt` has no obvious English leakage in shared page sections
+- No regression in accessibility, responsiveness, or overall brand tone
+
+**Suggested Execution Order**
+
+1. Fix global spacing and typography bugs
+2. Standardize shared section/layout primitives
+3. Refactor shared CTA/trust/footer/mobile-menu components
+4. Rework homepage and `/features`
+5. Rework `/ecosystem`, `/startups`, `/roadmap`
+6. Refine `/pricing` and `/enterprise`
+7. Finish `/pt` localization pass
+8. Run visual QA on desktop + mobile
+
+If you want, I can turn this into an even stricter Replit prompt with exact file references and explicit “edit these files first” instructions.
