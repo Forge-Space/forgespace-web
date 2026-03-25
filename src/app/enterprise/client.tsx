@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
-import { TrustStrip } from "@/components/landing/TrustStrip";
 
 // ─── Shared motion variants ──────────────────────────────────────────────────
 
@@ -201,7 +200,7 @@ function FeatureSection({ label, title, description, bullets, visual, reverse = 
   );
 
   return (
-    <section className="border-t border-forge-border px-6 lg:px-16 py-16 lg:py-24 max-w-7xl mx-auto">
+    <section className="border-t border-forge-border px-6 lg:px-16 py-10 lg:py-16 max-w-7xl mx-auto">
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reverse ? "lg:[&>*:first-child]:order-last" : ""}`}>
         {reverse ? <>{visualCol}{textCol}</> : <>{textCol}{visualCol}</>}
       </div>
@@ -339,7 +338,7 @@ function DeploymentMockup() {
 
 function CtaSection() {
   return (
-    <section className="border-t border-forge-border px-6 lg:px-16 py-20 max-w-7xl mx-auto text-center">
+    <section className="border-t border-forge-border px-6 lg:px-16 py-14 max-w-7xl mx-auto text-center">
       <motion.p
         className="label-mono mb-4"
         variants={fadeUp}
@@ -420,8 +419,6 @@ export default function EnterprisePage() {
       />
       <main id="main-content" className="relative">
         <HeroSection />
-
-        <TrustStrip />
 
         <FeatureSection
           label="SUPPORT"

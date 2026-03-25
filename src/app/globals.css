@@ -76,14 +76,14 @@
 /* ── Typography Scale ──────────────────────────────────────────────────────── */
 :root {
   /* Editorial display sizes (fluid, clamp-based) */
-  --text-display-xl: clamp(3rem, 7vw, 5.25rem);   /* Hero headline */
-  --text-display-lg: clamp(2.25rem, 5vw, 3.75rem); /* Section hero */
-  --text-display-md: clamp(1.75rem, 3.5vw, 2.5rem);/* Section sub-headline */
-  --text-display-sm: clamp(1.25rem, 2.5vw, 1.75rem);/* Feature headline */
+  --text-display-xl: clamp(2.5rem, 6vw, 4.5rem);    /* Hero headline — tightened */
+  --text-display-lg: clamp(2rem, 4.5vw, 3.25rem);   /* Section hero — tightened */
+  --text-display-md: clamp(1.625rem, 3vw, 2.25rem); /* Section sub-headline */
+  --text-display-sm: clamp(1.125rem, 2vw, 1.625rem);/* Feature headline */
 
-  /* Editorial spacing — consistent section rhythm */
-  --section-padding-y: clamp(4rem, 8vw, 7rem);
-  --section-gap: clamp(3rem, 5vw, 5rem);
+  /* Editorial spacing — tightened section rhythm */
+  --section-padding-y: clamp(3rem, 6vw, 5rem);
+  --section-gap: clamp(2rem, 4vw, 4rem);
   --content-max-width: 68rem; /* 6xl */
 
   /* Mono label style */
@@ -112,12 +112,14 @@ body {
   color: var(--forge-text-muted);
 }
 
-/* Editorial gradient text */
+/* Editorial gradient text — pb prevents bg-clip clipping on descenders */
 .text-gradient-primary {
   background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  padding-bottom: 0.1em;
+  display: inline-block;
 }
 
 /* Subtle divider with fade */
@@ -174,10 +176,17 @@ body {
   background: #22c55e;
 }
 
-/* TrustStrip marquee (referenced in TrustStrip.tsx) */
+/* TrustStrip marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* Reduced-motion: pause marquee animation */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation-play-state: paused !important;
+  }
 }
 
 /* Display typography utilities — wired from CSS tokens */

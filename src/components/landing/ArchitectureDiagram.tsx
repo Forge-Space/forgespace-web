@@ -6,9 +6,10 @@ import { EASE_SIZA } from "@/lib/constants";
 interface ArchitectureDiagramProps {
   repoCount: number;
   releasedRepoCount: number;
+  inline?: boolean;
 }
 
-export function ArchitectureDiagram({ repoCount, releasedRepoCount }: ArchitectureDiagramProps) {
+export function ArchitectureDiagram({ repoCount, releasedRepoCount, inline = false }: ArchitectureDiagramProps) {
   const nodeY = 120;
   const nodeW = 142;
   const nodeH = 56;
@@ -41,9 +42,8 @@ export function ArchitectureDiagram({ repoCount, releasedRepoCount }: Architectu
   const leftOutputCx = 660;
   const rightOutputCx = 780;
 
-  return (
-    <section className="py-20 md:py-28 bg-forge-bg-elevated border-y border-forge-border">
-      <div className="mx-auto max-w-5xl px-6">
+  const content = (
+    <div className="mx-auto max-w-5xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -288,6 +288,15 @@ export function ArchitectureDiagram({ repoCount, releasedRepoCount }: Architectu
           </span>
         </div>
       </div>
+  );
+
+  if (inline) {
+    return <div className="py-8">{content}</div>;
+  }
+
+  return (
+    <section className="py-14 md:py-20 bg-forge-bg-elevated border-y border-forge-border">
+      {content}
     </section>
   );
 }

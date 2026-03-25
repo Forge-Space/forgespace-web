@@ -32,10 +32,10 @@ export default function PtPage() {
             >
               <p className="label-mono mb-4">FORGE SPACE · PT</p>
 
-              <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
-                <span className="text-white">IDP open-source para times</span>
-                <br />
-                <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
+              <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.15] mb-6">
+                <span className="text-white">IDP open-source para times</span>{" "}
+                <br className="hidden sm:block" />
+                <span className="text-gradient-primary">
                   sem equipe de plataforma.
                 </span>
               </h1>
@@ -162,8 +162,8 @@ export default function PtPage() {
         </div>
       </section>
 
-      <HowItWorks />
-      <CTASection />
+      <HowItWorks locale="pt" />
+      <CTASection variant="pt" />
     </main>
   );
 }

@@ -6,95 +6,153 @@ import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 
-export function CTASection() {
+type CTAVariant = "default" | "minimal" | "enterprise" | "pt";
+
+interface CTASectionProps {
+  variant?: CTAVariant;
+}
+
+const content: Record<CTAVariant, {
+  label: string;
+  title: string;
+  subtitle: string;
+  trust: string[];
+  primary: { label: string; href: string; icon: "github" | "mail" };
+  secondary?: { label: string; href: string; icon?: "mail" };
+  tertiary?: { label: string; href: string };
+  footer: string;
+}> = {
+  default: {
+    label: "Get started today",
+    title: "Get visibility where it matters",
+    subtitle: "One scan. A living catalog. Governance built in. Open source and free to start.",
+    trust: ["✓ Open source · MIT License", "✓ No login required to start", "✓ Works with any Git host", "✓ BYOK · Client-side encryption"],
+    primary: { label: "Explore on GitHub", href: "https://github.com/Forge-Space", icon: "github" },
+    secondary: { label: "Contact Forge Space", href: "mailto:support@forgespace.co?subject=Forge%20Space%20for%20my%20team", icon: "mail" },
+    tertiary: { label: "Try Siza Demo", href: "https://siza.forgespace.co" },
+    footer: "MIT Licensed · Self-hostable · No vendor lock-in",
+  },
+  minimal: {
+    label: "Open source",
+    title: "Start building with Forge Space",
+    subtitle: "Open source, MIT licensed, and free to start. No credit card required.",
+    trust: ["✓ MIT License", "✓ Self-hostable", "✓ No vendor lock-in"],
+    primary: { label: "Explore on GitHub", href: "https://github.com/Forge-Space", icon: "github" },
+    secondary: { label: "Try Siza Demo", href: "https://siza.forgespace.co" },
+    footer: "Free forever · Open source",
+  },
+  enterprise: {
+    label: "Enterprise",
+    title: "Ready to talk enterprise?",
+    subtitle: "Custom deployment, dedicated support, and enterprise controls for teams that can't compromise on security.",
+    trust: ["✓ Dedicated support SLA", "✓ Self-hosted deployment", "✓ SOC 2 roadmap"],
+    primary: { label: "Contact Sales", href: "mailto:support@forgespace.co?subject=Forge%20Space%20Enterprise", icon: "mail" },
+    secondary: { label: "Explore on GitHub", href: "https://github.com/Forge-Space" },
+    footer: "Custom pricing · SAML SSO · Audit logs",
+  },
+  pt: {
+    label: "Comece hoje",
+    title: "Visibilidade onde importa",
+    subtitle: "Um scan. Um catálogo vivo. Governança integrada. Open source e gratuito para começar.",
+    trust: ["✓ Open source · MIT License", "✓ Sem login para começar", "✓ Funciona com qualquer Git host"],
+    primary: { label: "Ver no GitHub", href: "https://github.com/Forge-Space", icon: "github" },
+    secondary: { label: "Falar com Forge Space", href: "mailto:support@forgespace.co?subject=Forge%20Space%20para%20meu%20time", icon: "mail" },
+    tertiary: { label: "Testar o Siza", href: "https://siza.forgespace.co" },
+    footer: "MIT License · Self-hostable · Sem vendor lock-in",
+  },
+};
+
+export function CTASection({ variant = "default" }: CTASectionProps) {
+  const c = content[variant];
+
   return (
     <section
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-20 md:py-28 overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 70%),
-          radial-gradient(ellipse 60% 40% at 20% 100%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124, 58, 237, 0.12) 0%, transparent 70%),
           var(--forge-bg)
         `,
       }}
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: "60px 60px",
-        }}
-        aria-hidden
-      />
-
-      <div className="relative max-w-3xl mx-auto px-6 text-center">
+      <div className="relative max-w-2xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE_SIZA }}
         >
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-6">
-            Get started today
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-5">
+            {c.label}
           </p>
 
-          <h2 className="text-display-lg font-display font-extrabold tracking-tight mb-6 bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
-            Get visibility where it matters
+          <h2 className="text-display-md font-display font-extrabold tracking-tight mb-4 leading-tight bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent pb-[0.1em]">
+            {c.title}
           </h2>
 
-          <p className="text-xl text-forge-text-muted max-w-xl mx-auto mb-10 leading-relaxed">
-            One scan. A living catalog. Governance built in. Open source and
-            free to start.
+          <p className="text-lg text-forge-text-muted max-w-md mx-auto mb-8 leading-relaxed">
+            {c.subtitle}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-6 mb-8 text-xs text-forge-text-subtle">
-            <span>✓ Open source · MIT License</span>
-            <span>✓ No login required to start</span>
-            <span>✓ Works with any Git host</span>
-            <span>✓ BYOK · Client-side encryption</span>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 mb-8 text-xs text-forge-text-subtle">
+            {c.trust.map((t) => (
+              <span key={t}>{t}</span>
+            ))}
           </div>
 
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center">
             <Button
-              href="https://github.com/Forge-Space"
+              href={c.primary.href}
               external
               size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.GITHUB}
-              ctaTarget="github"
-              ctaLocation="landing_cta_primary"
+              ctaEvent={c.primary.icon === "github" ? FORGE_CTA_EVENTS.GITHUB : FORGE_CTA_EVENTS.CONTACT_SALES}
+              ctaTarget={c.primary.icon === "github" ? "github" : "contact_sales"}
+              ctaLocation="cta_primary"
+              passAttribution={c.primary.icon === "mail"}
             >
-              <Github className="w-4 h-4" />
-              Explore on GitHub
-              <ArrowRight className="w-4 h-4" />
+              {c.primary.icon === "github" ? (
+                <Github className="w-4 h-4" />
+              ) : (
+                <Mail className="w-4 h-4" />
+              )}
+              {c.primary.label}
+              {c.primary.icon === "github" && <ArrowRight className="w-4 h-4" />}
             </Button>
-            <Button
-              href="mailto:support@forgespace.co?subject=Forge%20Space%20for%20my%20team"
-              variant="outline"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.CONTACT_SALES}
-              ctaTarget="contact_sales"
-              ctaLocation="landing_cta_secondary"
-              passAttribution
-            >
-              <Mail className="w-4 h-4" />
-              Contact Forge Space
-            </Button>
-            <Button
-              href="https://siza.forgespace.co"
-              external
-              variant="outline"
-              size="lg"
-              ctaEvent={FORGE_CTA_EVENTS.SIZA}
-              ctaTarget="siza"
-              ctaLocation="landing_cta_tertiary"
-              passAttribution
-            >
-              Try Siza Demo
-            </Button>
+
+            {c.secondary && (
+              <Button
+                href={c.secondary.href}
+                external
+                variant="outline"
+                size="lg"
+                ctaEvent={c.secondary.href.startsWith("mailto:") ? FORGE_CTA_EVENTS.CONTACT_SALES : FORGE_CTA_EVENTS.SIZA}
+                ctaTarget={c.secondary.href.startsWith("mailto:") ? "contact_sales" : "siza"}
+                ctaLocation="cta_secondary"
+                passAttribution={c.secondary.href.startsWith("mailto:")}
+              >
+                {c.secondary.icon === "mail" && <Mail className="w-4 h-4" />}
+                {c.secondary.label}
+              </Button>
+            )}
+
+            {c.tertiary && (
+              <Button
+                href={c.tertiary.href}
+                external
+                variant="ghost"
+                size="lg"
+                ctaEvent={FORGE_CTA_EVENTS.SIZA}
+                ctaTarget="siza"
+                ctaLocation="cta_tertiary"
+                passAttribution
+              >
+                {c.tertiary.label}
+              </Button>
+            )}
           </div>
 
-          <p className="mt-8 text-sm text-forge-text-subtle">
-            MIT Licensed · Self-hostable · No vendor lock-in
+          <p className="mt-6 text-xs text-forge-text-subtle">
+            {c.footer}
           </p>
         </motion.div>
       </div>

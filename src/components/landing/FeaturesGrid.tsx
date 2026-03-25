@@ -1,22 +1,35 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Lock } from "lucide-react";
+import { Lock, Github, Layers } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 
 interface FeaturesGridProps {
   repoCount: number;
 }
 
+const quickFeatures = [
+  {
+    icon: <Github className="w-4 h-4 text-forge-primary" />,
+    title: "Open-Source Foundation",
+    description: "Core repositories and packages are public under MIT License.",
+  },
+  {
+    icon: <Layers className="w-4 h-4 text-forge-primary" />,
+    title: "Composable Architecture",
+    description: "Combine governance and delivery modules through MCP — each layer independently replaceable.",
+  },
+];
+
 export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
   return (
     <div>
       {/* Section header */}
-      <div className="max-w-6xl mx-auto px-6 pt-20 pb-4">
+      <div className="max-w-6xl mx-auto px-6 pt-14 pb-2">
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
           Features
         </p>
-        <h2 className="text-display-lg font-display font-bold tracking-tight mb-4">
+        <h2 className="text-display-lg font-display font-bold tracking-tight leading-tight mb-4">
           Built for developers who ship
         </h2>
         <p className="text-xl text-forge-text-muted max-w-2xl">
@@ -26,19 +39,19 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </div>
 
       {/* Feature 1: AI-Powered Generation — text left, mockup right */}
-      <section aria-label="AI-Powered Generation" className="py-20 md:py-28">
+      <section aria-label="AI-Powered Generation" className="py-14 md:py-18">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA }}
+              transition={{ duration: 0.5, ease: EASE_SIZA }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 1 of 6
+                Feature 1 of 4
               </p>
-              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Describe it. Get production code.
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
@@ -51,7 +64,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+              transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
             >
               <div className="bg-[#0d0d0f] border border-forge-border rounded-xl p-4 font-mono text-xs leading-relaxed overflow-x-auto">
                 <pre className="text-forge-text-muted whitespace-pre">
@@ -61,8 +74,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                     <span className="text-violet-400">export function</span>
                     {" "}
                     <span className="text-sky-400">UserCard</span>
-                    {"("}
-                    {"{ user }: UserCardProps) {"}
+                    {"({ user }: UserCardProps) {"}
                     {"\n  "}
                     <span className="text-violet-400">return</span>
                     {"(\n    "}
@@ -80,29 +92,13 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                     {"} "}
                     <span className="text-sky-400">{"/>"}</span>
                     {"\n      "}
-                    <span className="text-sky-400">{"<div>"}</span>
-                    {"\n        "}
                     <span className="text-sky-400">{"<p"}</span>
                     {" "}
                     <span className="text-forge-text-muted">className=</span>
                     <span className="text-emerald-400">{'"font-medium"'}</span>
                     <span className="text-sky-400">{">"}</span>
-                    {"{"}
-                    <span className="text-forge-text-muted">user.name</span>
-                    {"} "}
+                    {"{user.name} "}
                     <span className="text-sky-400">{"</p>"}</span>
-                    {"\n        "}
-                    <span className="text-sky-400">{"<p"}</span>
-                    {" "}
-                    <span className="text-forge-text-muted">className=</span>
-                    <span className="text-emerald-400">{'"text-muted text-sm"'}</span>
-                    <span className="text-sky-400">{">"}</span>
-                    {"{"}
-                    <span className="text-forge-text-muted">user.role</span>
-                    {"} "}
-                    <span className="text-sky-400">{"</p>"}</span>
-                    {"\n      "}
-                    <span className="text-sky-400">{"</div>"}</span>
                     {"\n    "}
                     <span className="text-sky-400">{"</Card>"}</span>
                     {"\n  );\n}"}
@@ -115,14 +111,14 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </section>
 
       {/* Feature 2: MCP-Native Architecture — mockup left, text right */}
-      <section aria-label="MCP-Native Architecture" className="py-20 md:py-28">
+      <section aria-label="MCP-Native Architecture" className="py-14 md:py-18 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA }}
+              transition={{ duration: 0.5, ease: EASE_SIZA }}
               className="flex flex-col items-center justify-center"
             >
               <div className="flex items-center justify-center flex-wrap gap-2">
@@ -134,7 +130,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                   MCP Gateway
                 </div>
                 <span className="text-forge-primary text-xl mx-2">→</span>
-                <div className="border border-forge-border rounded-lg px-4 py-2 text-sm text-forge-text-muted bg-forge-surface">
+                <div className="border border-forge-primary/40 rounded-lg px-4 py-2 text-sm text-forge-primary bg-forge-primary/5">
                   Siza
                 </div>
               </div>
@@ -147,12 +143,12 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+              transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 2 of 6
+                Feature 2 of 4
               </p>
-              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Every capability, swappable.
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
@@ -165,19 +161,19 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </section>
 
       {/* Feature 3: CI Quality Gates — text left, mockup right */}
-      <section aria-label="CI Quality Gates" className="py-20 md:py-28">
+      <section aria-label="CI Quality Gates" className="py-14 md:py-18 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA }}
+              transition={{ duration: 0.5, ease: EASE_SIZA }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 3 of 6
+                Feature 3 of 4
               </p>
-              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Quality gates in every PR.
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
@@ -190,7 +186,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+              transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
             >
               <div className="border border-forge-border rounded-xl bg-forge-surface overflow-hidden border-l-4 border-l-violet-500">
                 <div className="flex items-center justify-between px-4 py-3 border-b border-forge-border">
@@ -202,17 +198,21 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                   </span>
                 </div>
                 <div className="px-4 py-3 space-y-2 font-mono text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="text-emerald-400">Score: 94/100</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-forge-text-muted">Score</span>
+                    <span className="text-emerald-400">94/100</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-forge-text-muted">Components reviewed: 23</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-forge-text-muted">Components reviewed</span>
+                    <span className="text-foreground/80">23</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400">2 warnings</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-forge-text-muted">Warnings</span>
+                    <span className="text-amber-400">2</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-emerald-400">0 errors</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-forge-text-muted">Errors</span>
+                    <span className="text-emerald-400">0</span>
                   </div>
                 </div>
               </div>
@@ -222,18 +222,18 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </section>
 
       {/* Feature 4: Privacy-First BYOK — mockup left, text right */}
-      <section aria-label="Privacy-First BYOK" className="py-20 md:py-28">
+      <section aria-label="Privacy-First BYOK" className="py-14 md:py-18 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA }}
+              transition={{ duration: 0.5, ease: EASE_SIZA }}
               className="flex flex-col items-center justify-center"
             >
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-violet-500/20">
-                <Lock className="h-12 w-12 text-violet-400" />
+                <Lock className="h-10 w-10 text-violet-400" />
               </div>
               <p className="text-xs text-forge-text-subtle mt-4 text-center tracking-wider">
                 AES-256 · Client-side only · MIT License
@@ -244,12 +244,12 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_SIZA, delay: 0.1 }}
+              transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 4 of 6
+                Feature 4 of 4
               </p>
-              <h3 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mb-4">
+              <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Your keys. Your infra. Your rules.
               </h3>
               <p className="text-lg text-forge-text-muted leading-relaxed">
@@ -260,47 +260,33 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
           </div>
         </div>
       </section>
-      {/* Feature 5: Open-Source Foundation */}
-      <section aria-label="Open-Source Foundation" className="py-12 border-t border-forge-border">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE_SIZA }}
-            className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6"
-          >
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
-              Feature 5 of 6
-            </p>
-            <p className="text-lg font-display font-semibold text-foreground">
-              Open-Source Foundation — Core repositories and packages are public.
-            </p>
-          </motion.div>
+
+      {/* Quick feature grid — Open-Source Foundation + Composable Architecture */}
+      <section aria-label="Platform foundations" className="border-t border-forge-border">
+        <div className="max-w-6xl mx-auto px-6 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {quickFeatures.map((feat, i) => (
+              <motion.div
+                key={feat.title}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, ease: EASE_SIZA, delay: i * 0.07 }}
+                className="flex items-start gap-4 rounded-xl border border-forge-border bg-forge-surface/50 p-5"
+              >
+                <div className="mt-0.5 flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-forge-primary/10">
+                  {feat.icon}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-1">{feat.title}</p>
+                  <p className="text-sm text-forge-text-muted leading-relaxed">{feat.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Feature 6: Composable Architecture */}
-      <section aria-label="Composable Architecture" className="py-12 border-t border-forge-border">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE_SIZA }}
-            className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6"
-          >
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary">
-              Feature 6 of 6
-            </p>
-            <p className="text-lg font-display font-semibold text-foreground">
-              Composable Architecture — Combine governance and delivery modules through MCP.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Multi-Model Workflows — sr-only feature anchor */}
       <section aria-label="Multi-Model Workflows" className="sr-only">
         <h3>Multi-Model Workflows</h3>
       </section>

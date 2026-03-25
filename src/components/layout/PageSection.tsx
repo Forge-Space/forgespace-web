@@ -16,23 +16,21 @@ export function PageSection({
   className = "",
 }: PageSectionProps) {
   return (
-    <section className={`py-16 ${className}`}>
-      <div className="max-w-4xl mx-auto px-6">
-        {label && (
-          <p className="text-sm font-mono text-forge-primary tracking-wider uppercase mb-4">
-            {label}
-          </p>
-        )}
-        <h1 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-foreground mb-4">
-          {title}
-        </h1>
-        {subtitle && (
-          <p className="text-lg text-forge-text-muted max-w-2xl mb-12">
-            {subtitle}
-          </p>
-        )}
-        {children}
-      </div>
-    </section>
+    <div className={className}>
+      {label && (
+        <p className="text-xs font-mono text-forge-primary tracking-[0.2em] uppercase mb-3">
+          {label}
+        </p>
+      )}
+      <h1 className="text-3xl sm:text-4xl font-display font-bold tracking-tight leading-tight text-foreground mb-3">
+        {title}
+      </h1>
+      {subtitle && (
+        <p className="text-base text-forge-text-muted max-w-2xl mb-8">
+          {subtitle}
+        </p>
+      )}
+      {children}
+    </div>
   );
 }

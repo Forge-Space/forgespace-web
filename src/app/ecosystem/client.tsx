@@ -156,10 +156,11 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
           </span>
         </div>
 
-        <div className="mb-14">
+        <div className="mb-10">
           <ArchitectureDiagram
             repoCount={snapshot.repoCount}
             releasedRepoCount={snapshot.releasedRepoCount}
+            inline
           />
         </div>
 

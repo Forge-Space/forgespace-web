@@ -33,10 +33,10 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE_SIZA }}
           >
-            <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.1] mb-6">
-              <span className="text-white">Open-source IDP</span>
-              <br />
-              <span className="bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] bg-clip-text text-transparent">
+            <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.15] mb-6">
+              <span className="text-white">Open-source IDP</span>{" "}
+              <br className="hidden sm:block" />
+              <span className="text-gradient-primary">
                 for teams that ship.
               </span>
             </h1>

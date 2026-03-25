@@ -232,10 +232,9 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
             transition={{ duration: 0.6, ease: EASE_SIZA }}
           >
             <p className="label-mono mb-6">ROADMAP</p>
-            <h1 className="font-display text-display-lg font-bold tracking-tight text-foreground leading-tight mb-6">
-              Building the future
-              <br />
-              of{" "}
+            <h1 className="font-display text-display-lg font-bold tracking-tight text-foreground leading-[1.15] mb-6">
+              Building the future of{" "}
+              <br className="hidden sm:block" />
               <span className="text-gradient-primary">AI governance.</span>
             </h1>
             <p className="text-lg md:text-xl text-forge-text-muted leading-relaxed max-w-2xl">

@@ -5,7 +5,6 @@ import { Lock } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
-import { TrustStrip } from "@/components/landing/TrustStrip";
 
 interface FeaturesPageProps {
   repoCount: number;
@@ -351,7 +350,7 @@ function FeatureSection({
   return (
     <section
       aria-label={title}
-      className="border-t border-forge-border py-20 md:py-28"
+      className="border-t border-forge-border py-12 md:py-16"
     >
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -517,10 +516,10 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-forge-primary">
               Platform features
             </p>
-            <h1 className="mb-5 font-display text-display-xl font-bold tracking-tight">
-              Built for teams
-              <br />
-              <span className="text-forge-text-muted">that ship.</span>
+            <h1 className="mb-5 font-display text-display-xl font-bold tracking-tight leading-[1.15]">
+              Built for teams{" "}
+              <br className="hidden sm:block" />
+              <span className="text-gradient-primary">that ship.</span>
             </h1>
             <p className="max-w-2xl text-xl leading-relaxed text-forge-text-muted">
               A complete developer platform spanning {repoCount} actively
@@ -531,8 +530,8 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
         </div>
       </section>
 
-      {/* Trust strip */}
-      <TrustStrip />
+      {/* Section divider */}
+      <div className="border-b border-forge-border" />
 
       {/* Feature split sections */}
       {sections.map((section) => (
@@ -542,7 +541,7 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
       {/* CTA row */}
       <section
         aria-label="Call to action"
-        className="border-t border-forge-border py-20"
+        className="border-t border-forge-border py-14"
       >
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
