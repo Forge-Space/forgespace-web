@@ -144,16 +144,31 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
         subtitle="The open source IDP built on GitHub. Live metadata synced every 6 hours with resilient fallback snapshots."
       >
         {/* Stat Pills */}
-        <div className="mb-10 flex flex-wrap justify-center gap-3">
+        <div className="mb-6 flex flex-wrap justify-center gap-3">
           <span className="inline-flex items-center rounded-full border border-forge-border bg-forge-surface/60 px-4 py-1.5 text-sm text-forge-text-muted">
             {snapshot.repoCount} Repositories
           </span>
           <span className="inline-flex items-center rounded-full border border-forge-border bg-forge-surface/60 px-4 py-1.5 text-sm text-forge-text-muted">
             {snapshot.releasedRepoCount} Tagged Releases
           </span>
-          <span className="inline-flex items-center rounded-full border border-forge-border bg-forge-surface/60 px-4 py-1.5 text-sm text-forge-text-muted">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-forge-border bg-forge-surface/60 px-4 py-1.5 text-sm text-forge-text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
             Last synced: {snapshot.lastSyncedAtLabel}
           </span>
+        </div>
+
+        {/* Data freshness callout — unique to this live-data page */}
+        <div className="mb-10 rounded-xl border border-forge-border bg-forge-surface/20 px-5 py-3 flex flex-wrap items-center gap-x-6 gap-y-2 justify-center text-xs font-mono text-forge-text-subtle">
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-[pulse_2s_ease-in-out_infinite]" />
+            Live GitHub metadata
+          </span>
+          <span className="text-forge-border hidden sm:inline">·</span>
+          <span>6-hour cache with resilient fallback</span>
+          <span className="text-forge-border hidden sm:inline">·</span>
+          <span>3 capability groups</span>
+          <span className="text-forge-border hidden sm:inline">·</span>
+          <span>{snapshot.repoCount} repos indexed</span>
         </div>
 
         <div className="mb-10">

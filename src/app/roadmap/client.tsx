@@ -294,10 +294,10 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
               {index > 0 && (
                 <div className="border-t border-forge-border" />
               )}
-              <div className="lg:grid lg:grid-cols-[1fr_2fr] gap-12 py-14">
+              <div className={`lg:grid lg:grid-cols-[1fr_2fr] gap-12 py-14 ${phase.status === "active" ? "border-l-2 border-l-forge-primary pl-4 lg:pl-6" : ""}`}>
                 {/* Left: phase meta */}
                 <div className="mb-8 lg:mb-0">
-                  <p className="font-mono text-6xl font-bold text-forge-border leading-none mb-4 select-none">
+                  <p className={`font-mono text-6xl font-bold leading-none mb-4 select-none ${phase.status === "active" ? "text-forge-primary/30" : "text-forge-border"}`}>
                     {phase.number}
                   </p>
                   <span

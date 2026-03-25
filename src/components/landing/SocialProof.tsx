@@ -9,12 +9,17 @@ interface SocialProofProps {
   snapshot: EcosystemSnapshot;
 }
 
-function useCountUp(target: number, duration = 1200, active: boolean) {
+function useCountUp(target: number, duration = 1200, active: boolean, immediate = false) {
   const [count, setCount] = useState(0);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!active || target === 0) return;
+
+    if (immediate) {
+      setCount(target);
+      return;
+    }
 
     const startTime = performance.now();
 
@@ -31,30 +36,26 @@ function useCountUp(target: number, duration = 1200, active: boolean) {
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
-  }, [target, duration, active]);
+  }, [target, duration, active, immediate]);
 
-  return active && count === 0 && target !== 0 ? target : count;
+  return count;
 }
 
 interface StatItemProps {
-  value: number | string;
+  value: number;
   label: string;
   index: number;
   active: boolean;
-  isNumeric?: boolean;
+  immediate: boolean;
 }
 
-function StatItem({ value, label, index, active, isNumeric = false }: StatItemProps) {
-  const numericTarget = typeof value === "number" ? value : 0;
-  const count = useCountUp(numericTarget, 1200, active && isNumeric);
+function StatItem({ value, label, index, active, immediate }: StatItemProps) {
+  const count = useCountUp(value, 1200, active, immediate);
 
-  const displayValue = isNumeric
-    ? numericTarget >= 1000
-      ? count >= 1000
-        ? `${(count / 1000).toFixed(1)}k`
-        : String(count)
-      : String(count)
-    : String(value);
+  const displayValue =
+    value >= 1000 && count >= 1000
+      ? `${(count / 1000).toFixed(1)}k`
+      : String(count);
 
   return (
     <motion.div
@@ -74,12 +75,21 @@ function StatItem({ value, label, index, active, isNumeric = false }: StatItemPr
 export function SocialProof({ snapshot }: SocialProofProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [countersActive, setCountersActive] = useState(false);
+  const [immediate, setImmediate] = useState(false);
 
   const activate = useCallback(() => setCountersActive(true), []);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+
+    // If already in viewport on first paint, show values immediately (no flash from zero)
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setImmediate(true);
+      setCountersActive(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -98,10 +108,10 @@ export function SocialProof({ snapshot }: SocialProofProps) {
   const showDownloads = snapshot.npmDownloads.total > 0;
 
   const stats = [
-    { value: snapshot.repoCount, label: "Product Repos", isNumeric: true },
-    { value: snapshot.releasedRepoCount, label: "Tagged Releases", isNumeric: true },
+    { value: snapshot.repoCount, label: "Product Repos" },
+    { value: snapshot.releasedRepoCount, label: "Tagged Releases" },
     ...(showDownloads
-      ? [{ value: snapshot.npmDownloads.total, label: "npm Downloads / mo", isNumeric: true }]
+      ? [{ value: snapshot.npmDownloads.total, label: "npm Downloads / mo" }]
       : []),
   ];
 
@@ -131,7 +141,7 @@ export function SocialProof({ snapshot }: SocialProofProps) {
               label={stat.label}
               index={i}
               active={countersActive}
-              isNumeric={stat.isNumeric}
+              immediate={immediate}
             />
           ))}
         </div>

@@ -222,6 +222,28 @@ export default function StartupsPage() {
           </div>
         </section>
 
+        {/* Stage-fit strip — unique to startups page */}
+        <div className="border-y border-forge-border bg-forge-bg-elevated py-4">
+          <div className="max-w-4xl mx-auto px-6 flex flex-wrap items-center justify-center gap-0">
+            {[
+              { label: "Pre-seed", muted: true },
+              { label: "Seed", muted: false },
+              { label: "Series A", muted: false },
+              { label: "Growth", muted: true },
+            ].map((stage, i, arr) => (
+              <span key={stage.label} className="inline-flex items-center">
+                <span className={`text-xs font-mono px-3 py-1 rounded-full ${stage.muted ? "text-forge-text-subtle" : "text-foreground bg-forge-primary/10 border border-forge-primary/30"}`}>
+                  {stage.label}
+                </span>
+                {i < arr.length - 1 && (
+                  <span className="text-forge-border text-xs px-1">→</span>
+                )}
+              </span>
+            ))}
+            <span className="ml-4 text-xs text-forge-text-subtle font-mono hidden sm:inline">Best fit: Seed → Series A</span>
+          </div>
+        </div>
+
         {/* Pain Points — editorial numbered list */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">

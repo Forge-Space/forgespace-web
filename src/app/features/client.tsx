@@ -334,6 +334,7 @@ interface FeatureSectionData {
   bullets: string[];
   mockup: React.ReactNode;
   flip?: boolean;
+  bgElevated?: boolean;
 }
 
 // ─── Section component ────────────────────────────────────────────────────────
@@ -346,11 +347,12 @@ function FeatureSection({
   bullets,
   mockup,
   flip = false,
+  bgElevated = false,
 }: FeatureSectionData) {
   return (
     <section
       aria-label={title}
-      className="border-t border-forge-border py-12 md:py-16"
+      className={`border-t border-forge-border py-12 md:py-16 ${bgElevated ? "bg-forge-bg-elevated" : ""}`}
     >
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -545,8 +547,8 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
       </div>
 
       {/* Feature split sections */}
-      {sections.map((section) => (
-        <FeatureSection key={section.index} {...section} />
+      {sections.map((section, i) => (
+        <FeatureSection key={section.index} {...section} bgElevated={i % 2 === 1} />
       ))}
 
       {/* CTA row */}
