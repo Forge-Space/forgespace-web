@@ -1,0 +1,123 @@
+I reviewed the live deployment with the `ui-ux-expert` and `web-design-guidelines` skills, then used MCP/web tools (`firecrawl_map`, `firecrawl_scrape`, `webfetch`) to inspect the main routes and current rendered copy. The site is much stronger than the earlier version, but there are still clear issues across polish, hierarchy, localization, and professional finish.
+
+**Top Priorities**
+- Typography/rendering still leaks polish bugs: double-spacing and collapsed token strings are visible on live pages (`Open-source IDP  for teams that ship.`, `Built for teams   that ship.`, `Building the future of   AI governance.`, `Your API keynever leaves your browser`, `MIT LicensedOpen Source`, `FoundationFoundation`, `MITLicençaMCPArquitetura100%Open Source`).
+- Several trust/proof areas feel concatenated instead of designed: ecosystem stacks, metadata chips, badge rows, and trust strips still read like raw tokens rather than calm credibility UI.
+- Shared CTA/footer patterns are still over-reused; too many routes end with nearly the same “Get visibility where it matters” block, which weakens page identity.
+- Portuguese localization is still incomplete at the system level: `/pt` content improved, but metadata still reports `language: en`, and shared copy formatting remains inconsistent.
+- The visual language is cleaner, but still not fully “serious product company” grade; some pages still feel assembled from strong components rather than editorially composed end-to-end.
+
+**Cross-Site Issues**
+- `Copy formatting`
+  - Missing spaces between inline labels and values across multiple pages
+  - Badge rows and stat rows collapse into unreadable strings
+  - Some labels feel too engineering-internal for a marketing surface
+- `Hierarchy`
+  - Too many sections use similar weight, making scanning slower
+  - Secondary proof and tertiary metadata often compete with primary message
+  - CTA hierarchy is better, but still too flat on some pages
+- `Trust presentation`
+  - Repeated chip/badge strips are still noisy
+  - Some proof feels machine-rendered instead of curated
+  - Metrics are improved on home, but trust blocks need better composition
+- `Accessibility / guideline alignment`
+  - Reduced-motion handling is still important for trust-strip/marquee-like patterns
+  - Heading hierarchy and semantic grouping should be rechecked on pages with multiple hero/section headings
+  - Long token strings need better wrapping and word-break handling
+- `Localization`
+  - `/pt` is not yet first-class because formatting, metadata, and shared “micro-UI” still feel partially English-system-driven
+
+**Page-by-Page Map**
+
+- `/`
+  - Stronger proof than before; the stats are no longer zeroed
+  - Still has visible headline spacing bug
+  - Trust/ecosystem area remains too dense and tokenized
+  - Features + how-it-works + architecture still need slightly tighter narrative transitions
+  - Final CTA still feels like a shared block more than a homepage-specific close
+
+- `/features`
+  - Still one of the weakest editorial pages
+  - Section index reads mechanically (`01AI Generation`, `02CI Quality Gates`) instead of premium navigation
+  - Hero spacing bug remains
+  - Good content, but too many equal-weight blocks in sequence
+  - MCP/security sections still show concatenated strings that reduce trust
+
+- `/pricing`
+  - Structurally still one of the best pages
+  - But text polish is still weak in places: `$0forever`, `MIT LicensedOpen Source`, `Flexible plans·MIT Licensed·Open Source`
+  - Comparison table has empty-looking BYOK/Audit Log cells, which feels unfinished
+  - FAQ section is serviceable, but could feel more premium and clearer
+  - Good candidate for a clean, restrained polish pass rather than redesign
+
+- `/roadmap`
+  - Still has one of the clearest polish failures
+  - Hero spacing bug remains
+  - Status pills collapse into `FoundationFoundation · Complete`, etc.
+  - Content structure is solid, but visual grouping is not refined enough
+  - Needs better distinction between phase selector, current status, and phase details
+
+- `/ecosystem`
+  - Valuable content, but visually and cognitively too dense
+  - Repo cards read like a compressed dump instead of a curated catalog
+  - Metadata row is overloaded
+  - Architecture section still repeats shared patterns rather than creating a distinct ecosystem-specific rhythm
+  - Needs better grouping, chunking, and scanning support
+
+- `/startups`
+  - Good positioning, but still a bit “landing-page template with startup copy”
+  - The startup scorecard mockup is helpful, but the surrounding proof sections still rely too much on chips and stacked claims
+  - “Zero-cost architecture, production-grade quality” section needs more intentional composition
+  - Would benefit from a more investor/customer-readiness angle and less repeated component language
+
+- `/enterprise`
+  - Strongest differentiated route after pricing
+  - Tone is appropriately more serious
+  - Still has some tokenized metadata compression (`SOC 2 ReadySAML / OIDC SSOAudit Logs...`)
+  - Support/security/deployment sections are good, but typography and information blocks need more breathing logic and cleaner label-value separation
+  - Could feel substantially more premium with a calmer enterprise layout treatment
+
+- `/pt`
+  - Much improved, but not finished
+  - Still has hero spacing bug
+  - Badge/proof rows collapse badly
+  - Shared proof and CTA formatting still feel system-derived rather than localized-first
+  - Metadata/language handling is still wrong for Portuguese
+
+**Shared Components Most Likely Causing Problems**
+- `Hero / heading composition`
+  - Inline spans, wrapping, and balanced text treatment are still not robust
+  - Fix at the shared heading composition layer, not per page
+- `Trust strip / proof chips`
+  - Needs redesign, not just spacing tweaks
+  - Replace token-stream feel with grouped, readable credibility blocks
+- `Stat / metadata rows`
+  - Multiple pages show collapsed label-value strings
+  - Needs a reusable pattern for badges, metrics, and metadata with proper spacing and wrapping
+- `CTA section`
+  - Still too reusable in a way that weakens route identity
+  - Should have variants by page intent
+- `Section wrappers`
+  - Likely still allow too much sameness in section intros, labels, and rhythm
+- `Localization plumbing`
+  - `/pt` suggests shared content and metadata are not fully locale-aware
+
+**Recommended Fix Order**
+1. Fix shared typography/spacing bugs at the component level
+2. Redesign trust-strip, metadata chips, and badge-row systems
+3. Fix locale metadata and shared-string handling for `/pt`
+4. Refine `/roadmap` and `/features` hierarchy
+5. Recompose `/ecosystem` for density and scanability
+6. Do a final professionalism pass on `/pricing` and `/enterprise`
+
+**What “Done” Should Look Like**
+- No collapsed or double-spaced headline/body strings anywhere
+- Proof areas feel curated, readable, and calm
+- `/features`, `/roadmap`, and `/ecosystem` feel materially more intentional
+- `/pt` behaves like a real localized route, including metadata/system strings
+- Shared components support a cleaner, more modern, more professional visual language
+
+If you want, I can now turn this into:
+1. a strict Replit prompt for the next pass
+2. a file-by-file implementation brief
+3. a prioritized checklist with “must fix / should fix / nice to have” buckets
