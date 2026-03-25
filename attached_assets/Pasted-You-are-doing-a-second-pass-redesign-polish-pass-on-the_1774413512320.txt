@@ -1,0 +1,146 @@
+You are doing a second-pass redesign + polish pass on the Forge Space marketing site.
+
+This is not just a bug-fix pass. It is also not a full rebrand. Your job is to make the site feel cleaner, more modern, more professional, and more solid while also fixing the remaining polish, UX, localization, and credibility issues.
+
+Core goal:
+Make the site feel like a serious, premium, product-grade open-source company website that is launch-ready.
+
+Important constraints:
+- Keep the existing product positioning
+- Keep the dark premium technical/open-source feel
+- Do NOT turn it into a generic white SaaS landing page
+- Do NOT overdesign it with flashy effects
+- Do NOT restart from scratch
+- Improve the current implementation through targeted but meaningful refinements
+- The result should feel cleaner, calmer, sharper, more modern, and more credible
+
+Project context:
+- Next.js 16 + React 19 + Tailwind v4
+- Main routes:
+  - `src/app/page.tsx`
+  - `src/app/features/client.tsx`
+  - `src/app/pricing/client.tsx`
+  - `src/app/ecosystem/client.tsx`
+  - `src/app/roadmap/client.tsx`
+  - `src/app/startups/client.tsx`
+  - `src/app/enterprise/client.tsx`
+  - `src/app/pt/client.tsx`
+- Shared components likely involved:
+  - `src/components/landing/HeroSection.tsx`
+  - `src/components/landing/TrustStrip.tsx`
+  - `src/components/landing/CTASection.tsx`
+  - `src/components/landing/HowItWorks.tsx`
+  - `src/components/landing/ArchitectureDiagram.tsx`
+  - `src/components/landing/FeaturesGrid.tsx`
+  - `src/components/layout/Nav.tsx`
+  - `src/components/layout/Footer.tsx`
+  - `src/components/layout/MobileMenu.tsx`
+  - `src/components/ui/Button.tsx`
+  - `src/components/ui/Section.tsx`
+  - `src/components/layout/PageSection.tsx`
+  - `src/app/globals.css`
+  - `src/styles/design-tokens.ts`
+
+What still needs work:
+
+1. Improve the visual design quality
+- Make the site feel cleaner, more restrained, and more professional
+- Reduce any remaining visual noise, excessive decorative glow, or “assembled section” feeling
+- Improve typography hierarchy, spacing rhythm, layout discipline, and surface treatment
+- Make the design feel more mature and product-grade
+
+2. Fix homepage credibility and proof presentation
+- The homepage proof/metrics area must feel trustworthy and intentional
+- If metrics are dynamic, fix broken or misleading values
+- If reliable metrics are not available, replace them with truthful static proof points
+- No placeholder-feeling or zero-value trust content should remain
+- Redesign the proof/trust presentation so it feels premium and calm, not noisy or repetitive
+
+3. Fix remaining heading and spacing polish issues
+- Audit hero headings and section titles for awkward spacing, broken wraps, double spaces, or span-related text glitches
+- Fix the root cause, not just the individual strings
+- Ensure headings feel premium and stable on desktop and mobile
+
+4. Make the homepage feel like one strong story
+- Improve the flow between hero, proof, product value, how-it-works, architecture, and CTA
+- Remove repetition and tighten transitions
+- Make the first screen especially polished and high-confidence
+- Reduce any remaining “stack of sections” feeling
+
+5. Improve route differentiation
+- `/features`, `/ecosystem`, `/startups`, `/enterprise`, and `/roadmap` should not all feel like the same page template
+- Create more variation in composition, hierarchy, and pacing while preserving a shared system
+- Each page should feel purpose-built for its audience and content
+
+6. Refine section composition
+- Reduce oversized empty bands and weak transitions
+- Tighten internal spacing and alignment
+- Improve the balance between text, cards, mockups, diagrams, and proof elements
+- Make sections feel designed, not just populated
+
+7. Improve shared component quality
+- Buttons should feel more polished and have clearer hierarchy
+- Navigation should feel cleaner and more premium
+- Footer should feel lighter, cleaner, and better organized
+- Mobile menu should feel intentionally designed, not merely functional
+- CTA sections should feel strategic and not overly repetitive
+- Shared section wrappers should enforce better spacing discipline
+
+8. Improve features and roadmap pages
+- `/features` should feel more editorially structured and less like repeated equal-weight blocks
+- `/roadmap` should have stronger hierarchy, clearer status presentation, and cleaner list formatting
+- Both pages should feel more refined visually and easier to scan
+
+9. Finish Portuguese localization properly
+- `/pt` should feel like a first-class localized experience
+- Audit all shared UI used on `/pt`, including CTA/footer/nav/shared labels
+- Fix any English leakage, metadata issues, or language-semantics issues
+- Preserve the same quality level as the English pages
+
+10. Improve mobile UX
+- Compress overly tall layouts
+- Improve pacing and scanability
+- Make key content land earlier
+- Ensure cards, tables, diagrams, and CTA groups feel deliberate on small screens
+- Mobile should feel designed, not like a stacked fallback
+
+11. Preserve accessibility and clarity
+- Keep strong contrast
+- Respect reduced-motion preferences
+- Maintain semantic heading structure
+- Ensure proof/trust elements work without motion
+- Do not trade clarity for visual experimentation
+
+Execution approach:
+- First inspect the shared design system, spacing system, and common layout primitives
+- Improve shared visual language before patching individual pages
+- Then refine route-level composition where problems are page-specific
+- Prefer systemic solutions over one-off hacks
+- Keep code clean, reusable, and consistent
+
+What I want from you:
+1. Audit the current implementation visually and structurally
+2. Identify what still feels unfinished, noisy, dated, or low-confidence
+3. Fix the remaining bugs/polish issues
+4. Upgrade the UI/UX design quality in the same pass
+5. Preserve the current product narrative and brand tone
+
+Definition of done:
+- The site looks cleaner, more modern, and more professional
+- The homepage feels sharper and more trustworthy
+- No credibility-damaging placeholder metrics remain
+- No awkward heading spacing remains
+- Shared proof elements feel calm and intentional
+- `/features` and `/roadmap` feel more finished
+- `/pt` feels fully localized
+- Shared components feel higher quality
+- Mobile feels tighter and more deliberate
+- The final result feels solid, premium, and launch-ready
+
+When finished, report:
+1. the design and UX problems you found
+2. the bug/polish issues you fixed
+3. which shared components you changed
+4. which pages changed the most
+5. what you intentionally did not change
+6. any follow-up recommendations for a third pass
