@@ -125,8 +125,20 @@ export function CTASection({ variant = "default" }: CTASectionProps) {
                 external
                 variant="outline"
                 size="lg"
-                ctaEvent={c.secondary.href.startsWith("mailto:") ? FORGE_CTA_EVENTS.CONTACT_SALES : FORGE_CTA_EVENTS.SIZA}
-                ctaTarget={c.secondary.href.startsWith("mailto:") ? "contact_sales" : "siza"}
+                ctaEvent={
+                  c.secondary.href.startsWith("mailto:")
+                    ? FORGE_CTA_EVENTS.CONTACT_SALES
+                    : c.secondary.href.includes("github.com")
+                      ? FORGE_CTA_EVENTS.GITHUB
+                      : FORGE_CTA_EVENTS.SIZA
+                }
+                ctaTarget={
+                  c.secondary.href.startsWith("mailto:")
+                    ? "contact_sales"
+                    : c.secondary.href.includes("github.com")
+                      ? "github"
+                      : "siza"
+                }
                 ctaLocation="cta_secondary"
                 passAttribution={c.secondary.href.startsWith("mailto:")}
               >
