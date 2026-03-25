@@ -89,8 +89,9 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
   }
   if (value === false) {
     return (
-      <span aria-label="Not included">
-        <Minus className="w-4 h-4 text-forge-text-subtle mx-auto opacity-40" aria-hidden />
+      <span className="inline-flex items-center justify-center gap-1 text-xs text-forge-text-subtle" aria-label="Not included">
+        <span aria-hidden className="opacity-50">✕</span>
+        <span className="sr-only">Not included</span>
       </span>
     );
   }
@@ -110,7 +111,7 @@ function FAQItem({ q, a, itemId }: { q: string; a: string; itemId: string }) {
         id={triggerId}
         aria-expanded={open}
         aria-controls={panelId}
-        className="flex w-full items-center justify-between py-5 text-left text-sm font-medium text-foreground transition-colors hover:text-forge-primary"
+        className="flex w-full items-center justify-between py-6 text-left text-sm font-medium text-foreground transition-colors hover:text-forge-primary"
       >
         {q}
         <ChevronDown

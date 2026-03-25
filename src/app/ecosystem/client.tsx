@@ -32,7 +32,7 @@ function buildGroups(repos: EcosystemRepo[]): Array<{ title: RepoGroup; repos: E
 
 function GroupHeader({ title }: { title: string }) {
   return (
-    <div className="relative mb-8 flex items-center gap-4">
+    <div className="relative mb-3 flex items-center gap-4">
       <div className="flex-1 border-t border-forge-border/60" />
       <span className="shrink-0 text-[10px] font-mono uppercase tracking-[0.18em] text-forge-text-subtle">
         {title}
@@ -194,7 +194,7 @@ export default function EcosystemPage({ snapshot }: EcosystemPageProps) {
               }}
             >
               <GroupHeader title={group.title} />
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 mt-8">
                 {group.repos.map((repo) => (
                   <RepoCard key={repo.name} repo={repo} />
                 ))}

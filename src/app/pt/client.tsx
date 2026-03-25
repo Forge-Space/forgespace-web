@@ -99,7 +99,7 @@ export default function PtPage() {
               </div>
 
               <span className="text-xs font-mono text-forge-text-subtle tracking-wider">
-                Open Source · MIT · MCP
+                Código aberto · MIT · MCP
               </span>
             </motion.div>
 
@@ -182,9 +182,9 @@ export default function PtPage() {
               <span aria-hidden className="font-display text-2xl font-bold text-foreground">MCP</span>
               <span aria-hidden className="text-xs text-forge-text-muted">Arquitetura</span>
             </span>
-            <span role="listitem" aria-label="100% Open Source" className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+            <span role="listitem" aria-label="100% código aberto" className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
               <span aria-hidden className="font-display text-2xl font-bold text-foreground">100%</span>
-              <span aria-hidden className="text-xs text-forge-text-muted">Open Source</span>
+              <span aria-hidden className="text-xs text-forge-text-muted">Cód. Aberto</span>
             </span>
           </div>
           <p className="text-center text-xs text-forge-text-subtle font-mono">
