@@ -257,9 +257,10 @@ export default function PricingPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE_SIZA }}
-          className="mb-20 rounded-xl border border-forge-border bg-forge-surface/30 overflow-hidden"
+          className="mb-16 rounded-xl border border-forge-border bg-forge-surface/30 overflow-hidden"
         >
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[480px]">
             <thead>
               <tr className="border-b border-forge-border">
                 <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-widest text-forge-text-subtle w-1/2">
@@ -301,6 +302,7 @@ export default function PricingPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </motion.div>
 
         {/* FAQ */}

@@ -39,7 +39,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </div>
 
       {/* Feature 1: AI-Powered Generation — text left, mockup right */}
-      <section aria-label="AI-Powered Generation" className="py-14 md:py-18">
+      <section aria-label="AI-Powered Generation" className="py-14 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
@@ -111,7 +111,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </section>
 
       {/* Feature 2: MCP-Native Architecture — mockup left, text right */}
-      <section aria-label="MCP-Native Architecture" className="py-14 md:py-18 border-t border-forge-border">
+      <section aria-label="MCP-Native Architecture" className="py-14 md:py-20 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
@@ -161,7 +161,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </section>
 
       {/* Feature 3: CI Quality Gates — text left, mockup right */}
-      <section aria-label="CI Quality Gates" className="py-14 md:py-18 border-t border-forge-border">
+      <section aria-label="CI Quality Gates" className="py-14 md:py-20 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
@@ -222,7 +222,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
       </section>
 
       {/* Feature 4: Privacy-First BYOK — mockup left, text right */}
-      <section aria-label="Privacy-First BYOK" className="py-14 md:py-18 border-t border-forge-border">
+      <section aria-label="Privacy-First BYOK" className="py-14 md:py-20 border-t border-forge-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div

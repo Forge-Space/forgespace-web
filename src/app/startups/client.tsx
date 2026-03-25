@@ -441,7 +441,7 @@ export default function StartupsPage() {
         </section>
       </main>
 
-      <CTASection />
+      <CTASection variant="minimal" />
     </div>
   );
 }
