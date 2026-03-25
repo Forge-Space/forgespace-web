@@ -80,15 +80,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      <body
+        className={`${dmSans.variable} ${sora.variable} ${ibmPlexMono.variable} flex min-h-screen flex-col font-sans antialiased`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalStructuredData) }}
         />
-      </head>
-      <body
-        className={`${dmSans.variable} ${sora.variable} ${ibmPlexMono.variable} flex min-h-screen flex-col font-sans antialiased`}
-      >
         <ClientAnalytics>
           <a
             href="#main-content"
