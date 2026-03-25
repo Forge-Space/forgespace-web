@@ -17,7 +17,7 @@ const HeroParticlesBackground = dynamic(
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[75vh] sm:min-h-[90vh] flex items-center overflow-hidden">
       <HeroParticlesBackground />
       <div
         className="pointer-events-none absolute inset-0 z-[1]"

@@ -22,7 +22,7 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[image:var(--forge-gradient-button)] text-white shadow-[var(--forge-shadow-md)] hover:shadow-[var(--forge-shadow-lg)] hover:brightness-105",
+    "bg-[image:var(--forge-gradient-button)] text-white shadow-forge-sm hover:brightness-110 active:brightness-95",
   outline:
     "border border-forge-border text-foreground/90 hover:bg-forge-surface hover:border-forge-border-hover",
   ghost:

@@ -163,7 +163,7 @@ export function HowItWorks({ locale = "en" }: HowItWorksProps) {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, ease: EASE_SIZA }}
-                  className={index % 2 === 1 ? "order-2 lg:order-1" : ""}
+                  className={index % 2 === 1 ? "order-2" : ""}
                 >
                   {index % 2 === 0 ? (
                     <div className="bg-[#0d0d0f] border border-forge-border rounded-xl overflow-hidden">
@@ -207,7 +207,7 @@ export function HowItWorks({ locale = "en" }: HowItWorksProps) {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
-                  className={index % 2 === 1 ? "order-1 lg:order-2" : ""}
+                  className={index % 2 === 1 ? "order-1" : ""}
                 >
                   <div className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-forge-primary/40 bg-forge-primary/10 text-forge-primary font-mono text-sm font-bold mb-4">
                     {step.number}

@@ -530,8 +530,19 @@ export default function FeaturesPage({ repoCount }: FeaturesPageProps) {
         </div>
       </section>
 
-      {/* Section divider */}
-      <div className="border-b border-forge-border" />
+      {/* Feature index strip */}
+      <div className="border-b border-forge-border bg-forge-bg-elevated">
+        <div className="mx-auto max-w-6xl px-6 py-3">
+          <ol className="flex flex-wrap gap-x-6 gap-y-1.5">
+            {sections.map((s) => (
+              <li key={s.index} className="inline-flex items-center gap-1.5 text-xs font-mono text-forge-text-subtle">
+                <span className="text-forge-primary">{s.index}</span>
+                <span className="uppercase tracking-[0.12em]">{s.label}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
 
       {/* Feature split sections */}
       {sections.map((section) => (

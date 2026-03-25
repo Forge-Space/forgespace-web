@@ -24,9 +24,9 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
       />
       <HeroSection />
-      <TrustStrip />
       <SocialProof snapshot={snapshot} />
       <FeaturesGrid repoCount={snapshot.repoCount} />
+      <TrustStrip />
       <HowItWorks />
       <ArchitectureDiagram
         repoCount={snapshot.repoCount}

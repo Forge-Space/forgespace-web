@@ -214,7 +214,7 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
       className="min-h-screen bg-background font-sans text-foreground"
     >
       {/* Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-24 overflow-hidden">
         {/* Radial gradient backdrop */}
         <div
           className="pointer-events-none absolute inset-0"
@@ -259,7 +259,7 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
               <div key={phase.number} className="flex items-center flex-1">
                 <div className="flex min-w-0 flex-col items-center gap-2 flex-1">
                   <div
-                    className={`h-2 w-full rounded-full ${config.pillBg} ${phase.status === "active" ? "animate-pulse" : ""}`}
+                    className={`h-2 w-full rounded-full ${config.pillBg}`}
                   />
                   <span className="text-[10px] sm:text-xs font-mono text-forge-text-subtle text-center leading-tight max-w-[7.5rem] sm:max-w-none">
                     <span className="sm:hidden">{config.pillLabelCompact}</span>

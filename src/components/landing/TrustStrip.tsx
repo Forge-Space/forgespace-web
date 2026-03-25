@@ -1,30 +1,28 @@
 "use client"
 
-import { Github, Code2, Box, Database, Globe, Server, Cpu, Sparkles } from "lucide-react"
-
 const items = [
-  { name: "GitHub", icon: <Github size={13} /> },
-  { name: "Next.js", icon: <Globe size={13} /> },
-  { name: "TypeScript", icon: <Code2 size={13} /> },
-  { name: "Tailwind CSS", icon: <Sparkles size={13} /> },
-  { name: "Vercel", icon: <Server size={13} /> },
-  { name: "Docker", icon: <Box size={13} /> },
-  { name: "Supabase", icon: <Database size={13} /> },
-  { name: "Anthropic Claude", icon: <Cpu size={13} /> },
-  { name: "OpenAI", icon: <Sparkles size={13} /> },
-  { name: "Google Gemini", icon: <Cpu size={13} /> },
-  { name: "Node.js", icon: <Server size={13} /> },
-  { name: "React", icon: <Code2 size={13} /> },
+  "GitHub",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Vercel",
+  "Docker",
+  "Supabase",
+  "Anthropic Claude",
+  "OpenAI",
+  "Google Gemini",
+  "Node.js",
+  "React",
 ]
 
 const doubled = [...items, ...items]
 
 export function TrustStrip() {
   return (
-    <div className="py-8 border-y border-forge-border overflow-hidden bg-forge-bg-elevated">
+    <div className="py-6 border-y border-forge-border overflow-hidden">
       <style>{`
         @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-        .animate-marquee { animation: marquee 40s linear infinite; }
+        .animate-marquee { animation: marquee 44s linear infinite; }
         .animate-marquee:hover { animation-play-state: paused; }
         @media (prefers-reduced-motion: reduce) { .animate-marquee { animation-play-state: paused; } }
       `}</style>
@@ -32,8 +30,8 @@ export function TrustStrip() {
       <div
         className="relative overflow-hidden"
         style={{
-          maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         }}
       >
         <div
@@ -41,20 +39,19 @@ export function TrustStrip() {
           style={{ width: "max-content" }}
           aria-hidden
         >
-          {doubled.map((item, index) => (
+          {doubled.map((name, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-forge-border bg-forge-surface text-xs text-forge-text-muted whitespace-nowrap mx-1.5"
+              className="inline-flex items-center px-3.5 py-1 rounded-full border border-forge-border bg-forge-surface text-xs text-forge-text-subtle whitespace-nowrap mx-1.5 font-mono tracking-wide"
             >
-              {item.icon}
-              {item.name}
+              {name}
             </span>
           ))}
         </div>
       </div>
 
       <p className="sr-only">
-        Open source ecosystem: {items.map((i) => i.name).join(", ")}
+        Open source ecosystem built on: {items.join(", ")}
       </p>
     </div>
   )

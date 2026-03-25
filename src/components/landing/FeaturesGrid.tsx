@@ -25,7 +25,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
   return (
     <div>
       {/* Section header */}
-      <div className="max-w-6xl mx-auto px-6 pt-14 pb-2">
+      <div className="max-w-6xl mx-auto px-6 pt-12 pb-10">
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
           Features
         </p>
@@ -49,7 +49,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               transition={{ duration: 0.5, ease: EASE_SIZA }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 1 of 4
+                01
               </p>
               <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Describe it. Get production code.
@@ -146,7 +146,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 2 of 4
+                02
               </p>
               <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Every capability, swappable.
@@ -171,7 +171,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               transition={{ duration: 0.5, ease: EASE_SIZA }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 3 of 4
+                03
               </p>
               <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Quality gates in every PR.
@@ -247,7 +247,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
               transition={{ duration: 0.5, ease: EASE_SIZA, delay: 0.1 }}
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-forge-primary mb-3">
-                Feature 4 of 4
+                04
               </p>
               <h3 className="text-3xl font-display font-bold tracking-tight leading-snug mb-4">
                 Your keys. Your infra. Your rules.

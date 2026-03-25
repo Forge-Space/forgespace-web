@@ -15,14 +15,14 @@ export default function PtPage() {
       className="min-h-screen bg-background font-sans text-foreground"
       lang="pt-BR"
     >
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[75vh] sm:min-h-[85vh] flex items-center overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 z-[1]"
           style={{ background: "var(--forge-gradient-hero)" }}
           aria-hidden
         />
 
-        <div className="relative z-[2] max-w-7xl mx-auto px-6 py-20 w-full">
+        <div className="relative z-[2] max-w-7xl mx-auto px-6 py-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text */}
             <motion.div
@@ -30,7 +30,7 @@ export default function PtPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: EASE_SIZA }}
             >
-              <p className="label-mono mb-4">FORGE SPACE · PT</p>
+              <p className="label-mono mb-4">FORGE SPACE · PT-BR</p>
 
               <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.15] mb-6">
                 <span className="text-white">IDP open-source para times</span>{" "}
@@ -95,7 +95,7 @@ export default function PtPage() {
               </span>
             </motion.div>
 
-            {/* Right: Terminal mockup */}
+            {/* Right: Terminal mockup — Portuguese context */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -114,46 +114,46 @@ export default function PtPage() {
                   </span>
                 </div>
 
-                {/* Terminal body */}
+                {/* Terminal body — Portuguese output */}
                 <div className="px-5 py-5 space-y-1 text-xs font-mono">
                   <p className="text-forge-text-muted">
-                    $ siza scan --repo forge-space/forgespace-web
+                    $ siza scan --repo minha-empresa/meu-app
                   </p>
                   <p className="text-forge-text-subtle">&nbsp;</p>
-                  <p className="text-emerald-400">✓ Scanning 847 files...</p>
+                  <p className="text-emerald-400">✓ Escaneando 847 arquivos...</p>
                   <p className="text-emerald-400">
-                    ✓ Extracting components (23 found)
+                    ✓ Extraindo componentes (23 encontrados)
                   </p>
-                  <p className="text-emerald-400">✓ Mapping dependencies</p>
+                  <p className="text-emerald-400">✓ Mapeando dependências</p>
                   <p className="text-emerald-400">
-                    ✓ Running AI governance checks
+                    ✓ Rodando verificações de IA
                   </p>
                   <p className="text-forge-text-subtle">&nbsp;</p>
                   <p className="text-forge-text-muted">
                     ┌─────────────────────────────────────────┐
                   </p>
                   <p className="text-forge-text-muted">
-                    │&nbsp; forge-space/forgespace-web
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+                    │&nbsp; minha-empresa/meu-app
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
                   </p>
                   <p>
-                    <span className="text-forge-text-muted">│&nbsp; Score: </span>
+                    <span className="text-forge-text-muted">│&nbsp; Nota: </span>
                     <span className="text-violet-400">94/100</span>
                     <span className="text-violet-400">
                       &nbsp; ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░
                     </span>
-                    <span className="text-forge-text-muted">&nbsp; │</span>
+                    <span className="text-forge-text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</span>
                   </p>
                   <p className="text-forge-text-muted">
-                    │&nbsp; Components: 23&nbsp; Issues:
-                    2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+                    │&nbsp; Componentes: 23&nbsp; Alertas:
+                    2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
                   </p>
                   <p className="text-forge-text-muted">
                     └─────────────────────────────────────────┘
                   </p>
                   <p className="text-forge-text-subtle">&nbsp;</p>
                   <p className="text-forge-primary">
-                    ↗ Catalog published → siza.forgespace.co
+                    ↗ Catálogo publicado → siza.forgespace.co
                   </p>
                 </div>
               </div>
@@ -161,6 +161,29 @@ export default function PtPage() {
           </div>
         </div>
       </section>
+
+      {/* Proof strip — Portuguese */}
+      <div className="border-y border-forge-border bg-forge-bg-elevated py-8">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
+            <span className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+              <span className="font-display text-2xl font-bold text-foreground">MIT</span>
+              <span className="text-xs text-forge-text-muted">Licença</span>
+            </span>
+            <span className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+              <span className="font-display text-2xl font-bold text-foreground">MCP</span>
+              <span className="text-xs text-forge-text-muted">Arquitetura</span>
+            </span>
+            <span className="inline-flex flex-col items-center gap-0.5 px-5 py-3 rounded-xl border border-forge-border bg-forge-surface/30 min-w-[7rem] text-center">
+              <span className="font-display text-2xl font-bold text-foreground">100%</span>
+              <span className="text-xs text-forge-text-muted">Open Source</span>
+            </span>
+          </div>
+          <p className="text-center text-xs text-forge-text-subtle font-mono">
+            Sem vendor lock-in · Self-hostable · Funciona com qualquer Git host
+          </p>
+        </div>
+      </div>
 
       <HowItWorks locale="pt" />
       <CTASection variant="pt" />
