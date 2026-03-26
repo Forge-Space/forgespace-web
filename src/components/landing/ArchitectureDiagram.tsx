@@ -16,18 +16,12 @@ export function ArchitectureDiagram({ repoCount, releasedRepoCount, inline = fal
   const half = nodeW / 2;
   const halfH = nodeH / 2;
 
-  const nodes: Array<{
-    cx: number;
-    label: string;
-    label2?: string;
-    sub: string;
-    variant: "default" | "violet" | "success";
-  }> = [
+  const nodes = [
     { cx: 80, label: "Your Codebase", sub: "source", variant: "default" },
     { cx: 240, label: "Siza", sub: "scan + catalog", variant: "violet" },
     { cx: 400, label: "core", sub: "governance", variant: "default" },
     { cx: 560, label: "mcp-gateway", sub: "routing", variant: "violet" },
-    { cx: 720, label: "ui-mcp +", label2: "branding-mcp", sub: "delivery", variant: "success" },
+    { cx: 720, label: "delivery MCPs", sub: "ui · branding", variant: "success" },
   ];
 
   const fills: Record<string, string> = {
@@ -160,24 +154,19 @@ export function ArchitectureDiagram({ repoCount, releasedRepoCount, inline = fal
                   strokeWidth="1.5"
                 />
                 <text
+                  x={node.cx}
+                  y={nodeY - 6}
                   textAnchor="middle"
                   fill="#fafafa"
                   fontSize="12"
                   fontFamily="monospace"
                   fontWeight="600"
                 >
-                  {node.label2 ? (
-                    <>
-                      <tspan x={node.cx} y={nodeY - 13}>{node.label}</tspan>
-                      <tspan x={node.cx} y={nodeY + 2}>{node.label2}</tspan>
-                    </>
-                  ) : (
-                    <tspan x={node.cx} y={nodeY - 6}>{node.label}</tspan>
-                  )}
+                  {node.label}
                 </text>
                 <text
                   x={node.cx}
-                  y={node.label2 ? nodeY + 18 : nodeY + 10}
+                  y={nodeY + 10}
                   textAnchor="middle"
                   fill="#a1a1aa"
                   fontSize="10"
