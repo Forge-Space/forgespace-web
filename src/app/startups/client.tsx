@@ -175,9 +175,9 @@ export default function StartupsPage() {
                   {/* Header */}
                   <div className="flex items-center gap-2 mb-4">
                     <div className="flex gap-1.5">
-                      <span className="w-3 h-3 rounded-full bg-[#3a3a3e]" />
-                      <span className="w-3 h-3 rounded-full bg-[#3a3a3e]" />
-                      <span className="w-3 h-3 rounded-full bg-[#3a3a3e]" />
+                      <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                      <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                      <span className="w-3 h-3 rounded-full bg-[#28C840]" />
                     </div>
                     <span className="ml-2 text-xs text-[#6b6b72]">forge-ai-action · PR #47</span>
                   </div>

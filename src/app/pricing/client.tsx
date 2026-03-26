@@ -77,6 +77,10 @@ const comparisonRows: {
   { label: "Projects", free: "2", pro: "Unlimited", team: "Unlimited" },
   { label: "BYOK", free: false, pro: true, team: true },
   { label: "Audit log", free: false, pro: true, team: true },
+  { label: "Scorecard access", free: true, pro: true, team: true },
+  { label: "Policy packs in CI", free: true, pro: true, team: true },
+  { label: "Shared templates", free: false, pro: false, team: true },
+  { label: "Support tier", free: "Community", pro: "Email", team: "Priority" },
 ];
 
 function ComparisonCell({ value }: { value: ComparisonValue }) {
@@ -158,7 +162,7 @@ export default function PricingPage() {
           />
 
           <h1 className="relative text-display-lg font-display font-bold tracking-tight mb-4 leading-tight">
-            Start quickly.{" "}
+            Ship fast.{" "}
             <span className="text-forge-primary">Ship with confidence.</span>
           </h1>
           <p className="relative text-base text-forge-text-muted max-w-md mx-auto mb-6">

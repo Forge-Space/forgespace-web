@@ -40,7 +40,7 @@ export default function PtPage() {
             >
               <p className="label-mono mb-4">FORGE SPACE · PT-BR</p>
 
-              <h1 className="text-display-xl font-display font-extrabold tracking-tight leading-[1.15] mb-6">
+              <h1 className="text-display-lg font-display font-extrabold tracking-tight leading-[1.15] mb-6">
                 <span className="text-white">IDP open-source para times </span>
                 <br className="hidden sm:block" />
                 <span className="text-gradient-primary">
