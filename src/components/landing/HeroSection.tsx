@@ -113,28 +113,17 @@ export function HeroSection() {
                   ✓ Running AI governance checks
                 </p>
                 <p className="text-forge-text-subtle">&nbsp;</p>
-                <p className="text-forge-text-muted">
-                  ┌─────────────────────────────────────────┐
-                </p>
-                <p className="text-forge-text-muted">
-                  │&nbsp; forge-space/forgespace-web
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-                </p>
-                <p>
-                  <span className="text-forge-text-muted">│&nbsp; Score: </span>
-                  <span className="text-violet-400">94/100</span>
-                  <span className="text-violet-400">
-                    &nbsp; ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░
-                  </span>
-                  <span className="text-forge-text-muted">&nbsp; │</span>
-                </p>
-                <p className="text-forge-text-muted">
-                  │&nbsp; Components: 23&nbsp; Issues:
-                  2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-                </p>
-                <p className="text-forge-text-muted">
-                  └─────────────────────────────────────────┘
-                </p>
+                <div className="border border-forge-border rounded-lg bg-forge-surface/30 px-3 py-2.5 space-y-2">
+                  <p className="text-forge-text-subtle">forge-space/forgespace-web</p>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-forge-text-muted">Score</span>
+                    <span className="text-violet-400 font-semibold">94/100</span>
+                    <div className="flex-1 h-1 rounded-full overflow-hidden bg-forge-surface">
+                      <div className="h-full bg-violet-400/80 rounded-full" style={{width: "94%"}} />
+                    </div>
+                  </div>
+                  <p className="text-forge-text-muted">Components: 23 · Issues: 2</p>
+                </div>
                 <p className="text-forge-text-subtle">&nbsp;</p>
                 <p className="text-forge-primary">
                   ↗ Catalog published → siza.forgespace.co

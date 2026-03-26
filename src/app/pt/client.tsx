@@ -137,28 +137,17 @@ export default function PtPage() {
                     ✓ Rodando verificações de IA
                   </p>
                   <p className="text-forge-text-subtle">&nbsp;</p>
-                  <p className="text-forge-text-muted">
-                    ┌─────────────────────────────────────────┐
-                  </p>
-                  <p className="text-forge-text-muted">
-                    │&nbsp; minha-empresa/meu-app
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-                  </p>
-                  <p>
-                    <span className="text-forge-text-muted">│&nbsp; Nota: </span>
-                    <span className="text-violet-400">94/100</span>
-                    <span className="text-violet-400">
-                      &nbsp; ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░
-                    </span>
-                    <span className="text-forge-text-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</span>
-                  </p>
-                  <p className="text-forge-text-muted">
-                    │&nbsp; Componentes: 23&nbsp; Alertas:
-                    2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-                  </p>
-                  <p className="text-forge-text-muted">
-                    └─────────────────────────────────────────┘
-                  </p>
+                  <div className="border border-forge-border rounded-lg bg-forge-surface/30 px-3 py-2.5 space-y-2">
+                    <p className="text-forge-text-subtle">minha-empresa/meu-app</p>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-forge-text-muted">Nota</span>
+                      <span className="text-violet-400 font-semibold">94/100</span>
+                      <div className="flex-1 h-1 rounded-full overflow-hidden bg-forge-surface">
+                        <div className="h-full bg-violet-400/80 rounded-full" style={{width: "94%"}} />
+                      </div>
+                    </div>
+                    <p className="text-forge-text-muted">Componentes: 23 · Alertas: 2</p>
+                  </div>
                   <p className="text-forge-text-subtle">&nbsp;</p>
                   <p className="text-forge-primary">
                     ↗ Catálogo publicado → siza.forgespace.co

@@ -207,7 +207,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Forge Space. MIT License.
           </p>
           <p className="text-xs text-forge-text-subtle">
-            {isPt ? "Feito com" : "Built with"} Next.js, Tailwind CSS &amp; Motion.
+            {isPt ? "Feito com" : "Built with"}{" "}Next.js, Tailwind CSS &amp; Motion.
           </p>
         </div>
       </div>
