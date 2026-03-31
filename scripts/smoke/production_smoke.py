@@ -28,7 +28,7 @@ TARGETS: tuple[Target, ...] = (
             "h1",
             "[data-fs-cta-location='hero_primary']",
             "[data-fs-cta-location='hero_secondary']",
-            "[data-fs-cta-location='landing_cta_primary']",
+            "[data-fs-cta-location='cta_primary']",
             "[data-fs-cta-location='nav_get_started_desktop']",
         ),
         anchors=(),
