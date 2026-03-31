@@ -60,6 +60,13 @@ def check_target(page, target: Target, output_dir: Path) -> dict[str, object]:
 
         page.wait_for_load_state("networkidle", timeout=15000)
 
+        # Scroll through the page to trigger whileInView animations (Framer Motion)
+        # before checking selectors — below-fold elements stay opacity:0 until scrolled.
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        page.wait_for_timeout(500)
+        page.evaluate("window.scrollTo(0, 0)")
+        page.wait_for_timeout(300)
+
         for selector in target.selectors:
             try:
                 page.locator(selector).first.wait_for(state="visible", timeout=10000)
