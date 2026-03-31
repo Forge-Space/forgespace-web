@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Check, ArrowRight, ChevronDown, Minus } from "lucide-react";
+import { Check, ArrowRight, ChevronDown } from "lucide-react";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS, type ForgeCtaEvent } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";

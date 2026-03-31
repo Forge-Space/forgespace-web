@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState, useCallback, useEffect, Suspense } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, Github } from "lucide-react";
+import { Menu } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
 import { MobileMenu } from "@/components/layout/MobileMenu";
@@ -128,7 +129,7 @@ function NavStarBadge() {
       rel="noopener noreferrer"
       className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-forge-border bg-forge-surface text-xs text-forge-text-muted hover:border-forge-border-hover hover:text-foreground transition-all"
     >
-      <Github className="w-3.5 h-3.5" />
+      <GitHubIcon className="w-3.5 h-3.5" />
       {stars > 0 && (
         <span>{stars > 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}</span>
       )}

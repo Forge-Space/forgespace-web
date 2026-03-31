@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
@@ -56,7 +57,7 @@ export function HeroSection() {
                 ctaTarget="github"
                 ctaLocation="hero_primary"
               >
-                <Github className="w-4 h-4" />
+                <GitHubIcon className="w-4 h-4" />
                 Explore on GitHub
                 <ArrowRight className="w-4 h-4" />
               </Button>

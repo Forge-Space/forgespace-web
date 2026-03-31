@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 
 interface FooterLink {
@@ -192,7 +192,7 @@ export function Footer() {
                 className="text-forge-text-subtle transition-colors hover:text-foreground"
                 aria-label="Forge Space on GitHub"
               >
-                <Github className="h-5 w-5" />
+                <GitHubIcon className="h-5 w-5" />
               </a>
             </div>
           </div>

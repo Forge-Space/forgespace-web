@@ -14,8 +14,8 @@ import {
   GitBranch,
   FlaskConical,
   Scale,
-  Github,
 } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -146,7 +146,7 @@ export default function StartupsPage() {
                       ctaTarget="github"
                       ctaLocation="startups_hero_github"
                     >
-                      <Github className="w-4 h-4" />
+                      <GitHubIcon className="w-4 h-4" />
                       View on GitHub
                     </Button>
                     <Button

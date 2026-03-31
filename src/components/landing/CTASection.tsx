@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Github, ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
@@ -111,7 +112,7 @@ export function CTASection({ variant = "default" }: CTASectionProps) {
               passAttribution={c.primary.icon === "mail"}
             >
               {c.primary.icon === "github" ? (
-                <Github className="w-4 h-4" />
+                <GitHubIcon className="w-4 h-4" />
               ) : (
                 <Mail className="w-4 h-4" />
               )}
