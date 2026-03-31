@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.2] - 2026-03-31
+
+### Fixed
+
+- **lucide-react v1 compatibility** — replaced the removed `Github` brand icon with a local `GitHubIcon` SVG component; upgraded `lucide-react` from `^0.577.0` to `^1.0.1`.
+
 ## [0.7.1] - 2026-03-31
 
 ### Fixed
