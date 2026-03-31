@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Lock, Github, Layers } from "lucide-react";
+import { Lock, Layers } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { EASE_SIZA } from "@/lib/constants";
 
 interface FeaturesGridProps {
@@ -10,7 +11,7 @@ interface FeaturesGridProps {
 
 const quickFeatures = [
   {
-    icon: <Github className="w-4 h-4 text-forge-primary" />,
+    icon: <GitHubIcon className="w-4 h-4 text-forge-primary" />,
     title: "Open-Source Foundation",
     description: "Core repositories and packages are public under MIT License.",
   },
@@ -88,7 +89,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                     <span className="text-sky-400">{"<Avatar"}</span>
                     {" "}
                     <span className="text-forge-text-muted">src=</span>
-                    {"{"}
+                    {{"{"}}
                     <span className="text-forge-text-muted">user.avatar</span>
                     {"} "}
                     <span className="text-sky-400">{"/>"}</span>
@@ -97,7 +98,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                     {" "}
                     <span className="text-forge-text-muted">className=</span>
                     <span className="text-emerald-400">{'"font-medium"'}</span>
-                    <span className="text-sky-400">{">"}</span>
+                    <span className="text-sky-400">{">"}  </span>
                     {"{user.name} "}
                     <span className="text-sky-400">{"</p>"}</span>
                     {"\n    "}

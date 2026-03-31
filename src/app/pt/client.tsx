@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Github, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
+import { GitHubIcon } from "@/components/shared/GitHubIcon";
 import { EASE_SIZA } from "@/lib/constants";
 import { FORGE_CTA_EVENTS } from "@/lib/analytics/ga4";
 import { Button } from "@/components/ui/Button";
@@ -67,7 +68,7 @@ export default function PtPage() {
                   ctaTarget="github"
                   ctaLocation="pt_hero_primary"
                 >
-                  <Github className="w-4 h-4" />
+                  <GitHubIcon className="w-4 h-4" />
                   Ver no GitHub
                   <ArrowRight className="w-4 h-4" />
                 </Button>
