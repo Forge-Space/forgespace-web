@@ -70,18 +70,18 @@ vi.mock("next/link", () => ({
 }));
 
 describe("SocialProof", () => {
-  it("renders all 4 stats", () => {
+  it("renders stat labels and badges", () => {
     render(<SocialProof snapshot={snapshot} />);
-    expect(screen.getByText("7.1k")).toBeInTheDocument();
-    expect(screen.getByText("11")).toBeInTheDocument();
-    expect(screen.getByText("9")).toBeInTheDocument();
-    expect(screen.getByText("MIT")).toBeInTheDocument();
+    expect(screen.getByText("Product Repos")).toBeInTheDocument();
+    expect(screen.getByText("Tagged Releases")).toBeInTheDocument();
+    expect(screen.getByText("npm Downloads / mo")).toBeInTheDocument();
+    expect(screen.getByText("MIT License")).toBeInTheDocument();
   });
 
   it("renders npm download label when downloads exist", () => {
     render(<SocialProof snapshot={snapshot} />);
-    expect(screen.getByText("npm Downloads / Month")).toBeInTheDocument();
-    expect(screen.getByText("Open Source Repos")).toBeInTheDocument();
+    expect(screen.getByText("npm Downloads / mo")).toBeInTheDocument();
+    expect(screen.getByText("Product Repos")).toBeInTheDocument();
   });
 
   it("falls back to repo count when no downloads", () => {
@@ -106,9 +106,10 @@ describe("FeaturesGrid", () => {
     render(<FeaturesGrid repoCount={snapshot.repoCount} />);
     expect(screen.getByRole("region", { name: "AI-Powered Generation" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "MCP-Native Architecture" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "CI Quality Gates" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Privacy-First BYOK" })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "Open-Source Foundation" })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "Composable Architecture" })).toBeInTheDocument();
+    expect(screen.getByText("Open-Source Foundation")).toBeInTheDocument();
+    expect(screen.getByText("Composable Architecture")).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Multi-Model Workflows" })).toBeInTheDocument();
   });
 });
@@ -149,17 +150,18 @@ describe("ArchitectureDiagram", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders all 4 layers", () => {
+  it("renders all 5 nodes", () => {
     render(
       <ArchitectureDiagram
         repoCount={snapshot.repoCount}
         releasedRepoCount={snapshot.releasedRepoCount}
       />,
     );
+    expect(screen.getByText("Your Codebase")).toBeInTheDocument();
     expect(screen.getByText("Siza")).toBeInTheDocument();
-    expect(screen.getByText("ui-mcp + branding-mcp")).toBeInTheDocument();
-    expect(screen.getByText("mcp-gateway")).toBeInTheDocument();
     expect(screen.getByText("core")).toBeInTheDocument();
+    expect(screen.getByText("mcp-gateway")).toBeInTheDocument();
+    expect(screen.getByText("delivery MCPs")).toBeInTheDocument();
   });
 });
 

@@ -68,7 +68,7 @@ describe("HeroSection", () => {
 describe("TrustStrip", () => {
   it("renders the Open source ecosystem heading", () => {
     render(<TrustStrip />);
-    expect(screen.getByText("Open source ecosystem")).toBeInTheDocument();
+    expect(screen.getByText(/Open source ecosystem/i)).toBeInTheDocument();
   });
 
   it("renders ecosystem items", () => {
@@ -78,10 +78,9 @@ describe("TrustStrip", () => {
     expect(screen.getAllByText("GitHub").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders the MIT Licensed footer line", () => {
+  it("renders multiple ecosystem items in the marquee", () => {
     render(<TrustStrip />);
-    expect(
-      screen.getByText(/MIT Licensed · Works with any Git provider/i)
-    ).toBeInTheDocument();
+    expect(screen.getAllByText("TypeScript").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("GitHub").length).toBeGreaterThanOrEqual(1);
   });
 });

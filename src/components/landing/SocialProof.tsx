@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, startTransition } from "react";
 import { EASE_SIZA } from "@/lib/constants";
 import { type EcosystemSnapshot } from "@/lib/ecosystem-data";
 
@@ -17,7 +17,7 @@ function useCountUp(target: number, duration = 1200, active: boolean, immediate 
     if (!active || target === 0) return;
 
     if (immediate) {
-      setCount(target);
+      startTransition(() => setCount(target));
       return;
     }
 
@@ -86,8 +86,10 @@ export function SocialProof({ snapshot }: SocialProofProps) {
     // If already in viewport on first paint, show values immediately (no flash from zero)
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      setImmediate(true);
-      setCountersActive(true);
+      startTransition(() => {
+        setImmediate(true);
+        setCountersActive(true);
+      });
       return;
     }
 

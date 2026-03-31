@@ -168,7 +168,7 @@ describe("EcosystemPage — bottom CTASection tracking contract", () => {
     const btn = screen.getByText("Explore on GitHub").closest("a");
     expect(btn).toHaveAttribute("data-fs-cta-event", FORGE_CTA_EVENTS.GITHUB);
     expect(btn).toHaveAttribute("data-fs-cta-target", "github");
-    expect(btn).toHaveAttribute("data-fs-cta-location", "landing_cta_primary");
+    expect(btn).toHaveAttribute("data-fs-cta-location", "cta_primary");
   });
 
   it("renders Contact Sales CTA with correct event and location", () => {
@@ -181,7 +181,7 @@ describe("EcosystemPage — bottom CTASection tracking contract", () => {
     expect(btn).toHaveAttribute("data-fs-cta-target", "contact_sales");
     expect(btn).toHaveAttribute(
       "data-fs-cta-location",
-      "landing_cta_secondary",
+      "cta_secondary",
     );
   });
 
@@ -190,6 +190,6 @@ describe("EcosystemPage — bottom CTASection tracking contract", () => {
     const btn = screen.getByText("Try Siza Demo").closest("a");
     expect(btn).toHaveAttribute("data-fs-cta-event", FORGE_CTA_EVENTS.SIZA);
     expect(btn).toHaveAttribute("data-fs-cta-target", "siza");
-    expect(btn).toHaveAttribute("data-fs-cta-location", "landing_cta_tertiary");
+    expect(btn).toHaveAttribute("data-fs-cta-location", "cta_tertiary");
   });
 });
