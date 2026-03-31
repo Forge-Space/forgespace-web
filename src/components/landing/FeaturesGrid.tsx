@@ -89,7 +89,7 @@ export function FeaturesGrid({ repoCount }: FeaturesGridProps) {
                     <span className="text-sky-400">{"<Avatar"}</span>
                     {" "}
                     <span className="text-forge-text-muted">src=</span>
-                    {{"{"}}
+                    {"{"}
                     <span className="text-forge-text-muted">user.avatar</span>
                     {"} "}
                     <span className="text-sky-400">{"/>"}</span>
