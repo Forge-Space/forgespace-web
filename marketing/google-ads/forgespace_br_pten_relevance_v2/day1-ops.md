@@ -1,4 +1,4 @@
-# Forge Space Visibility Micro-Pilot Ops (v3.5)
+# Forge Space Visibility Micro-Pilot Ops (v3.6)
 
 ## Uploading changes to Google Ads (recommended path)
 
@@ -29,15 +29,19 @@ NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX npm run ads:google:prepublish
 This validates: config guardrails, keyword mix (smb_en=6, oss_en=6, startups_en=6),
 keyword coverage, GA tag, negative conflicts, 56 tracking tests, RSA char limits, URL routes.
 
-## Campaign settings (applied 2026-03-15)
+## Campaign settings (applied 2026-03-15, smb_pt enabled 2026-03-15)
 
 1. Campaign name: `forgespace_br_en_visibility_v3`
 2. Goal: Website traffic with visibility optimization
 3. Networks: Google Search only (Search Partners OFF, Display OFF)
-4. Targeting: Brazil, English only, Presence
+4. Targeting: Brazil, English + Portuguese, Presence
 5. Budget: `R$10/day`, CPC cap `R$2.50`, hard stop `R$100`
 6. AI Max: **OFF** (causes headline/URL drift — never enable)
-7. Ad groups: `smb_en` + `oss_en` + `startups_en` enabled, `smb_pt` paused
+7. Ad groups: `smb_en` + `oss_en` + `startups_en` + `smb_pt` all enabled
+
+> **⚠️ Language targeting**: Must include both English AND Portuguese in Google Ads UI.
+> If zero impressions persist, verify campaign language settings include Portuguese —
+> smb_pt keywords will never match without it.
 
 ## Ad group structure
 
@@ -46,6 +50,7 @@ keyword coverage, GA tag, negative conflicts, 56 tracking tests, RSA char limits
 | `smb_en` | 6 (IDP, Backstage, Platform Eng) | `forgespace.co/` | baseline + challenger |
 | `oss_en` | 6 (OSS IDP, Dev Platform GitHub) | `forgespace.co/ecosystem` | baseline + challenger |
 | `startups_en` | 6 (IDP for startups, Dev Platform, PE Startups) | `forgespace.co/startups` | baseline + challenger |
+| `smb_pt` | 6 (plataforma desenvolvimento, alternativa backstage, ferramentas plataforma) | `forgespace.co/pt` | baseline + challenger |
 
 ## Keyword reference
 
@@ -79,15 +84,26 @@ keyword coverage, GA tag, negative conflicts, 56 tracking tests, RSA char limits
 "platform engineering startups"
 ```
 
+**smb_pt (6 keywords):**
+```
+[plataforma de desenvolvimento]
+"plataforma de desenvolvimento"
+[alternativa ao backstage]
+"alternativa ao backstage"
+[ferramentas de plataforma]
+"ferramentas de plataforma"
+```
+
 ## RSA ads (all created via editor-upload.csv)
 
-All 6 ads (baseline + challenger per group) are in `rsa.json` v3.5.
+All 8 ads (baseline + challenger per group × 4 groups) are in `rsa.json` v3.6.
 Use `npm run ads:google:generate-upload` to regenerate `editor-upload.csv`.
 
 **Landing URLs:**
 - smb_en: `https://forgespace.co/?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
 - oss_en: `https://forgespace.co/ecosystem?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
 - startups_en: `https://forgespace.co/startups?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
+- smb_pt: `https://forgespace.co/pt?utm_source=google&utm_medium=cpc&utm_campaign=forgespace_br_en_visibility_v3`
 
 ## Ad extensions (from assets.json v3.5)
 
