@@ -86,14 +86,14 @@ const comparisonRows: {
 function ComparisonCell({ value }: { value: ComparisonValue }) {
   if (value === true) {
     return (
-      <span aria-label="Included">
+      <span role="img" aria-label="Included">
         <Check className="w-4 h-4 text-emerald-400 mx-auto" aria-hidden />
       </span>
     );
   }
   if (value === false) {
     return (
-      <span className="inline-flex items-center justify-center gap-1 text-xs text-forge-text-subtle" aria-label="Not included">
+      <span className="inline-flex items-center justify-center gap-1 text-xs text-forge-text-subtle">
         <span aria-hidden className="opacity-50">✕</span>
         <span className="sr-only">Not included</span>
       </span>
