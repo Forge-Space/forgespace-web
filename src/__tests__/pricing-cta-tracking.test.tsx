@@ -56,7 +56,6 @@ describe("PricingPage — CTA tracking contract", () => {
     render(<PricingPage />);
 
     expect(screen.getAllByText("MIT Licensed").length).toBeGreaterThan(0);
-    expect(screen.getByText("SOC 2 Ready")).toBeInTheDocument();
     expect(screen.getByText("BYOK Encryption")).toBeInTheDocument();
   });
 

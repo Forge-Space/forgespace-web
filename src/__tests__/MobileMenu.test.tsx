@@ -41,7 +41,7 @@ describe("MobileMenu", () => {
     expect(screen.getByText("Features")).toBeInTheDocument();
     expect(screen.getByText("Pricing")).toBeInTheDocument();
     expect(screen.getByText("Docs")).toBeInTheDocument();
-    expect(screen.getByText("Get Started")).toBeInTheDocument();
+    expect(screen.getByText("Get Started Free")).toBeInTheDocument();
   });
 
   it("calls onClose on Escape", () => {
@@ -57,7 +57,7 @@ describe("MobileMenu", () => {
     render(<MobileMenu isOpen onClose={vi.fn()} links={LINKS} />);
 
     const closeButton = screen.getByRole("button", { name: "Close menu" });
-    const getStarted = screen.getByRole("link", { name: "Get Started" });
+    const getStarted = screen.getByRole("link", { name: "Get Started Free" });
 
     closeButton.focus();
     fireEvent.keyDown(document, { key: "Tab", shiftKey: true });

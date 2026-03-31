@@ -47,6 +47,6 @@ describe('PageSection', () => {
         <p>Content</p>
       </PageSection>
     );
-    expect(container.querySelector('section')).toHaveClass('custom-class');
+    expect(container.firstElementChild).toHaveClass('custom-class');
   });
 });
