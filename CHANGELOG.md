@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-03-31
+
+### Fixed
+
+- **SocialProof lint** — wrapped synchronous `setState` calls in `startTransition` to resolve `react-hooks/set-state-in-effect` lint errors.
+- **Stale test assertions** — updated 8 test files to match current component implementations: ArchitectureDiagram 5-node layout (`delivery MCPs`), FeaturesGrid `CI Quality Gates` section, `Button` shadow class, `MobileMenu` CTA label, `PageSection` element selector, CTA tracking locations, TrustStrip sr-only text, and pricing trust badges.
+- **Smoke test viewport fix** — scroll page after `networkidle` to trigger `whileInView` Framer Motion animations before selector checks.
+
 ### Changed
 
 - **Responsive layout stability** — fixed roadmap progress labels and breakpoint behavior to remove horizontal overflow on `/roadmap` (mobile) and shared nav overflow at tablet widths.
@@ -237,7 +245,9 @@ All notable changes to this project will be documented in this file.
 - `useReducedMotion()` support for accessibility
 - Custom `global-error.tsx` and `not-found.tsx`
 
-[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.7.1...HEAD
+[0.7.1]: https://github.com/Forge-Space/forgespace-web/compare/v0.7.0...v0.7.1
+[0.7.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/Forge-Space/forgespace-web/compare/v0.4.1...v0.4.2
