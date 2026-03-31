@@ -263,10 +263,9 @@ export default function RoadmapPage({ repoCount = 10 }: RoadmapPageProps) {
                   />
                   <span
                     className="text-[10px] sm:text-xs font-mono text-forge-text-subtle text-center leading-tight max-w-[7.5rem] sm:max-w-none"
-                    aria-label={config.pillLabel}
                   >
                     <span aria-hidden className="sm:hidden">{config.pillLabelCompact}</span>
-                    <span aria-hidden className="hidden sm:inline">{config.pillLabel}</span>
+                    <span className="hidden sm:inline">{config.pillLabel}</span>
                   </span>
                 </div>
                 {i < phases.length - 1 && (

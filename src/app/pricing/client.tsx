@@ -344,7 +344,7 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2" aria-label="Platform highlights">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Platform highlights">
             <Badge variant="outline">MIT Licensed</Badge>
             <Badge variant="outline">BYOK Encryption</Badge>
           </div>
