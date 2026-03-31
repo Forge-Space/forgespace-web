@@ -1,6 +1,6 @@
 {
   "campaign_name": "forgespace_br_en_visibility_v3",
-  "version_notes": "v3.5 — smb_pt ad group enabled 2026-03-15. /pt landing page is live. PT keywords activated in keywords.csv (6 keywords: exact+phrase for 3 PT terms). Full keyword coverage per ad group. All headlines ≤30 chars, descriptions ≤90 chars.",
+  "version_notes": "v3.6 — fix smb_pt/challenger headline pin: 'Sem Overhead' corrected to 'Sem Custo' to match headline. smb_pt enabled 2026-03-15. All headlines ≤30 chars, descriptions ≤90 chars.",
   "ad_groups": [
     {
       "ad_group_name": "smb_en",
@@ -283,7 +283,7 @@
               "Plataforma de Desenvolvimento",
               "Alternativa ao Backstage",
               "Ferramentas de Plataforma",
-              "IDP para Startups — Sem Overhead"
+              "IDP para Startups — Sem Custo"
             ],
             "3": [
               "Teste Grátis no GitHub",
