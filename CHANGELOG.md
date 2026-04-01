@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - **SonarCloud code issues** — removed redundant className conditional with identical branches (S3923); renamed error page function from `Error` to `ErrorPage` to avoid shadowing global constructor (S2304).
+- **SonarCloud coverage** — added unit tests for `ClientAnalytics` and `structured-data` modules, and configured `sonar.typescript.lcov.reportPaths` and coverage exclusions for dynamic import wrappers to improve quality gate compliance from 79.9% to 87.3% overall statement coverage.
 
 ## [0.7.2] - 2026-03-31
 
