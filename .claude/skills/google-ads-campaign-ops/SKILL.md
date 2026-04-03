@@ -72,6 +72,12 @@ Read `checkpoint-scorecard-live.csv` and check:
 - **Primary CTA count**: at least 1 `fs_cta_github_click` by R$60
 - **Irrelevant query share**: rising? → add negatives immediately
 
+If the R$10 checkpoint still shows **0 impressions**, escalate immediately:
+
+```bash
+npm run ads:google:diagnostics
+```
+
 ### Step 3: Apply stop/continue rules
 
 From `campaign-config.json`:

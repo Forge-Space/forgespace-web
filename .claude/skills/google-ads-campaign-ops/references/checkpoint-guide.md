@@ -18,6 +18,19 @@
 - [ ] Search terms report: any obvious irrelevant queries?
 - [ ] Add negatives for any irrelevant terms found
 
+Zero-impression escalation command:
+
+```bash
+npm run ads:google:diagnostics
+```
+
+If diagnostics reports `conversion_primary_github=false`, open Campaign Settings → Metas de conversão → `Alterar as metas da campanha`.
+If the picker only shows `Cliques de saída`, stop there: `fs_cta_github_click` is not available in Google Ads yet and must be imported/restored under Metas → Conversões before the campaign can switch goals.
+
+Use this handoff for the admin-facing fix path:
+
+- `marketing/google-ads/forgespace_br_pten_relevance_v2/google-ads-admin-handoff.md`
+
 ### R$30 Checkpoint
 - [ ] CTR ≥ 1.5% on at least one ad group
 - [ ] At least 1 `fs_cta_github_click` conversion (or investigate why not)

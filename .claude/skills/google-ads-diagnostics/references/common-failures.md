@@ -42,6 +42,16 @@
 **Root cause**: The GA4 event wasn't imported into Google Ads, or it's set to Secondary instead of Primary.
 **Fix**: In Google Ads > Goals > Conversions, verify the imported GA4 event is marked Primary.
 
+### Campaign goal picker only shows "Cliques de saída"
+**Symptom**: Campaign settings > "Alterar as metas da campanha" opens a goal picker, but the only selectable goal is `Cliques de saída`.
+**Root cause**: The intended imported conversion (for this campaign, `fs_cta_github_click`) is not available in Google Ads yet, so the campaign cannot switch to it even though repo config expects it.
+**Fix**: In Google Ads > Metas > Conversões, import `fs_cta_github_click` from GA4 (or restore the existing import) and mark it Primary. Re-open campaign settings only after it appears in the picker.
+
+### Floodlight / Campaign Manager 360 permission wall
+**Symptom**: Google Ads > Metas > Conversões shows conversion-goal cards, but editing or restoring the needed conversion triggers a dialog like `Não foi possível editar a ação de conversão` and mentions missing Campaign Manager 360 permissions.
+**Root cause**: The account cannot edit the relevant conversion action because it is managed through Floodlight / Campaign Manager 360 and the current Google Ads user lacks the required permission path.
+**Fix**: Have an account admin or CM360/Floodlight owner restore/import the required conversion (`fs_cta_github_click`) and confirm it appears in Google Ads as a selectable Primary action before attempting campaign-level automation again. Use `marketing/google-ads/forgespace_br_pten_relevance_v2/google-ads-admin-handoff.md` as the handoff script.
+
 ### GA4 tracking ID not set
 **Symptom**: No analytics data at all.
 **Root cause**: `NEXT_PUBLIC_GA_TRACKING_ID` not in `.env.local` or not exported.
@@ -72,6 +82,11 @@
 **Root cause**: Google Ads "AI Max for Search Campaigns" was enabled with "Personalização do texto" (text personalization) and "Expansão de URL final" (final URL expansion). These features auto-generate ad text from the website and redirect to any URL Google deems relevant — including paths that don't exist.
 **Example**: rsa.json says "Internal Developer Platform" headline with `/enterprise` URL, but Google AI Max generates "Open-Source AI Infrastructure" headline with `/open-source/infra` URL (a 404).
 **Fix**: Disable AI Max entirely for micro-pilot campaigns where message control is critical. In Campaign Settings > AI Max, toggle OFF. Also uncheck "Personalização do texto" and "Expansão de URL final" under Otimização de recursos (Asset optimization).
+
+### Search Partners enabled despite repo config
+**Symptom**: Campaign settings shows `Rede de pesquisa do Google, Parceiros de pesquisa` even though the repo config requires Google Search only.
+**Root cause**: Live campaign network settings drifted from `campaign-config.json` after manual UI changes.
+**Fix**: In Google Ads > Campaign Settings > Redes, disable `Parceiros de pesquisa` so only `Rede de pesquisa do Google` remains. Then rerun `npm run ads:google:diagnostics`.
 
 ## Strategic Misalignment
 

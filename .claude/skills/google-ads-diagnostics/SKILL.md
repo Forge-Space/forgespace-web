@@ -26,7 +26,7 @@ metadata:
 
 - The task is writing new ad copy or keyword research. Use brainstorming or marketing-ideas.
 - The task is deploying landing page changes. Use standard dev workflow.
-- The task is running `ads:google:checkpoint` (that's an operational script, not a diagnostic).
+- The task is only updating the scorecard at a normal checkpoint with healthy delivery. Use `google-ads-campaign-ops`.
 
 ## Inputs / Prereqs
 
@@ -41,13 +41,19 @@ metadata:
 
 ### Phase 0: Automated Checks First
 
-Always run the full prepublish suite before manual analysis:
+Prefer the one-shot diagnostic wrapper:
+
+```bash
+npm run ads:google:diagnostics
+```
+
+This runs `ads:google:prepublish`, then `ads:google:checkpoint`, then prints a severity-ranked diagnosis with next manual actions. If you need to run the primitives separately, start with:
 
 ```bash
 NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX npm run ads:google:prepublish
 ```
 
-This validates: config guardrails, keyword mix, **keyword coverage** (every enabled keyword verbatim in at least one headline per ad), GA tag, negative conflicts, lint, 47 tracking tests, RSA char limits, URL routes, and keywords format. Fix any failure before continuing.
+This validates: config guardrails, keyword mix, **keyword coverage** (every enabled keyword verbatim in at least one headline per ad), GA tag, negative conflicts, lint, tracking tests, RSA char limits, URL routes, and keywords format. Fix any failure before continuing.
 
 ### Phase 1: Delivery Health
 
@@ -120,6 +126,19 @@ When a Google Ads screenshot or checkpoint artifact is available:
     - Which ads from `rsa.json` need to be created in Google Ads.
     - Step-by-step instructions for the manual reconciliation.
 
+### Phase 5B: Campaign Settings Verification
+
+When the checkpoint summary shows guardrail failures, verify the live Google Ads UI state before recommending repo changes:
+
+10. Inspect campaign settings and confirm whether each failure is a real live drift or just a parser miss:
+    - Networks: does the live UI show `Rede de pesquisa do Google, Parceiros de pesquisa`?
+    - AI Max: is the toggle actually on, or is only the section visible while the toggle is off?
+    - Languages and locations: verify the live strings shown in campaign settings.
+    - Ad groups: verify the ad groups table instead of inferring presence from the campaign overview.
+11. If the campaign goal picker only shows `Cliques de saída`, treat that as evidence that `fs_cta_github_click` is not available in Google Ads yet.
+12. Prefer DOM-backed evidence over broad body-text heuristics when the page is SPA-heavy or has collapsed panels.
+13. If Google Ads surfaces a Campaign Manager 360 / Floodlight permission dialog while editing conversions, stop automation there and report it as an account-permission blocker, not a repo misconfiguration.
+
 ### Phase 6: Scorecard Assessment
 
 14. Read scorecard and apply stop/continue rules from `campaign-config.json`:
@@ -133,7 +152,9 @@ Run these scripts as part of the diagnostic workflow:
 
 | Command | When to use |
 |---------|-------------|
-| `npm run ads:google:prepublish` | **Always first** — validates all guardrails including keyword coverage |
+| `npm run ads:google:diagnostics` | Preferred one-shot diagnosis for zero-delivery or low-delivery incidents |
+| `npm run ads:google:handoff` | Generate a ready-to-send admin escalation message from the latest checkpoint |
+| `npm run ads:google:prepublish` | First primitive check when you need to run the workflow step-by-step |
 | `npm run ads:google:generate-upload` | Regenerate editor-upload.csv after any rsa.json change |
 | `DRY_RUN=1 npm run ads:google:publish-rsa` | Validate RSA char limits and URL routes |
 | `DRY_RUN=1 npm run ads:google:publish-keywords` | Validate keywords and generate import formats |
@@ -159,6 +180,7 @@ Run these scripts as part of the diagnostic workflow:
 
 - `references/diagnostic-checklist.md` — full checklist for systematic audit
 - `references/common-failures.md` — known failure patterns and fixes
+- `marketing/google-ads/forgespace_br_pten_relevance_v2/google-ads-admin-handoff.md` — exact admin handoff when repo automation is blocked by Google Ads / CM360 permissions
 
 ## Memory Hooks
 
