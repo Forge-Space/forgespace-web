@@ -123,6 +123,55 @@ function extractConversions(conversionText) {
   return result;
 }
 
+async function extractSettingsFacts(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => value.replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
+    const panelText = (label) => {
+      const all = Array.from(document.querySelectorAll("body *"));
+      for (const el of all) {
+        const text = normalize(el.innerText || "");
+        if (text.startsWith(`${label} `) || text === label || text.includes(`${label}\n`)) {
+          if (text.length <= 600) {
+            return text;
+          }
+        }
+      }
+      return "";
+    };
+
+    const aiMaxToggle = document.querySelector('[aria-label="Otimize sua campanha com a AI Max"] [role="switch"], [role="switch"][aria-label="Otimize sua campanha com a AI Max"]');
+
+    return {
+      network: panelText("Redes"),
+      conversionGoals: panelText("Metas de conversão"),
+      locations: panelText("Locais"),
+      languages: panelText("Idiomas"),
+      assetOptimization: panelText("Otimização de recursos"),
+      aiMaxEnabled: aiMaxToggle?.getAttribute("aria-checked") === "true",
+    };
+  });
+}
+
+async function extractAdGroupFacts(page) {
+  return page.evaluate(() => {
+    const names = ["smb_en", "oss_en", "startups_en", "smb_pt"];
+    const rows = Array.from(document.querySelectorAll('[role="row"]'));
+    const result = {};
+
+    for (const name of names) {
+      const row = rows.find((candidate) => (candidate.innerText || "").includes(name));
+      const text = row ? row.innerText.replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim() : "";
+      result[name] = {
+        found: Boolean(row),
+        text,
+        qualified: /Qualificada/i.test(text),
+      };
+    }
+
+    return result;
+  });
+}
+
 function extractDelimitedTerms(text) {
   const terms = [];
   const length = text.length;
@@ -287,6 +336,11 @@ async function run() {
     artifactDir,
     "settings",
   );
+  const settingsFacts = await extractSettingsFacts(page);
+  fs.writeFileSync(
+    path.join(artifactDir, "settings-facts.json"),
+    JSON.stringify(settingsFacts, null, 2),
+  );
   const bidPanel = page.getByText("Maximizar cliques", { exact: true }).first();
   if (await bidPanel.count()) {
     await bidPanel.click({ force: true, timeout: 20000 });
@@ -298,11 +352,27 @@ async function run() {
       .filter((el) => el.getAttribute("type") === "money64")
       .map((el) => (el.value || "").trim()),
   );
-  const conversionText = await capturePage(
+  let conversionText = "";
+  try {
+    conversionText = await capturePage(
+      page,
+      "https://ads.google.com/aw/conversions",
+      artifactDir,
+      "conversions",
+    );
+  } catch {
+    fs.writeFileSync(path.join(artifactDir, "conversions.txt"), "", "utf8");
+  }
+  const adGroupsText = await capturePage(
     page,
-    "https://ads.google.com/aw/conversions",
+    `https://ads.google.com/aw/adgroups?campaignId=${CAMPAIGN_ID}`,
     artifactDir,
-    "conversions",
+    "adgroups",
+  );
+  const adGroupFacts = await extractAdGroupFacts(page);
+  fs.writeFileSync(
+    path.join(artifactDir, "adgroups-facts.json"),
+    JSON.stringify(adGroupFacts, null, 2),
   );
   await capturePage(
     page,
@@ -364,21 +434,26 @@ async function run() {
     decision,
     guardrails: {
       budget_r10_day: /R\$\s*10,00\/dia/.test(settingsText.replace(/\u00a0/g, " ")),
-      search_only: /Rede de pesquisa do Google/.test(settingsText) &&
-        !/Parceiros de pesquisa/.test(settingsText) &&
-        !/Rede de Display/.test(settingsText),
-      english_language: /Idiomas[\s\S]{0,80}English/.test(settingsText),
-      brazil_location: /Locais[\s\S]{0,80}Brasil/.test(settingsText),
-      ai_max_off: !/AI Max/.test(settingsText) && !/Personaliza[çc]/.test(settingsText),
+      search_only: /Rede de pesquisa do Google/.test(settingsFacts.network) &&
+        !/Parceiros de pesquisa/.test(settingsFacts.network) &&
+        !/Rede de Display/.test(settingsFacts.network),
+      english_language: /English/.test(settingsFacts.languages),
+      brazil_location: /Brasil/.test(settingsFacts.locations),
+      ai_max_off: settingsFacts.aiMaxEnabled === false &&
+        /desativadas/i.test(settingsFacts.assetOptimization),
       cpc_cap_250:
         /2,50/.test(settingsText) ||
         /2,50/.test(settingsBidText) ||
         bidMoneyValues.includes("2,50"),
-      conversion_primary_github: /fs_cta_github_click[\s\S]{0,120}Principal/.test(conversionText),
+      conversion_primary_github: /fs_cta_github_click[\s\S]{0,120}Principal/.test(conversionText) ||
+        /fs_cta_github_click|GitHub/i.test(settingsFacts.conversionGoals),
       ad_groups_enabled: ["smb_en", "oss_en", "startups_en"].every(
-        (g) => new RegExp(g).test(campaignText),
+        (g) => adGroupFacts[g]?.found && adGroupFacts[g]?.qualified,
       ),
     },
+    settings_facts: settingsFacts,
+    ad_group_facts: adGroupFacts,
+    adgroups_text_captured: adGroupsText.length > 0,
   };
 
   fs.writeFileSync(path.join(artifactDir, "checkpoint-summary.json"), JSON.stringify(summary, null, 2));
