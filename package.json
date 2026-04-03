@@ -13,6 +13,8 @@
     "test:coverage": "vitest run --coverage",
     "ads:google:prepublish": "bash scripts/google-ads-prepublish.sh",
     "ads:google:checkpoint": "node scripts/google-ads-checkpoint.mjs",
+    "ads:google:diagnostics": "node scripts/google-ads-diagnostics.mjs",
+    "ads:google:handoff": "node scripts/google-ads-handoff.mjs",
     "ads:google:publish-rsa": "node scripts/google-ads-publish-rsa.mjs",
     "ads:google:publish-keywords": "node scripts/google-ads-publish-keywords.mjs",
     "ads:google:generate-upload": "node scripts/google-ads-generate-upload.mjs",
