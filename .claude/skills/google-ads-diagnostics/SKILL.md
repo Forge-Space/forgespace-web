@@ -154,6 +154,7 @@ Run these scripts as part of the diagnostic workflow:
 |---------|-------------|
 | `npm run ads:google:diagnostics` | Preferred one-shot diagnosis for zero-delivery or low-delivery incidents |
 | `npm run ads:google:handoff` | Generate a ready-to-send admin escalation message from the latest checkpoint |
+| `npm run ads:google:sync-issue` | Preview or update the GitHub tracking issue from the latest checkpoint state |
 | `npm run ads:google:prepublish` | First primitive check when you need to run the workflow step-by-step |
 | `npm run ads:google:generate-upload` | Regenerate editor-upload.csv after any rsa.json change |
 | `DRY_RUN=1 npm run ads:google:publish-rsa` | Validate RSA char limits and URL routes |

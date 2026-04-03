@@ -128,6 +128,16 @@ This command also writes a reusable artifact next to the latest checkpoint summa
 
 `marketing/google-ads/forgespace_br_pten_relevance_v2/artifacts/<latest-checkpoint>/admin-handoff.txt`
 
+Sync the GitHub tracking issue from the same latest checkpoint state:
+
+```bash
+npm run ads:google:sync-issue
+APPLY=1 npm run ads:google:sync-issue
+```
+
+- Dry-run is the default.
+- Use `APPLY=1` to update the live GitHub issue.
+
 Expected improvements:
 
 - `search_only=true`
