@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.3] - 2026-04-04
+
 ### Fixed
 
 - **SonarCloud code issues** — removed redundant className conditional with identical branches (S3923); renamed error page function from `Error` to `ErrorPage` to avoid shadowing global constructor (S2304).
