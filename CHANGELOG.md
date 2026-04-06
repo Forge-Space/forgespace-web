@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-04-06
+
 ### Fixed
 
 - **SonarCloud code issues** — removed redundant className conditional with identical branches (S3923); renamed error page function from `Error` to `ErrorPage` to avoid shadowing global constructor (S2304).
@@ -256,7 +258,9 @@ All notable changes to this project will be documented in this file.
 - `useReducedMotion()` support for accessibility
 - Custom `global-error.tsx` and `not-found.tsx`
 
-[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.7.1...HEAD
+[Unreleased]: https://github.com/Forge-Space/forgespace-web/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.7.2...v0.8.0
+[0.7.2]: https://github.com/Forge-Space/forgespace-web/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/Forge-Space/forgespace-web/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/Forge-Space/forgespace-web/compare/v0.5.0...v0.6.0
